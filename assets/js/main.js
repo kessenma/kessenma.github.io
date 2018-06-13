@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded",function(){new SweetScroll({});particlesJS("particles-js",{
   "particles": {
     "number": {
-      "value": 80,
+      "value": 10,
       "density": {
         "enable": true,
         "value_area": 800
       }
     },
     "color": {
-      "value": "#ffffff"
+      "value": "#83c558"
     },
     "shape": {
       "type": "circle",
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded",function(){new SweetScroll({});part
       }
     },
     "opacity": {
-      "value": 0.5,
+      "value": 0.4489540273080296,
       "random": false,
       "anim": {
         "enable": false,
@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded",function(){new SweetScroll({});part
       }
     },
     "size": {
-      "value": 3,
-      "random": true,
+      "value": 28.05962670675185,
+      "random": false,
       "anim": {
         "enable": false,
         "speed": 40,
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded",function(){new SweetScroll({});part
       }
     },
     "line_linked": {
-      "enable": true,
+      "enable": false,
       "distance": 150,
       "color": "#ffffff",
       "opacity": 0.4,
@@ -54,21 +54,21 @@ document.addEventListener("DOMContentLoaded",function(){new SweetScroll({});part
     },
     "move": {
       "enable": true,
-      "speed": 6,
-      "direction": "none",
+      "speed": 1.60340724038582,
+      "direction": "bottom",
       "random": false,
-      "straight": false,
+      "straight": true,
       "out_mode": "out",
       "bounce": false,
       "attract": {
-        "enable": false,
-        "rotateX": 600,
+        "enable": true,
+        "rotateX": 400.851810096455,
         "rotateY": 1200
       }
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
+    "detect_on": "window",
     "events": {
       "onhover": {
         "enable": true,
@@ -76,22 +76,22 @@ document.addEventListener("DOMContentLoaded",function(){new SweetScroll({});part
       },
       "onclick": {
         "enable": true,
-        "mode": "push"
+        "mode": "bubble"
       },
       "resize": true
     },
     "modes": {
       "grab": {
-        "distance": 400,
+        "distance": 0,
         "line_linked": {
-          "opacity": 1
+          "opacity": 0
         }
       },
       "bubble": {
         "distance": 400,
         "size": 40,
-        "duration": 2,
-        "opacity": 8,
+        "duration": 1.118881118881119,
+        "opacity": 0.3516483516483517,
         "speed": 3
       },
       "repulse": {
