@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded",function(){new SweetScroll({});part
     "events": {
       "onhover": {
         "enable": true,
-        "mode": "repulse"
+        "mode": "bubble"
       },
       "onclick": {
         "enable": true,
@@ -107,4 +107,4 @@ document.addEventListener("DOMContentLoaded",function(){new SweetScroll({});part
     }
   },
   "retina_detect": true
- })},!1);
+})},!1);
