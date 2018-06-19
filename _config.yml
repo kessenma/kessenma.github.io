@@ -1,5 +1,5 @@
 # Site settings
-title: Kyle Essenmacher Portfolio 
+title: Kyle Essenmacher Portfolio
 description: UX
 # baseurl: "/particle" # the subpath of your site, e.g. /blog
 # url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
@@ -8,10 +8,10 @@ description: UX
 username: Kyle Essenmacher
 user_description: Bicycle rights irony actually neutra typewriter lyft. Man bun taxidermy put a bird on it, umami yr ramps pop-up ugh bushwick chia lo-fi. Occupy bitters pour-over snackwave you probably haven't heard of them small batch. Cornhole mustache man bun letterpress echo park VHS.
 user_title: User Experience Designer
-email: anon@anon.com
-twitter_username: 
+email: kessen@umich.edu
+twitter_username:
 github_username:  kessenma
-gplus_username:  
+gplus_username:
 
 # Google-analytics
 google-analytics:
