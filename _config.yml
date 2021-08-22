@@ -1,13 +1,13 @@
 # Site settings
 title: Kyle Essenmacher Portfolio
-description: UX
+description: 
 # baseurl: "/particle" # the subpath of your site, e.g. /blog
 # url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
 
 # User settings
 username: Kyle Essenmacher
-user_description: a University of Michigan School of Information student, a listener, learner, & dog petter.
-user_title: User Experience Designer
+user_description: a University of Michigan School of Information graduate, a listener, learner, & dog petter.
+user_title: Data Scientist + UX Researcher + front-end-dev
 email: kessen@umich.edu
 twitter_username:
 github_username:  kessenma
