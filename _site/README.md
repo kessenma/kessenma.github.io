@@ -51,14 +51,25 @@ gplus_username:  lorem_ipsum
   - Edit the json data in particle function in app.js
   - Refer to [Particle.js](https://github.com/VincentGarreau/particles.js/) for help
 
-## Running the blog in local
+## Running the blog in local 
 
 In order to compile the assets and run Jekyll on local you need to follow those steps:
-
+  
+## prereqs 
 - Install [NodeJS](https://nodejs.org/)
+- Install [Jekyll](https://jekyllrb.com/) 
+(both of these pre reqs have their own pre reqs... I know... 🙃)
+
+## option 1 (the way this theme suggests)
 - Run `npm install`
 - Run `gulp`
+- as of 08/28/201 I think that the application 'gulp' may not be supported on MacOS, so I couldn't run the site with gulp
+## option 2 (the way that I do that seems easier)
+- open terminal 
+- cd into the local file of the site
+- Run `jekyll serve`
 
+-
 ## Questions
 
 Having any issues file a [GitHub Issue](https://github.com/nrandecker/particle/issues/new).
