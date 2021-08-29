@@ -3495,8 +3495,6 @@ sub,sup{
     }
 }
 .tech{
-    margin:10px
-    display: flex;
     flex-flow: column;
     flex-wrap: wrap;
     justify-content: space-between;
