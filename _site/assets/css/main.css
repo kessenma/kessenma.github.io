@@ -1,3 +1,4 @@
+
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
  @import url(https://fonts.googleapis.com/css?family=Montserrat);
 html{
@@ -3380,9 +3381,9 @@ sub,sup{
     height:100vh!important
 }
 .header{
-    z-index:0;
+    z-index:1;
     text-align:center;
-    color:#fff;
+    color:#000000;
     position:absolute;
     top:50%;
     left:50%;
@@ -3418,7 +3419,7 @@ sub,sup{
     margin:10px
 }
 .header-links .link{
-    color:#fff;
+    color:#000000;
     text-decoration:none;
     font-size:15px;
     margin:10px
@@ -3448,8 +3449,8 @@ sub,sup{
     margin:5px
 }
 .header-icons .icon:active,.header-icons .icon:hover{
-    color:#1a222c;
-    background:#fff
+    color:#83C558;
+    background:#83C558
 }
 @media only screen and (min-width:550px){
     .header-icons .icon{
@@ -3477,7 +3478,7 @@ sub,sup{
     transform:translate(-50%,-50%);
     width:100px;
     height:100px;
-    fill:#000000;
+    fill:#83C558;
     -webkit-animation:pulse 1.3s infinite;
     animation:pulse 1.3s infinite
 }
