@@ -5,8 +5,10 @@
 
 <!-- FONT -->
   <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
-
+<!-- CSS  -->
   <link rel="stylesheet" href="assets/css/reset.css"> <!-- CSS reset -->
+  <link rel="stylesheet" href="assets/css/main.css"> <!-- Main CSS -->
+<!-- Javascript -->
   <script src="assets/js/jquery-2.1.1.js"></script> <!-- jquery -->
   <script src="assets/js/velocity.min.js"></script> <!-- velocity -->
   <script src="assets/js/modernizr.js"></script> <!-- Modernizr -->
@@ -14,7 +16,5 @@
 
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-
-  <link rel="stylesheet" href="{{ "/assets/css/main.css" | prepend: site.baseurl }}">
-
+  
 </head>
