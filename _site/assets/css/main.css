@@ -274,16 +274,13 @@ Main components
 }
 
 
-html, body {
-  height: 100%;
-}
 
 .cd-logo, .cd-nav-trigger {
   position: fixed;
   display: inline-block;
 }
 
-.cd-logo {
+.Fcd-logo {
   top: 28px;
   left: 5%;
 }
@@ -390,7 +387,7 @@ html, body {
   transition-delay: 0.4s;
 }
 .cd-nav-trigger::after {
-/*  background-color: #ffb441;*/
+  background-color: #ffb441;
   -webkit-transform: scale(0);
   -moz-transform: scale(0);
   -ms-transform: scale(0);
@@ -427,7 +424,7 @@ html, body {
 }
 .cd-nav-trigger.close-nav .cd-icon {
   /* user clicks on the .cd-nav-trigger element - transform the icon */
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(0, 0, 0, 0);
 }
 .cd-nav-trigger.close-nav .cd-icon::before, .cd-nav-trigger.close-nav .cd-icon::after {
   background-color: white;
