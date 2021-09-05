@@ -1,3 +1,16 @@
+
+
+// https://github.com/tsuyoshiwada/sweet-scroll/blob/master/README.md#1-install
+// document.addEventListener(
+//   'DOMContentLoaded',
+//   () => {
+//     const scroller = new SweetScroll({
+//       /* some options */
+//     });
+//   },
+//   false,
+// );
+
 document.addEventListener("DOMContentLoaded",function(){new SweetScroll({});particlesJS("particles-js",{
   "particles": {
     "number": {

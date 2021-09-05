@@ -11,19 +11,22 @@
   <link rel="stylesheet" href="assets/css/reset.css"> <!-- CSS reset -->
   <link rel="stylesheet" href="assets/css/main.css"> <!-- Main CSS -->
 <!-- Javascript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- Particles -->
   <script src="assets/js/jquery-2.1.1.js"></script> <!-- jquery -->
   <script src="assets/js/velocity.min.js"></script> <!-- velocity -->
   <script src="assets/js/modernizr.js"></script> <!-- Modernizr -->
+  <script src="assets/js/main.js"></script> <!-- JS  -->  
+  <script type="assets/js/sweet-scroll.min.js"></script>
 
 
   <title>Kyle Essenmacher Portfolio</title>
   <meta name="description" content="">
-  
+
 </head>
 
   <body>
-      <a class="cd-logo" href="#0"><img src="assets/img/cd-logo.svg" alt="Logo"></a>
-<div id="particles-js">
+      <div id="particles-js">
   <div class="header">
       <h1>
         <span class="site-title">Kyle Essenmacher</span>
@@ -37,6 +40,19 @@
   <a class="down" href="#about" data-scroll><i class="icon fa fa-chevron-down"></i></a>
 </div>
 
+<main class="cd-content">
+
+      <a class="cd-logo" href="#0"><img src="assets/img/cd-logo.svg" alt="Logo"></a>
+   <nav>
+      <ul class="cd-primary-nav">
+         <li><a href="#0">The team</a></li>
+         <li><a href="#0">Our services</a></li>
+         <li><a href="#0">Our projects</a></li>
+         <li><a href="#0">Start a project</a></li>
+         <li><a href="#0">Join In</a></li>
+         <li><a href="#0">Create an account</a></li>
+      </ul>
+   </nav>
       <section id="about">
          <div class="user-details">
   <h1> Hi, Thanks for visiting. </h1>
@@ -109,13 +125,23 @@
 
       </section>
         
-      <footer class="footer">
+      </main> <!-- cd-content -->
+
+<footer class="footer">
     <p>&copy; Kyle Essenmacher</p>
     <p>Build with Jekyll and <span class="love">❤</span> by <a href="https://github.com/nrandecker">Nathan Randecker</a></p>
 </footer>
-<script src="//cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script src="/assets/js/sweet-scroll.min.js"></script>
-<script src="/assets/js/main.js"></script>
+
+<div class="cd-overlay-nav">
+        <span></span>
+    </div> <!-- cd-overlay-nav -->
+
+    <div class="cd-overlay-content">
+        <span></span>
+    </div> <!-- cd-overlay-content -->
+
+    <a href="#0" class="cd-nav-trigger">Menu<span class="cd-icon"></span></a>
+
 <!-- Google Analytics -->
 
 <script>
