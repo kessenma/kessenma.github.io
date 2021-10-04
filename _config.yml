@@ -5,12 +5,12 @@ description:
 # url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
 
 # User settings
-username: Kyle Essenmacher
+username: Hi, I'm Kyle!
+user_title: a UX Researcher who likes to code.
 user_description: Below are mediums I like to use on projects.
-user_title: Data Scientist + UX Researcher + Front-end-dev
 email: kessen@umich.edu
 twitter_username: 
-github_username:  kessenma
+github_username: kessenma
 gplus_username:
 
 # Google-analytics
