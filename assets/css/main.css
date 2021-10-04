@@ -194,24 +194,52 @@ Devicons
 
 
 /* Code (section 2) */
-    .devicon-javascript-plain:before{
-        content:"\e845"
+
+    .devicon-django-plain-wordmark:before {
+        color:#83C558;
     }
-    .devicon-javascript-plain.colored{
-        color:#83C558
+    .devicon-javascript-plain:before{
+        color:#83C558;
     }
     .devicon-react-original-wordmark:before{
-        content:"\e600"
-    }
-    .devicon-react-original-wordmark{
-        color:#83C558
+        color:#83C558;
     }
     .devicon-nodejs-plain-wordmark:before{
-    content:"\eb69"
+        color:#83C558;
     }
-    .devicon-nodejs-plain-wordmark:before{
-        color:#83C558
-    }    
+    .devicon-python-plain-wordmark:before {
+        color:#83C558;
+    }
+    .devicon-html5-plain-wordmark:before {
+        color:#83C558;
+    }
+    .devicon-css3-plain-wordmark:before {
+        color:#83C558;
+    }
+    .devicon-github-original-wordmark:before {
+        color:#83C558;
+    }
+    .devicon-mysql-plain-wordmark:before {
+        color:#83C558;
+    }
+    .devicon-npm-original-wordmark:before {
+        color:#83C558;
+    }
+    .devicon-ruby-plain-wordmark:before {
+        color:#83C558;
+    }
+    .devicon-flask-original-wordmark:before {
+        color:#83C558;
+    }
+    .devicon-git-plain-wordmark:before {
+        color:#83C558;
+    }
+    .devicon-pandas-original-wordmark:before {
+        color:#83C558;
+    }
+    .devicon-r-original:before {
+        color:#83C558;
+    }
 /*Tools (section 3) */
     .devicon-gulp-plain:before{
         content:"\e7ec"
@@ -349,6 +377,7 @@ Devicons
     cursor:pointer
 }
 .down .icon{
+    margin-top: -77px;
     position:absolute;
     -webkit-transform-style:preserve-3d;
     transform-style:preserve-3d;
@@ -379,6 +408,13 @@ Devicons
     flex-flow: column;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+
+.developing{
+    flex-flow: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: rgba(131, 197, 88, .1)
 }
 .user{
     text-align:center;
