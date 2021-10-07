@@ -184,16 +184,20 @@ fa-icons
 .fa-github-alt:before{
     content:"\f113"
 }
+.fab-fa-unsplash:before{
+    
+}
 .fa-chevron-down:before{
     content:"\f078"
 }
+
 /* -------------------------------- 
 Devicons
 -------------------------------- */
  /* Design (section 1) */
 
 
-/* Code (section 2) */
+/* Developing (section 2) */
 
     .devicon-django-plain-wordmark:before {
         color:#83C558;
@@ -410,11 +414,12 @@ Devicons
     justify-content: space-between;
 }
 
-.developing{
+.administrating{
     flex-flow: column;
     flex-wrap: wrap;
     justify-content: space-between;
-    background: rgba(131, 197, 88, .1)
+    background: rgba(131, 197, 88, .1);
+    border-radius:10px
 }
 .user{
     text-align:center;
