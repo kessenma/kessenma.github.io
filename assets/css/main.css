@@ -95,7 +95,7 @@ sub,sup{
     font-size:1.33333333em;
     line-height:.75em;
     vertical-align:-15%
-}
+}   
 .fa-2x{
     font-size:2em
 }
@@ -178,15 +178,17 @@ sub,sup{
 /* -------------------------------- 
 fa-icons
 -------------------------------- */
+
 .fa-instagram:before{
     content:"\f16d"
 }
 .fa-github-alt:before{
     content:"\f113"
 }
-.fab-fa-unsplash:before{
-    
+.UnsplashSvg:before{
+    content:"\e07c"
 }
+
 .fa-chevron-down:before{
     content:"\f078"
 }
@@ -195,7 +197,11 @@ fa-icons
 Devicons
 -------------------------------- */
  /* Design (section 1) */
-
+    .FigmaSvg{
+        color:#83C558;
+        width: 100px;
+        height: 100px;
+    }
 
 /* Developing (section 2) */
 
@@ -220,9 +226,6 @@ Devicons
     .devicon-css3-plain-wordmark:before {
         color:#83C558;
     }
-    .devicon-github-original-wordmark:before {
-        color:#83C558;
-    }
     .devicon-mysql-plain-wordmark:before {
         color:#83C558;
     }
@@ -230,9 +233,6 @@ Devicons
         color:#83C558;
     }
     .devicon-ruby-plain-wordmark:before {
-        color:#83C558;
-    }
-    .devicon-flask-original-wordmark:before {
         color:#83C558;
     }
     .devicon-git-plain-wordmark:before {
@@ -244,7 +244,19 @@ Devicons
     .devicon-r-original:before {
         color:#83C558;
     }
-/*Tools (section 3) */
+    .devicon-flask-original-wordmark:before {
+        color:#83C558;
+    }
+    .devicon-heroku-plain-wordmark:before {
+        color:#83C558;
+    }
+    .devicon-devicon-plain-wordmark:before {
+        color:#83C558;
+    }
+
+/*Admin (section 3) */
+    .devicon-github-original-wordmarked:before {
+    }
     .devicon-gulp-plain:before{
         content:"\e7ec"
     }
@@ -254,7 +266,7 @@ Devicons
     .devicon-atom-original-wordmark:before{
         content:"\e623"
     }
-        .devicon-atom-original-wordmark{
+    .devicon-atom-original-wordmark{
         color:#83C558
     }
     .devicon-git-plain:before{
@@ -280,7 +292,11 @@ Devicons
     }
 }
 #particles-js{
-    background:#83c55800;
+    background: #84C659;
+    background: -webkit-linear-gradient(top, #84C659, #FFFFFF);
+    background: -moz-linear-gradient(top, #84C659, #FFFFFF);
+    background: linear-gradient(to bottom, #84C659, #FFFFFF);
+/*    background:#83c55800;*/
     display:flex;
     vertical-align:bottom;
     width:100%;
@@ -354,8 +370,6 @@ Devicons
 .header-icons .icon{
     height:20px;
     padding:10px;
-    border-radius:50%;
-    border:2px solid #fff;
     transition:all .7s;
     width:20px;
     font-size:20px;
