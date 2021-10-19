@@ -6,11 +6,11 @@ Primary style
 
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
  @import url(https://fonts.googleapis.com/css?family=Montserrat);
-/*! * Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome * License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License) */
+/*! * Font Awesome 5.14.0 by @davegandy - http://fontawesome.io - @fontawesome * License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License) */
  @font-face{
     font-family:'FontAwesome';
-    src:url(../fonts/fontawesome-webfont.eot?v=4.7.0);
-    src:url(../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0) format("embedded-opentype"),url(../fonts/fontawesome-webfont.woff2?v=4.7.0) format("woff2"),url(../fonts/fontawesome-webfont.woff?v=4.7.0) format("woff"),url(../fonts/fontawesome-webfont.ttf?v=4.7.0) format("truetype"),url(../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular) format("svg");
+    src:url(../fonts/fontawesome-webfont.eot?v=5.14.0);
+    src:url(../fonts/fontawesome-webfont.eot?#iefix&v=5.14.0) format("embedded-opentype"),url(../fonts/fontawesome-webfont.woff2?v=5.14.0) format("woff2"),url(../fonts/fontawesome-webfont.woff?v=5.14.0) format("woff"),url(../fonts/fontawesome-webfont.ttf?v=5.14.0) format("truetype"),url(../fonts/fontawesome-webfont.svg?v=5.14.0#fontawesomeregular) format("svg");
     font-weight:400;
     font-style:normal
 }
@@ -81,6 +81,15 @@ a img{
 }
 sub,sup{
     line-height:0
+}
+
+.fab{
+    display:inline-block;
+    font:14px/1 FontAwesome;
+    font-size:inherit;
+    text-rendering:auto;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale
 }
 
 .fa{
@@ -185,7 +194,7 @@ fa-icons
 .fa-github-alt:before{
     content:"\f113"
 }
-.UnsplashSvg:before{
+.fa-unsplash:before{
     content:"\e07c"
 }
 
@@ -318,7 +327,9 @@ Devicons
     left:50%;
     margin:0 auto;
     -webkit-transform:translate(-50%,-50%);
-    transform:translate(-50%,-50%)
+    transform:translate(-50%,-50%);
+    background: rgba(255, 255, 255, .2);
+    border-radius:60px
 }
 .header .site-title{
     font-size:50px;
@@ -337,7 +348,6 @@ Devicons
     display:block;
     line-height:1;
     color:#000000;
-    margin-top:10px
 }
 @media only screen and (min-width:550px){
     .header .site-description{
