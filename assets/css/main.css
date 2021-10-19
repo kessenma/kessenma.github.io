@@ -206,61 +206,60 @@ fa-icons
 Devicons
 -------------------------------- */
  /* Design (section 1) */
-    .FigmaSvg{
-        color:#83C558;
-        width: 100px;
-        height: 100px;
+    .FigmaSvg:before{
+        content: url(image.jpg);
+        content:"/assets/img/Figma.svg/";
     }
 
 /* Developing (section 2) */
 
     .devicon-django-plain-wordmark:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-javascript-plain:before{
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-react-original-wordmark:before{
-        color:#83C558;
+        color:#555555;
     }
     .devicon-nodejs-plain-wordmark:before{
-        color:#83C558;
+        color:#555555;
     }
     .devicon-python-plain-wordmark:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-html5-plain-wordmark:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-css3-plain-wordmark:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-mysql-plain-wordmark:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-npm-original-wordmark:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-ruby-plain-wordmark:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-git-plain-wordmark:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-pandas-original-wordmark:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-r-original:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-flask-original-wordmark:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-heroku-plain-wordmark:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
     .devicon-devicon-plain-wordmark:before {
-        color:#83C558;
+/*        color:#83C558;*/
     }
 
 /*Admin (section 3) */
@@ -270,7 +269,7 @@ Devicons
         content:"\e7ec"
     }
     .devicon-gulp-plain.colored{
-        color:#83C558
+/*        color:#83C558*/
     }
     .devicon-atom-original-wordmark:before{
         content:"\e623"
@@ -442,7 +441,7 @@ Devicons
     flex-flow: column;
     flex-wrap: wrap;
     justify-content: space-between;
-    background: rgba(131, 197, 88, .1);
+    background: rgba(131, 197, 88, .2);
     border-radius:10px
 }
 .user{
