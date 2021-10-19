@@ -304,6 +304,7 @@ Devicons
 
 #particles-js{
     background: linear-gradient(to bottom, rgba(132, 198, 89, 0.65), #FFFFFF);
+    background: linear-gradient(to bottom, rgb(132, 198, 89), #FFFFFF);
     display:flex;
     vertical-align:bottom;
     width:100%;
@@ -327,7 +328,7 @@ Devicons
     -webkit-transform:translate(-50%,-50%);
     transform:translate(-50%,-50%);
     background: rgba(255, 255, 255, .2);
-    border-radius:40px
+    border-radius:30px
 }
 .header .site-title{
     font-size:50px;
