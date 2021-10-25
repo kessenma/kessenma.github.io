@@ -5,7 +5,10 @@ Primary style
 -------------------------------- */
 
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
- @import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Bungee+Hairline);
+@import url(https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,900;1,300&display=swap);
 /*! * Font Awesome 5.14.0 by @davegandy - http://fontawesome.io - @fontawesome * License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License) */
  @font-face{
     font-family:'FontAwesome';
@@ -42,27 +45,32 @@ body{
     line-height:1.5;
     color:#555;
     background-color: white;
-     font-family:'Montserrat',sans-serif
+    font-family:'Montserrat',sans-serif
 }
 a {
-  color: #1e6074;
+  color: #000000;
   text-decoration: none;
 }
 
 article,aside,figcaption,figure,footer,header,nav,section{
     display:block
 }
-h1,h2,h3,h4,stong{
+,h3,h4,stong{
     margin-top:1em;
     padding-top:1em;
     line-height:1.25;
     color:#333
 }
 h1{
-    font-size:2.5rem
+    font-family: 'bebas Neue', cursive;
+    font-size:2.5rem;
+    color: #000000;
+    
 }
 h2{
-    font-size:2rem
+    font-family:'Merriweather','serif';
+    font-size:1.7rem;
+    font-weight:200;
 }
 h3{
     font-size:1.5rem
@@ -70,6 +78,33 @@ h3{
 h4{
     font-size:1rem
 }
+
+
+/*DIAGONAL BOX*/
+
+.diagonal-box {
+	background-image: linear-gradient(45deg, #654ea3, #eaafc8);
+	transform: skewY(-11deg);
+}
+
+.diagonal-box:before {
+	position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(45deg, #654ea3, #eaafc8); 	
+    transform: skewY(-11deg);
+}
+
+.content {
+	max-width: 50em;
+	margin: 0 auto;
+	transform: skewY(11deg);
+}
+
+
+
 ol,ul{
     padding-left:40px
 }
@@ -303,8 +338,8 @@ Devicons
 /*background-color: rgba(132, 198, 89, 0.55);*/
 
 #particles-js{
-    background: linear-gradient(to bottom, rgba(132, 198, 89, 0.65), #FFFFFF);
-    background: linear-gradient(to bottom, rgb(132, 198, 89), #FFFFFF);
+    background: linear-gradient(to top, rgba(132, 198, 89, 0.65), #FFFFFF);
+    background: linear-gradient(to top, rgb(132, 198, 89), #FFFFFF);
     display:flex;
     vertical-align:bottom;
     width:100%;
@@ -317,19 +352,43 @@ Devicons
     width:100%!important;
     height:100vh!important
 }
-.header{
+
+.header1{
+    z-index:1;
+    text-align:center;
+    position:absolute;
+    top:30%;
+    left:50%;
+    -webkit-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%);
+    border-radius:400px
+}
+
+.header2{
+    z-index:1;
+    text-align:center;
+    color:#000000;
+    position:absolute;
+    top:30%;
+    left:50%;
+    -webkit-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%);
+    background: rgba(255, 255, 255, .2);
+    border-radius:400px
+}
+
+.header3{
     z-index:1;
     text-align:center;
     color:#000000;
     position:absolute;
     top:50%;
     left:50%;
-    margin:0 auto;
     -webkit-transform:translate(-50%,-50%);
     transform:translate(-50%,-50%);
-    background: rgba(255, 255, 255, .2);
-    border-radius:30px
 }
+
+
 .header .site-title{
     font-size:50px;
     display:block;
@@ -338,7 +397,6 @@ Devicons
 }
 @media only screen and (min-width:550px){
     .header .site-title{
-        margin:0;
         font-size:100px
     }
 }
@@ -350,7 +408,7 @@ Devicons
 }
 @media only screen and (min-width:550px){
     .header .site-description{
-        font-size:40px
+        font-size:1.7rem;
     }
 }
 .header-links{
@@ -373,7 +431,7 @@ Devicons
     text-align:center
 }
 .down,.header-icons .icon{
-    color:#83C558;
+    color:#000000;
     text-align:center
 }
 .header-icons .icon{
