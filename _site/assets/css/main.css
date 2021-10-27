@@ -1,7 +1,5 @@
 /* -------------------------------- 
-
 Primary style
-
 -------------------------------- */
 
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
@@ -65,12 +63,13 @@ h1{
     font-family: 'bebas Neue', cursive;
     font-size:2.5rem;
     color: #000000;
-    
+    display:inline;  
 }
 h2{
     font-family:'Merriweather','serif';
     font-size:1.7rem;
     font-weight:200;
+    display: i inline
 }
 h3{
     font-size:1.5rem
@@ -78,23 +77,73 @@ h3{
 h4{
     font-size:1rem
 }
+hand{
+    font-family: 'bebas Neue', cursive;
+    font-size:5rem;
+    color: #000000;
+    display:inline;  
+}
 
+
+.wave {
+  animation-name: wave-animation;  /* Refers to the name of your @keyframes element below */
+  animation-duration: 2.5s;        /* Change to speed up or slow down */
+  animation-iteration-count: infinite;  /* Never stop waving :) */
+  transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
+  display: inline-block;
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate( 0.0deg) }
+   10% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
+  100% { transform: rotate( 0.0deg) }
+}
+
+.wave2 {
+  animation-name: wave-animation2;  /* Refers to the name of your @keyframes element below */
+  animation-duration: 2.5s;        /* Change to speed up or slow down */
+  animation-iteration-count: infinite;  /* Never stop waving :) */
+  transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
+  display: inline-block;
+}
+
+@keyframes wave-animation2 {
+    0% { transform: rotate( 10.0deg) }
+   10% { transform: rotate(10.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
+   20% { transform: rotate(-10.0deg) }
+   30% { transform: rotate(8.0deg) }
+   40% { transform: rotate(-6.0deg) }
+   50% { transform: rotate(14.0deg) }
+   60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
+  100% { transform: rotate( 10.0deg) }
+}
 
 /*DIAGONAL BOX*/
 
 .diagonal-box {
-	background-image: linear-gradient(45deg, #654ea3, #eaafc8);
-	transform: skewY(-11deg);
+	z-index: -1;
+    margin-top: -1px;
+    background-image: linear-gradient(45deg, #FAB33E, #FFFFFF); 	
+    transform: skewY(-11deg);
 }
 
 .diagonal-box:before {
-	position: absolute;
+    z-index: -1;
+   content: "";
+    position: absolute;
+    left: 0;
     top: 0;
     right: 0;
-    left: 0;
     bottom: 0;
-    background-image: linear-gradient(45deg, #654ea3, #eaafc8); 	
-    transform: skewY(-11deg);
+    transform: skewy(var(--angle));
+    transform-origin: 50% 0;
+    outline: 1px solid transparent;
+    backface-visibility: hidden;
 }
 
 .content {
@@ -103,6 +152,9 @@ h4{
 	transform: skewY(11deg);
 }
 
+.bg-one:before {
+  background-image: linear-gradient(45deg, #FAB33E, #FFFFFF );
+}
 
 
 ol,ul{
@@ -219,6 +271,9 @@ sub,sup{
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale
 }
+
+
+
 /* -------------------------------- 
 fa-icons
 -------------------------------- */
@@ -499,7 +554,8 @@ Devicons
     flex-flow: column;
     flex-wrap: wrap;
     justify-content: space-between;
-    background: rgba(131, 197, 88, .2);
+/*    background: rgba(131, 197, 88, .2);*/
+    border:2px solid #555555;
     border-radius:10px
 }
 .user{
