@@ -58,13 +58,13 @@ h1{
     font-family: 'bebas Neue', cursive;
     font-size:2.5rem;
     color: #000000;
-    display:inline;  
+    display:block;  
 }
 h2{
-    font-family:'Merriweather','serif';
-    font-size:1.7rem;
+    font-family:'Montserrat',sans-serif;
+    font-size:2em;
     font-weight:200;
-    display: i inline
+    display: inline;
 }
 h3{
     font-size:1.5rem
@@ -107,6 +107,47 @@ hand{
    60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
   100% { transform: rotate( 0.0deg) }
 }
+
+.covid {
+  animation-name: covid-animation;  /* Refers to the name of your @keyframes element below */
+  animation-duration: 2.5s;        /* Change to speed up or slow down */
+  animation-iteration-count: infinite;  /* Never stop waving :) */
+  transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
+  display: inline-block;
+}
+
+@keyframes covid-animation {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+.covid2 {
+  animation-name: covid-animation2;  /* Refers to the name of your @keyframes element below */
+  animation-duration: 2.5s;        /* Change to speed up or slow down */
+  animation-iteration-count: infinite;  /* Never stop waving :) */
+  transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
+  display: inline-block;
+}
+
+@keyframes covid-animation2 {
+	0% {
+/*		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);*/
+		transform: translatey(0px);
+	}
+	50% {
+/*		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);*/
+		transform: translatey(-20px);
+	}
+	100% {
+/*		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);*/
+		transform: translatey(0px);
+	}
+}
+
 
 /*DIAGONAL BOX*/
 
