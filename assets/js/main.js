@@ -1,4 +1,6 @@
-AOS.init();
+AOS.init({
+  startEvent: 'load'
+});
 
 var TxtType = function(el, toRotate, period) {
         this.toRotate = toRotate;
