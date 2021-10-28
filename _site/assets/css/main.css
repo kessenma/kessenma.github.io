@@ -149,39 +149,72 @@ hand{
 }
 
 
-/*DIAGONAL BOX*/
+/*DIAGONAL BOX*/ 
+
+:root {
+  --width: 100vw;
+  --full-width: 100vw;
+  --angle: -11deg;
+  /*-----------------
+  Magic Number Alert:
+
+  the 0.09719 is calculated by this formula:
+  tan(11°) / 2
+  11° is the current skewY value.
+  ------------------*/
+  --magic-number: 0.09719;
+  --skew-padding: calc(var(--width) * var(--magic-number));
+  --clip-padding: calc(var(--full-width) * var(--magic-number));
+}
+@media (min-width: 42em) {
+  :root {
+    --width: 42rem;
+  }
+}
 
 .diagonal-box {
-	z-index: -1;
-    margin-top: -1px;
-    background-image: linear-gradient(45deg, #FAB33E, #FFFFFF); 	
-    transform: skewY(-11deg);
+  position: relative;
+  padding: var(--skew-padding) 0;
+  margin-top: -1px;
 }
-
 .diagonal-box:before {
-    z-index: -1;
-   content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    transform: skewy(var(--angle));
-    transform-origin: 50% 0;
-    outline: 1px solid transparent;
-    backface-visibility: hidden;
-}
-
-.content {
-	max-width: 50em;
-	margin: 0 auto;
-	transform: skewY(11deg);
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transform: skewy(var(--angle));
+  transform-origin: 50% 0;
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
 }
 
 .bg-one:before {
-  background-image: linear-gradient(45deg, #FAB33E, #FFFFFF );
+    background-image: linear-gradient(45deg, #FAB33E, #FFFFFF);
 }
 
+/*
+.bg-two:before {
+  background-image: linear-gradient(-135deg, #ff0084, #33001b);
+}
+
+.bg-three:before {
+  background-image: linear-gradient(-135deg, #007, #003);
+}
+*/
+
+.content {
+  max-width: var(--width);
+  margin: 0 auto;
+  padding: 1.5em;
+  position: relative;
+  /* -----------
+  enable the border to see, that the content
+  perfectly fits into the section withou
+  bleeding into the adjecting areas:
+  ------------ */
+}
 
 ol,ul{
     padding-left:40px
