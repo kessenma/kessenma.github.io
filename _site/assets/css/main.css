@@ -97,6 +97,95 @@ hand{
   display: inline-block;
 }
 
+
+
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap");
+.origin {
+content: url('/assets/img/covid.png');
+/*
+  width: 1em;
+  height: 1em;
+  font-size: 13vmin;
+*/
+  position: relative;
+/*  background: rgba(0, 0, 0, 0.4);*/
+  -webkit-animation: spin 6s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+          animation: spin 6s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+}
+@-webkit-keyframes spin {
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.origin:before, .origin:after {
+  content: url('/assets/img/covid.png');
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: inherit;
+}
+.origin:before {
+  -webkit-animation: inherit;
+          animation: inherit;
+  animation-direction: reverse;
+  text-shadow: 0 1px 0 #000;
+  font-size: 0.11em;
+  font-family: "JetBrains Mono", monospace;
+  padding: 0.2em;
+  content: attr(style);
+  display: flex;
+  text-align: center;
+  word-break: keep-all;
+  align-items: center;
+  z-index: 2;
+}
+/* ---------------------------------- */
+/*
+html, body {
+  background: #00136c;
+}
+*/
+
+
+
+*,
+*::before,
+*::after {
+  box-sizing:content-box ;
+}
+
+/*
+html {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: grid;
+  grid-template: repeat(3, auto)/repeat(3, auto);
+  grid-gap: 1em;
+}
+*/
+
+
+
 @keyframes wave-animation {
     0% { transform: rotate( 0.0deg) }
    10% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
@@ -215,6 +304,8 @@ hand{
   bleeding into the adjecting areas:
   ------------ */
 }
+
+/*Diagonal box*/
 
 ol,ul{
     padding-left:40px
@@ -680,9 +771,21 @@ Devicons
     .contents-right,.images-right{
         float:right;
         width:48%
+        
     }
-    .images-right img{
-        float:right
+    .img{
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+/*        display: flex;*/
+        display:grid:
+        justify-items: center;
+        align-items: center;
+        height: 100%;
+        overflow: hidden;
+        grid-template: repeat(3, auto)/repeat(3, auto);
+        grid-gap: 1em;
     }
     .images-left{
         float:left;
@@ -692,6 +795,22 @@ Devicons
         float:left
     }
 }
+
+/*
+html {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: grid;
+  grid-template: repeat(3, auto)/repeat(3, auto);
+  grid-gap: 1em;
+}
+*/
 .project-link{
     display:block;
     width:100px;
