@@ -1,4 +1,4 @@
-/* -------------------------------- 
+/* --------------------------------
 Primary style
 -------------------------------- */
 
@@ -58,7 +58,7 @@ h1{
     font-family: 'bebas Neue', cursive;
     font-size:2.5rem;
     color: #000000;
-    display:block;  
+    display:block;
 }
 h2{
     font-family:'Montserrat',sans-serif;
@@ -87,7 +87,7 @@ hand{
     font-family: 'bebas Neue', cursive;
     font-size:5rem;
     color: #000000;
-    display:inline;  
+    display:inline;
 }
 .wave {
   animation-name: wave-animation;  /* Refers to the name of your @keyframes element below */
@@ -96,95 +96,6 @@ hand{
   transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
   display: inline-block;
 }
-
-
-
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap");
-.origin {
-content: url('/assets/img/covid.png');
-/*
-  width: 1em;
-  height: 1em;
-  font-size: 13vmin;
-*/
-  position: relative;
-/*  background: rgba(0, 0, 0, 0.4);*/
-  -webkit-animation: spin 6s cubic-bezier(0.8, 0, 0.2, 1) infinite;
-          animation: spin 6s cubic-bezier(0.8, 0, 0.2, 1) infinite;
-}
-@-webkit-keyframes spin {
-  50% {
-    transform: rotate(180deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes spin {
-  50% {
-    transform: rotate(180deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.origin:before, .origin:after {
-  content: url('/assets/img/covid.png');
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform-origin: inherit;
-}
-.origin:before {
-  -webkit-animation: inherit;
-          animation: inherit;
-  animation-direction: reverse;
-  text-shadow: 0 1px 0 #000;
-  font-size: 0.11em;
-  font-family: "JetBrains Mono", monospace;
-  padding: 0.2em;
-  content: attr(style);
-  display: flex;
-  text-align: center;
-  word-break: keep-all;
-  align-items: center;
-  z-index: 2;
-}
-/* ---------------------------------- */
-/*
-html, body {
-  background: #00136c;
-}
-*/
-
-
-
-*,
-*::before,
-*::after {
-  box-sizing:content-box ;
-}
-
-/*
-html {
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  height: 100%;
-  overflow: hidden;
-}
-
-body {
-  display: grid;
-  grid-template: repeat(3, auto)/repeat(3, auto);
-  grid-gap: 1em;
-}
-*/
-
-
 
 @keyframes wave-animation {
     0% { transform: rotate( 0.0deg) }
@@ -238,7 +149,7 @@ body {
 }
 
 
-/*DIAGONAL BOX*/ 
+/*DIAGONAL BOX*/
 
 :root {
   --width: 100vw;
@@ -305,8 +216,6 @@ body {
   ------------ */
 }
 
-/*Diagonal box*/
-
 ol,ul{
     padding-left:40px
 }
@@ -341,7 +250,7 @@ sub,sup{
     font-size:1.33333333em;
     line-height:.75em;
     vertical-align:-15%
-}   
+}
 .fa-2x{
     font-size:2em
 }
@@ -424,7 +333,7 @@ sub,sup{
 
 
 
-/* -------------------------------- 
+/* --------------------------------
 fa-icons
 -------------------------------- */
 
@@ -442,7 +351,7 @@ fa-icons
     content:"\f078"
 }
 
-/* -------------------------------- 
+/* --------------------------------
 Devicons
 -------------------------------- */
  /* Design (section 1) */
@@ -771,21 +680,9 @@ Devicons
     .contents-right,.images-right{
         float:right;
         width:48%
-        
     }
-    .img{
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-box;
-        display: -ms-flexbox;
-/*        display: flex;*/
-        display:grid:
-        justify-items: center;
-        align-items: center;
-        height: 100%;
-        overflow: hidden;
-        grid-template: repeat(3, auto)/repeat(3, auto);
-        grid-gap: 1em;
+    .images-right img{
+        float:right
     }
     .images-left{
         float:left;
@@ -795,22 +692,6 @@ Devicons
         float:left
     }
 }
-
-/*
-html {
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  height: 100%;
-  overflow: hidden;
-}
-
-body {
-  display: grid;
-  grid-template: repeat(3, auto)/repeat(3, auto);
-  grid-gap: 1em;
-}
-*/
 .project-link{
     display:block;
     width:100px;
@@ -849,7 +730,7 @@ body {
 }
 
 
-/* -------------------------------- 
+/* --------------------------------
 
 Stretchy Nav style - common to:
  - basic navigation
@@ -1141,7 +1022,7 @@ Stretchy Nav style - common to:
   animation-delay: 0.25s;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 add-content navigation style
 
@@ -1353,7 +1234,7 @@ add-content navigation style
   transform: translateX(0);
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 edit content
 
@@ -1549,7 +1430,7 @@ edit content
   transform: translateX(0);
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 main content basic style
 
@@ -1562,7 +1443,7 @@ main content basic style
   background-color: #003c5d;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 keyframes
 
@@ -1638,3 +1519,559 @@ keyframes
   }
 }
 
+/* COVID!!!!!
+!!!!
+!!!
+!!! */
+
+#covid-19 {
+			width: 220px;
+			height: 220px;
+			animation-name: float;
+			animation-duration: 1s;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+		}
+
+    .centercovid{
+      display: block;
+      margin: auto;
+      display: flex;
+		  flex-direction: column;
+		  justify-content: center;
+		  align-items: center;
+    }
+
+
+		.shadow {
+			width: 100px;
+		  height: 10px;
+		  background: #1c1c1c;
+		  border-radius: 70%;
+		  opacity: 1;
+		  filter: blur(3px);
+		  animation-name: animate-shadow;
+			animation-duration: 1s;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+		}
+
+		g.evelope {
+			animation-name: rotate;
+			transform-origin: 100px 105px;
+			animation-duration: 2s;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+		}
+
+		ellipse.left-eyeball,
+		ellipse.right-eyeball {
+			animation-name: moveEyeBalls;
+			transform-origin: 50% 50%;
+			animation-duration: 3s;
+			animation-direction: normal;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+		}
+
+		.left-eyebrows,
+		.right-eyebrows {
+			animation-name: moveEyebrows;
+			transform-origin: 50% 50%;
+			animation-duration: 1s;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+		}
+
+		.mouth {
+			animation-name: moveMouth;
+			transform-origin: 50% 50%;
+			animation-duration: 2s;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+		}
+
+		@keyframes moveMouth {
+
+			0% {
+				transform: rotate(0deg);
+			} 100% {
+				transform: rotate(12deg);
+			}
+
+		}
+
+		@keyframes moveEyebrows {
+
+			0% {
+				transform: translateY(0px);
+			} 100% {
+				transform: translateY(-1px);
+			}
+
+		}
+
+		@keyframes moveEyeBalls {
+
+			0% {
+				transform: translateX(0px);
+			} 25% {
+				transform: translateX(2px);
+			} 50%{
+				transform: translateX(-2px);
+			} 75%{
+				transform: translateX(-2px);
+			} 100% {
+				transform: translateX(0px);
+			}
+
+		}
+
+		@keyframes float {
+
+			0% {
+				transform: translateY(0px);
+			} 100% {
+				transform: translateY(20px);
+			}
+		}
+
+		@keyframes animate-shadow {
+
+			0% {
+				transform: scale(1);
+			} 100% {
+				transform: scale(1.2);
+			}
+		}
+
+		@keyframes rotate {
+
+			0% {
+				transform: rotate(0deg);
+			} 50% {
+				transform: rotate(4deg);
+			} 100% {
+				transform: rotate(0deg);
+			}
+
+		}
+
+    /* WHIPPING CREAM !!!!
+    !!!!
+    !!!!
+    !!! */
+
+
+.whipping-cream{
+  width:100%;
+}
+
+.whip0{fill:#53EBFF;}
+.whip1{fill:#FFFFFF;}
+.whip2{fill:none;stroke:#FFFFFF;}
+.whip3{fill:#DDDDDD;}
+.whip4{fill:#FFFFFF;}
+.sugar{fill:#ffffff;}
+
+#steel1{
+  transform-origin: center center;
+  stroke-width:5;stroke-miterlimit:10;
+  animation: spin1 0.1s ease infinite;
+}
+
+#steel2{
+  transform-origin: center center;
+  stroke-width:5;stroke-miterlimit:10;
+  animation: spin2 0.1s ease infinite;
+}
+
+@keyframes spin1 {
+0%{
+transform:scale3d(1, 1, 1);
+}
+50%{
+transform:scale3d(0, 1, 1);
+}
+100%{
+transform:scale3d(1, 1, 1);
+}
+}
+
+@keyframes spin2 {
+0%{
+transform:scale3d(0, 1, 1);
+}
+50%{
+transform:scale3d(1, 1, 1);
+}
+100%{
+transform:scale3d(0, 1, 1);
+}
+}
+
+#beaters{
+  transform-origin: center center;
+  animation: beaters 1.8s ease infinite;
+}
+
+@keyframes beaters {
+0%{
+  transform:translate(-80px, 0);
+}
+50%{
+  transform:translate(80px, 0);
+}
+100%{
+  transform:translate(-80px, 0);
+}
+}
+
+#top{
+  animation: top 1.8s ease infinite;
+}
+
+@keyframes top {
+0%{
+  transform:translate(-50px, 0);
+}
+50%{
+  transform:translate(50px, 0);
+}
+100%{
+  transform:translate(-50px, 0);
+}
+}
+
+
+#sugar1{
+  animation: sugar1 3.6s ease-in infinite;
+}
+
+#sugar2{
+  animation: sugar2 3.6s ease-in infinite;
+}
+
+#sugar3{
+  animation: sugar3 3.6s ease-in infinite;
+}
+
+#sugar4{
+  animation: sugar4 3.6s ease-in infinite;
+}
+
+#sugar5{
+  animation: sugar5 3.6s ease-in infinite;
+}
+
+#sugar6{
+  animation: sugar6 3.6s ease-in infinite;
+}
+
+#sugar7{
+  animation: sugar7 3.6s ease-in infinite;
+}
+
+#sugar8{
+  animation: sugar8 3.6s ease-in infinite;
+}
+
+#sugar9{
+  animation: sugar9 3.6s ease-in infinite;
+}
+
+#sugar10{
+  animation: sugar10 3.6s ease-in infinite;
+}
+
+#sugar11{
+  animation: sugar11 3.6s ease-in infinite;
+}
+
+#sugar12{
+  animation: sugar12 3.6s ease-in infinite;
+}
+
+@keyframes sugar1 {
+0%{
+  transform:translate(0,0);
+  opacity:0;
+}
+25%{
+  transform:translate(0,0);
+  opacity:0;
+}
+29%{
+  transform:translate(0,0);
+  opacity:1;
+}
+69%{
+  transform:translate(0,200px);
+  opacity:1;
+}
+100%{
+  transform:translate(0,200px);
+  opacity:0;
+}
+}
+
+@keyframes sugar2 {
+0%{
+  transform:translate(0,0);
+  opacity:0;
+}
+25%{
+  transform:translate(0,0);
+  opacity:0;
+}
+35%{
+  transform:translate(0,0);
+  opacity:1;
+}
+75%{
+  transform:translate(0,200px);
+  opacity:1;
+}
+100%{
+  transform:translate(0,200px);
+  opacity:0;
+}
+}
+
+@keyframes sugar3 {
+0%{
+  transform:translate(0,0);
+  opacity:0;
+}
+25%{
+  transform:translate(0,0);
+  opacity:0;
+}
+41%{
+  transform:translate(0,0);
+  opacity:1;
+}
+81%{
+  transform:translate(0,200px);
+  opacity:1;
+}
+100%{
+  transform:translate(0,200px);
+  opacity:0;
+}
+}
+
+@keyframes sugar4 {
+0%{
+  transform:translate(0,0);
+  opacity:0;
+}
+25%{
+  transform:translate(0,0);
+  opacity:0;
+}
+30%{
+  transform:translate(0,0);
+  opacity:1;
+}
+70%{
+  transform:translate(0,200px);
+  opacity:1;
+}
+100%{
+  transform:translate(0,200px);
+  opacity:0;
+}
+}
+
+@keyframes sugar5 {
+0%{
+  transform:translate(0,0);
+  opacity:0;
+}
+20%{
+  transform:translate(0,0);
+  opacity:0;
+}
+25%{
+  transform:translate(0,0);
+  opacity:1;
+}
+45%{
+  transform:translate(0,0);
+  opacity:1;
+}
+85%{
+  transform:translate(0,200px);
+  opacity:1;
+}
+100%{
+  transform:translate(0,200px);
+  opacity:0;
+}
+}
+
+@keyframes sugar6 {
+0%{
+  transform:translate(0,0);
+  opacity:0;
+}
+25%{
+  transform:translate(0,0);
+  opacity:0;
+}
+38%{
+  transform:translate(0,0);
+  opacity:1;
+}
+78%{
+  transform:translate(0,200px);
+  opacity:1;
+}
+100%{
+  transform:translate(0,200px);
+  opacity:0;
+}
+}
+
+@keyframes sugar7 {
+0%{
+  transform:translate(0,0);
+  opacity:0;
+}
+25%{
+  transform:translate(0,0);
+  opacity:0;
+}
+27%{
+  transform:translate(0,0);
+  opacity:1;
+}
+67%{
+  transform:translate(0,200px);
+  opacity:1;
+}
+100%{
+  transform:translate(0,200px);
+  opacity:0;
+}
+}
+
+@keyframes sugar8 {
+0%{
+  transform:translate(0,0);
+  opacity:0;
+}
+25%{
+  transform:translate(0,0);
+  opacity:0;
+}
+29%{
+  transform:translate(0,0);
+  opacity:1;
+}
+69%{
+  transform:translate(0,200px);
+  opacity:1;
+}
+100%{
+  transform:translate(0,200px);
+  opacity:0;
+}
+}
+
+@keyframes sugar9 {
+0%{
+  transform:translate(0,0);
+  opacity:0;
+}
+20%{
+  transform:translate(0,0);
+  opacity:0;
+}
+26%{
+  transform:translate(0,0);
+  opacity:1;
+}
+66%{
+  transform:translate(0,200px);
+  opacity:1;
+}
+100%{
+  transform:translate(0,200px);
+  opacity:0;
+}
+}
+
+@keyframes sugar10 {
+0%{
+  transform:translate(0,0);
+  opacity:0;
+}
+20%{
+  transform:translate(0,0);
+  opacity:0;
+}
+23%{
+  transform:translate(0,0);
+  opacity:1;
+}
+63%{
+  transform:translate(0,200px);
+  opacity:1;
+}
+100%{
+  transform:translate(0,200px);
+  opacity:0;
+}
+}
+@keyframes sugar11 {
+0%{
+  transform:translate(0,0);
+  opacity:0;
+}
+23%{
+  transform:translate(0,0);
+  opacity:0;
+}
+25%{
+  transform:translate(0,0);
+  opacity:1;
+}
+65%{
+  transform:translate(0,200px);
+  opacity:1;
+}
+100%{
+  transform:translate(0,200px);
+  opacity:0;
+}
+}
+
+@keyframes sugar12 {
+0%{
+  transform:translate(0,0);
+  opacity:0;
+}
+25%{
+  transform:translate(0,0);
+  opacity:0;
+}
+28%{
+  transform:translate(0,0);
+  opacity:1;
+}
+68%{
+  transform:translate(0,200px);
+  opacity:1;
+}
+100%{
+  transform:translate(0,200px);
+  opacity:0;
+}
+}
