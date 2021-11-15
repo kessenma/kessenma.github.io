@@ -1,5 +1,6 @@
 AOS.init({
-  startEvent: 'load'
+  duration: 1200,
+  easing: 'ease-in-out-back'
 });
 
 var TxtType = function(el, toRotate, period) {
@@ -185,11 +186,11 @@ document.addEventListener("DOMContentLoaded",function(){new SweetScroll({});part
 jQuery(document).ready(function(){
   if( $('.cd-stretchy-nav').length > 0 ) {
     var stretchyNavs = $('.cd-stretchy-nav');
-    
+
     stretchyNavs.each(function(){
       var stretchyNav = $(this),
         stretchyNavTrigger = stretchyNav.find('.cd-nav-trigger');
-      
+
       stretchyNavTrigger.on('click', function(event){
         event.preventDefault();
         stretchyNav.toggleClass('nav-is-visible');
@@ -214,9 +215,9 @@ angleRange.addEventListener("input", function() {
   angleResult.innerHTML =  angleRange.value + " deg";
   document.documentElement.style.setProperty('--angle', angleRange.value + 'deg');
   document.documentElement.style.setProperty('--magic-number', magicNumber);
-  
+
   // Sadly the animation only updates correctly in Firefox :-(
   boxes.forEach((box) => {
     box.style.animation = "none";
   });
-}, false); 
+}, false);
