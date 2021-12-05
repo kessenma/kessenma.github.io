@@ -606,20 +606,20 @@ figure,ol,p,ul{
 #####################################################################
 #################################################################### */
 
-.iframe-container {
+/* .iframe-container {
   position: absolute;
   top: 200px;
   bottom: 0;
   width: 100%;
   background: #555;
   overflow-y: hidden;
-}
+} */
 
-.iframe-container iframe {
+/* .iframe-container iframe {
   position: absolute;
   width: 100%;
   height: 100%;
-  }
+  } */
 
 /**
  * Material Modal CSS
@@ -653,10 +653,11 @@ figure,ol,p,ul{
   background: transparent;
 }
 .modal__dialog {
-  max-width: 600px;
+  max-width: 50vw;
   padding: 1.2rem;
 }
 .modal__content {
+  max-width: 50vw;
   will-change: transform, opacity;
   position: relative;
   padding: 2.4rem;
