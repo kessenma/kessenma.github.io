@@ -277,7 +277,7 @@ h4{
 /* Future diagonal boxes below  */
 
 .bg-two:before {
-  background-image: linear-gradient(-135deg, #ff0084, #33001b);
+  background-image: linear-gradient(45deg, #FAB33E, #FFFFFF);
 }
 
 /* .bg-three:before {
@@ -537,7 +537,7 @@ figure,ol,p,ul{
         width:60%
     }
     .contents-right{
-        margin-top:-5%
+        margin-top:5%
     }
     .contents-right,.images-right{
         float:right;
@@ -553,21 +553,27 @@ figure,ol,p,ul{
     .images-left img{
         float:left
     }
+    .contents-center{
+        margin-top:5%
+  }
 }
+
+
 .project-link{
-    display:inline-table;
-    grid-template-columns: auto auto auto auto;
-    width:100px;
-    margin:10px 0 0 0;
-    padding: 2.4rem;
-    background: #ffebee;
-    background-clip: padding-box;
-    box-shadow: 0 12px 15px 0 rgba(0,0,0,0.25);
-    text-align:center;
-    outline:none;
-    text-decoration:none;
-    cursor:pointer;
-    transition:color .3s ease-out,background-color .3s ease-out,border-color .3s ease-out
+  position: relative;
+  display: inline-block;
+  padding: 1.2rem 2.4rem;
+  color: rgba(0,0,0,0.7);
+  line-height: 1;
+  cursor: pointer;
+  background: #ffebee;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .project-link:active,.project-link:hover{
     background-color:#54516a;
@@ -690,12 +696,20 @@ figure,ol,p,ul{
           user-select: none;
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.modal__trigger--active {
+
+.modal__trigger:active,.modal__trigger:hover{
+    background-color:#54516a;
+    border-color:#54516a;
+    color:#fff;
+    transition:color .3s ease-in,background-color .3s ease-in,border-color .3s ease-in
+}
+
+/* .modal__trigger--active {
   z-index: 10;
 }
 .modal__trigger:hover {
   background: #e5d3d6;
-}
+} */
 #modal__temp {
   will-change: transform, opacity;
   position: absolute;
@@ -987,7 +1001,7 @@ keyframes
   width:100%;
 }
 
-.whip0{fill:#53EBFF;}
+.whip0{fill:#16ffc6;}
 .whip1{fill:#FFFFFF;}
 .whip2{fill:none;stroke:#FFFFFF;}
 .whip3{fill:#DDDDDD;}
