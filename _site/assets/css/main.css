@@ -659,15 +659,16 @@ figure,ol,p,ul{
   background: transparent;
 }
 .modal__dialog {
-  max-width: 50vw;
-  padding: 1.2rem;
+  /* max-width: 50vw; */
+  /* padding: 1.2rem; */
 }
 .modal__content {
-  max-width: 50vw;
+  margin:auto;
+  max-width: auto;
   will-change: transform, opacity;
   position: relative;
   padding: 2.4rem;
-  background: #54516a;
+  background: #ffffff;
   background-clip: padding-box;
   box-shadow: 0 12px 15px 0 rgba(0,0,0,0.25);
   opacity: 0;
@@ -1573,4 +1574,144 @@ transform:scale3d(0, 1, 1);
   100% {
     transform: translateX(0px);
   }
+}
+
+/*############################################
+Bird
+##################################################*/
+
+@-webkit-keyframes flap-r {
+  0%,10%   { 	border-top-width: 60px; }
+  40%,60%  { 	border-top-width: 10px; }
+  100%     { 	border-top-width: 60px; }
+}
+
+@-webkit-keyframes flap-l {
+  0%       { 	border-bottom-width: 0px; }
+  40%,60%  { 	border-bottom-width: 40px; }
+  100%     { 	border-bottom-width: 0px; }
+}
+
+@-webkit-keyframes fly {
+  0%   { 	left: 0%; top:100px;-webkit-transform:scale3d(0.5,0.5,1) }
+  100% { 	left: 100%; top:100px; -webkit-transform:scale3d(1,1,1) }
+}
+
+@-webkit-keyframes bob {
+  0%   { 	top: 25px; }
+  50%   { 	top: 0px; }
+  100% { 	top: 25px; }
+}
+
+#pictureframe {
+  position:relative;
+  width:100px;
+  margin-top:100px;
+  -webkit-animation: fly 3.5s infinite linear;
+}
+
+#shadow {
+  position:absolute;
+  width: 0px; height: 0px;
+  top: 140px; left: 00px;
+  border-width: 10px;
+  border-left-width:50px;
+  border-top-width:0px;
+  border-right-width: 40px;
+  border-color: transparent;
+  border-bottom-color: rgba(210,210,210,0.6);
+  border-style:solid;
+  -webkit-filter: blur(5px);
+}
+
+#shadow:after {
+  content: " ";
+  position:absolute;
+  width: 00px; height: 0px;
+  top: 10px; left: -50px;
+  border-width: 10px;
+  border-left-width:50px;
+  border-bottom-width:0px;
+  border-right-width: 40px;
+  border-color: transparent;
+  border-top-color: rgba(210,210,210,0.6);
+  border-style:solid;
+}
+
+#bird div {
+  position:absolute;
+}
+
+#bird {
+  position:absolute;
+  -webkit-animation: bob 0.7s infinite cubic-bezier(0.7, 0.7, 0.1, 0.4);
+ }
+
+
+#body1,#body2,#wing-l,#wing-r {
+  	width: 0px; height: 0px;
+    border-color: transparent;
+    border-style: solid;
+}
+#body1 {
+	border-width: 15px;
+  border-left-width:25px;
+  border-top-width:15px;
+  border-right-width: 55px;
+  border-top-color: #333;
+}
+
+#body2 {
+  left: 50px; bottom: 0px;
+	border-width: 10px;
+  border-left-width:5px;
+  border-top-width:0px;
+  border-right-width: 15px;
+  border-bottom-color: #777;
+}
+
+#wing-l {
+  left: 22px; bottom: 0px;
+	border-width: 60px;
+  border-left-width:20px;
+  border-top-width:0px;
+  border-right-width: 6px;
+  border-bottom-color: #444;
+  -webkit-animation: flap-l 0.7s infinite;
+}
+
+#wing-r {
+  left: 22px; top:0px;
+	border-width: 60px;
+  border-left-width:20px;
+  border-bottom-width:0px;
+  border-right-width: 6px;
+  border-top-color: #777;
+  -webkit-animation: flap-r 0.7s infinite;
+}
+
+
+#caption a {
+  position:absolute;
+  font-family: courier;
+  left:10px; bottom:10px;
+  color: #444;
+}
+
+.birdContainer{
+  margin-top:-60px;
+  /* will-change: visibility, opacity; */
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1000;
+  visibility: hidden; */
+  /* opacity: 0; */
 }
