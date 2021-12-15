@@ -63,7 +63,8 @@ h2{
     font-family:'Montserrat',sans-serif;
     font-size:2em;
     font-weight:200;
-    display: inline;
+    text-align: center;
+    display: block;
 }
 h3{
     font-size:1.5rem;
@@ -664,7 +665,7 @@ figure,ol,p,ul{
 }
 .modal__content {
   margin:auto;
-  max-width: auto;
+  max-width: 600px;
   will-change: transform, opacity;
   position: relative;
   padding: 2.4rem;
@@ -1700,6 +1701,7 @@ Bird
 
 .birdContainer{
   margin-top:-60px;
+  max-width: 68vw;
   /* will-change: visibility, opacity; */
   /* display: flex;
   align-items: center;
