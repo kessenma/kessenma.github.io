@@ -1,6 +1,6 @@
 # Site settings
 title: Kyle Essenmacher Portfolio
-description: 
+description:
 # baseurl: "/particle" # the subpath of your site, e.g. /blog
 # url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
 
@@ -9,12 +9,12 @@ username: hi im Kyle
 user_title: a UX Researcher who likes to code.
 user_description: Below are mediums I like to use on projects.
 email: kessen@umich.edu
-twitter_username: 
+twitter_username:
 github_username: kessenma
 gplus_username:
 
 # Google-analytics
 google-analytics:
-  id: ""
+  id: "UA-55028506-1"
 
 exclude: ['package.json', 'src' , 'node_modules']
