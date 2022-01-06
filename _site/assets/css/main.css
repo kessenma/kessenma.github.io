@@ -41,7 +41,9 @@ body{
 }
 a {
   color: #000000;
+  font-size:2.5rem;
   text-decoration: none;
+  font-family: 'bebas Neue', cursive;
 }
 
 article,aside,figcaption,figure,footer,header,nav,section{
@@ -57,7 +59,7 @@ h1{
     font-family: 'bebas Neue', cursive;
     font-size:2.5rem;
     color: #000000;
-    display:block;
+    /* display:block; */
 }
 h2{
     font-family:'Montserrat',sans-serif;
@@ -95,7 +97,6 @@ h4{
 }
 /*background-color: rgba(132, 198, 89, 0.55);*/
 #particles-js{
-    background: linear-gradient(to top, rgba(132, 198, 89, 0.65), #FFFFFF);
     background: linear-gradient(to top, rgb(132, 198, 89), #FFFFFF);
     display:flex;
     vertical-align:bottom;
