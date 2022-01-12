@@ -72,7 +72,7 @@ h2{
 }
 h3{
     font-size:1.5rem;
-    display; inline-flex
+    display; inline-flex;
 }
 h4{
     font-size:1rem
@@ -128,7 +128,6 @@ h4{
 }
 /*background-color: rgba(132, 198, 89, 0.55);*/
 #particles-js{
-    background: linear-gradient(to top, rgba(132, 198, 89, 0.65), #FFFFFF);
     background: linear-gradient(to top, rgb(132, 198, 89), #FFFFFF);
     display:flex;
     vertical-align:bottom;
@@ -312,12 +311,13 @@ h4{
 /* Future diagonal boxes below  */
 
 .bg-two:before {
-  background-image: linear-gradient(45deg, #FAB33E, #FFFFFF);
+  background-image: linear-gradient(45deg, #FFFFFF, #FAB33E);
 }
 
-/* .bg-three:before {
-  background-image: linear-gradient(-135deg, #007, #003);
-} */
+.bg-three:before {
+  background-image: linear-gradient(to top, rgba(132, 198, 89, 0.65), #FFFFFF);
+}
+
 
 .content {
   max-width: var(--width);
@@ -635,10 +635,13 @@ figure,ol,p,ul{
 .buttonsLeft{
   float:left;
   text-align: left;
+  display: inline-block;
 }
 
 .buttonsRight{
   float:right;
+  text-align: left;
+  display: inline-block;
 }
 
 .buttonsCenter{
@@ -1859,6 +1862,7 @@ Bird
 }
 
 .birdContainer{
+  position: relative;
   margin-top:-60px;
   max-width: 68vw;
   /* will-change: visibility, opacity; */
