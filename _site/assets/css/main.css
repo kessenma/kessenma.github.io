@@ -28,7 +28,7 @@ img{
 
 body{
     padding:0;
-    font-size:100%;
+    /* font-size:100%; */
     line-height:1.5;
     color:#000000;
     background-color: white;
@@ -41,6 +41,7 @@ p{
     line-height:1.5;
     color:#000000;
     font-family:'Montserrat',sans-serif;
+    display: contents;
 }
 
 a {
@@ -78,6 +79,53 @@ h4{
     font-size:1rem
 }
 
+/* ############
+SciCrunch FONT
+############ */
+
+/* Clone of H1 but in green */
+h5{
+    font-family: 'bebas Neue', cursive;
+    font-size:2.5rem;
+    color: #16ffc6;
+    display: inline;
+}
+/* Clone of p but in white*/
+h6{
+    padding:0;
+    font-size:100%;
+    line-height:1.5;
+    color:#ffffff;
+    font-family:'Montserrat',sans-serif;
+    display: contents;
+}
+
+/* highlights */
+mark {
+}
+
+.greenHighlight{
+ background-color: #16ffc6;
+ padding:0.2em;
+}
+
+.realistic-marker-highlight{
+  position:relative;
+}
+
+.realistic-marker-highlight:before{
+  content:"";
+  background-color:#ff6db7;
+  width:100%;
+  height:1em;
+  position:absolute;
+  z-index:-1;
+  filter:url(#marker-shape);
+  left:-0.25em;
+  top:0.1em;
+  padding:0 0.25em;
+}
+
 /* ##################################################################
 ##################### Nav bar ##################################
 ################################################################ */
@@ -108,13 +156,15 @@ h4{
   color: black;
 }
 /* back button: https://codepen.io/folaad/pen/YvmRpz */
+/* (had to readjust arrows in inkscape) */
 
 .wrapper {
+  z-index: 20;
   position: fixed;
-  /* height: 90%; */
-  left: 80%;
-  display: flex;
-  justify-content: center;
+  left: 50%;
+  top: 85%;
+  display:flex;
+  justify-content:center;
 }
 
 .cta {
@@ -122,7 +172,7 @@ h4{
     padding: 10px 45px;
     text-decoration: none;
     font-family: 'bebas Neue', cursive;
-    font-size: 40px;
+    font-size: 4vw;
     color: white;
     background: #000000;
     transition: 1s;
@@ -414,15 +464,14 @@ path.two {
 .bg-one:before {
     background-image: linear-gradient(45deg, #FAB33E, #FFFFFF);
 }
-
-/* Future diagonal boxes below  */
-
 .bg-two:before {
   background-image: linear-gradient(45deg, #FFFFFF, #FAB33E);
 }
-
 .bg-three:before {
   background-image: linear-gradient(to top, rgba(132, 198, 89, 0.65), #FFFFFF);
+}
+.bg-sciCrunch1:before {
+  background-image: linear-gradient(45deg, #000000, #363636);
 }
 
 
