@@ -144,6 +144,15 @@ mark {
   padding:0 0.25em;
 }
 
+.horizontalBlock{
+  /* height: 60rem;
+  max-height: 100rem; */
+  width: auto;
+  display: inline-block;
+  margin: 0rem 0rem 5rem 0;
+}
+
+
 /* ##################################################################
 ##################### Nav bar ##################################
 ################################################################ */
@@ -461,7 +470,7 @@ path.two {
   content: "";
   width: 10px;
   height: 10px;
-  background: var(--dot-color1);
+  background: var(--orange);
   border-radius: 50%;
   position: absolute;
   left: 50%;
@@ -469,7 +478,7 @@ path.two {
 }
 .ele:before {
   top: -2px;
-  background: var(--dot-color2);
+  background: var(--orange);
 }
 .ele:after {
   bottom: -2px;
@@ -600,11 +609,10 @@ path.two {
   background-image: linear-gradient(to top, rgba(132, 198, 89, 0.65), #FFFFFF);
 }
 .bg-sciCrunch1:before {
-  background-image: linear-gradient(45deg, #000000, #222222);
+  background-image: linear-gradient(#000, var(--darkGrey));
 }
-
 .bg-sciCrunch2:before {
-  background-image: linear-gradient(45deg, #ffffff, #888888);
+  background-image: linear-gradient(var(--limeGreen),#000);
 }
 
 
