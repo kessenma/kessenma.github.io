@@ -461,7 +461,7 @@ path.two {
   content: "";
   width: 10px;
   height: 10px;
-  background: var(--dot-color1);
+  background: var(--limeGreen);
   border-radius: 50%;
   position: absolute;
   left: 50%;
@@ -469,7 +469,7 @@ path.two {
 }
 .ele:before {
   top: -2px;
-  background: var(--dot-color2);
+  background: var(--orange);
 }
 .ele:after {
   bottom: -2px;
@@ -549,8 +549,12 @@ path.two {
   --width: 100vw;
   --full-width: 100vw;
   --angle: -11deg;
-  --dot-color1:#16ffc6;
-  --dot-color2:#FAB33E;
+  --limeGreen:#16ffc6;
+  --orange:#FAB33E;
+  --darkGrey:#222222;
+
+
+
   /*-----------------
   Magic Number Alert:
 
@@ -945,6 +949,120 @@ figure,ol,p,ul{
     transition:color .3s ease-in,background-color .3s ease-in,border-color .3s ease-in
 }
 
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+}
+
+.fill:hover,
+.fill:focus {
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+.pulse:hover,
+.pulse:focus {
+  -webkit-animation: pulse 1s;
+          animation: pulse 1s;
+  box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+.close:hover,
+.close:focus {
+  box-shadow: inset -3.5em 0 0 0 var(--hover), inset 3.5em 0 0 0 var(--hover);
+}
+
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
+}
+
+.up:hover,
+.up:focus {
+  box-shadow: inset 0 -3.25em 0 0 var(--hover);
+}
+
+.slide:hover,
+.slide:focus {
+  box-shadow: inset 6.5em 0 0 0 var(--hover);
+}
+
+.offset {
+  box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
+}
+.offset:hover, .offset:focus {
+  box-shadow: 0 0 0 0 var(--hover), inset 6em 3.5em 0 0 var(--hover);
+}
+
+.fill {
+  --color: #a972cb;
+  --hover: #cb72aa;
+}
+
+.pulse {
+  --color: #ef6eae;
+  --hover: #ef8f6e;
+}
+
+.close {
+  --color: #ff7f82;
+  --hover: #ffdc7f;
+}
+
+.raise {
+  --color: back;
+  --hover: var(--limeGreen);
+}
+
+.up {
+  --color: #e4cb58;
+  --hover: #94e458;
+}
+
+.slide {
+  --color: #8fc866;
+  --hover: #66c887;
+}
+
+.offset {
+  --color: #19bc8b;
+  --hover: #1973bc;
+}
+
+button {
+  color: var(--color);
+  transition: 0.25s;
+}
+button:hover, button:focus {
+  border-color: var(--hover);
+  cursor: pointer;
+  /* color: #fff; */
+}
+
+button {
+  color: var(--color);
+  transition: 0.25s;
+}
+button:hover, button:focus {
+  border-color: var(--hover);
+  /* color: #fff; */
+}
+
 .buttonsLeft{
   float:left;
   text-align: left;
@@ -961,6 +1079,7 @@ figure,ol,p,ul{
   align-items: center;
   display: inline-block;
 }
+
 
 
 /* .modal__content {
@@ -995,6 +1114,7 @@ figure,ol,p,ul{
 /**
  * Material Modal CSS
  */
+ 
 .modal {
   will-change: visibility, opacity;
   display: flex;
