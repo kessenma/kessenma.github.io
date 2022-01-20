@@ -461,7 +461,7 @@ path.two {
   content: "";
   width: 10px;
   height: 10px;
-  background: var(--limeGreen);
+  background: var(--dot-color1);
   border-radius: 50%;
   position: absolute;
   left: 50%;
@@ -469,7 +469,7 @@ path.two {
 }
 .ele:before {
   top: -2px;
-  background: var(--orange);
+  background: var(--dot-color2);
 }
 .ele:after {
   bottom: -2px;
@@ -963,20 +963,20 @@ button {
   box-shadow: inset 0 0 0 2em var(--hover);
 }
 
-.pulse:hover,
-.pulse:focus {
-  -webkit-animation: pulse 1s;
-          animation: pulse 1s;
+.pulse2:hover,
+.pulse2:focus {
+  -webkit-animation: pulse2 1s;
+          animation: pulse2 1s;
   box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
 }
 
-@-webkit-keyframes pulse {
+@-webkit-keyframes pulse2 {
   0% {
     box-shadow: 0 0 0 0 var(--hover);
   }
 }
 
-@keyframes pulse {
+@keyframes pulse2 {
   0% {
     box-shadow: 0 0 0 0 var(--hover);
   }
@@ -1014,7 +1014,7 @@ button {
   --hover: #cb72aa;
 }
 
-.pulse {
+.pulse2 {
   --color: #ef6eae;
   --hover: #ef8f6e;
 }
@@ -1050,7 +1050,6 @@ button {
 }
 button:hover, button:focus {
   border-color: var(--hover);
-  cursor: pointer;
   /* color: #fff; */
 }
 
@@ -1114,7 +1113,6 @@ button:hover, button:focus {
 /**
  * Material Modal CSS
  */
- 
 .modal {
   will-change: visibility, opacity;
   display: flex;
