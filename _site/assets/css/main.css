@@ -28,8 +28,8 @@ img{
 
 body{
     padding:0;
-    font-size:100%;
-    line-height:1.5;
+    /* font-size:100%; */
+    line-height:1.5rem;
     color:#000000;
     background-color: white;
     font-family:'Montserrat',sans-serif;
@@ -38,14 +38,15 @@ body{
 p{
     padding:0;
     font-size:100%;
-    line-height:1.5;
+    line-height:1.5rem;
     color:#000000;
     font-family:'Montserrat',sans-serif;
+    display: contents;
 }
 
 a {
-  color: #000000;
-  text-decoration: none;
+  color: inherit;
+  text-decoration: inherit;
 }
 
 article,aside,figcaption,figure,footer,header,nav,section{
@@ -55,12 +56,10 @@ article,aside,figcaption,figure,footer,header,nav,section{
     margin-top:1em;
     padding-top:1em;
     line-height:1.25;
-    color:#333
 }
 h1{
     font-family: 'bebas Neue', cursive;
     font-size:2.5rem;
-    color: #000000;
     display: inline;
 }
 h2{
@@ -72,17 +71,116 @@ h2{
 }
 h3{
     font-size:1.5rem;
-    display; inline-flex;
+    display; ;
 }
 h4{
     font-size:1rem
 }
+
+/* ############
+SciCrunch FONT
+############ */
+
+/* Clone of H1 but in green */
+h5{
+    font-family: 'bebas Neue', cursive;
+    font-size:3.5rem;
+    color: inherit;
+    display: inline;
+}
+
+h6{
+    padding:0;
+    font-size:100%;
+    line-height:1.5;
+    color:#ffffff;
+    font-family:'Montserrat',sans-serif;
+    display: block;
+}
+/* Clone of p but in white*/
+h7{
+    padding:0;
+    font-size:100%;
+    line-height:1.5;
+    color:#ffffff;
+    font-family:'Montserrat',sans-serif;
+    display: contents;
+}
+
+/* White handwriting font */
+h8{
+  font-family: 'Merienda', cursive;
+  font-size:2.2rem;
+  line-height: 2.2rem;
+  color: inherit;
+  display: inline;
+}
+
+.space{
+  padding: 1rem;
+}
+/* highlights https://www.coding-dude.com/wp/css/highlight-text-css/ */
+mark {
+}
+
+.greenHighlight{
+ background-color: #16ffc6;
+ padding:0.2em;
+}
+
+.whiteHighlight{
+  background-color: #fff;
+  padding:0.2em;
+ }
+ 
+
+.realistic-marker-highlight{
+  position:relative;
+}
+
+.realistic-marker-highlight:before{
+  content:"";
+  background-color:#ff6db7;
+  width:100%;
+  height:1em;
+  position:absolute;
+  z-index:-1;
+  filter:url(#marker-shape);
+  left:-0.25em;
+  top:0.1em;
+  padding:0 0.25em;
+}
+
+.horizontalBlock{
+  /* height: 60rem;
+  max-height: 100rem; */
+  width: auto;
+  display: inline-block;
+  margin: 0rem 0rem 5rem 0;
+}
+
+/* This messes up the whole site, but this is how to change the width I think */
+/* @media only screen and (max-width:1000px){
+  .horizontalBlock .{
+      width: 80%;
+  } */
+
+.verticalBlock{
+  /* height: 60rem;
+  max-height: 100rem; */
+  /* width: 50%;
+  height: auto;
+  display: ;
+  margin: 0rem 0rem 5rem 0; */
+}
+
 
 /* ##################################################################
 ##################### Nav bar ##################################
 ################################################################ */
 
 .navbar {
+  padding: 1rem;
   text-align: center;
   overflow: hidden;
   background-color: #FFFFFF;
@@ -94,7 +192,7 @@ h4{
 
 .navbar a {
   color: #000000;
-  padding: 14px 16px;
+  padding: 0.875rem 1rem;
   text-decoration: none;
 }
 
@@ -106,6 +204,115 @@ h4{
 .navbar a.active {
   background-color: rgb(132, 198, 89);
   color: black;
+}
+/* back button: https://codepen.io/folaad/pen/YvmRpz */
+/* (had to readjust arrows in inkscape) */
+
+.wrapper {
+  z-index: 20;
+  position: fixed;
+  left: 50%;
+  top: 85%;
+  display:flex;
+  justify-content:center;
+}
+
+.cta {
+    display: flex;
+    padding: 10px 45px;
+    text-decoration: none;
+    font-family: 'bebas Neue', cursive;
+    font-size: 2vh;
+    color: white;
+    background: #000000;
+    transition: 1s;
+    box-shadow: 6px 6px 0 #16ffc6;
+    transform: skewX(-15deg);
+}
+
+.cta:focus {
+   outline: none;
+}
+
+.cta:hover {
+    transition: 0.5s;
+    box-shadow: 10px 10px 0 #FBC638;
+}
+
+.cta span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 0px;
+}
+
+.cta:hover  span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 45px;
+}
+
+  span {
+    transform: skewX(15deg)
+  }
+
+  span:nth-child(2) {
+    width: 20px;
+    margin-left: 30px;
+    position: relative;
+    top: 12%;
+  }
+
+/**************SVG****************/
+
+path.one {
+    transition: 0.4s;
+    transform: translateX(-60%);
+}
+
+path.two {
+    transition: 0.5s;
+    transform: translateX(-30%);
+}
+
+.cta:hover path.three {
+    -webkit-animation: color_anim 1s infinite 0.2s;
+            animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover path.one {
+    transform: translateX(0%);
+    -webkit-animation: color_anim 1s infinite 0.6s;
+            animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover path.two {
+    transform: translateX(0%);
+    -webkit-animation: color_anim 1s infinite 0.4s;
+            animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+
+@-webkit-keyframes color_anim {
+    100% {
+        fill: white;
+    }
+    50% {
+        fill: #FBC638;
+    }
+    0% {
+        fill: white;
+    }
+}
+
+@keyframes color_anim {
+    100% {
+        fill: white;
+    }
+    50% {
+        fill: #FBC638;
+    }
+    0% {
+        fill: white;
+    }
 }
 
 /* ##################################################### start ##
@@ -259,7 +466,111 @@ h4{
 ####################################### of Particles #########
 ################################ background ################## */
 
+/* SciCrunch animation */
 
+.dna {
+  width: 30vw;
+  height: 12vh;
+  perspective: 400px;
+  transform-style: preserve-3d;
+  display:flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.ele {
+  width: 1px;
+  height: 70px;
+  float: left;
+  margin: 0 8px;
+  border-left: 1px #B0B0B0 dashed;
+  position: relative;
+  transform: rotateX(-360deg);
+  animation: run 2s linear infinite;
+}
+.ele:before, .ele:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: var(--orange);
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ele:before {
+  top: -2px;
+  background: var(--orange);
+}
+.ele:after {
+  bottom: -2px;
+}
+.ele:nth-of-type(1) {
+  animation-delay: -0.15s;
+}
+.ele:nth-of-type(2) {
+  animation-delay: -0.3s;
+}
+.ele:nth-of-type(3) {
+  animation-delay: -0.45s;
+}
+.ele:nth-of-type(4) {
+  animation-delay: -0.6s;
+}
+.ele:nth-of-type(5) {
+  animation-delay: -0.75s;
+}
+.ele:nth-of-type(6) {
+  animation-delay: -0.9s;
+}
+.ele:nth-of-type(7) {
+  animation-delay: -1.05s;
+}
+.ele:nth-of-type(8) {
+  animation-delay: -1.2s;
+}
+.ele:nth-of-type(9) {
+  animation-delay: -1.35s;
+}
+.ele:nth-of-type(10) {
+  animation-delay: -1.5s;
+}
+.ele:nth-of-type(11) {
+  animation-delay: -1.65s;
+}
+.ele:nth-of-type(12) {
+  animation-delay: -1.8s;
+}
+.ele:nth-of-type(13) {
+  animation-delay: -1.95s;
+}
+.ele:nth-of-type(14) {
+  animation-delay: -2.1s;
+}
+.ele:nth-of-type(15) {
+  animation-delay: -2.25s;
+}
+.ele:nth-of-type(16) {
+  animation-delay: -2.4s;
+}
+.ele:nth-of-type(17) {
+  animation-delay: -2.55s;
+}
+.ele:nth-of-type(18) {
+  animation-delay: -2.7s;
+}
+.ele:nth-of-type(19) {
+  animation-delay: -2.85s;
+}
+.ele:nth-of-type(20) {
+  animation-delay: -3s;
+}
+
+@keyframes run {
+  to {
+    transform: none;
+  }
+}
 
 /* ######################################## start of ###########
 ################################ DIAGONAL containers ###########
@@ -269,6 +580,12 @@ h4{
   --width: 100vw;
   --full-width: 100vw;
   --angle: -11deg;
+  --limeGreen:#16ffc6;
+  --orange:#FAB33E;
+  --darkGrey:#222222;
+
+
+
   /*-----------------
   Magic Number Alert:
 
@@ -282,7 +599,7 @@ h4{
 }
 @media (min-width: 42em) {
   :root {
-    --width: 50vw;
+    --width: 60vw;
   }
 }
 
@@ -307,15 +624,35 @@ h4{
 .bg-one:before {
     background-image: linear-gradient(45deg, #FAB33E, #FFFFFF);
 }
-
-/* Future diagonal boxes below  */
-
 .bg-two:before {
   background-image: linear-gradient(45deg, #FFFFFF, #FAB33E);
 }
-
 .bg-three:before {
   background-image: linear-gradient(to top, rgba(132, 198, 89, 0.65), #FFFFFF);
+}
+.bg-sciCrunch1:before {
+  background-image: linear-gradient(#000, var(--darkGrey));
+}
+.bg-sciCrunch2:before {
+  background-image: linear-gradient(var(--limeGreen),#000);
+}
+
+.bg-sciCrunch3:before {
+  background-color: #ffffff;
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  background-image: -webkit-linear-gradient(rgba(56, 56, 56, 0.5) 2px, transparent 2px), -webkit-linear-gradient(0, rgba(56, 56, 56, 0.5) 2px, transparent 2px), -webkit-linear-gradient(rgba(56, 56, 56, 0.5) 1px, transparent 1px), -webkit-linear-gradient(0, rgba(56, 56, 56, 0.5) 1px, transparent 1px);
+  background-image: -moz-linear-gradient(rgba(56, 56, 56, 0.5) 1px, transparent 1px), -moz-linear-gradient(0, rgba(56, 56, 56, 0.5) 1px, transparent 1px), -moz-linear-gradient(rgba(56, 56, 56, 0.5) 1px, transparent 1px), -moz-linear-gradient(0, rgba(56, 56, 56, 0.5) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(56, 56, 56, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(56, 56, 56, 0.5) 1px, transparent 1px), linear-gradient(rgba(56, 56, 56, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(56, 56, 56, 0.5) 1px, transparent 1px);
+}
+
+.bg-sciCrunch4:before {
+  background-color: #ffffff;
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  background-image: -webkit-linear-gradient(rgba(0, 238, 255, 0.5) 2px, transparent 2px), -webkit-linear-gradient(0, rgba(0, 238, 255, 0.5) 2px, transparent 2px), -webkit-linear-gradient(rgba(0, 238, 255, 0.5) 1px, transparent 1px), -webkit-linear-gradient(0, rgba(0, 238, 255, 0.5) 1px, transparent 1px);
+  background-image: -moz-linear-gradient(rgba(0, 238, 255, 0.5) 1px, transparent 1px), -moz-linear-gradient(0, rgba(0, 238, 255, 0.5) 1px, transparent 1px), -moz-linear-gradient(rgba(0, 238, 255, 0.5) 1px, transparent 1px), -moz-linear-gradient(0, rgba(0, 238, 255, 0.5) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(0, 238, 255, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 238, 255, 0.5) 1px, transparent 1px), linear-gradient(rgba(0, 238, 255, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 238, 255, 0.5) 1px, transparent 1px);
 }
 
 
@@ -559,10 +896,10 @@ figure,ol,p,ul{
 .user-projects h5,body{
     margin:0
 }
-.user-projects li{
+/* .user-projects li{
     color:#1a222c;
     font-size:1.1rem
-}
+} */
 .user-projects p{
     margin-right:5px
 }
@@ -571,43 +908,109 @@ figure,ol,p,ul{
         margin-left:0;
         width:60%
     }
-    .contents-right{
+    .{
         margin-top:5%;
         margin-bottom:5%;
-        text-align:right;
+        text-align:left;
         display: inline;
     }
-    .contents-center{
+    .contents-left{
+      text-align: right;
+      float: left;
+      max-width: 50%;
       margin-top:5%;
       margin-bottom:5%;
-      text-align:center;
-      display: inline-block;
-      align-content: center;
+      text-align:left;
+      display: inline;
+      
   }
-    .contents-left{
+      .contents-right{
+      text-align: right;
+      float: right;
+      max-width: 50%;
       margin-top:5%;
       margin-bottom:5%;
       text-align:left;
       display: inline;
   }
+    .contents-center{
+      margin-top:5%;
+      margin-bottom:5%;
+      text-align:center;
+      display: inline;
+      align-content: center;
+  }
+
     .contents-right,.images-right{
         float:right;
-        width:60%
+        width:49%
     }
     .images-right img{
         float:right
     }
-    .images-left{
-        float:left;
+
+    .contents-right60,.images-right60{
+        float:right;
         width:60%
+    }
+    .contents-left, .images-left{
+        float:left;
+        width:49%
     }
     .images-left img{
         float:left
     }
+    .contents-left60,.images-left60{
+        float:left;
+        width:60%
+    }
 }
 
+/* This container class will allow a table to scroll horizontally on smaller screens. */
+.hscroll {
+  overflow-x: auto; /* Horizontal */
+}
+
+.tableWhite{
+  color: #ffffff;
+  text-align: center;
+}
+
+.tableBlack{
+  color: #000;
+  text-align: center;
+}
+
+/* .centerhamster{
+  display: block;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 18.3333rem;
+  height: 18.3333rem;
+} */
+
 .whippingContainer{
-  max-width: 200px;
+  display: block;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 18.3333rem;
+  height: 18.3333rem;
+}
+
+.sciCrunchImg{
+  padding: 0rem 0rem 0rem 15rem;
+  max-height: 45rem;
+  max-width: 35rem;
+  display: relative;
+  justify-content: center;
+  align-items:center;
+  z-index: 10;
 }
 
 .project-link{
@@ -632,6 +1035,119 @@ figure,ol,p,ul{
     transition:color .3s ease-in,background-color .3s ease-in,border-color .3s ease-in
 }
 
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+}
+
+.fill:hover,
+.fill:focus {
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+.pulse:hover,
+.pulse:focus {
+  -webkit-animation: pulse 1s;
+          animation: pulse 1s;
+  box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+.close:hover,
+.close:focus {
+  box-shadow: inset -3.5em 0 0 0 var(--hover), inset 3.5em 0 0 0 var(--hover);
+}
+
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
+}
+
+.up:hover,
+.up:focus {
+  box-shadow: inset 0 -3.25em 0 0 var(--hover);
+}
+
+.slide:hover,
+.slide:focus {
+  box-shadow: inset 6.5em 0 0 0 var(--hover);
+}
+
+.offset {
+  box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
+}
+.offset:hover, .offset:focus {
+  box-shadow: 0 0 0 0 var(--hover), inset 6em 3.5em 0 0 var(--hover);
+}
+
+.fill {
+  --color: #a972cb;
+  --hover: #cb72aa;
+}
+
+.pulse {
+  --color: #ef6eae;
+  --hover: #ef8f6e;
+}
+
+.close {
+  --color: #ff7f82;
+  --hover: #ffdc7f;
+}
+
+.raise {
+  --color: back;
+  --hover: var(--limeGreen);
+}
+
+.up {
+  --color: #e4cb58;
+  --hover: #94e458;
+}
+
+.slide {
+  --color: #8fc866;
+  --hover: #66c887;
+}
+
+.offset {
+  --color: #19bc8b;
+  --hover: #1973bc;
+}
+
+button {
+  color: var(--color);
+  transition: 0.25s;
+}
+button:hover, button:focus {
+  border-color: var(--hover);
+  /* color: #fff; */
+}
+
+button {
+  color: var(--color);
+  transition: 0.25s;
+}
+button:hover, button:focus {
+  border-color: var(--hover);
+  /* color: #fff; */
+}
+
 .buttonsLeft{
   float:left;
   text-align: left;
@@ -648,6 +1164,7 @@ figure,ol,p,ul{
   align-items: center;
   display: inline-block;
 }
+
 
 
 /* .modal__content {
@@ -673,130 +1190,53 @@ figure,ol,p,ul{
 .footer a{
     text-decoration:none;
     margin:0;
-    color:#fff
+    color:#ffffff;
 }
 
 /* ################################# modal setup #######################
 #####################################################################
 #################################################################### */
-/**
- * Material Modal CSS
- */
+
+/* The Modal (background) */
 .modal {
-  will-change: visibility, opacity;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
   left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  z-index: 1000;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  transition-delay: $modal-delay;
-}
-.modal--active {
-  visibility: visible;
-  opacity: 1;
-}
-.modal--align-top {
-  align-items: flex-start;
-}
-.modal__bg {
-  background: transparent;
-}
-.modal__dialog {
-  /* max-width: 50vw; */
-  /* padding: 1.2rem; */
-}
-.modal__content {
-  margin:auto;
-  max-width: 600px;
-  will-change: transform, opacity;
-  position: relative;
-  padding: 2.4rem;
-  background: #ffffff;
-  background-clip: padding-box;
-  box-shadow: 0 12px 15px 0 rgba(0,0,0,0.25);
-  opacity: 0;
-  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.modal__content--active {
-  opacity: 1;
-}
-.modal__close {
-  z-index: 1100;
-  cursor: pointer;
-  position: fixed;
-}
-.modal__trigger {
-  display: inline-flex;
-  margin:10px 10px 0 0;
-  padding: 1.2rem 2.4rem;
-  /* color: rgba(0,0,0,0.7); */
-  line-height: 1;
-  cursor: pointer;
-  background: #ffebee;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.modal__trigger:active,.modal__trigger:hover{
-    background-color:#54516a;
-    border-color:#54516a;
-    color:#fff;
-    transition:color .3s ease-in,background-color .3s ease-in,border-color .3s ease-in
-}
-
-/* .modal__trigger--active {
-  z-index: 10;
-}
-.modal__trigger:hover {
-  background: #e5d3d6;
-} */
-#modal__temp {
-  will-change: transform, opacity;
-  position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #ffebee;
-  transform: none;
-  opacity: 1;
-  transition: opacity 0.1s ease-out, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.demo-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 1.2rem;
-  padding: 0.6rem;
-  background: rgba(0,0,0,0.3);
-  border-radius: 50%;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.demo-close svg {
-  width: 24px;
-  fill: #fff;
-  pointer-events: none;
-  vertical-align: top;
-}
-.demo-close:hover {
-  background: rgba(0,0,0,0.6);
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
 }
 
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Form stuff ... i think?? */
 
 #fs-frm input,
 #fs-frm select,
@@ -911,6 +1351,149 @@ figure,ol,p,ul{
 ####################################### Animations #########
 ################################  ################## */
 
+/* Product Cycle for SciCrunch */
+
+@-webkit-keyframes cycle-design {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 1434.9226;
+  }
+  0%, 20%, 80%, 100% {
+    stroke: #16ffc6;
+  }
+  30%, 70% {
+    stroke: #FAB33E;
+  }
+}
+@keyframes cycle-design {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 1434.9226;
+  }
+  0%, 20%, 80%, 100% {
+    stroke: #16ffc6;
+  }
+  30%, 70% {
+    stroke: #FAB33E;
+  }
+}
+@-webkit-keyframes think-color {
+  0%, 100% {
+    color: #16ffc6;
+  }
+  40%, 60% {
+    color: #eee;
+  }
+}
+@keyframes think-color {
+  0%, 100% {
+    color: #16ffc6;
+  }
+  40%, 60% {
+    color: #eee;
+  }
+}
+@-webkit-keyframes make-color {
+  0%, 20%, 80%, 100% {
+    color: #eee;
+  }
+  50% {
+    color: #FAB33E;
+  }
+}
+@keyframes make-color {
+  0%, 20%, 80%, 100% {
+    color: #eee;
+  }
+  50% {
+    color: #FAB33E;
+  }
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.product-cycle {
+  width: 80vmin;
+  max-width: 600px;
+  height: calc(30vmin + 2.4rem);
+  position:sticky;
+  margin: auto;
+  justify-content:center;
+  display: flex;
+  /* float:right; */
+  width:50%
+}
+
+.path {
+  width: 40vmin;
+  height: 20vmin;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.path path {
+  fill: transparent;
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+.path.-animate {
+  stroke: #FAB33E;
+  stroke-dasharray: 478.3075333333 956.6150666667;
+  stroke-dashoffset: 1434.9226;
+  -webkit-animation: cycle-design 5000ms linear infinite;
+          animation: cycle-design 5000ms linear infinite;
+}
+.path.-bg {
+  stroke: #eee;
+}
+
+.header,
+.explain {
+  width: 20vmin;
+  position: absolute;
+  color: #eee;
+  text-align: center;
+}
+
+.header {
+  font-size: 2.7142857143vmin;
+  line-height: 20vmin;
+}
+.header.-think {
+  left: 0;
+  -webkit-animation: think-color 5000ms linear infinite;
+          animation: think-color 5000ms linear infinite;
+}
+.header.-make {
+  left: 20vmin;
+  -webkit-animation: make-color 5000ms linear infinite;
+          animation: make-color 5000ms linear infinite;
+}
+
+.explain {
+  width: 20vmin;
+  top: calc(20vmin + 1rem);
+  font-size: 1rem;
+  text-align: center;
+}
+.explain.-think {
+  left: 0;
+  color: #16ffc6;
+}
+.explain.-make {
+  left: 20vmin;
+  color: #FAB33E;
+}
+
+
+
 /* Waving emoji hand  */
 
 hand{
@@ -1018,147 +1601,359 @@ keyframes
 !!! */
 
 #covid-19 {
-			width: 220px;
-			height: 220px;
-			animation-name: float;
-			animation-duration: 1s;
-			animation-direction: alternate;
-			animation-iteration-count: infinite;
-			animation-timing-function: ease-in-out;
-		}
+  width: 18.3333rem;
+  height: 18.3333rem;
+  animation-name: float;
+  animation-duration: 1s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
 
-    .centercovid{
-      display: block;
-      margin: auto;
-      display: flex;
-		  flex-direction: column;
-		  justify-content: center;
-		  align-items: center;
-    }
+.centercovid{
+  display: block;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 
-		.shadow {
-			width: 100px;
-		  height: 10px;
-		  background: #1c1c1c;
-		  border-radius: 70%;
-		  opacity: 1;
-		  filter: blur(3px);
-		  animation-name: animate-shadow;
-			animation-duration: 1s;
-			animation-direction: alternate;
-			animation-iteration-count: infinite;
-			animation-timing-function: ease-in-out;
-		}
+.shadow {
+  width: 8.3333rem;
+  height: 0.8333rem;
+  background: #1c1c1c;
+  border-radius: 70%;
+  opacity: 1;
+  filter: blur(3px);
+  animation-name: animate-shadow;
+  animation-duration: 1s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
 
-		g.evelope {
-			animation-name: rotate;
-			transform-origin: 100px 105px;
-			animation-duration: 2s;
-			animation-direction: alternate;
-			animation-iteration-count: infinite;
-			animation-timing-function: ease-in-out;
-		}
+g.evelope {
+  animation-name: rotate;
+  transform-origin: 8.3333rem 8.75rem;
+  animation-duration: 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
 
-		ellipse.left-eyeball,
-		ellipse.right-eyeball {
-			animation-name: moveEyeBalls;
-			transform-origin: 50% 50%;
-			animation-duration: 3s;
-			animation-direction: normal;
-			animation-iteration-count: infinite;
-			animation-timing-function: ease-in-out;
-		}
+ellipse.left-eyeball,
+ellipse.right-eyeball {
+  animation-name: moveEyeBalls;
+  transform-origin: 50% 50%;
+  animation-duration: 3s;
+  animation-direction: normal;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
 
-		.left-eyebrows,
-		.right-eyebrows {
-			animation-name: moveEyebrows;
-			transform-origin: 50% 50%;
-			animation-duration: 1s;
-			animation-direction: alternate;
-			animation-iteration-count: infinite;
-			animation-timing-function: ease-in-out;
-		}
+.left-eyebrows,
+.right-eyebrows {
+  animation-name: moveEyebrows;
+  transform-origin: 50% 50%;
+  animation-duration: 1s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
 
-		.mouth {
-			animation-name: moveMouth;
-			transform-origin: 50% 50%;
-			animation-duration: 2s;
-			animation-direction: alternate;
-			animation-iteration-count: infinite;
-			animation-timing-function: ease-in-out;
-		}
+.mouth {
+  animation-name: moveMouth;
+  transform-origin: 50% 50%;
+  animation-duration: 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
 
-		@keyframes moveMouth {
+      @keyframes moveMouth {
 
-			0% {
-				transform: rotate(0deg);
-			} 100% {
-				transform: rotate(12deg);
-			}
+        0% {
+          transform: rotate(0deg);
+        } 100% {
+          transform: rotate(12deg);
+        }
 
-		}
+      }
 
-		@keyframes moveEyebrows {
+      @keyframes moveEyebrows {
 
-			0% {
-				transform: translateY(0px);
-			} 100% {
-				transform: translateY(-1px);
-			}
+        0% {
+          transform: translateY(0px);
+        } 100% {
+          transform: translateY(-1px);
+        }
 
-		}
+      }
 
-		@keyframes moveEyeBalls {
+      @keyframes moveEyeBalls {
 
-			0% {
-				transform: translateX(0px);
-			} 25% {
-				transform: translateX(2px);
-			} 50%{
-				transform: translateX(-2px);
-			} 75%{
-				transform: translateX(-2px);
-			} 100% {
-				transform: translateX(0px);
-			}
+        0% {
+          transform: translateX(0px);
+        } 25% {
+          transform: translateX(2px);
+        } 50%{
+          transform: translateX(-2px);
+        } 75%{
+          transform: translateX(-2px);
+        } 100% {
+          transform: translateX(0px);
+        }
 
-		}
+      }
 
-		@keyframes float {
+      @keyframes float {
 
-			0% {
-				transform: translateY(0px);
-			} 100% {
-				transform: translateY(20px);
-			}
-		}
+        0% {
+          transform: translateY(0px);
+        } 100% {
+          transform: translateY(20px);
+        }
+      }
 
-		@keyframes animate-shadow {
+      @keyframes animate-shadow {
 
-			0% {
-				transform: scale(1);
-			} 100% {
-				transform: scale(1.2);
-			}
-		}
+        0% {
+          transform: scale(1);
+        } 100% {
+          transform: scale(1.2);
+        }
+      }
 
-		@keyframes rotate {
+      @keyframes rotate {
 
-			0% {
-				transform: rotate(0deg);
-			} 50% {
-				transform: rotate(4deg);
-			} 100% {
-				transform: rotate(0deg);
-			}
+        0% {
+          transform: rotate(0deg);
+        } 50% {
+          transform: rotate(4deg);
+        } 100% {
+          transform: rotate(0deg);
+        }
 
-		}
+      }
 
-    /* WHIPPING CREAM !!!!
-    !!!!
-    !!!!
-    !!! */
+
+/* !!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!hamster!!!!!!!
+!!!!!!!!!!!!! */
+
+
+.centerhamster{
+  display: block;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 18.3333rem;
+  height: 18.3333rem;
+}
+
+.wheel-and-hamster {
+	--dur: 1s;
+	position: relative;
+	width: 12em;
+	height: 12em;
+}
+.wheel,
+.hamster,
+.hamster div,
+.spoke {
+	position: absolute;
+}
+.wheel,
+.spoke {
+	border-radius: 50%;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.wheel {
+	background: radial-gradient(100% 100% at center,hsla(0,0%,60%,0) 47.8%,hsl(0,0%,60%) 48%);
+	z-index: 1;
+}
+.hamster {
+	animation: hamster var(--dur) ease-in-out infinite;
+	top: 50%;
+	left: calc(50% - 3.5em);
+	width: 7em;
+	height: 3.75em;
+	transform: rotate(4deg) translate(-0.8em,1.85em);
+	transform-origin: 50% 0;
+	z-index: 1;
+}
+.hamster__head {
+	animation: hamsterHead var(--dur) ease-in-out infinite;
+	background: hsl(30,90%,55%);
+	border-radius: 70% 30% 0 100% / 40% 25% 25% 60%;
+	box-shadow:
+		0 -0.25em 0 hsl(30,90%,80%) inset,
+		0.75em -1.55em 0 hsl(30,90%,90%) inset;
+	top: 0;
+	left: -2em;
+	width: 2.75em;
+	height: 2.5em;
+	transform-origin: 100% 50%;
+}
+.hamster__ear {
+	animation: hamsterEar var(--dur) ease-in-out infinite;
+	background: hsl(0,90%,85%);
+	border-radius: 50%;
+	box-shadow: -0.25em 0 hsl(30,90%,55%) inset;
+	top: -0.25em;
+	right: -0.25em;
+	width: 0.75em;
+	height: 0.75em;
+	transform-origin: 50% 75%;
+}
+.hamster__eye {
+	animation: hamsterEye var(--dur) linear infinite;
+	background-color: hsl(0,0%,0%);
+	border-radius: 50%;
+	top: 0.375em;
+	left: 1.25em;
+	width: 0.5em;
+	height: 0.5em;
+}
+.hamster__nose {
+	background: hsl(0,90%,75%);
+	border-radius: 35% 65% 85% 15% / 70% 50% 50% 30%;
+	top: 0.75em;
+	left: 0;
+	width: 0.2em;
+	height: 0.25em;
+}
+.hamster__body {
+	animation: hamsterBody var(--dur) ease-in-out infinite;
+	background: hsl(30,90%,90%);
+	border-radius: 50% 30% 50% 30% / 15% 60% 40% 40%;
+	box-shadow:
+		0.1em 0.75em 0 hsl(30,90%,55%) inset,
+		0.15em -0.5em 0 hsl(30,90%,80%) inset;
+	top: 0.25em;
+	left: 2em;
+	width: 4.5em;
+	height: 3em;
+	transform-origin: 17% 50%;
+	transform-style: preserve-3d;
+}
+.hamster__limb--fr,
+.hamster__limb--fl {
+	clip-path: polygon(0 0,100% 0,70% 80%,60% 100%,0% 100%,40% 80%);
+	top: 2em;
+	left: 0.5em;
+	width: 1em;
+	height: 1.5em;
+	transform-origin: 50% 0;
+}
+.hamster__limb--fr {
+	animation: hamsterFRLimb var(--dur) linear infinite;
+	background: linear-gradient(hsl(30,90%,80%) 80%,hsl(0,90%,75%) 80%);
+	transform: rotate(15deg) translateZ(-1px);
+}
+.hamster__limb--fl {
+	animation: hamsterFLLimb var(--dur) linear infinite;
+	background: linear-gradient(hsl(30,90%,90%) 80%,hsl(0,90%,85%) 80%);
+	transform: rotate(15deg);
+}
+.hamster__limb--br,
+.hamster__limb--bl {
+	border-radius: 0.75em 0.75em 0 0;
+	clip-path: polygon(0 0,100% 0,100% 30%,70% 90%,70% 100%,30% 100%,40% 90%,0% 30%);
+	top: 1em;
+	left: 2.8em;
+	width: 1.5em;
+	height: 2.5em;
+	transform-origin: 50% 30%;
+}
+.hamster__limb--br {
+	animation: hamsterBRLimb var(--dur) linear infinite;
+	background: linear-gradient(hsl(30,90%,80%) 90%,hsl(0,90%,75%) 90%);
+	transform: rotate(-25deg) translateZ(-1px);
+}
+.hamster__limb--bl {
+	animation: hamsterBLLimb var(--dur) linear infinite;
+	background: linear-gradient(hsl(30,90%,90%) 90%,hsl(0,90%,85%) 90%);
+	transform: rotate(-25deg);
+}
+.hamster__tail {
+	animation: hamsterTail var(--dur) linear infinite;
+	background: hsl(0,90%,85%);
+	border-radius: 0.25em 50% 50% 0.25em;
+	box-shadow: 0 -0.2em 0 hsl(0,90%,75%) inset;
+	top: 1.5em;
+	right: -0.5em;
+	width: 1em;
+	height: 0.5em;
+	transform: rotate(30deg) translateZ(-1px);
+	transform-origin: 0.25em 0.25em;
+}
+.spoke {
+	animation: spoke var(--dur) linear infinite;
+	background:
+		radial-gradient(100% 100% at center,hsl(0,0%,60%) 4.8%,hsla(0,0%,60%,0) 5%),
+		linear-gradient(hsla(0,0%,55%,0) 46.9%,hsl(0,0%,65%) 47% 52.9%,hsla(0,0%,65%,0) 53%) 50% 50% / 99% 99% no-repeat;
+}
+
+/* Animations */
+@keyframes hamster {
+	from, to { transform: rotate(4deg) translate(-0.8em,1.85em); }
+	50% { transform: rotate(0) translate(-0.8em,1.85em); }
+}
+@keyframes hamsterHead {
+	from, 25%, 50%, 75%, to { transform: rotate(0); }
+	12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(8deg); }
+}
+@keyframes hamsterEye {
+	from, 90%, to { transform: scaleY(1); }
+	95% { transform: scaleY(0); }
+}
+@keyframes hamsterEar {
+	from, 25%, 50%, 75%, to { transform: rotate(0); }
+	12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(12deg); }
+}
+@keyframes hamsterBody {
+	from, 25%, 50%, 75%, to { transform: rotate(0); }
+	12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(-2deg); }
+}
+@keyframes hamsterFRLimb {
+	from, 25%, 50%, 75%, to { transform: rotate(50deg) translateZ(-1px); }
+	12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(-30deg) translateZ(-1px); }
+}
+@keyframes hamsterFLLimb {
+	from, 25%, 50%, 75%, to { transform: rotate(-30deg); }
+	12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(50deg); }
+}
+@keyframes hamsterBRLimb {
+	from, 25%, 50%, 75%, to { transform: rotate(-60deg) translateZ(-1px); }
+	12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(20deg) translateZ(-1px); }
+}
+@keyframes hamsterBLLimb {
+	from, 25%, 50%, 75%, to { transform: rotate(20deg); }
+	12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(-60deg); }
+}
+@keyframes hamsterTail {
+	from, 25%, 50%, 75%, to { transform: rotate(30deg) translateZ(-1px); }
+	12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(10deg) translateZ(-1px); }
+}
+@keyframes spoke {
+	from { transform: rotate(0); }
+	to { transform: rotate(-1turn); }
+}
+
+
+
+/* WHIPPING CREAM !!!!
+!!!!
+!!!!
+!!! */
 
 
 .whipping-cream{
@@ -1574,6 +2369,17 @@ transform:scale3d(0, 1, 1);
 !!!
 !! */
 /* SVG Styles */
+
+.robotContainer{
+  display: block;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30rem;
+}
+
 #robot {
   animation: fly-in 3s ease-out;
   max-height: 560px;
@@ -1864,7 +2670,7 @@ Bird
 .birdContainer{
   position: relative;
   margin-top:-60px;
-  max-width: 68vw;
+  max-width: 60vw;
   /* will-change: visibility, opacity; */
   /* display: flex;
   align-items: center;
