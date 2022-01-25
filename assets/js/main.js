@@ -180,199 +180,162 @@ backButton.addEventListener('click', backAnim);
 // #######################################################
 
 
+// Slider(all Slides in a container)
+const slider = document.querySelector(".slider")
+// All trails 
+const trail = document.querySelector(".trail").querySelectorAll("div")
 
-// var Modal = (function() {
+// Transform value
+let value = 0
+// trail index number
+let trailValue = 0
+// interval (Duration)
+let interval = 4000
 
-//   var trigger = $qsa('.modal__trigger'); // what you click to activate the modal
-//   var modals = $qsa('.modal'); // the entire modal (takes up entire window)
-//   var modalsbg = $qsa('.modal__bg'); // the entire modal (takes up entire window)
-//   var content = $qsa('.modal__content'); // the inner content of the modal
-// 	var closers = $qsa('.modal__close'); // an element used to close the modal
-//   var w = window;
-//   var isOpen = false;
-// 	var contentDelay = 400; // duration after you click the button and wait for the content to show
-//   var len = trigger.length;
+// Function to slide forward
+const slide = (condition) => {
+    // CLear interval
+    clearInterval(start)
+    // update value and trailValue
+    condition === "increase" ? initiateINC() : initiateDEC()
+    // move slide
+    move(value, trailValue)
+    // Restart Animation
+    animate()
+    // start interal for slides back 
+    start = setInterval(() => slide("increase"), interval);
+}
 
-//   // make it easier for yourself by not having to type as much to select an element
-//   function $qsa(el) {
-//     return document.querySelectorAll(el);
-//   }
+// function for increase(forward, next) configuration
+const initiateINC = () => {
+    // Remove active from all trails
+    trail.forEach(cur => cur.classList.remove("active"))
+    // increase transform value
+    value === 80 ? value = 0 : value += 20
+    // update trailValue based on value
+    trailUpdate()
+}
 
-//   var getId = function(event) {
+// function for decrease(backward, previous) configuration
+const initiateDEC = () => {
+     // Remove active from all trails
+    trail.forEach(cur => cur.classList.remove("active"))
+    // decrease transform value
+    value === 0 ? value = 80 : value -= 20
+     // update trailValue based on value
+    trailUpdate()
+}
 
-//     event.preventDefault();
-//     var self = this;
-//     // get the value of the data-modal attribute from the button
-//     var modalId = self.dataset.modal;
-//     var len = modalId.length;
-//     // remove the '#' from the string
-//     var modalIdTrimmed = modalId.substring(1, len);
-//     // select the modal we want to activate
-//     var modal = document.getElementById(modalIdTrimmed);
-//     // execute function that creates the temporary expanding div
-//     makeDiv(self, modal);
-//   };
+// function to transform slide 
+const move = (S, T) => {
+    // transform slider
+    slider.style.transform = `translateX(-${S}%)`
+    //add active class to the current trail
+    trail[T].classList.add("active")
+}
 
-//   var makeDiv = function(self, modal) {
+const tl = gsap.timeline({defaults: {duration: 0.6, ease: "power2.inOut"}})
+tl.from(".bg", {x: "-100%", opacity: 0})
+  .from("p", {opacity: 0}, "-=0.3")
+  .from("h1", {opacity: 0, y: "30px"}, "-=0.3")
+  .from("button", {opacity: 0, y: "-40px"}, "-=0.8")
 
-//     var fakediv = document.getElementById('modal__temp');
+// function to restart animation
+const animate = () => tl.restart()
 
-//     /**
-//      * if there isn't a 'fakediv', create one and append it to the button that was
-//      * clicked. after that execute the function 'moveTrig' which handles the animations.
-//      */
+// function to update trailValue based on slide value
+const trailUpdate = () => {
+    if (value === 0) {
+        trailValue = 0
+    } else if (value === 20) {
+        trailValue = 1
+    } else if (value === 40) {
+        trailValue = 2
+    } else if (value === 60) {
+        trailValue = 3
+    } else {
+        trailValue = 4
+    }
+}   
 
-//     if (fakediv === null) {
-//       var div = document.createElement('div');
-//       div.id = 'modal__temp';
-//       self.appendChild(div);
-//       moveTrig(self, modal, div);
-//     }
-//   };
+// Start interval for slides
+let start = setInterval(() => slide("increase"), interval)
 
-//   var moveTrig = function(trig, modal, div) {
-//     var trigProps = trig.getBoundingClientRect();
-//     var m = modal;
-//     var mProps = m.querySelector('.modal__content').getBoundingClientRect();
-//     var transX, transY, scaleX, scaleY;
-//     var xc = w.innerWidth / 2;
-//     var yc = w.innerHeight / 2;
+// Next  and  Previous button function (SVG icon with different classes)
+document.querySelectorAll("svg").forEach(cur => {
+    // Assign function based on the class Name("next" and "prev")
+    cur.addEventListener("click", () => cur.classList.contains("next") ? slide("increase") : slide("decrease"))
+})
 
-//     // this class increases z-index value so the button goes overtop the other buttons
-//     trig.classList.add('modal__trigger--active');
+// function to slide when trail is clicked
+const clickCheck = (e) => {
+    // CLear interval
+    clearInterval(start)
+    // remove active class from all trails
+    trail.forEach(cur => cur.classList.remove("active"))
+    // Get selected trail
+    const check = e.target
+    // add active class
+    check.classList.add("active")
 
-//     // these values are used for scale the temporary div to the same size as the modal
-//     scaleX = mProps.width / trigProps.width;
-//     scaleY = mProps.height / trigProps.height;
+    // Update slide value based on the selected trail
+    if(check.classList.contains("box1")) {
+        value = 0
+    } else if (check.classList.contains("box2")) {
+        value = 20
+    } else if (check.classList.contains("box3")) {
+        value = 40
+    } else if (check.classList.contains("box4")) {
+        value = 60
+    } else {
+        value = 80
+    }
+    // update trail based on value
+    trailUpdate()
+    // transfrom slide
+    move(value, trailValue)
+    // start animation
+    animate()
+    // start interval
+    start = setInterval(() => slide("increase"), interval)
+}
 
-//     scaleX = scaleX.toFixed(3); // round to 3 decimal places
-//     scaleY = scaleY.toFixed(3);
+// Add function to all trails
+trail.forEach(cur => cur.addEventListener("click", (ev) => clickCheck(ev)))
 
+// Mobile touch Slide Section
+const touchSlide = (() => {
+    let start, move, change, sliderWidth
 
-//     // these values are used to move the button to the center of the window
-//     transX = Math.round(xc - trigProps.left - trigProps.width / 2);
-//     transY = Math.round(yc - trigProps.top - trigProps.height / 2);
+    // Do this on initial touch on screen
+    slider.addEventListener("touchstart", (e) => {
+        // get the touche position of X on the screen
+        start = e.touches[0].clientX
+        // (each slide with) the width of the slider container divided by the number of slides
+        sliderWidth = slider.clientWidth/trail.length
+    })
+    
+    // Do this on touchDrag on screen
+    slider.addEventListener("touchmove", (e) => {
+        // prevent default function
+        e.preventDefault()
+        // get the touche position of X on the screen when dragging stops
+        move = e.touches[0].clientX
+        // Subtract initial position from end position and save to change variabla
+        change = start - move
+    })
 
-// 		// if the modal is aligned to the top then move the button to the center-y of the modal instead of the window
-//     if (m.classList.contains('modal--align-top')) {
-//       transY = Math.round(mProps.height / 2 + mProps.top - trigProps.top - trigProps.height / 2);
-//     }
-
-
-// 		// translate button to center of screen
-// 		trig.style.transform = 'translate(' + transX + 'px, ' + transY + 'px)';
-// 		trig.style.webkitTransform = 'translate(' + transX + 'px, ' + transY + 'px)';
-// 		// expand temporary div to the same size as the modal
-// 		div.style.transform = 'scale(' + scaleX + ',' + scaleY + ')';
-// 		div.style.webkitTransform = 'scale(' + scaleX + ',' + scaleY + ')';
-
-
-// 		window.setTimeout(function() {
-// 			window.requestAnimationFrame(function() {
-// 				open(m, div);
-// 			});
-// 		}, contentDelay);
-
-//   };
-
-//   var open = function(m, div) {
-
-//     if (!isOpen) {
-//       // select the content inside the modal
-//       var content = m.querySelector('.modal__content');
-//       // reveal the modal
-//       m.classList.add('modal--active');
-//       // reveal the modal content
-//       content.classList.add('modal__content--active');
-
-//       /**
-//        * when the modal content is finished transitioning, fadeout the temporary
-//        * expanding div so when the window resizes it isn't visible ( it doesn't
-//        * move with the window).
-//        */
-
-//       content.addEventListener('transitionend', hideDiv, false);
-
-//       isOpen = true;
-//     }
-
-//     function hideDiv() {
-//       // fadeout div so that it can't be seen when the window is resized
-//       div.style.opacity = '0';
-//       content.removeEventListener('transitionend', hideDiv, false);
-//     }
-//   };
-
-//   var close = function(event) {
-
-// 		event.preventDefault();
-//     event.stopImmediatePropagation();
-
-//     var target = event.target;
-//     var div = document.getElementById('modal__temp');
-
-//     /**
-//      * make sure the modal__bg or modal__close was clicked, we don't want to be able to click
-//      * inside the modal and have it close.
-//      */
-
-//     if (isOpen && target.classList.contains('modal__bg') || target.classList.contains('modal__close')) {
-
-//       // make the hidden div visible again and remove the transforms so it scales back to its original size
-//       div.style.opacity = '1';
-//       div.removeAttribute('style');
-
-// 			/**
-// 			* iterate through the modals and modal contents and triggers to remove their active classes.
-//       * remove the inline css from the trigger to move it back into its original position.
-// 			*/
-
-// 			for (var i = 0; i < len; i++) {
-// 				modals[i].classList.remove('modal--active');
-// 				content[i].classList.remove('modal__content--active');
-// 				trigger[i].style.transform = 'none';
-//         trigger[i].style.webkitTransform = 'none';
-// 				trigger[i].classList.remove('modal__trigger--active');
-// 			}
-
-//       // when the temporary div is opacity:1 again, we want to remove it from the dom
-// 			div.addEventListener('transitionend', removeDiv, false);
-
-//       isOpen = false;
-
-//     }
-
-//     function removeDiv() {
-//       setTimeout(function() {
-//         window.requestAnimationFrame(function() {
-//           // remove the temp div from the dom with a slight delay so the animation looks good
-//           div.remove();
-//         });
-//       }, contentDelay - 50);
-//     }
-
-//   };
-
-//   var bindActions = function() {
-//     for (var i = 0; i < len; i++) {
-//       trigger[i].addEventListener('click', getId, false);
-//       closers[i].addEventListener('click', close, false);
-//       modalsbg[i].addEventListener('click', close, false);
-//     }
-//   };
-
-//   var init = function() {
-//     bindActions();
-//   };
-
-//   return {
-//     init: init
-//   };
-
-// }());
-
-// Modal.init();
-
+    const mobile = (e) => {
+        // if change is greater than a quarter of sliderWidth, next else Do NOTHING
+        change > (sliderWidth/4)  ? slide("increase") : null;
+        // if change * -1 is greater than a quarter of sliderWidth, prev else Do NOTHING
+        (change * -1) > (sliderWidth/4) ? slide("decrease") : null;
+        // reset all variable to 0
+        [start, move, change, sliderWidth] = [0,0,0,0]
+    }
+    // call mobile on touch end
+    slider.addEventListener("touchend", mobile)
+})()
 
 
 
