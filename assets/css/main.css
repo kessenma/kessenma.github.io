@@ -26,6 +26,7 @@ img{
     max-width:100%
 }
 
+
 body{
     padding:0;
     /* font-size:100%; */
@@ -2447,8 +2448,9 @@ ellipse.right-eyeball {
 
         
 .testimonials {
-  background-color: black;
+  background-color: white;
   height: 30rem;
+  width: inherit;
   position: relative;
   padding-top: 5rem;
 }
@@ -2459,7 +2461,7 @@ ellipse.right-eyeball {
   left: 0;
   right: 0;
   width: 0rem;
-  height: 30%;
+  height: 80%;
   background-color: #ddd;
 }
 
@@ -2467,7 +2469,7 @@ ellipse.right-eyeball {
   background-color: var(--darkGrey);
   color: #fff;
   padding: 20px 10px;
-  width: 15rem;
+  width: 25rem;
   text-align: left;
 }
 #customers-testimonials .item-details h5 {
@@ -2507,7 +2509,7 @@ ellipse.right-eyeball {
   line-height: 50px;
   border-radius: 50%;
   position: absolute;
-  top: 30%;
+  top: 85%;
   font-size: 20px;
   color: #000;
   border: 1px solid #000;
@@ -2515,11 +2517,15 @@ ellipse.right-eyeball {
 }
 
 .owl-carousel .owl-prev {
-  left: -70px;
+  left: 70px;
 }
 
 .owl-carousel .owl-next {
-  right: -70px;
+  right: 70px;
+}
+
+.owl-stage{
+  width: inherit;
 }
 
 

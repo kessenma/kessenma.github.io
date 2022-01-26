@@ -21,15 +21,32 @@ jQuery(document).ready(function($) {
         0: {
           items: 1
         },
-        768: {
+        500: {
           items: 2
         },
-        1170: {
+        1200: {
           items: 3
         }
       }
     });
   });
+
+  jQuery(document).ready(function($) {
+    "use strict";
+    $('#customers-testimonials2').owlCarousel( {
+        loop: false,
+        center: true,
+        items: 1,
+        margin: 50,
+        autoplay: false,
+        dots:true,
+        nav:true,
+        autoplayTimeout: 8500,
+        smartSpeed: 1200,
+        navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+
+      });
+    });
 
 // Modal setup
 
