@@ -1,3 +1,36 @@
+
+// #######################################################
+// ##################  https://codepen.io/sharkcoder/pen/WNedoNQ  #########################
+// ################## SciCrunch slide show
+// #######################################################
+
+jQuery(document).ready(function($) {
+  "use strict";
+  $('#customers-testimonials').owlCarousel( {
+      loop: false,
+      center: true,
+      items: 3,
+      margin: 30,
+      autoplay: true,
+      dots:true,
+      nav:true,
+      autoplayTimeout: 8500,
+      smartSpeed: 1200,
+      navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+      responsive: {
+        0: {
+          items: 1
+        },
+        768: {
+          items: 2
+        },
+        1170: {
+          items: 3
+        }
+      }
+    });
+  });
+
 // Modal setup
 
 // Get the modal
@@ -175,9 +208,7 @@ function backAnim(){
 }
 backButton.addEventListener('click', backAnim);
 
-// #######################################################
-// ################## MODAL SETUP #########################
-// #######################################################
+
 
 
 
