@@ -346,9 +346,32 @@ path.two {
     background-attachment:fixed
 }
 #particles-js .particles-js-canvas-el{
-    width:100%!important;
+    width:100%;
     height:100vh!important
 }
+
+#particles-js2{
+  /* background:#FFFFFF; */
+  display:flex;
+  vertical-align:bottom;
+  width:100%;
+  min-height:;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-attachment:fixed
+}
+#particles-js2 .particles-js2-canvas-el2{
+  width:100%;
+  height:
+}
+
+
+
+/* ##################################################### end ##
+####################################### of Particles #########
+################################ background ################## */
+
+
 
 .animatedHeader{
     z-index:1;
@@ -463,9 +486,7 @@ path.two {
     color:#FAB33E
 }
 
-/* ##################################################### end ##
-####################################### of Particles #########
-################################ background ################## */
+
 
 /* SciCrunch animation */
 
@@ -660,6 +681,13 @@ path.two {
   background-image: linear-gradient(var(--darkGrey), #000);
 }
 
+.bg-sciCrunch6:before {
+  background-image: linear-gradient(white, black);
+}
+
+.bg-sciCrunch7:before {
+  background-image: linear-gradient(black, white);
+}
 
 
 
@@ -1230,6 +1258,13 @@ button:hover, button:focus {
 
 /* The Close Button */
 .close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close2 {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
