@@ -1,7 +1,9 @@
 
 /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
 particlesJS.load('particles-js2', 'assets/js/particlesjs2-config.json', function() {
-  console.log('callback - particles.js config loaded');
+  console.log('callback - particles.js2 config loaded');
+  let el = document.querySelector(".particles-js-canvas-el"); 
+  el.setAttribute("height", "250rem");
 });
 
 
