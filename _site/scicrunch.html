@@ -67,6 +67,7 @@
 <!-- CSS  -->
   <link rel="stylesheet" href="assets/css/reset.css"> <!-- CSS reset -->
   <link rel="stylesheet" href="assets/css/main.css"> <!-- Main CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" > <!-- Animate on Scroll AOS -->
 <!-- Javascript -->
   <script src="assets/js/main.js"></script> <!-- main -->
   <script src="assets/js/modalHELL.js"></script> <!-- modal -->
@@ -77,12 +78,14 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.1/assets/owl.carousel.min.css">
-<link rel="stylesheet" href="http://themes.audemedia.com/html/goodgrowth/css/owl.theme.default.min.css">
 
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.1/assets/owl.carousel.min.css'>
+  <!-- OWL -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.css">
+  <link rel="stylesheet" href="http://themes.audemedia.com/html/goodgrowth/css/owl.theme.default.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.1/assets/owl.carousel.min.css'>
+
           
-  <link href="css/owl.carousel.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+
     
 <!--Devicons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css">
@@ -90,7 +93,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/v4-shims.css">
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 
 
 
@@ -1051,25 +1054,59 @@
 
 
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/utils/Draggable.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 
-<!-- The actual markup -->
 
-		
-<div id="before-after">
-	<div class="view view-after"><img src="/assets/img/SciCrunchOGSearch.png" /></div>
-	<div class="view view-before"><img src="/assets/img/finalSciSearch.gif" /></div>
-	<div id="dragme"></div>
+
+<!-- <div class="contents-center">
+    <div class="container">
+
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/utils/Draggable.min.js"></script>
+      <script type="text/javascript" src="/assets/js/before_after.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+
+
+          
+      <div id="before-after">
+        <div class="view view-after"><img src="/assets/img/SciCrunchOGSearch.png" /></div>
+        <div class="view view-before"><img src="/assets/img/finalSciSearch.gif" /></div>
+        <div id="dragme"></div>
+      </div>
+
+      <ul id="controls">
+        <button class="raise to-start"> Before </button>
+        <button class="raise to-end"> After </button>
+        <li class=""></li>
+      </ul>
+    </div>
+</div> -->
+
+
+<div class="contents-center">
+  <div class="container">
+    <script type="text/javascript" src="/assets/js/before_after.js"></script>
+    <div class="divider">
+      <div class="container">
+      <div class="divider-wrapper">
+      <div class="code-wrapper driveway-2-before">
+      <div class="design-wrapper">
+      <div class="design-image driveway-2-after">&nbsp;</div>
+      </div>
+      </div>
+      <div class="divider-bar">&nbsp;</div>
+      <div class="bottom-bar">&nbsp;</div>
+      </div>
+      </div>
+      <div class="row">
+      <div class="center columns small-6">
+      <div class="btn divider-before">BEFORE</div>
+      </div>
+      <div class="center columns small-6">
+      <div class="btn divider-after">AFTER</div>
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<ul id="controls">
-	<li class="to-start">Before</li>
-	<li class="to-end">After</li>
-</ul>
-
-
-
 
 
 
