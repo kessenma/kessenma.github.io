@@ -3336,55 +3336,116 @@ Bird
 
 /* Before and after image slider */
 
-#before-after{
+/* Test Image Divider Slider */
+
+.divider .divider-wrapper {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.divider .divider-wrapper:hover {
+  cursor: none;
+}
+
+.divider .divider-bar {
+  position: absolute;
+  width: 4px;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  background: #2c3e50;
+  transition: all 0.3s ease;
+  z-index: 200;
+}
+
+.divider .divider-bar:before {
+  content: url(../images/divider.png);
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  left: -24px;
+  top: 96%;
+}
+
+.divider .code-wrapper {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.divider .design-wrapper {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateX(50%);
+}
+
+.divider .design-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateX(-50%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.bottom-bar {
   position: relative;
   width: 100%;
-  height: 30vh;
-  border: 2px solid grey;
-  margin: 50px auto 0px;;
+  height: 20px;
+  top: -20px;
+  background: rgba(40, 40, 40, .5);
+  z-index: 100;
 }
-    
-  .view{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-      
-    .view-before{
-      z-index: 100;
-    }
-      
-    .view-after{
-      z-index: 200;
-    }
-    
-    #dragme{
-      position: absolute;
-      width: 5px;
-      height: 100%;
-      top: 0px;
-      left: 0px;
-      background-color: black;
-      cursor: pointer;
-      z-index: 300;
-    }
-    
-    /*
-      Controls
-    */
-    
-  ul{
-    text-align: center;
-    margin-top: 50px;
-  }
-    
-    ul li{
-      list-style: none;
-      display: inline-block;
-      font-size: 17px;
-      cursor: pointer;
-      margin: 0px 0px 0px 5px
-    }
+
+.btn {
+  position: relative;
+  background: #34495e;
+  padding: 12px 20px;
+  color: #FFF;
+  letter-spacing: 0.065em;
+  font-size: 1rem;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 0 #2c3e50;
+  margin: 20px 0 10px 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:active {
+  background-color: #34495e;
+  cursor: pointer;
+  color: #FFF;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: none;
+}
+
+.btn:hover{
+  cursor: pointer;
+}
+
+
+/* Before and After Images */
+
+.driveway-2-before {
+  background: url("/assets/img/SciCrunchOGSearch.png");
+  background-size:auto;
+}
+
+.driveway-2-after {
+  background: url("/assets/img/finalSciSearch2.gif");
+  background-size: auto;
+}
+
