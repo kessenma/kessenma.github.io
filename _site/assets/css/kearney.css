@@ -697,16 +697,16 @@ a:active {
 }
 
 #welcome-section .container h1 .line:first-child {
-  margin-left: 1rem;
+  margin-left: 4rem;
 }
 
 #welcome-section .container h1 .line:last-child {
-  margin-left: 2rem;
+  margin-left: 5rem;
 }
 
 #welcome-section .container .buttons {
   display: flex;
-  margin-top: 1rem;
+  margin: 0rem 0rem 5rem 5rem;
 }
 
 #welcome-section .container .buttons a,
@@ -813,7 +813,7 @@ a:active {
   -webkit-clip-path: polygon(0 0, 20% 5%, 100% 0, 100% 100%, 80% 95%, 0 100%);
           clip-path: polygon(0 0, 20% 5%, 100% 0, 100% 100%, 80% 95%, 0 100%);
   z-index: 5;
-  background: #fafafa url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Author_BG.jpg) center right no-repeat;
+  background: #fafafa url() center right no-repeat;
   background-attachment: fixed;
 }
 
