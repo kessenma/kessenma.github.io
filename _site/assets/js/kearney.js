@@ -78,15 +78,15 @@ const Header = props => {
     React.createElement("div", { className: "moon" }), /*#__PURE__*/
     React.createElement("div", { className: "container" }, /*#__PURE__*/
     React.createElement("h1", null, /*#__PURE__*/
-    React.createElement("span", { className: "line" }, "Hey Kearney!"), /*#__PURE__*/
-    React.createElement("span", { className: "line" }, "my name is Kyle"), /*#__PURE__*/
+    React.createElement("span", { className: "line" }, "Hey Kearney! My name is"), /*#__PURE__*/
+    React.createElement("span", { className: "line" }, "  "), /*#__PURE__*/
     React.createElement("span", { className: "line" }, /*#__PURE__*/
-    React.createElement("span", { className: "color" }, "&"), " I'm interested in strategy, game theory, and writing")), /*#__PURE__*/
+    React.createElement("span", { className: "color" }, "Kyle"), " and I'm interested in working at your firm.")), /*#__PURE__*/
 
 
     React.createElement("div", { className: "buttons" }, /*#__PURE__*/
     React.createElement("a", { href: "https://kessenma.github.io/" }, "my portfolio"), /*#__PURE__*/
-    React.createElement("a", { href: "#contact", className: "cta" }, "get in touch")))));
+    React.createElement("a", { href: "https://kessenma.github.io/#contact", className: "cta" }, "get in touch")))));
 
 
 
