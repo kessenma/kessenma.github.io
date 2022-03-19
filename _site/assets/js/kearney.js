@@ -73,9 +73,9 @@ const Nav = props => {
 const Header = props => {
   return /*#__PURE__*/(
     React.createElement("header", { id: "welcome-section" }, /*#__PURE__*/
+    React.createElement("div", { className: "moon" }), /*#__PURE__*/
     React.createElement("div", { className: "forest" }), /*#__PURE__*/
     React.createElement("div", { className: "silhouette" }), /*#__PURE__*/
-    React.createElement("div", { className: "moon" }), /*#__PURE__*/
     React.createElement("div", { className: "container" }, /*#__PURE__*/
     React.createElement("h1", null, /*#__PURE__*/
     React.createElement("span", { className: "line" }, "Hey Kearney!"), /*#__PURE__*/
