@@ -78,10 +78,10 @@ const Header = props => {
     React.createElement("div", { className: "moon" }), /*#__PURE__*/
     React.createElement("div", { className: "container" }, /*#__PURE__*/
     React.createElement("h1", null, /*#__PURE__*/
-    React.createElement("span", { className: "line" }, "Hey Kearney! My name is"), /*#__PURE__*/
+    React.createElement("span", { className: "line" }, "Hey Kearney!"), /*#__PURE__*/
     React.createElement("span", { className: "line" }, "  "), /*#__PURE__*/
     React.createElement("span", { className: "line" }, /*#__PURE__*/
-    React.createElement("span", { className: "color" }, "Kyle"), " and I'm interested in working at your firm.")), /*#__PURE__*/
+    React.createElement("span", { className: "color" }, "My name is Kyle"), " and I'm interested in working at your firm.")), /*#__PURE__*/
 
 
     React.createElement("div", { className: "buttons" }, /*#__PURE__*/
