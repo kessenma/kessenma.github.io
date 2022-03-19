@@ -12,7 +12,7 @@ The Theme features:
 - Particle.js
 - BrowserSync
 - Font Awesome and Devicon icons
-- Google Analytics
+- Google Analytics (i broke this somehow)
 - Info Customization
 
 ## Basic Setup
