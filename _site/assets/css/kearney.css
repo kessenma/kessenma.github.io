@@ -644,7 +644,7 @@ a:active {
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 150%;
+  bottom: -150%;
   position: fixed;
   background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Moon.svg?sanitize=true) center no-repeat;
   background-size: 25% 25%;
@@ -657,10 +657,23 @@ a:active {
           animation: moon-move-in 1.2s 1s forwards;
 }
 
-@-webkit-keyframes moon-move-in {
+@keyframes moon-move-in {
   from {
     opacity: 0;
-    background-position: left 90%;
+    background-position: bottom 150% center;
+  }
+  to {
+    opacity: 1;
+    background-position: top center;
+  }
+}
+
+
+
+/* @-webkit-keyframes moon-move-in {
+  from {
+    opacity: 0;
+    background-position: top 110%;
   }
   to {
     opacity: 1;
@@ -671,13 +684,13 @@ a:active {
 @keyframes moon-move-in {
   from {
     opacity: 0;
-    background-position: left 90%;
+    background-position: top 110%;
   }
   to {
     opacity: 1;
     background-position: top center;
   }
-}
+} */
 
 /* Copy and CTA */
 #welcome-section .container {
