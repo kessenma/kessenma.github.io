@@ -644,6 +644,7 @@ a:active {
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 90%;
   position: fixed;
   background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Moon.svg?sanitize=true) center 90% no-repeat;
   background-size: 25% 25%;
@@ -683,9 +684,10 @@ a:active {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  max-width: 80vw;
   position: absolute;
   top: 50%;
-  right: 25%;
+  right: 10%;
   opacity: 0;
   transform: translate(0, -50%);
   -webkit-animation: text-fade-in 1000ms 800ms forwards;
