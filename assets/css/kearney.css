@@ -644,7 +644,7 @@ a:active {
   position: absolute;
   top: 0;
   left: 0;
-  bottom: -150%;
+  bottom: 100%;
   position: fixed;
   background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Moon.svg?sanitize=true) center no-repeat;
   background-size: 25% 25%;
@@ -660,7 +660,7 @@ a:active {
 @keyframes moon-move-in {
   from {
     opacity: 0;
-    background-position: bottom 150% center;
+    background-position: top center;
   }
   to {
     opacity: 1;
