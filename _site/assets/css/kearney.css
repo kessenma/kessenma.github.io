@@ -644,9 +644,9 @@ a:active {
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 90%;
+  bottom: 150%;
   position: fixed;
-  background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Moon.svg?sanitize=true) center 90% no-repeat;
+  background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Moon.svg?sanitize=true) center no-repeat;
   background-size: 25% 25%;
   background-attachment: fixed;
   width: 100%;
