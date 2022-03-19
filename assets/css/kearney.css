@@ -657,7 +657,6 @@ a:active {
 #welcome-section .container {
   width: -webkit-fit-content;
   width: -moz-fit-content;
-  max-width: 100vw;
   width: fit-content;
   position: absolute;
   right: 0;
@@ -671,21 +670,21 @@ a:active {
 
 @-webkit-keyframes text-fade-in {
   from {
-    left: 0;
+    top: 0;
   }
   to {
     opacity: 1;
-    left: 25%;
+    top: 25%;
   }
 }
 
 @keyframes text-fade-in {
   from {
-    left: 0;
+    top: 0;
   }
   to {
     opacity: 1;
-    left: 25%;
+    top: 50%;
   }
 }
 
@@ -712,7 +711,7 @@ a:active {
 
 #welcome-section .container .buttons a,
 #welcome-section .container .buttons a:visited {
-  width: 100%;
+  /* width: 100%; */
   padding: 1rem;
   border: 0.0625rem solid #fafafa;
   color: #fafafa;
