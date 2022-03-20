@@ -663,7 +663,7 @@ a:active {
     opacity: 0;
   }
   to {
-    opacity: 0.7;
+    opacity: 1;
   }
 }
 
@@ -792,6 +792,19 @@ a:active {
   font-style: italic;
 }
 
+.whiteHighlight{
+  background-color: #fff;
+  opacity: .7;
+  padding:0.2em;
+ }
+
+
+ .pinkHighlight{
+  background-color: #f300b4;
+  opacity: ;
+  padding:0.2em;
+ }
+
 @media only screen and (max-width: ) {
   #welcome-section .container {
     right: 50%;
@@ -851,7 +864,7 @@ a:active {
   -webkit-clip-path: polygon(0 0, 20% 5%, 100% 0, 100% 100%, 80% 95%, 0 100%);
           clip-path: polygon(0 0, 20% 5%, 100% 0, 100% 100%, 80% 95%, 0 100%);
   z-index: 5;
-  background: #fafafa url() center right no-repeat;
+  background: #fafafa url(/assets/img/kyle+jlk.jpg) center right no-repeat;
   background-attachment: fixed;
 }
 
@@ -890,15 +903,18 @@ a:active {
 }
 
 #about .subtitle {
-  font-size: 1.6rem;
+  font-size: 2rem;
+  font-style: italic;
   text-align: center;
-  color: inherit;
+  color: #f300b4;
+  font-weight: 100;
   padding-bottom: 1.5rem;
 }
 
 #about p {
-  padding-bottom: 1.5rem;
-  color: #555;
+  padding-bottom: 2rem;
+  font-size: 1.6rem;
+  color: #fff;
   line-height: 1.9rem;
 }
 
@@ -908,9 +924,10 @@ a:active {
 }
 
 #about .desc {
-  grid-column-end: span 2;
-  background: #ffffffaa;
-  padding: 2rem;
+  grid-column-end: span 4;
+  background: #252934;
+  opacity: 0.9;
+  /* padding: 2rem; */
   text-align: justify;
 }
 
