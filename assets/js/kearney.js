@@ -1,6 +1,55 @@
 function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} // Made by Yago Estévez (Twitter: @yagoestevez.com)
 
 
+
+/***********************
+  Project Component
+ ***********************/
+
+  const Project = props => {
+    const tech = {
+      sass: 'fab fa-sass',
+      css: 'fab fa-css3-alt',
+      js: 'fab fa-js-square',
+      react: 'fab fa-react',
+      vue: 'fab fa-vuejs',
+      d3: 'far fa-chart-bar',
+      node: 'fab fa-node' };
+  
+  
+    const link = props.link || 'http://';
+    const repo = props.repo || 'http://';
+  
+    return /*#__PURE__*/(
+      React.createElement("div", { className: "project" }, /*#__PURE__*/
+      React.createElement("a", { className: "project-link", href: link, target: "_blank", rel: "noopener noreferrer" }, /*#__PURE__*/
+      React.createElement("img", { className: "project-image", src: props.img, alt: 'Screenshot of ' + props.title })), /*#__PURE__*/
+  
+      React.createElement("div", { className: "project-details" }, /*#__PURE__*/
+      React.createElement("div", { className: "project-tile" }, /*#__PURE__*/
+      React.createElement("p", { className: "icons" },
+      props.tech.split(' ').map((t) => /*#__PURE__*/
+      React.createElement("i", { className: tech[t], key: t }))),
+  
+  
+      props.title, ' '),
+  
+      props.children, /*#__PURE__*/
+      React.createElement("div", { className: "buttons" }, /*#__PURE__*/
+      React.createElement("a", { href: repo, target: "_blank", rel: "noopener noreferrer" }, "View source ", /*#__PURE__*/
+      React.createElement("i", { className: "fas fa-external-link-alt" })), /*#__PURE__*/
+  
+      React.createElement("a", { href: link, target: "_blank", rel: "noopener noreferrer" }, "Try it Live ", /*#__PURE__*/
+      React.createElement("i", { className: "fas fa-external-link-alt" }))))));
+  
+  
+  
+  
+  
+  };
+
+  
+  
 /***********************
   Menu Component
  ***********************/
@@ -105,16 +154,43 @@ const About = props => {
     React.createElement("section", { id: "about" }, /*#__PURE__*/
     React.createElement("div", { className: "wrapper" }, /*#__PURE__*/
     React.createElement("article", null, /*#__PURE__*/
-    React.createElement("div", { className: "title" }, /*#__PURE__*/
-    React.createElement("h3", null, "Who's this guy?"), /*#__PURE__*/
-    React.createElement("p", { className: "separator" })), /*#__PURE__*/
-
     React.createElement("div", { className: "desc full" }, /*#__PURE__*/
-    React.createElement("p", null, "I am a web developer, UX designer, attempting-iOS developer, published author, and based in Lansing right now."), /*#__PURE__*/
 
 
 
-    React.createElement("p", null, "I didn't know it when I was there, but after working at; **Ford** for two years and seeing what Accenture/BCG consultants do with Ford, and then working on a Covid Dashboard for the state of Michigan with McKinsey employees, I believe my studies from when I was at the University of Michigan School of Information were teaching me a lot of the skills that consultants use. One of my favorite classes was taught by this professor that a lot of my classmates thought was kooky for all sorts of reasons, one being how he  he would emphasize the importance of being concise sooo much. This class was four months long, and the 'only' thing we had to do was write (what I NOW know as) case studies...")), /*#__PURE__*/
+    
+    // React.createElement("div", { className: "title" }, /*#__PURE__*/ 
+    // React.createElement("h4", null, "What roles am I interested in?"),
+    // React.createElement("div", { className: "whiteHighlight" })), /*#__PURE__*/
+
+    React.createElement("h4", { className: "subtitle" }, "What roles am I interested in?"), /*#__PURE__*/
+    React.createElement("p", null, "This marketing intern position I’m applying to seems up my alley, but I am open to more traditional consulting roles as well. Not entirely sure ‘where I fit’ right now… I can build landing pages like this one fairly quickly though!"), /*#__PURE__*/
+
+
+
+    React.createElement("h4", { className: "subtitle" }, "What is my background and how does it align with Kearney?"), /*#__PURE__*/
+
+    React.createElement("p", null, "I grew up in Michigan and both my parents work for GM as engineers. My mom in environmental and my dad in Product Development. We grew up in suburbia and a mixture of; teenage angst + desire to escape monotony + having average high school grades + high ambitions == me packing up two suitcases and…. at 18 I left for Seattle to pursue an associates degree at North Seattle College. I didn’t know anyone in Seattle or much about it other than it having mountains and coffee. The associates degree paid off and the experiences + my grades from it propelled me to getting accepted into a Bachelors of Science in Information at the University of Michigan-- so back to Michigan I went! "), /*#__PURE__*/
+
+    React.createElement("p", null, ""), /*#__PURE__*/
+
+    React.createElement("p", null, " One of the core classes in my curriculum was taught by Professor John Leslie King, the ‘founding father’ of the Bachelors degree program I was in. This class taught us the importance of absorbing a lot of information and writing concise reports on the info we absorbed. This teaching methodology is rooted in the The UM School of Information's history. It used to be the ‘School of Library Science’ till 1996 when it evolved to the School of Information, and then in 2015 they offered bachelor's degrees for the first time. In 2017 when I attended, it was the first time the School of Information ever accepted transfer students into their degree. I was in this first cohort of external transfer students along with ~20 others. Then when I graduated in 2019, I was awarded the John Leslie King award….! (the pic of me in the background is me and Professor King) "), /*#__PURE__*/
+
+    React.createElement("p", null, "After graduating I went on to work at Ford Motor Company in spring of 2019 in their rotational program for college graduates (FCGs) --This is where I began interacting with different types of consultants professionally. I worked with ‘tech consultants’ from Accenture to implement CRM technology at Ford, and thenfelt the consequences of the ‘’management consultants’ decisions like BCG – who were in charge of Ford's ‘smart redesign’ which I came to know as .. deciding who gets fired. One of the consequences I felt by smart redesign was my ‘manager to be’ was fired 3 weeks before I started at the company... and I ended up having to choose a different role for my first rotation from ‘leftover rotations’ (since everyone else in the cohort had chosen their rotations for the year)."), /*#__PURE__*/
+    
+    
+    React.createElement("div", { className: "subtitle" }, /*#__PURE__*/
+    React.createElement("h4", { className: "" }, "What is my background and how does it align with Kearney’s goals?"), /*#__PURE__*/
+    React.createElement("p", { className: "" })), /*#__PURE__*/
+
+    React.createElement("p", null, "I grew up in Michigan and both my parents work for GM as engineers. My mom in environmental and my dad in Product Development. We grew up in suburbia and a mixture of; teenage angst + desire to escape monotony + having average high school grades + high ambitions == me packing up two suitcases and…. ")), /*#__PURE__*/
+
+    // React.createElement("p", null, "at 18 I left for Seattle to pursue an associates degree at North Seattle College. I didn’t know anyone in Seattle or much about it other than it having mountains and coffee. The associates degree paid off and the experiences + my grades from it propelled me to getting accepted to study Information Science at the University of Michigan School of Information. One of the core classes was taught by Professor John Leslie King- who was a ‘founding father’ of the Bachelors degree program I was in. This class taught us the importance of absorbing a lot of information and writing concise reports on the info we absorbed. I didn’t know it when I was doing it, but we were just essentially just doing case studies that consulting companies are notorious for having in their interview process... ha")), /*#__PURE__*/
+
+    // React.createElement("p", null, "The UM School of Information used to be the ‘School of Library Science’ till 1996 when it became the School of Information, and then only in 2015 did they start offering bachelor's degrees. Then in 2017 when I attended, it was the first time the School of Information had ever accepted transfer students into their degree. I was in this first cohort of external transfer students along with ~20 others. Then when I graduated in 2019, I was awarded the John Leslie King award….!")), /*#__PURE__*/
+
+    // React.createElement("p", null, "I went on to work at Ford after graduating in spring of 2019 in their rotational program for college graduates (FCGs) --then… I began interacting with different types of consultants. I worked with ‘tech consultants’ from Accenture to implement CRM technology at Ford, and then there are also ‘’management consultants’ like BCG – who were in charge of what Ford internally advertised as ‘smart redesign’ and I came to know as .. deciding who gets fired. I never interacted with them but felt the consequences of their actions… My ‘manager to be’ was fired 3 weeks before I started and I ended up having to choose a different role for my time at Ford from ‘the leftover rotations’ after everyone else in the cohort had chosen their rotations for the year.")), /*#__PURE__*/
+
 
     // React.createElement("span", { className: "color" }, "Ford"), "for two years and seeing what Accenture/BCG consultants do with Ford"")), /*#__PURE__*/
 
@@ -163,51 +239,6 @@ const About = props => {
 };
 
 
-/***********************
-  Project Component
- ***********************/
-
-const Project = props => {
-  const tech = {
-    sass: 'fab fa-sass',
-    css: 'fab fa-css3-alt',
-    js: 'fab fa-js-square',
-    react: 'fab fa-react',
-    vue: 'fab fa-vuejs',
-    d3: 'far fa-chart-bar',
-    node: 'fab fa-node' };
-
-
-  const link = props.link || 'http://';
-  const repo = props.repo || 'http://';
-
-  return /*#__PURE__*/(
-    React.createElement("div", { className: "project" }, /*#__PURE__*/
-    React.createElement("a", { className: "project-link", href: link, target: "_blank", rel: "noopener noreferrer" }, /*#__PURE__*/
-    React.createElement("img", { className: "project-image", src: props.img, alt: 'Screenshot of ' + props.title })), /*#__PURE__*/
-
-    React.createElement("div", { className: "project-details" }, /*#__PURE__*/
-    React.createElement("div", { className: "project-tile" }, /*#__PURE__*/
-    React.createElement("p", { className: "icons" },
-    props.tech.split(' ').map((t) => /*#__PURE__*/
-    React.createElement("i", { className: tech[t], key: t }))),
-
-
-    props.title, ' '),
-
-    props.children, /*#__PURE__*/
-    React.createElement("div", { className: "buttons" }, /*#__PURE__*/
-    React.createElement("a", { href: repo, target: "_blank", rel: "noopener noreferrer" }, "View source ", /*#__PURE__*/
-    React.createElement("i", { className: "fas fa-external-link-alt" })), /*#__PURE__*/
-
-    React.createElement("a", { href: link, target: "_blank", rel: "noopener noreferrer" }, "Try it Live ", /*#__PURE__*/
-    React.createElement("i", { className: "fas fa-external-link-alt" }))))));
-
-
-
-
-
-};
 
 
 
