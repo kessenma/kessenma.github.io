@@ -1072,7 +1072,7 @@ a:active {
 #projects .project .project-image {
   width: 100%;
   transform: scale(1.2);
-  filter: saturate(0);
+  filter: saturate(0.3);
   transition: all 300ms;
 }
 

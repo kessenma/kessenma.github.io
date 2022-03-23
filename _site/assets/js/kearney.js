@@ -279,7 +279,7 @@ const Projects = props => {
 
           React.createElement(Project, {
             title: "North Star Advertising",
-            img: 'https://lh3.googleusercontent.com/77K1Zg6eDmUIVGiC8Iotdmso49RsIQ8kTLyUdeq6OWpVzi9jhePNi7EubogJjnXc3l-WW2Oh9hJkO6sJ_XhZXYYoXMJcUF3hZZnpfzA-_-Bc3lkEo9E6NbjBsOCs_JUGodrcNvf3P1PfSSDlcDCYENRlkLw_tH3UWUDRon2BntzTG8m8rVocmyo8s_v1UpbBLFY46CR8eSw_fWcKe31eSd7CSW7_Uum3sDxnu48DcGemNiTsYTReJkyoAYhHt3OrcFUnXITppY1MtXcLt7Queu7AFwTrxwqZNgIEbJULNb_URJT8CHZ3gmyblKy4HQtj-_UmXZscQHBxkrEaEf__TotQTOzNbbvPf9JQIdE8vhBDFpd9vpAx-6MElsJf5Gsji0kRI22PUvueIaSaWFsq4ePJrsI9wAeexxHjnTVOZLb1wMnyLGpKZLkS_Ghs2rlwXGmF8B8BfFlLjTNJ_KKTcNhb7u9aSHeB8mOYHsKfbHAbjPSN-NujsocspoExkVzqv3QjUZ_hMdesXIbydvLgkZM2mCymrEDiqxUZdJKGMVzItfIwXVo4duSAqgsez0kd7g7kmYWNslX3X6mUdlojI2rzAR9AnEfGi6emVhjWdLE2NwwJ4yLN-kHvivgXF_bO4UoBTeAeMp2RDE5vxs478EzmDHIcwsEGHp0IJMDd6-uIuEUZ4WtXfHfF1LIKYK2_0HzOLativ36CA7YNkg3SNsnYZfHLUq-JZof2MMdQcw506CV1iSHAzz9LZOVsfc4c2qBF3QC-IhH9hCVQHtand_bZxqiyyUPw9A=w2424-h1872-no?authuser=1',
+            img: '/assets/img/northstar1.jpg',
             tech: "photoshop",
             link: "https://www.facebook.com/northstarseattle/photos/653489701477152"
           }, /*#__PURE__*/
@@ -287,18 +287,18 @@ const Projects = props => {
             React.createElement("p", null, "When I was a busboy at North Star Diner I ended up making some ads for their facebook and instagram pages. The ad pictured here even got copied by a bar down the street."), /*#__PURE__*/
             React.createElement("a", { href: "https://lh3.googleusercontent.com/sMFVKIxJW7zlYpn7Y1C110Z7rIfKU_IT96EpwH64kRhTZpksmFtPMawuLF4jDXcYllDg04yzzGbBP6ZYKNSM4znHdzRYz6rB1JG1hz21TdvRoF0phiFd6XWCONbSVMQj7eSiJP5-Bn15frJx6n5OO2o4j6trRMg5i0bPB2hZQc7nOiPQ3wOOJiPEMqPoso7plZRkEHhbpleD4shuM4V_UPK35Mmihi21QT8KZWUOKaAitBW9Xmo3uhDlqYfo6JUvNBiOdok5jLY2dYAtA_BWnAtRTtaaZeOrX2bKyVOSBnGBMWw1XCFF8UCvfQ-YC234TFoI8Z70VlZTh6ErenqV2HNzm4cRkPQ1atcT97qi1hDporT8qorbgAH9zAyd0xfdX94szc7pU6f50oXD8tzFcRJX3dd7osTogXpcl3Ib34EkvAYAUBcQp6fnaFRO8OwwQn5oTmjec-5jl9d-x1LLGrw2Ak7F4IcTzqpaQS-oNi_7gmi8gPaXHy-z6kmi3GXDj13I16UHeo2UcrTo4DyfJc3RJImbIQnOngYrMSOzLwtKGqVZbns3TA458M3nicgffHbzyjOrJ277CfE3UGCmCHer9JeJ-grSWokaLkPbf7tFR4D4LCR0Qu-q9hYzbOTMgXXYdu_y0PsyUXYsTFlnoNWdF3VfD3Yx2udq9S3sYopGbtfluEuxit0Dtx9QxjOu_JuJ1sjwmNScQ-jSp_NZYYmm7Z3LZuEcs5a7plkZhMWEeeyaZR-ePc2_I_fjgM11jIip_CETs-1lEtnWbo40Sp9t6FexltATtQ=w1404-h1872-no?authuser=1", target: "_blank", rel: "noopener noreferrer" }, "click here to see the copy-cat")), /*#__PURE__*/
           React.createElement(Project, {
-            img: 'https://scontent.fdet1-1.fna.fbcdn.net/v/t1.18169-9/14563388_660585904100865_6253591999265702647_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=9267fe&_nc_ohc=qoFFRlh_kJQAX8IEgao&_nc_ht=scontent.fdet1-1.fna&oh=00_AT_Vg1tgEdf3kw7QZm0X0jgMaw2MP9KIa762dCBytNYOJw&oe=625DFF58',
+            img: '/assets/img/northstar2.jpg',
             tech: "photoshop",
             link: "https://www.facebook.com/northstarseattle/photos/a.474863476006443/660585904100865"
           }, /*#__PURE__*/
             React.createElement("small", null, "Built using photoshop"), /*#__PURE__*/
-            React.createElement("p", null, "here is another ad I made for North Star Diner to promote the Sunday-brunch-time performer, Country Dave")), /*#__PURE__*/
+            React.createElement("p", null, "and here is another ad I made for North Star Diner to promote the Sunday-brunch-time performer, Country Dave")), /*#__PURE__*/
 
 
 
           React.createElement(Project, {
             title: "Sound and Silence Photography",
-            img: 'https://scontent.fdet1-1.fna.fbcdn.net/v/t31.18172-8/14258288_1753253244927357_8505274590803320220_o.jpg?_nc_cat=100&ccb=1-5&_nc_sid=cdbe9c&_nc_ohc=ZtjoEndInUgAX9ZQ_aV&_nc_ht=scontent.fdet1-1.fna&oh=00_AT_7qR46yL14Gdx30oHRVjYytKJy8vN8ez6Cs194foKpQQ&oe=625C95F0',
+            img: '/assets/img/halsey.jpg',
             tech: "",
             link: "https://www.instagram.com/p/BKgznE8AfKN"
           }, /*#__PURE__*/
@@ -306,22 +306,31 @@ const Projects = props => {
             React.createElement("p", null, "...It began with sneaking into photo pits, press stands, and backstage in all sorts of ways, pictured here is Halsey from Seattle's Bumbershoot in 2016 -- where I had an official 'press pass' for 'day 1' of a three day music festival. Halsey performed on 'day 3', but I know how to use whiteout and have nice handwriting 😉")), /*#__PURE__*/
 
           React.createElement(Project, {
-            img: 'https://scontent.fdet1-1.fna.fbcdn.net/v/t31.18172-8/14311247_1753252961594052_3925691536731196128_o.jpg?_nc_cat=101&ccb=1-5&_nc_sid=cdbe9c&_nc_ohc=AsB6ffJsPFAAX8zRN8J&_nc_ht=scontent.fdet1-1.fna&oh=00_AT8_bdnP395zTG1QW1v27pxr1P--mPC7fCoK_WIeztswcQ&oe=625D8FC4',
+            img: '/assets/img/fetty.jpg',
             tech: "",
             link: "https://www.facebook.com/soundandsilencemedia/photos/1753252961594052"
           }, /*#__PURE__*/
             React.createElement("small", null, "Captured with a Canon EoS SL 2 + 50mm"), /*#__PURE__*/
             React.createElement("p", null, "Fetty Wap, Bumbershoot, Seattle, WA, 2016")), /*#__PURE__*/
+
           React.createElement(Project, {
-            img: 'https://lh3.googleusercontent.com/G3_ezjGqzNI3TNsngwQbZXKPE70rqwzzxhSlukUJxgYHHAENAvuUYZJHhSOZE5RZ49h0EV7ZRQNvprUwrJneUjfVuMc9fPKkAF2aoukpcJ-tOJT6Mfl-t_-LJlYyxm8UpeKMGY9gwbjYas0IxlMFIR5Xk8cuZZcm4_lTSj8DUEn2V-9Jz5gdiYgv547q_eELURH9X7sX7Yn96-7XnGlCgGwPMo6JWc82F9rXSQcQiNwhqYT4Ho8QTGHhOMx6WRwwTmRn04XQ2OGjoDjhPyx5LQJHuN1-tEGKBngCbxJmlBF7-VX8KzrVSB09_xwD4mSvMY9tLL8LGBw7abA_FPME_ejMSelPYTowiqYiiK3ormFg4iiAYogMbvnSRza544EjlMKIRC8WuRiLaEoi-ob6G2YHfS7HzwmTCoYDQVZP5IWI_A2dH0BAek7OTm-2kYomnHAnqtwSGDEZ2CByfShtDN0FEUYfVaDoHS43U5IHtPjI5CMxEJ6mRWtCzzz0weLWB8HQ6aTGDc6Z8-BAoSp6C6NVQFvg8SNiW7P7vig2VGgI_IzvlWcE00rrleA8RzWWtz33hCIm5Xrn6nOqPOiLdR9OaWKQlw9gXbSnwKmdzch5H4JfL0pXZrJbA_l9nx1I6MjisMGum3Xn3LDvD4flnBrGqF6DHC1sINuHI5VtoKkwP5rID2RZwH6fHTNcA47dYp_PGCD9zl3lU7fTrDmA3_Js3VMjDDT2DlZVZDrYj_5O15z3G_rzzX-vRh8iROJ5szw5EsRDgqYIxrszRLYgajTfeyJsrs2MQg=w2686-h1790-no?authuser=1',
+            img: '/assets/img/mattAndKim.JPG',
             tech: "",
             link: "https://photos.google.com/u/1/photo/AF1QipPfRy_p8PT4qALDipQsSDQLkkVb1KWniodlunyJ"
           }, /*#__PURE__*/
             React.createElement("small", null, "Captured with a Canon EoS SL 2 + 75-300mm"), /*#__PURE__*/
-            React.createElement("p", null, "Matt and Kim, MoPop, Detroit, MI, 2016. My fake press pass got me next to the local Fox news reporter for this angle lol")), /*#__PURE__*/
+            React.createElement("p", null, "Matt and Kim, MoPop, Detroit, MI, 2016. My fake press pass got me next to the local Fox news reporter for this angle ha")), /*#__PURE__*/
 
           React.createElement(Project, {
-            img: 'https://lh3.googleusercontent.com/IK5wL0DNBU2KqBCBohhV6RNraZVVffCMc51eGlS6GxfHIHkjiqkjcYqtSukwXp4CC8lqSS8RhSSVobiGGpUyA0dsueu8gxoWyp7IsbtdteuUNkw3odoVjeqi56pqmXHFzog-UEN04C2HRppSqV-zULJn3cKc3qC8Jf3P0NAyDQI-2VIbq8TiXml2VmXZy2rc21Nb9eXsBOwLDYblZmA9U13d9oYaM4DJUSOt6tTZhZKY9Ie9h2t6no4X39sYoA98m0FeLha0HI70cbPa7B5svbg5Hk8Hs51wD2g6rjFOGbFWM3FvaAKNlGHGMIttutUQqAp_Ymxc9ugZ7dFDJl5-pSImurjHA0p8qbyWdiEAuTs4wUiOaxxBCoqL8mWpzKFeK8JWQmHOA8e-2qFZlLeKNZH727BZ1QjVB1BU2ru2sX7ujkUMAUDlSacyINHS_WYenyGvvXLXAWHmEs4gUH3ajbzH4Vb_RLNR4WZmFxb6KIBAZ-P8fZ1xcf_8tMjL3hRH91ibf0wxiq1Z-P_-WFFYVVu2wY3Fr9tk56W1FbgTDLEfd8NPB_VY5dvfPTjfUmmDBmwBSbrZaMHRJLimPq9EX0waRI3tWMoEithE0hVw-HmZjaW0V-mIdRIZseEFdc1Vrp0E0OAfFUEFRaBL_FSH3TjuZG4jJ5wJwgLFIViwAWQc4QV3pkne9wFiwff6ECUZPL3zHlzDqy8I77Qn73sGVLD7r8g-ChnNFvtQQsQJKxjiIDcjEEa4ZAorIQPTCu7Lmri4Vczkdd0tjxRPlQBTa83TG8L2qSg5Rw=w2686-h1790-no?authuser=1',
+            img: '/assets/img/g_eazy.jpg',
+            tech: "",
+            link: "https://photos.google.com/photo/AF1QipPmocvdgy4sNZ6jw15KXHpfinwktgzRiT97JhoG"
+          }, /*#__PURE__*/
+            React.createElement("small", null, "Captured with a Canon EoS SL 2 + 75-300mm"), /*#__PURE__*/
+            React.createElement("p", null, "G-eazy, MoPop, Detroit, MI, 2016. ")), /*#__PURE__*/
+
+          React.createElement(Project, {
+            img: '/assets/img/jamiexx.JPG',
             tech: "",
             link: "https://lh3.googleusercontent.com/IK5wL0DNBU2KqBCBohhV6RNraZVVffCMc51eGlS6GxfHIHkjiqkjcYqtSukwXp4CC8lqSS8RhSSVobiGGpUyA0dsueu8gxoWyp7IsbtdteuUNkw3odoVjeqi56pqmXHFzog-UEN04C2HRppSqV-zULJn3cKc3qC8Jf3P0NAyDQI-2VIbq8TiXml2VmXZy2rc21Nb9eXsBOwLDYblZmA9U13d9oYaM4DJUSOt6tTZhZKY9Ie9h2t6no4X39sYoA98m0FeLha0HI70cbPa7B5svbg5Hk8Hs51wD2g6rjFOGbFWM3FvaAKNlGHGMIttutUQqAp_Ymxc9ugZ7dFDJl5-pSImurjHA0p8qbyWdiEAuTs4wUiOaxxBCoqL8mWpzKFeK8JWQmHOA8e-2qFZlLeKNZH727BZ1QjVB1BU2ru2sX7ujkUMAUDlSacyINHS_WYenyGvvXLXAWHmEs4gUH3ajbzH4Vb_RLNR4WZmFxb6KIBAZ-P8fZ1xcf_8tMjL3hRH91ibf0wxiq1Z-P_-WFFYVVu2wY3Fr9tk56W1FbgTDLEfd8NPB_VY5dvfPTjfUmmDBmwBSbrZaMHRJLimPq9EX0waRI3tWMoEithE0hVw-HmZjaW0V-mIdRIZseEFdc1Vrp0E0OAfFUEFRaBL_FSH3TjuZG4jJ5wJwgLFIViwAWQc4QV3pkne9wFiwff6ECUZPL3zHlzDqy8I77Qn73sGVLD7r8g-ChnNFvtQQsQJKxjiIDcjEEa4ZAorIQPTCu7Lmri4Vczkdd0tjxRPlQBTa83TG8L2qSg5Rw=w2686-h1790-no?authuser=1"
           }, /*#__PURE__*/
