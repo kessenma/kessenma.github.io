@@ -133,7 +133,7 @@ const Header = props => {
           React.createElement("span", { className: "line" }, "Hey Kearney!"), /*#__PURE__*/
           React.createElement("span", { className: "line" }, "  "), /*#__PURE__*/
           React.createElement("span", { className: "line" }, /*#__PURE__*/
-            React.createElement("span", { className: "color" }, "My name is Kyle"), " and I'm interested in working at your firm.")), /*#__PURE__*/
+            React.createElement("span", { className: "color" }, "My name is Kyle"), " and I'm interested in working at your firm. Scroll down to read more")), /*#__PURE__*/
 
 
         React.createElement("div", { className: "buttons" }, /*#__PURE__*/
@@ -161,36 +161,33 @@ const About = props => {
 
 
             React.createElement("h4", { className: "subtitle" }, "What is my background and how does it align with Kearney?"), /*#__PURE__*/
-            React.createElement("p", null, "I grew up in Michigan and both my parents work for GM as engineers. My mom is environmental and my dad is Product Development. And looking back, my parents essentially had the same lifestyle that I hear and read consultants have– my dad flew and drove often for work (Mexico, DC, + Arlington) and my mom worked M-F once my brothers and I were old enough to have a babysitter and she hired a maid. We grew up in suburbia and a mixture of; teenage angst + desire to escape monotony + having average high school grades + high ambitions == me packing up two suitcases and…. at 18 I left for Seattle to pursue an associates degree at North Seattle College. I didn’t know anyone in Seattle or much about it. Just wanted change! The associates degree paid off and the experiences + my grades from it propelled me to getting accepted into a Bachelors of Science in Information (BSI) at the University of Michigan School of Information (UMSI)-- so back to Michigan I went!"), /*#__PURE__*/
 
-            React.createElement("p", null, " One of the core classes in my BSI curriculum was taught by Professor John Leslie King, the ‘founding father’ of the Bachelors degree program I was in. This class taught us the importance of absorbing a lot of information and writing concise reports on the info we absorbed– I didn’t know it then, but we basically were writing ‘case studies’ that consulting company’s use in their interview process. We wrote about subjects such as; Arab Spring, the Dabbawalas delivery system in Mumbai, and Ford Fiesta’s Marketing campaign. This teaching methodology of processing, analyzing, and summarizing large amounts of data is rooted in UMSI’s history. It used to be the ‘School of Library Science’ till 1996 when it evolved to the School of Information, and then in 2015 they offered bachelor's degrees for the first time. In 2017 when I attended, it was the first time the School of Information ever accepted transfer students into their degree. I was in this first cohort of external transfer students along with ~20 others. Then when I graduated in 2019, I was awarded the John Leslie King award….!")), /*#__PURE__*/
+            React.createElement("p", null, "For the past couple of years, I've been curious about careers in consulting, and Kearney seems well-respected for their consulting services. Having the opportunity to; grow under Kearney’s partners — who historically have shown independence, confidence, and foresight (I admire that the partners bought back the firm in 2005) — sounds like a great way to explore this curiosity while also providing value to Kearney with my skills."), /*#__PURE__*/
+
+            React.createElement("p", null, "The University of Michigan School of Information (UMSI) taught me how to turn complex issues into concise, need-to-know, executive summaries.I am proud to say that much of my education at UMSI was mentored by Professor John Leslie King, who, was the ‘founding father’, of the bachelors of science in information (BSI) program I was in. In 2017, I applied to UMSI as a transfer student. For the first time in UMSI’s history, myself and 19 other transfer students were accepted into the BSI program. I took full advantage of the opportunities provided, and when I graduated in 2019, I won an award named after my mentor, John Leslie King at the graduation ceremony. ")), /*#__PURE__*/
 
 
           // React.createElement("p", null, "(the pic of me in the background is me and Professor King) "), /*#__PURE__*/
           React.createElement("div", { className: "title" }, /*#__PURE__*/
-            React.createElement("p", null, "(this pic of me in the background is me and Professor King)")), /*#__PURE__*/
+            React.createElement("p", null, "(this background is Professor King and I)")), /*#__PURE__*/
 
           React.createElement("div", { className: "desc" }, /*#__PURE__*/
+          
+          React.createElement("p", null, "After graduating I went on to work at Ford Motor Company in the spring of 2019 in their rotational program for college graduates (FCGs). This was my introduction to a variety of consultants. I worked directly with Accenture’s tech implementation consultants on Ford’s CRM technology for a year. In 2019 I was nominated to be the volunteer lead by the FCG co-president. One of my major responsibilities was to organize an annual-Christmas-gift-wrapping-party for 300 employees. Another responsibility with this position was presenting on a monthly basis to more than 100 FCG employees. Pre-pandemic, I organized volunteer events once a month. During covid, I adapted and started seeking+promoting remote volunteer opportunities. Then in April 2020 I got an email for a volunteer opportunity from a previous professor of mine, Dr. Paul Resnick "), /*#__PURE__*/
 
-            React.createElement("p", null, "After graduating I went on to work at Ford Motor Company in spring of 2019 in their rotational program for college graduates (FCGs) --This is where I began interacting with different types of consultants professionally. I worked with ‘tech consultants’ from Accenture to implement CRM technology at Ford, and then felt consequences from ’management consultants’ decisions like BCG – who were in charge of Ford's ‘smart redesign’ which I came to know as .. deciding who gets fired. One of the consequences I felt by ‘smart redesign’ was my ‘manager to be’ was fired 3 weeks before I started at the company... and I ended up having to choose a different role for my first rotation from ‘leftover rotations’ (since the other FCG’s in the cohort chose their rotations for the year already). Then a year and a half later the CPU chip shortage happened and my assigned mentor was fired along with all the shift workers in the plant I was at (Flat Rock Assembly), and then 6 months after that I was ‘terminated’ from Ford too.. But every ending is a beginning in disguise and my experiences from Ford taught me that I would like to explore careers outside of the automotive industry. "), /*#__PURE__*/
-
-            React.createElement("p", null, "While I was at Ford I was nominated by the ‘FCG co-president’ into a leadership role for all 300 FCGs in the IT org. I was in the dinkiest role compared to the rest of the people on the council--, the ‘Volunteer lead’. My major documented responsibility was to put on a giant Christmas gift wrapping party to wrap gifts crowdsourced by IT FCG’s for foster children. I also had to make powerpoints once a month and present to 100+ people once a month to communicate what my committee of one was up to during a global pandemic. Pre-pandemic, this volunteer lead would organize 'volunteer events' once a month, but that wasn’t really happening with covid and HR + executives not being clear on what was allowed/not in 2020. However, this role did come with the unwritten perk of me being put to the top of the list for any event I wanted to attend.... and because of this I was able to shake both Bill Ford's and Jim Farley's hands! I organized some in person events (my biggest one was getting people to paint over a rusted bridge overpass near Ford's newest campus in Corktown), but then in April of 2020 I got an odd email from one of John Leslie King’s coworkers-- "), /*#__PURE__*/
-
-            React.createElement("p", null, "Dr Paul Resnick (who was known by my peers as one of the tougher- but also very talented –coding teachers in UMSI) was now in my inbox saying Dr King referred me to him for a role. UMSI was tapped by the Michigan Governor's office to build a ‘covid dashboard’, and they wanted silly ol’ me to help out! I learned so much about how web development in this project and worked with multiple company’s. I even heard a whisper in one meeting that McKinsey was involved with this dashboard, but I am not sure why or how. It would make sense given that Google, Apple, Ford, and UM faculty all were working together on this dashboard too.")), /*#__PURE__*/
-
-
-
+          React.createElement("p", null, "Dr. King referred me to Dr. Resnick to assist with building a Covid dashboard for the state of Michigan. I worked as a product manager and software tester on this dashboard, and my team of self described ‘software testers’ were responsible for creating algorithms in Python to create risk levels for MI state officials to follow. I’d like to work on more projects like this one, and I believe Kearney may be involved with them.")), /*#__PURE__*/
 
 
 
 
           React.createElement("div", { className: "title" }, /*#__PURE__*/
-            React.createElement("h3", null, "What roles am I interested in?"), /*#__PURE__*/
+            React.createElement("h3", null, "So, what roles am I interested in?"), /*#__PURE__*/
             React.createElement("p", { className: "separator" })), /*#__PURE__*/
 
           React.createElement("div", { className: "desc" }, /*#__PURE__*/
             React.createElement("h4", { className: "subtitle" }, ""), /*#__PURE__*/
-            React.createElement("p", null, "This marketing intern position I’m applying to seems up my alley, but I am open to more traditional consulting roles as well. Not entirely sure ‘where I fit’ right now… I can build landing pages like this one fairly quickly though!")) /*#__PURE__*/
+            React.createElement("p", null, "This marketing intern position I’m applying to seems up my alley, but I am open to more traditional consulting roles as well. Not entirely sure ‘where I fit’ right now… I can build landing pages like this one fairly quickly!"), /*#__PURE__*/
+            React.createElement("p", null, "I have 5 years of German classes from high school + college, and I really really want to speak it- so roles that lead me to that end goal also excite me quite a bit. I have an interview with the Austrian Institute of Technology this coming April for a backend developer position in behavior science. Vienna is where I want to live next so I’m very excited about this opportunity. I see that Kearney also has offices in Vienna 🧐")) /*#__PURE__*/
 
 
 
@@ -223,16 +220,61 @@ const Projects = props => {
           React.createElement("h3", { className: "title" }, "My 'Curriculum vitae' of marketing + research"), /*#__PURE__*/
           React.createElement("p", { className: "separator" }), /*#__PURE__*/
           React.createElement("p", { className: "subtitle" }, "Here's a list of ", /*#__PURE__*/
-            React.createElement("u", null, "some"), " of the projects I've been involved with that utilize communication skills in; graphic design, content creation, publishing, and research-backed guidance for founders.",
+            React.createElement("u", null, "some"), " of the projects I've been involved with that utilize communication skills in; graphic design, content creation, publishing, and research-backed-guidance for founders.",
             ' ', /*#__PURE__*/
             React.createElement("a", { href: "https://www.kessenma.com/", target: "_blank", rel: "noopener noreferrer" }, ""), "")), /*#__PURE__*/
 
 
-
-
-
-
         React.createElement("div", { className: "projects-wrapper" }, /*#__PURE__*/
+
+        React.createElement(Project, {
+          title: "Human Computer Interaction Publications",
+          img: 'https://media2.giphy.com/media/gie76aVZpoArr6Nogs/giphy.gif?cid=ecf05e47sa2zg4x3edidetg1dzllpgeb2i97cpu203tq1oon&rid=giphy.gif&ct=g',
+          tech: "UX Research",
+          link: "/#publications"
+        }, /*#__PURE__*/
+          React.createElement("small", null, "statistics documented: F-Tests, T-Tests, X2, bivariate correlations, & Betas"), /*#__PURE__*/
+          React.createElement("p", null, "While at the University of Michigan School of Information (UMSI), I worked as a stastics coder for Dr. Lionel Robert. I read academics papers on human computer interaction and documented targeted statistics from those papers. After I graduated a PhD student Under Dr. Robert analyzed my documented statistics and they published my work with me as a co-author.")), /*#__PURE__*/
+          
+          React.createElement(Project, {
+            title: "SciCrunch",
+            img: '/assets/img/sciCrunch_logo.png',
+            tech: "UX Research",
+            link: "/scicrunch.html"
+          }, /*#__PURE__*/
+            React.createElement("small", null, "research techniques used: user interviews, usability testing, competitive analysis, A/B testing, surveying, web scraping, email campaigning"), /*#__PURE__*/
+            React.createElement("p", null, "For my capstone project my senior year at UMSI I worked with a team to provide UX research for a biology company, SciCrunch. This was my most in depth UX research project. Attached below is an overview of my teams research process."), /*#__PURE__*/
+            React.createElement("a", { href: " /assets/img/SciCrunch_Final_Presentation.pptx" }, "click here to download the final presentaion")), /*#__PURE__*/
+
+
+            React.createElement(Project, {
+              title: "UpRound Venture Capital",
+              img: 'data:image/png;base64,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',
+              tech: "UX Research",
+              link: "https://www.upround.vc/"
+            }, /*#__PURE__*/
+              React.createElement("small", null, "created event advertising using Sketch and emailed UMSI list servs"), /*#__PURE__*/
+              React.createElement("p", null, "I made a post on a University of Michigan student Facebook page saying I was looking to participate in student clubs that needed graphic design work done, then the founder for UpRound VC said they needed advertising an event. Their first event for students only had 36 spots available and they had over 100 applicants.")), /*#__PURE__*/
+            
+
+          
+          React.createElement(Project, {
+            title: "Possibilities for Change",
+            img: 'https://pbs.twimg.com/profile_images/981520684214992896/fJ3TkoDv_400x400.jpg',
+            tech: "UX Research",
+            link: "/assets/img/P4C.pdf"
+          }, /*#__PURE__*/
+            React.createElement("small", null, "research techniques used: user interviews, usability testing, competitive analysis"), /*#__PURE__*/
+            React.createElement("p", null, "During my last summer in undergrad I did pro-bono UX research consulting (I recieved class credits) with P4C for their nicotine risk assement module. Attached is my final report I presented to the CEO at the end of the summer.")), /*#__PURE__*/
+
+          React.createElement(Project, {
+            title: "CMYK Design",
+            img: 'https://cdn.shopify.com/s/files/1/0456/3648/5273/files/image-asset-2.gif?v=1598567731',
+            tech: "process = Pencil + paper, Adobe Illurstrator, lots of emailing with the founder, and ",
+            link: "https://eatgonanas.com/pages/about"
+          }, /*#__PURE__*/
+            React.createElement("small", null, "<-- Gonana's Founders"), /*#__PURE__*/
+            React.createElement("p", null, "Myself and some art + design students at  UM started a club in 2019 to provide design consulting services to startups. Our first client was Gonana's. We created a brand identity for them with color+font guides, made graphics for their website, and updated their packaging. After we worked with them they secured a contract to sell their bread in Nordstrom's and aired on QVC.... ")), /*#__PURE__*/
 
 
           React.createElement(Project, {
@@ -261,7 +303,7 @@ const Projects = props => {
             link: "https://www.instagram.com/p/BKgznE8AfKN"
           }, /*#__PURE__*/
             React.createElement("small", null, "Captured with a Canon EoS SL 2 + 50mm"), /*#__PURE__*/
-            React.createElement("p", null, "...It began with sneaking into photo pits, press stands, and backstage in all sorts of ways,  Picured here is Halsey from Seattle's Bumbershoot in 2016 -- where I had an offical 'press pass' for 'day 1' of a three day music festival .... Halsey performed on 'day 3' ... but I had some whiteout + pretty handwriting to forge passes ;)")), /*#__PURE__*/
+            React.createElement("p", null, "...It began with sneaking into photo pits, press stands, and backstage in all sorts of ways,  pictured here is Halsey from Seattle's Bumbershoot in 2016 -- where I had an offical 'press pass' for 'day 1' of a three day music festival. Halsey performed on 'day 3', but I know how to use whiteout and have nice handwriting")), /*#__PURE__*/
 
           React.createElement(Project, {
             img: 'https://scontent.fdet1-1.fna.fbcdn.net/v/t31.18172-8/14311247_1753252961594052_3925691536731196128_o.jpg?_nc_cat=101&ccb=1-5&_nc_sid=cdbe9c&_nc_ohc=AsB6ffJsPFAAX8zRN8J&_nc_ht=scontent.fdet1-1.fna&oh=00_AT8_bdnP395zTG1QW1v27pxr1P--mPC7fCoK_WIeztswcQ&oe=625D8FC4',
@@ -269,14 +311,14 @@ const Projects = props => {
             link: "https://www.facebook.com/soundandsilencemedia/photos/1753252961594052"
           }, /*#__PURE__*/
             React.createElement("small", null, "Captured with a Canon EoS SL 2 + 50mm"), /*#__PURE__*/
-            React.createElement("p", null, "Fetty Wap, Bumbershoot, Seattle , WA, 2016")), /*#__PURE__*/
+            React.createElement("p", null, "Fetty Wap, Bumbershoot, Seattle, WA, 2016")), /*#__PURE__*/
           React.createElement(Project, {
             img: 'https://lh3.googleusercontent.com/G3_ezjGqzNI3TNsngwQbZXKPE70rqwzzxhSlukUJxgYHHAENAvuUYZJHhSOZE5RZ49h0EV7ZRQNvprUwrJneUjfVuMc9fPKkAF2aoukpcJ-tOJT6Mfl-t_-LJlYyxm8UpeKMGY9gwbjYas0IxlMFIR5Xk8cuZZcm4_lTSj8DUEn2V-9Jz5gdiYgv547q_eELURH9X7sX7Yn96-7XnGlCgGwPMo6JWc82F9rXSQcQiNwhqYT4Ho8QTGHhOMx6WRwwTmRn04XQ2OGjoDjhPyx5LQJHuN1-tEGKBngCbxJmlBF7-VX8KzrVSB09_xwD4mSvMY9tLL8LGBw7abA_FPME_ejMSelPYTowiqYiiK3ormFg4iiAYogMbvnSRza544EjlMKIRC8WuRiLaEoi-ob6G2YHfS7HzwmTCoYDQVZP5IWI_A2dH0BAek7OTm-2kYomnHAnqtwSGDEZ2CByfShtDN0FEUYfVaDoHS43U5IHtPjI5CMxEJ6mRWtCzzz0weLWB8HQ6aTGDc6Z8-BAoSp6C6NVQFvg8SNiW7P7vig2VGgI_IzvlWcE00rrleA8RzWWtz33hCIm5Xrn6nOqPOiLdR9OaWKQlw9gXbSnwKmdzch5H4JfL0pXZrJbA_l9nx1I6MjisMGum3Xn3LDvD4flnBrGqF6DHC1sINuHI5VtoKkwP5rID2RZwH6fHTNcA47dYp_PGCD9zl3lU7fTrDmA3_Js3VMjDDT2DlZVZDrYj_5O15z3G_rzzX-vRh8iROJ5szw5EsRDgqYIxrszRLYgajTfeyJsrs2MQg=w2686-h1790-no?authuser=1',
             tech: "",
             link: "https://photos.google.com/u/1/photo/AF1QipPfRy_p8PT4qALDipQsSDQLkkVb1KWniodlunyJ"
           }, /*#__PURE__*/
             React.createElement("small", null, "Captured with a Canon EoS SL 2 + 75-300mm"), /*#__PURE__*/
-            React.createElement("p", null, "Matt and Kim, MoPop, Detroit, MI, 2016")), /*#__PURE__*/
+            React.createElement("p", null, "Matt and Kim, MoPop, Detroit, MI, 2016. My fake press pass got me next to the local Fox news reporter for this angle lol")), /*#__PURE__*/
 
           React.createElement(Project, {
             img: 'https://lh3.googleusercontent.com/IK5wL0DNBU2KqBCBohhV6RNraZVVffCMc51eGlS6GxfHIHkjiqkjcYqtSukwXp4CC8lqSS8RhSSVobiGGpUyA0dsueu8gxoWyp7IsbtdteuUNkw3odoVjeqi56pqmXHFzog-UEN04C2HRppSqV-zULJn3cKc3qC8Jf3P0NAyDQI-2VIbq8TiXml2VmXZy2rc21Nb9eXsBOwLDYblZmA9U13d9oYaM4DJUSOt6tTZhZKY9Ie9h2t6no4X39sYoA98m0FeLha0HI70cbPa7B5svbg5Hk8Hs51wD2g6rjFOGbFWM3FvaAKNlGHGMIttutUQqAp_Ymxc9ugZ7dFDJl5-pSImurjHA0p8qbyWdiEAuTs4wUiOaxxBCoqL8mWpzKFeK8JWQmHOA8e-2qFZlLeKNZH727BZ1QjVB1BU2ru2sX7ujkUMAUDlSacyINHS_WYenyGvvXLXAWHmEs4gUH3ajbzH4Vb_RLNR4WZmFxb6KIBAZ-P8fZ1xcf_8tMjL3hRH91ibf0wxiq1Z-P_-WFFYVVu2wY3Fr9tk56W1FbgTDLEfd8NPB_VY5dvfPTjfUmmDBmwBSbrZaMHRJLimPq9EX0waRI3tWMoEithE0hVw-HmZjaW0V-mIdRIZseEFdc1Vrp0E0OAfFUEFRaBL_FSH3TjuZG4jJ5wJwgLFIViwAWQc4QV3pkne9wFiwff6ECUZPL3zHlzDqy8I77Qn73sGVLD7r8g-ChnNFvtQQsQJKxjiIDcjEEa4ZAorIQPTCu7Lmri4Vczkdd0tjxRPlQBTa83TG8L2qSg5Rw=w2686-h1790-no?authuser=1',
@@ -302,6 +344,8 @@ const Projects = props => {
 
 
 };
+
+
 
 
 
