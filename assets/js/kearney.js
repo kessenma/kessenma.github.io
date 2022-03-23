@@ -234,7 +234,7 @@ const Projects = props => {
           link: "/#publications"
         }, /*#__PURE__*/
           React.createElement("small", null, "statistics documented: F-Tests, T-Tests, X2, bivariate correlations, & Betas"), /*#__PURE__*/
-          React.createElement("p", null, "While at the University of Michigan School of Information (UMSI), I worked as a stastics coder for Dr. Lionel Robert. I read academics papers on human computer interaction and documented targeted statistics from those papers. After I graduated a PhD student Under Dr. Robert analyzed my documented statistics and they published my work with me as a co-author.")), /*#__PURE__*/
+          React.createElement("p", null, "While at the University of Michigan School of Information (UMSI), I worked as a statistics coder for Dr. Lionel Robert. I read academic papers on human computer interaction and documented targeted statistics from those papers. After I graduated, a PhD student Under Dr. Robert analyzed my documented statistics and they published my work with me as a co-author.")), /*#__PURE__*/
           
           React.createElement(Project, {
             title: "SciCrunch",
@@ -243,7 +243,7 @@ const Projects = props => {
             link: "/scicrunch.html"
           }, /*#__PURE__*/
             React.createElement("small", null, "research techniques used: user interviews, usability testing, competitive analysis, A/B testing, surveying, web scraping, email campaigning"), /*#__PURE__*/
-            React.createElement("p", null, "For my capstone project my senior year at UMSI I worked with a team to provide UX research for a biology company, SciCrunch. This was my most in depth UX research project. Attached below is an overview of my teams research process."), /*#__PURE__*/
+            React.createElement("p", null, "For my capstone project my senior year at UMSI I worked with a team to provide UX research for a biology company, SciCrunch. This was my most in depth UX research project. Attached below is an overview of my team's research process."), /*#__PURE__*/
             React.createElement("a", { href: " /assets/img/SciCrunch_Final_Presentation.pptx" }, "click here to download the final presentaion")), /*#__PURE__*/
 
 
@@ -254,7 +254,7 @@ const Projects = props => {
               link: "https://www.upround.vc/"
             }, /*#__PURE__*/
               React.createElement("small", null, "created event advertising using Sketch and emailed UMSI list servs"), /*#__PURE__*/
-              React.createElement("p", null, "I made a post on a University of Michigan student Facebook page saying I was looking to participate in student clubs that needed graphic design work done, then the founder for UpRound VC said they needed advertising an event. Their first event for students only had 36 spots available and they had over 100 applicants.")), /*#__PURE__*/
+              React.createElement("p", null, "I made a post on a University of Michigan student Facebook page saying I was looking to participate in student clubs that needed graphic design work done, then a cofounder for UpRound VC said they needed advertising for an event. Their first event for students only had 36 spots available and they had over 100 applicants.")), /*#__PURE__*/
             
 
           
@@ -265,7 +265,7 @@ const Projects = props => {
             link: "/assets/img/P4C.pdf"
           }, /*#__PURE__*/
             React.createElement("small", null, "research techniques used: user interviews, usability testing, competitive analysis"), /*#__PURE__*/
-            React.createElement("p", null, "During my last summer in undergrad I did pro-bono UX research consulting (I recieved class credits) with P4C for their nicotine risk assement module. Attached is my final report I presented to the CEO at the end of the summer.")), /*#__PURE__*/
+            React.createElement("p", null, "During my last summer in undergrad I did pro-bono UX research consulting (I received class credits) with P4C for their nicotine risk assessment module. Attached is my final report I presented to the CEO at the end of the summer.")), /*#__PURE__*/
 
           React.createElement(Project, {
             title: "CMYK Design",
@@ -274,7 +274,7 @@ const Projects = props => {
             link: "https://eatgonanas.com/pages/about"
           }, /*#__PURE__*/
             React.createElement("small", null, "<-- Gonana's Founders"), /*#__PURE__*/
-            React.createElement("p", null, "Myself and some art + design students at  UM started a club in 2019 to provide design consulting services to startups. Our first client was Gonana's. We created a brand identity for them with color+font guides, made graphics for their website, and updated their packaging. After we worked with them they secured a contract to sell their bread in Nordstrom's and aired on QVC.... ")), /*#__PURE__*/
+            React.createElement("p", null, "Myself, some art + design, and business students at UM started a club in 2019 to provide design consulting services to startups. Our first client was Gonana's. We created a brand identity for them with color+font guides, made graphics for their website, and updated their packaging. After we worked with them they secured a contract to sell their bread in Nordstrom's and aired it on QVC.")), /*#__PURE__*/
 
 
           React.createElement(Project, {
@@ -284,7 +284,7 @@ const Projects = props => {
             link: "https://www.facebook.com/northstarseattle/photos/653489701477152"
           }, /*#__PURE__*/
             React.createElement("small", null, "Built using photoshop"), /*#__PURE__*/
-            React.createElement("p", null, "When I was a bus boy at North Star Diner I ended up making some ads for their facebook and instagram pages. The ad pictured here even got copied by a bar down the street"), /*#__PURE__*/
+            React.createElement("p", null, "When I was a busboy at North Star Diner I ended up making some ads for their facebook and instagram pages. The ad pictured here even got copied by a bar down the street."), /*#__PURE__*/
             React.createElement("a", { href: "https://lh3.googleusercontent.com/sMFVKIxJW7zlYpn7Y1C110Z7rIfKU_IT96EpwH64kRhTZpksmFtPMawuLF4jDXcYllDg04yzzGbBP6ZYKNSM4znHdzRYz6rB1JG1hz21TdvRoF0phiFd6XWCONbSVMQj7eSiJP5-Bn15frJx6n5OO2o4j6trRMg5i0bPB2hZQc7nOiPQ3wOOJiPEMqPoso7plZRkEHhbpleD4shuM4V_UPK35Mmihi21QT8KZWUOKaAitBW9Xmo3uhDlqYfo6JUvNBiOdok5jLY2dYAtA_BWnAtRTtaaZeOrX2bKyVOSBnGBMWw1XCFF8UCvfQ-YC234TFoI8Z70VlZTh6ErenqV2HNzm4cRkPQ1atcT97qi1hDporT8qorbgAH9zAyd0xfdX94szc7pU6f50oXD8tzFcRJX3dd7osTogXpcl3Ib34EkvAYAUBcQp6fnaFRO8OwwQn5oTmjec-5jl9d-x1LLGrw2Ak7F4IcTzqpaQS-oNi_7gmi8gPaXHy-z6kmi3GXDj13I16UHeo2UcrTo4DyfJc3RJImbIQnOngYrMSOzLwtKGqVZbns3TA458M3nicgffHbzyjOrJ277CfE3UGCmCHer9JeJ-grSWokaLkPbf7tFR4D4LCR0Qu-q9hYzbOTMgXXYdu_y0PsyUXYsTFlnoNWdF3VfD3Yx2udq9S3sYopGbtfluEuxit0Dtx9QxjOu_JuJ1sjwmNScQ-jSp_NZYYmm7Z3LZuEcs5a7plkZhMWEeeyaZR-ePc2_I_fjgM11jIip_CETs-1lEtnWbo40Sp9t6FexltATtQ=w1404-h1872-no?authuser=1", target: "_blank", rel: "noopener noreferrer" }, "click here to see the copy-cat")), /*#__PURE__*/
           React.createElement(Project, {
             img: 'https://scontent.fdet1-1.fna.fbcdn.net/v/t1.18169-9/14563388_660585904100865_6253591999265702647_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=9267fe&_nc_ohc=qoFFRlh_kJQAX8IEgao&_nc_ht=scontent.fdet1-1.fna&oh=00_AT_Vg1tgEdf3kw7QZm0X0jgMaw2MP9KIa762dCBytNYOJw&oe=625DFF58',
@@ -303,7 +303,7 @@ const Projects = props => {
             link: "https://www.instagram.com/p/BKgznE8AfKN"
           }, /*#__PURE__*/
             React.createElement("small", null, "Captured with a Canon EoS SL 2 + 50mm"), /*#__PURE__*/
-            React.createElement("p", null, "...It began with sneaking into photo pits, press stands, and backstage in all sorts of ways,  pictured here is Halsey from Seattle's Bumbershoot in 2016 -- where I had an offical 'press pass' for 'day 1' of a three day music festival. Halsey performed on 'day 3', but I know how to use whiteout and have nice handwriting")), /*#__PURE__*/
+            React.createElement("p", null, "...It began with sneaking into photo pits, press stands, and backstage in all sorts of ways, pictured here is Halsey from Seattle's Bumbershoot in 2016 -- where I had an official 'press pass' for 'day 1' of a three day music festival. Halsey performed on 'day 3', but I know how to use whiteout and have nice handwriting 😉")), /*#__PURE__*/
 
           React.createElement(Project, {
             img: 'https://scontent.fdet1-1.fna.fbcdn.net/v/t31.18172-8/14311247_1753252961594052_3925691536731196128_o.jpg?_nc_cat=101&ccb=1-5&_nc_sid=cdbe9c&_nc_ohc=AsB6ffJsPFAAX8zRN8J&_nc_ht=scontent.fdet1-1.fna&oh=00_AT8_bdnP395zTG1QW1v27pxr1P--mPC7fCoK_WIeztswcQ&oe=625D8FC4',

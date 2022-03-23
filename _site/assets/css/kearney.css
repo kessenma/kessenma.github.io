@@ -1039,7 +1039,7 @@ a:active {
 /* Single Project */
 #projects .project {
   margin: 1rem auto;
-  width: 70%;
+  width: 85%;
   padding: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
