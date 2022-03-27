@@ -73,15 +73,12 @@ h2 {
 .detroitSkyline {
   position: fixed;
   align-items: center;
-  bottom: -19rem;
+  bottom: -10vh;
   left: 0;
   background-size: cover;
   width: 100vw;
   height: 100vh;
   opacity: 0.9;
-  -webkit-animation: detroitSkyline-move-in 1000ms 500ms forwards;
-          animation: detroitSkyline-move-in 1000ms 500ms forwards;
-  border-bottom: 18.75rem solid #181d23;
   z-index: -1;
 }
 
