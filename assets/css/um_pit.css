@@ -9,6 +9,7 @@ body {
   color: #fff;
   background-color: #00274C;
   font-family: 'Montserrat', sans-serif;
+  z-index: ;
   /* box-shadow: inset 0 0 2rem rgba(0, 0, 0, .5); */
 }
 
@@ -18,11 +19,23 @@ h2 {
   justify-content: left;
   color: #00274C;
   font-family: 'Montserrat', sans-serif;
-  margin: 25vh 0 75vh 0rem;
+  margin: 25vh 0 80vh 0rem;
 }
 
+h5 {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  background-color:
+  font-family: 'Montserrat', sans-serif;
+  z-index: ;
+  margin: 20rem 0 0rem 0;
+  /* box-shadow: inset 0 0 2rem rgba(0, 0, 0, .5); */
+}
+
+
+
 .cover-container {
-  max-width: 42em;
 }
 
 .masthead {
@@ -41,6 +54,7 @@ h2 {
   color: #FFCB05;
   background-color: transparent;
   border-bottom: .25rem solid transparent;
+  z-index: 20;
 }
 
 .nav-masthead .nav-link:hover,
@@ -98,6 +112,7 @@ h2 {
   position: fixed;
   width: 8vw;
   height: 8vh;
+  z-index: 2;
 }
 
 .spiritOfDetroit {
@@ -106,6 +121,7 @@ h2 {
   position: fixed;
   width: 20vw;
   height: 15vh;
+  z-index: 2;
 } 
 
 
@@ -207,32 +223,15 @@ h2 {
 // ####################################################### */
 
 
-canvas {
+/* canvas {
 	display: block;
 	vertical-align: bottom;
   z-index: 10;
   position: fixed;
-}
+} */
 
 
 /* ---- particles.js container ---- */
-
-#particles-js {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	/* background-color: #00274c; */
-	background-image: url("");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: 50% 50%;
-}
-
-
-
-
-
-
 
 @keyframes pulse{
     0%,to{
@@ -260,9 +259,17 @@ canvas {
     background-attachment:fixed
 }
 #particles-js .particles-js-canvas-el{
-    width:100%;
-    height:100vh;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	/* background-color: #00274c; */
+	background-image: url("");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50% 50%;
+  z-index: -1;
 }
+
 
 
 
