@@ -1,0 +1,277 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  background-color: #00274C;
+  font-family: 'Montserrat', sans-serif;
+  z-index: ;
+  /* box-shadow: inset 0 0 2rem rgba(0, 0, 0, .5); */
+}
+
+h2 {
+  size: 3rem;
+  display: flex;
+  justify-content: left;
+  color: #00274C;
+  font-family: 'Montserrat', sans-serif;
+  margin: 25vh 0 80vh 0rem;
+}
+
+h5 {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  background-color:
+  font-family: 'Montserrat', sans-serif;
+  z-index: ;
+  margin: 20rem 0 0rem 0;
+  /* box-shadow: inset 0 0 2rem rgba(0, 0, 0, .5); */
+}
+
+
+
+.cover-container {
+}
+
+.masthead {
+  margin-bottom: 2rem;
+}
+
+.masthead-brand {
+  margin-bottom: 0;
+}
+
+.nav-masthead .nav-link {
+  float: center;
+  align-items: center;
+  padding: 1rem 1rem 1rem 1rem;
+  font-weight: 700;
+  color: #FFCB05;
+  background-color: transparent;
+  border-bottom: .25rem solid transparent;
+  z-index: 20;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-bottom-color: #fff;
+}
+
+.nav-masthead .nav-link+.nav-link {
+  margin-left: 1rem;
+}
+
+@media (min-width: 48em) {
+  .masthead-brand {
+    float: left;
+  }
+
+  .nav-masthead {
+    float: center;
+  }
+}
+
+.cover {
+  padding: 0 1.5rem;
+}
+
+.test {
+  opacity: 0;
+}
+
+.detroitSkyline {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  width: 100%;
+  height: ;
+  opacity: 1;
+  z-index: -1;
+}
+
+/* .navbar {
+  padding: 1rem;
+  text-align: center;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 20;
+} */
+
+.blockM {
+  bottom: 70vh;
+  right: 2rem;
+  position: fixed;
+  width: 8vw;
+  height: 8vh;
+  z-index: 0;
+}
+
+.spiritOfDetroit {
+  bottom: 0vh;
+  left: 2rem;
+  position: fixed;
+  width: 20vw;
+  height: 15vh;
+  z-index: 0;
+} 
+
+
+
+#waveBackground {
+  position: fixed;
+  z-index: -1;
+}
+
+
+
+.container {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  top: 30rem;
+  bottom: -15rem;
+}
+
+.chevron {
+  position: absolute;
+  width: 28px;
+  height: 8px;
+  opacity: 0;
+  transform: scale3d(0.5, 0.5, 0.5);
+  animation: move 3s ease-out infinite;
+}
+
+.chevron:first-child {
+  animation: move 3s ease-out 1s infinite;
+}
+
+.chevron:nth-child(2) {
+  animation: move 3s ease-out 2s infinite;
+}
+
+.chevron:before,
+.chevron:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 51%;
+  background: #fff;
+}
+
+.chevron:before {
+  left: 0;
+  transform: skew(0deg, 30deg);
+}
+
+.chevron:after {
+  right: 0;
+  width: 50%;
+  transform: skew(0deg, -30deg);
+}
+
+@keyframes move {
+  25% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+  67% {
+    opacity: 1;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+  }
+}
+
+.text {
+  display: block;
+  margin-top: 75px;
+  margin-left: -30px;
+  font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-size: 12px;
+  color: #fff;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.25;
+  animation: pulse 2s linear alternate infinite;
+}
+
+@keyframes pulse {
+  to {
+    opacity: 1;
+  }
+}
+
+
+
+/* // #######################################################
+// ##################    particles ##################
+// ####################################################### */
+
+
+/* canvas {
+	display: block;
+	vertical-align: bottom;
+  z-index: 10;
+  position: fixed;
+} */
+
+
+/* ---- particles.js container ---- */
+
+@keyframes pulse{
+    0%,to{
+        -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+        filter:alpha(opacity=40);
+        opacity:.4;
+        top:0
+    }
+    50%{
+        -ms-filter:none;
+        -webkit-filter:none;
+        filter:none;
+        opacity:1;
+        top:-10px
+    }
+}
+/*background-color: rgba(132, 198, 89, 0.55);*/
+#particles-js{  
+    display:;
+    vertical-align:bottom;
+    width:100%;
+    min-height:100vh;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-attachment:fixed
+}
+#particles-js .particles-js-canvas-el{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	/* background-color: #00274c; */
+	background-image: url("");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50% 50%;
+  z-index: -1;
+}
+
+
+
+
+
+

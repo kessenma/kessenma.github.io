@@ -112,7 +112,7 @@ h5 {
   position: fixed;
   width: 8vw;
   height: 8vh;
-  z-index: 2;
+  z-index: 0;
 }
 
 .spiritOfDetroit {
@@ -121,7 +121,7 @@ h5 {
   position: fixed;
   width: 20vw;
   height: 15vh;
-  z-index: 2;
+  z-index: 0;
 } 
 
 
