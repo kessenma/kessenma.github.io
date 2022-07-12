@@ -68,6 +68,7 @@ h1{
     font-family: 'bebas Neue', cursive;
     font-size:2.5rem;
     display: inline;
+    line-height:1.5;
 }
 h2{
     font-family:'Montserrat',sans-serif;
@@ -75,6 +76,7 @@ h2{
     font-weight:200;
     text-align: center;
     display: inline-block;
+    line-height:1.5;
 }
 h3{
     font-size:1.5rem;
@@ -132,7 +134,7 @@ mark {
 
 .greenHighlight{
  background-color: #16ffc6;
- padding:0.2em;
+ padding:  0.2em;
 }
 
 .whiteHighlight{
@@ -211,12 +213,12 @@ mark {
 }
 
 .navbar a:hover {
-  background: rgb(132, 198, 89);
+  background: #16ffc6;
   color: black;
 }
 
 .navbar a.active {
-  background-color: rgb(132, 198, 89);
+  background-color: #16ffc6;
   color: black;
 }
 /* back button: https://codepen.io/folaad/pen/YvmRpz */
@@ -349,7 +351,8 @@ path.two {
 }
 /*background-color: rgba(132, 198, 89, 0.55);*/
 #particles-js{
-    background: linear-gradient(to top, rgb(132, 198, 89), #FFFFFF);
+/*    background: linear-gradient(to top, rgb(132, 198, 89), #FFFFFF);*/
+    background: #16ffc6;
     display:;
     vertical-align:bottom;
     width:100%;
@@ -677,7 +680,7 @@ path.two {
   background-image: linear-gradient(45deg, #FFFFFF, #FAB33E);
 }
 .bg-three:before {
-  background-image: linear-gradient(to top, rgba(132, 198, 89, 0.65), #FFFFFF);
+  background-image: linear-gradient(to top, var(--limeGreen), #FFFFFF);
 }
 .bg-sciCrunch1:before {
   background-image: linear-gradient(#000, var(--darkGrey));
