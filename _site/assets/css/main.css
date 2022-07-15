@@ -82,8 +82,16 @@ h3{
     font-size:1.5rem;
     display; ;
 }
+
+/*Green font in the typewriter and maybe in other places....? not sure */
 h4{
-    font-size:1rem
+    font-family:'Montserrat',sans-serif;
+    font-size:2em;
+    font-weight:200;
+    text-align: center;
+    display: inline-block;
+    line-height:1.5;
+    color: #16ffc6;
 }
 
 /* ############
@@ -144,7 +152,7 @@ mark {
 
  .blackHighlight{
   background-color: #000;
-  padding:1em;
+  padding:0.2em;
  }
 
  
