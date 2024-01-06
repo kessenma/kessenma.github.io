@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" >
+    <title>Sunnova Catalyst</title>
+    <link rel="stylesheet" href="/assets/css/sunnova.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/assets/js/sunnova/sunnova.js"></script>
+    <script rel="preload" type="module" src="/assets/js/sunnova/3d.js"></script>
+  </head>
+
+<!--Menu + scrollbar-->
+<body>
+  <div class="scroll-progress-bar"></div>
+  <div class="menu-container">
+    <button class="menu-button">☰</button>
+    <div class="menu-items">
+      <a href="#about-section">about</a>
+      <a href="#features-section">features</a>
+      <a href="#architecture-section">architecture</a>
+    </div>
+  </div>
+
+
+  <!--####################-->
+  <!--###SPLASH SCREEN ###-->
+  <!--####################-->
+  <div class= "content-container sticky-section parallax-container">
+    <div class="parallax-content">
+    <h1 class="sunnova-text">{{ page.title }}</h1>
+
+      <div class="sun">
+        <div class="ray_box">
+          <div class="ray ray1"></div>
+          <div class="ray ray2"></div>
+          <div class="ray ray3"></div>
+          <div class="ray ray4"></div>
+          <div class="ray ray5"></div>
+          <div class="ray ray6"></div>
+          <div class="ray ray7"></div>
+          <div class="ray ray8"></div>
+          <div class="ray ray9"></div>
+          <div class="ray ray10"></div>
+        </div>
+      </div>
+
+      <div class="button-container">
+      <a href="#about-section" class="parallax-button">About Sunnova</a>
+      <a href="#features-section" class="parallax-button">App features</a>
+      <a href="#architecture-section" class="parallax-button">App architecture</a>
+    </div>
+
+      <div id="initial-overlay" class="initial-overlay"></div>
+
+      <!--Dealership SVG-->
+      <div class="svg-parallax-wrapper">
+        <div class="dealership-svg-container">
+          <img id="DealershipSVG" src="assets/js/sunnova/dealership.svg" alt="dealership" />
+        </div>
+      </div>
+
+      <div class="svg-parallax-wrapper">
+        <div class="phone-svg-container">
+          <img id="phoneSvg" src="assets/js/sunnova/phone.svg" alt="phone" />
+        </div>
+      </div>
+
+      <div class="gradient-overlay"></div>
+    </div>
+  </div>
+
+<!--####################-->
+<!--#######ABOUT#######-->
+<!--####################-->
+
+<div class="section-padding about-section sticky-section" id="about-section">
+  <p>{{ page.about }}</p>
+  <p>{{ page.about1 }}</p>
+  <p>{{ page.about2 }}</p>
+
+  <div id="loader" class="loader">
+    <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+  </div>
+
+  <div id="animation-trigger"></div>
+  <div class="threejs-container1">
+    <canvas id="threejs-canvas1"></canvas>
+    <button id="nextButton">Next</button>
+  </div>
+
+
+<!--DEALERSHIP SVG -->
+<!--<div class="svg-container">-->
+<!--  <object id="mySvg1" type="image/svg+xml" data="assets/js/sunnova/dealership.svg" preserveAspectRatio="none" alt="Sunnova Splash"></object>-->
+<!--</div>-->
+
+
+<!--  TEXAS SVG -->
+<!--  <div class="svg-container">-->
+<!--    <object id="mySvg1" type="image/svg+xml" data="assets/img/sunnova/texas_outline.svg" preserveAspectRatio="none" alt="Sunnova Splash"></object>-->
+<!--  </div>-->
+
+  <div class="section-padding">
+    <div class="aboutGradientBackground"></div> <!-- Position this before the bento box -->
+    <div class="bento-box">
+      <div class="small-box content-wrapper">
+        <img src="/assets/img/sunnnovaSolarHome.svg" alt="Solar Home" class="svg-icon">
+        {{ page.customers }}
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaGermany.svg" alt="Germany" class="germany-icon">
+        <img src="/assets/img/sunnovaUS.svg" alt="US" class="svg-icon">
+        {{ page.locations }}
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaIPO.svg" alt="IPO" class="svg-icon">
+        Founded in {{ page.founded }}<br>
+        {{ page.ipo_info }}
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaInstall.svg" alt="Install" class="svg-icon">
+        {{ page.dealers }}
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaImprovement.svg" alt="Improvement" class="svg-icon">
+        {{ page.app_reeditions }}
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaDOE.svg" alt="DOE" class="svg-icon">
+        {{ page.energy_loan }}
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaSalesforce.svg" alt="Salesforce" class="svg-icon">
+        {{ page.salesforce }}
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaDailyInstalls.svg" alt="Daily Installs" class="svg-icon">
+        {{ page.daily_installs }}
+      </div>
+    </div>
+</div>
+
+
+
+
+  <!--####################-->
+  <!--######FEATURES######-->
+  <!--####################-->
+
+  <div class="section-padding" id="features-section">
+    <h2>App Features</h2>
+  </div>
+
+  <div class="section-padding" >
+    <h2> Department of Energy </h2>
+    <p>{{ page.doe_loan }}</p>
+    <p>{{ page.doe_hestia }}</p>
+  </div>
+
+  <div class="circle-path-container">
+  <object id="svgObject1" type="image/svg+xml" data="/assets/img/sunnova/hestiaCircle.svg"></object>
+
+
+    <div class="circle-path"></div>
+    <img src="https://img.icons8.com/?size=256&id=wcK894NIt5Wv&format=png" id="moving-arrow" alt="Moving Arrow"/>
+  </div>
+
+  <div class="doe-container">
+    <div class="aboutDOE-image">
+      <img src="/assets/img/sunnova/hestia.png" alt="DOE">
+    </div>
+    <div id="particles-js"></div>
+    <object id="svgObject" type="image/svg+xml" data="/assets/img/sunnova/particles_USA.svg"></object>
+    <!-- This is where the SVG drawing for the animated rectangle will be added -->
+    <div id="drawing"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      particlesJS.load('particles-js', '/assets/js/sunnova/sunnova_particles.json', function() {
+        console.log('callback - particles.js config loaded');
+      });
+    });
+  </script>
+
+
+
+
+
+
+<!--####################-->
+<!--####ARCHITECTURE####-->
+<!--####################-->
+
+  <div class="section-padding" id="architecture-section">
+  <h2>App Architecture</h2>
+  <p>{{ page.architecture }}</p>
+
+  <div class="architecture-gallery-wrapper">
+    <div class="architecture-gallery-container">
+      {% for item in site.data.sunnovaArchitectureGallery %}
+      <div class="architecture-gallery-item">
+        <img src="{{ item.image }}" alt="{{ item.title }}">
+        <div class="architecture-gallery-item-description">
+          <h2>{{ item.title }}</h2>
+          <p>{{ item.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+      <button class="scroll-button scroll-button-right arrow-button right" aria-label="Scroll right"></button>
+      <button class="scroll-button scroll-button-left arrow-button left" aria-label="Scroll left"></button>
+    </div>
+  </div>
+  <img class="architecture-desktop" src="/assets/img/sunnova/Architecture_Desktop_View.png" alt="Architecture Desktop View">
+  <img class="architecture-mobile" src="/assets/img/sunnova/Architecture_Mobile_View.png" alt="Architecture Mobile View">
+</div>
+
+
+
+  <!-- Your custom script that uses THREE and GLTFLoader -->
+<!--  <script type="module" src="/assets/js/sunnova/three.js"></script>&lt;!&ndash;&ndash;&gt;-->
+  <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js"></script>
+
+
+  <!--  Architecture section photo viewing -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.16/svg.min.js"></script>
+  <!-- Ensure your custom script is the last one loaded -->
+  <script src="/assets/js/sunnova/sunnova_particles.js"></script>
+  <script src="/assets/js/sunnova/architecture.js"></script>
+  <script src="/assets/js/sunnova/svgLineDrawSplashScreen.js"></script>
+
+
+
+</div>
+
+<!-- 3D rendering-->
+<!--<div class="threejs-container">-->
+<!--  <canvas id="threejs-canvas"></canvas>-->
+<!--</div>-->
+</body>
+
+</html>

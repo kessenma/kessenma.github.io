@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" >
+    <title>Sunnova Catalyst</title>
+    <link rel="stylesheet" href="/assets/css/sunnova.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/assets/js/sunnova/sunnova.js"></script>
+    <script rel="preload" type="module" src="/assets/js/sunnova/3d.js"></script>
+  </head>
+
+<!--Menu + scrollbar-->
+<body>
+  <div class="scroll-progress-bar"></div>
+  <div class="menu-container">
+    <button class="menu-button">☰</button>
+    <div class="menu-items">
+      <a href="#about-section">about</a>
+      <a href="#features-section">features</a>
+      <a href="#architecture-section">architecture</a>
+    </div>
+  </div>
+
+
+  <!--####################-->
+  <!--###SPLASH SCREEN ###-->
+  <!--####################-->
+  <div class= "content-container sticky-section parallax-container">
+    <div class="parallax-content">
+    <h1 class="sunnova-text">Sunnova Catalyst</h1>
+
+      <div class="sun">
+        <div class="ray_box">
+          <div class="ray ray1"></div>
+          <div class="ray ray2"></div>
+          <div class="ray ray3"></div>
+          <div class="ray ray4"></div>
+          <div class="ray ray5"></div>
+          <div class="ray ray6"></div>
+          <div class="ray ray7"></div>
+          <div class="ray ray8"></div>
+          <div class="ray ray9"></div>
+          <div class="ray ray10"></div>
+        </div>
+      </div>
+
+      <div class="button-container">
+      <a href="#about-section" class="parallax-button">About Sunnova</a>
+      <a href="#features-section" class="parallax-button">App features</a>
+      <a href="#architecture-section" class="parallax-button">App architecture</a>
+    </div>
+
+      <div id="initial-overlay" class="initial-overlay"></div>
+
+      <!--Dealership SVG-->
+      <div class="svg-parallax-wrapper">
+        <div class="dealership-svg-container">
+          <img id="DealershipSVG" src="assets/js/sunnova/dealership.svg" alt="dealership" />
+        </div>
+      </div>
+
+      <div class="svg-parallax-wrapper">
+        <div class="phone-svg-container">
+          <img id="phoneSvg" src="assets/js/sunnova/phone.svg" alt="phone" />
+        </div>
+      </div>
+
+      <div class="gradient-overlay"></div>
+    </div>
+  </div>
+
+<!--####################-->
+<!--#######ABOUT#######-->
+<!--####################-->
+
+<div class="section-padding about-section sticky-section" id="about-section">
+  <p>Sunnova is a(n) energy + financing + software as a service provider for residential consumers, utility companies, and businesses. Their business is complex and I only worked in a small fraction of it via developing their mobile, web, and salesforce applications. The purpose of this website is to display what I built while at Sunnova because it was one of the most interesting projects I've had the opportunity of working on, and I am quite proud of what myself and the rest of the team accomplished. The app is called Sunnova Catalyst on the app stores. My time came to an end at Sunnova a few months ago. and I am now looking for new opporunities in the following cities- Vienna, Berlin, Karlsruhe. Cologne, Frankfurt, Düsseldorf, and Hamburg.</p>
+  <p>Sunnova's main service offering is financing for solar panel systems for residential homes. They also recently published a consumer facing app that used to monitor residential home energy systems. They have contacts in a solar dealer network who install residential solar panels, batteries, load controllers, and car chargers. After dealers install this equipment they submit photos of the installed equipment to Sunnova, and then Sunnova sends them a commissioning check.</p>
+  <p>The app I spent about a year working on updated the photo submission process for solar panel dealers and the Sunnova infrastructure (photo) reviewers, and it is actually the third time Sunnova has updated this submission process. The first was dealers sending emails with photos to Sunnova, the second was a Xamarin-based (Microsoft's cross-platform mobile development framework) app that allowed single PDF uploading, and this latest app I built is their new update to the process— a React native and typescript app for ios. This newest version of the commissioning app/process has custom survey logic that supports photo-uploading, comments, and approving/rejecting. The code base also has a website for Sunnova´s electrical engineering reviewers that allows them to leave comments on why a commissioning package was rejected, and the rejection details + history are saved in Salesforce for Sunnova coorperate staff to monitor and assist when needed.</p>
+
+  <div id="loader" class="loader">
+    <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+  </div>
+
+  <div id="animation-trigger"></div>
+  <div class="threejs-container1">
+    <canvas id="threejs-canvas1"></canvas>
+    <button id="nextButton">Next</button>
+  </div>
+
+
+<!--DEALERSHIP SVG -->
+<!--<div class="svg-container">-->
+<!--  <object id="mySvg1" type="image/svg+xml" data="assets/js/sunnova/dealership.svg" preserveAspectRatio="none" alt="Sunnova Splash"></object>-->
+<!--</div>-->
+
+
+<!--  TEXAS SVG -->
+<!--  <div class="svg-container">-->
+<!--    <object id="mySvg1" type="image/svg+xml" data="assets/img/sunnova/texas_outline.svg" preserveAspectRatio="none" alt="Sunnova Splash"></object>-->
+<!--  </div>-->
+
+  <div class="section-padding">
+    <div class="aboutGradientBackground"></div> <!-- Position this before the bento box -->
+    <div class="bento-box">
+      <div class="small-box content-wrapper">
+        <img src="/assets/img/sunnnovaSolarHome.svg" alt="Solar Home" class="svg-icon">
+        348k+ Customers
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaGermany.svg" alt="Germany" class="germany-icon">
+        <img src="/assets/img/sunnovaUS.svg" alt="US" class="svg-icon">
+        47 States and Territories. Opened German offices in 2023
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaIPO.svg" alt="IPO" class="svg-icon">
+        Founded in Founded in 2012<br>
+        IPO 2019 with BoA, J.P. Morgan, Goldman Sachs, and Credit Suisse
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaInstall.svg" alt="Install" class="svg-icon">
+        1.3k dealerships in-network
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaImprovement.svg" alt="Improvement" class="svg-icon">
+        Number of re-editions of the catalyst app = 3
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaDOE.svg" alt="DOE" class="svg-icon">
+        Dept of energy loan guarantee
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaSalesforce.svg" alt="Salesforce" class="svg-icon">
+        So much data in Salesforce
+      </div>
+      <div class="small-box">
+        <img src="/assets/img/sunnovaDailyInstalls.svg" alt="Daily Installs" class="svg-icon">
+        ~500 system installs daily
+      </div>
+    </div>
+</div>
+
+
+
+
+  <!--####################-->
+  <!--######FEATURES######-->
+  <!--####################-->
+
+  <div class="section-padding" id="features-section">
+    <h2>App Features</h2>
+  </div>
+
+  <div class="section-padding" >
+    <h2> Department of Energy </h2>
+    <p>DOE loan</p>
+    <p>Project Hestia is a joint project, The Sunnova app and portal aims to reduce greenhouse gas emissions, enhance the integration of load controllers and smart appliances, and support grid stability by giving consumers near real-time insight into their residential energy system and quantifying the location-specific emissions impact of changes in consumer behavior. (https://solarbuildermag.com/news/details-on-sunnovas-3-billion-loan-guarantee-from-department-of-energy/)</p>
+  </div>
+
+  <div class="circle-path-container">
+  <object id="svgObject1" type="image/svg+xml" data="/assets/img/sunnova/hestiaCircle.svg"></object>
+
+
+    <div class="circle-path"></div>
+    <img src="https://img.icons8.com/?size=256&id=wcK894NIt5Wv&format=png" id="moving-arrow" alt="Moving Arrow"/>
+  </div>
+
+  <div class="doe-container">
+    <div class="aboutDOE-image">
+      <img src="/assets/img/sunnova/hestia.png" alt="DOE">
+    </div>
+    <div id="particles-js"></div>
+    <object id="svgObject" type="image/svg+xml" data="/assets/img/sunnova/particles_USA.svg"></object>
+    <!-- This is where the SVG drawing for the animated rectangle will be added -->
+    <div id="drawing"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      particlesJS.load('particles-js', '/assets/js/sunnova/sunnova_particles.json', function() {
+        console.log('callback - particles.js config loaded');
+      });
+    });
+  </script>
+
+
+
+
+
+
+<!--####################-->
+<!--####ARCHITECTURE####-->
+<!--####################-->
+
+  <div class="section-padding" id="architecture-section">
+  <h2>App Architecture</h2>
+  <p>The Catalyst Mobile app is a mobile app on the Apple App Store + Google Play Store built on React Native.  the image carousel below showcases the technologies Sunnova used to build the 3rd version of the Catalyst app for their dealers. The first and second versions of the app were built with Microsoft Xamrin and had different capabilities. The newest</p>
+
+  <div class="architecture-gallery-wrapper">
+    <div class="architecture-gallery-container">
+      
+      <div class="architecture-gallery-item">
+        <img src="assets/img/sunnova/Database.png" alt="Database">
+        <div class="architecture-gallery-item-description">
+          <h2>Database</h2>
+          <p>these are the following data sources and microservices that the Catalyst mobiile app uses. </p>
+        </div>
+      </div>
+      
+      <div class="architecture-gallery-item">
+        <img src="assets/img/sunnova/Code.png" alt="Code">
+        <div class="architecture-gallery-item-description">
+          <h2>Code</h2>
+          <p>TypeScript + React Native + Sequlize are what a lot of the apps functions use as the backbone.</p>
+        </div>
+      </div>
+      
+      <div class="architecture-gallery-item">
+        <img src="assets/img/sunnova/Launch.png" alt="Launch">
+        <div class="architecture-gallery-item-description">
+          <h2>Launch</h2>
+          <p>Github actions are used to trigger app launches to the three environments-- dev, QA, and Prod. Then Expo converts the code to JS for the (Google) Play + Apple app stores.</p>
+        </div>
+      </div>
+      
+      <div class="architecture-gallery-item">
+        <img src="assets/img/sunnova/Analytics.png" alt="Analytics">
+        <div class="architecture-gallery-item-description">
+          <h2>Analytics</h2>
+          <p>These are the different apps we used to help debug network calls mainly between salesforce and our SQL database hosted on Heroku</p>
+        </div>
+      </div>
+      
+      <button class="scroll-button scroll-button-right arrow-button right" aria-label="Scroll right"></button>
+      <button class="scroll-button scroll-button-left arrow-button left" aria-label="Scroll left"></button>
+    </div>
+  </div>
+  <img class="architecture-desktop" src="/assets/img/sunnova/Architecture_Desktop_View.png" alt="Architecture Desktop View">
+  <img class="architecture-mobile" src="/assets/img/sunnova/Architecture_Mobile_View.png" alt="Architecture Mobile View">
+</div>
+
+
+
+  <!-- Your custom script that uses THREE and GLTFLoader -->
+<!--  <script type="module" src="/assets/js/sunnova/three.js"></script>&lt;!&ndash;&ndash;&gt;-->
+  <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js"></script>
+
+
+  <!--  Architecture section photo viewing -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.16/svg.min.js"></script>
+  <!-- Ensure your custom script is the last one loaded -->
+  <script src="/assets/js/sunnova/sunnova_particles.js"></script>
+  <script src="/assets/js/sunnova/architecture.js"></script>
+  <script src="/assets/js/sunnova/svgLineDrawSplashScreen.js"></script>
+
+
+
+</div>
+
+<!-- 3D rendering-->
+<!--<div class="threejs-container">-->
+<!--  <canvas id="threejs-canvas"></canvas>-->
+<!--</div>-->
+</body>
+
+</html>
