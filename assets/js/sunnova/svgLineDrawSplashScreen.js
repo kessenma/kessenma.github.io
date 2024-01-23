@@ -3,9 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var phoneSvg = document.getElementById('phoneSvg');
     var dealershipSvg = document.getElementById('DealershipSVG');
+    var desertPanelSvg = document.getElementById('desertPanelSvg');
 
     observer.observe(phoneSvg);
     observer.observe(dealershipSvg);
+    observer.observe(desertPanelSvg);
 });
 
 function hideInitialOverlay() {

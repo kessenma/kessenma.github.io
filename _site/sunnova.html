@@ -29,24 +29,24 @@
   <!--####################-->
   <!--###SPLASH SCREEN ###-->
   <!--####################-->
-  <div class= "content-container sticky-section parallax-container">
-    <div class="parallax-content">
+  <div class= "content-container parallax-container">
+    <div class="">
     <h1 class="sunnova-text">Sunnova Catalyst</h1>
 
-      <div class="sun">
-        <div class="ray_box">
-          <div class="ray ray1"></div>
-          <div class="ray ray2"></div>
-          <div class="ray ray3"></div>
-          <div class="ray ray4"></div>
-          <div class="ray ray5"></div>
-          <div class="ray ray6"></div>
-          <div class="ray ray7"></div>
-          <div class="ray ray8"></div>
-          <div class="ray ray9"></div>
-          <div class="ray ray10"></div>
-        </div>
-      </div>
+<!--      <div class="sun">-->
+<!--        <div class="ray_box">-->
+<!--          <div class="ray ray1"></div>-->
+<!--          <div class="ray ray2"></div>-->
+<!--          <div class="ray ray3"></div>-->
+<!--          <div class="ray ray4"></div>-->
+<!--          <div class="ray ray5"></div>-->
+<!--          <div class="ray ray6"></div>-->
+<!--          <div class="ray ray7"></div>-->
+<!--          <div class="ray ray8"></div>-->
+<!--          <div class="ray ray9"></div>-->
+<!--          <div class="ray ray10"></div>-->
+<!--        </div>-->
+<!--      </div>-->
 
       <div class="button-container">
       <a href="#about-section" class="parallax-button">About Sunnova</a>
@@ -56,17 +56,12 @@
 
       <div id="initial-overlay" class="initial-overlay"></div>
 
-      <!--Dealership SVG-->
-      <div class="svg-parallax-wrapper">
         <div class="dealership-svg-container">
           <img id="DealershipSVG" src="assets/js/sunnova/dealership.svg" alt="dealership" />
-        </div>
       </div>
 
-      <div class="svg-parallax-wrapper">
-        <div class="phone-svg-container">
-          <img id="phoneSvg" src="assets/js/sunnova/phone.svg" alt="phone" />
-        </div>
+      <div class="phone-svg-container">
+        <img id="phoneSvg" src="assets/js/sunnova/phone.svg" alt="phone" />
       </div>
 
       <div class="gradient-overlay"></div>
@@ -76,22 +71,14 @@
 <!--####################-->
 <!--#######ABOUT#######-->
 <!--####################-->
-
-<div class="section-padding about-section sticky-section" id="about-section">
-  <p>Sunnova is a(n) energy + financing + software as a service provider for residential consumers, utility companies, and businesses. Their business is complex and I only worked in a small fraction of it via developing their mobile, web, and salesforce applications. The purpose of this website is to display what I built while at Sunnova because it was one of the most interesting projects I've had the opportunity of working on, and I am quite proud of what myself and the rest of the team accomplished. The app is called Sunnova Catalyst on the app stores. My time came to an end at Sunnova a few months ago. and I am now looking for new opporunities in the following cities- Vienna, Berlin, Karlsruhe. Cologne, Frankfurt, Düsseldorf, and Hamburg.</p>
-  <p>Sunnova's main service offering is financing for solar panel systems for residential homes. They also recently published a consumer facing app that used to monitor residential home energy systems. They have contacts in a solar dealer network who install residential solar panels, batteries, load controllers, and car chargers. After dealers install this equipment they submit photos of the installed equipment to Sunnova, and then Sunnova sends them a commissioning check.</p>
-  <p>The app I spent about a year working on updated the photo submission process for solar panel dealers and the Sunnova infrastructure (photo) reviewers, and it is actually the third time Sunnova has updated this submission process. The first was dealers sending emails with photos to Sunnova, the second was a Xamarin-based (Microsoft's cross-platform mobile development framework) app that allowed single PDF uploading, and this latest app I built is their new update to the process— a React native and typescript app for ios. This newest version of the commissioning app/process has custom survey logic that supports photo-uploading, comments, and approving/rejecting. The code base also has a website for Sunnova´s electrical engineering reviewers that allows them to leave comments on why a commissioning package was rejected, and the rejection details + history are saved in Salesforce for Sunnova coorperate staff to monitor and assist when needed.</p>
-
-  <div id="loader" class="loader">
-    <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+<div class="about-background">
+  <div class="center-section-padding about-section top-divider" id="about-section">
+    <p>In my own-non PR trained words-- Sunnova is a energy + financing + software as a service provider for residential consumers, utility companies, and businesses. They're based in Houston (I worked remotely for them in Michigan), the business is complex and I only worked in a small fraction of it via developing their mobile, web, and salesforce applications. The purpose of this website is to display what I built while at Sunnova because it was one of the more novel businesses I've had the opportunity of working with,... and I want to show grad-schools + research-institutes + consultancy's what I am capable of. The app is called Sunnova Catalyst on the app stores. My time came to an end at Sunnova a few months ago. and I am now looking for new opportunities in the DACH region of Europe or contract roles in the US. I am primarily interested in software development projects building go-to-market/business/government apps utilizing JavaScript, TypeScript, Python, Swift, Kotlin, Flutter, or Rust.</p>
+    <p>Sunnova's main service offering is financing for solar panel systems for residential homes. They also recently published a consumer facing app that is used to monitor residential home energy systems. They have contacts in a solar dealer network who install residential solar panels, batteries, load controllers, and car chargers. After dealers install this equipment they submit photos of the installed equipment to Sunnova, and then Sunnova sends them a commissioning check.</p>
+    <p>The app I spent about a year working on updated the photo submission process for solar panel dealers and the Sunnova infrastructure (photo) reviewers, and it is actually the third time Sunnova has updated this submission process. The first was dealers sending emails with photos to Sunnova, the second was a Xamarin-based (Microsoft's cross-platform mobile development framework) app that allowed single PDF uploading, and this latest app I built is their new update to the process— a React native and typescript app. This newest version of the commissioning app/process has custom survey logic that supports photo-uploading, comments, and approving/rejecting. The code base also has a website for Sunnova´s electrical engineering reviewers that allows them to leave comments on why a commissioning package was rejected, and the rejection details + history are saved in Salesforce for Sunnova corporate staff to monitor and assist when needed.</p>
   </div>
-
-  <div id="animation-trigger"></div>
-  <div class="threejs-container1">
-    <canvas id="threejs-canvas1"></canvas>
-    <button id="nextButton">Next</button>
-  </div>
-
+  <div class="desertSunBackground"></div>
+</div>
 
 <!--DEALERSHIP SVG -->
 <!--<div class="svg-container">-->
@@ -104,44 +91,115 @@
 <!--    <object id="mySvg1" type="image/svg+xml" data="assets/img/sunnova/texas_outline.svg" preserveAspectRatio="none" alt="Sunnova Splash"></object>-->
 <!--  </div>-->
 
-  <div class="section-padding">
-    <div class="aboutGradientBackground"></div> <!-- Position this before the bento box -->
-    <div class="bento-box">
-      <div class="small-box content-wrapper">
-        <img src="/assets/img/sunnnovaSolarHome.svg" alt="Solar Home" class="svg-icon">
-        348k+ Customers
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaGermany.svg" alt="Germany" class="germany-icon">
-        <img src="/assets/img/sunnovaUS.svg" alt="US" class="svg-icon">
-        47 States and Territories. Opened German offices in 2023
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaIPO.svg" alt="IPO" class="svg-icon">
-        Founded in Founded in 2012<br>
-        IPO 2019 with BoA, J.P. Morgan, Goldman Sachs, and Credit Suisse
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaInstall.svg" alt="Install" class="svg-icon">
-        1.3k dealerships in-network
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaImprovement.svg" alt="Improvement" class="svg-icon">
-        Number of re-editions of the catalyst app = 3
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaDOE.svg" alt="DOE" class="svg-icon">
-        Dept of energy loan guarantee
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaSalesforce.svg" alt="Salesforce" class="svg-icon">
-        So much data in Salesforce
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaDailyInstalls.svg" alt="Daily Installs" class="svg-icon">
-        ~500 system installs daily
-      </div>
+  <div class="desert-background">
+  <div class="desert-svg-container">
+    <img id="desertPanelSvg" src="assets/img/sunnova/panelsInDesert.svg" alt="soalr panels in the desert" />
+  </div>
+  </div>
+
+  <div class="bento-gradient-background">
+    <div class="bento-description">
+      <img id="bentoDescription" src="assets/img/sunnova/bentoDescription.svg" alt="lineDrawing1" />
     </div>
+    <div class="">
+      <div class="expandable-content-row" aria-hidden="true"></div>
+        <div class="bento-box">
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnnovaSolarHome.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Solar Home" class="svg-icon">
+            </div>
+            <p> Customers </p>
+            <div class="detail-content">
+              <p>As of 2023 Sunnova had 348k+ Customers.</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaWorldMap.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="IPO" class="svg-icon">
+            </div>
+            <p> Locations</p>
+            <div class="detail-content">
+              <p>47 States and Territories. Opened German offices in 2023</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaFounding.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt=Foounding" class="svg-icon">
+            </div>
+            <p>Founding</p>
+            <div class="detail-content">
+              <p>in 2012 John Berger started Sunnova in Houston and I don't know a lot about him, but i know he used to work at Enron. Also, a lot of the senior staff are from the traditional Houston oil and gas industry.</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaIPO.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="IPO" class="svg-icon">
+            </div>
+            <p> IPO</p>
+            <div class="detail-content">
+              <p>2019 with BoA, J.P. Morgan, Goldman Sachs, and Credit Suisse. And honestly Idk who else. One time I was told my product manager was giving a demo to Goldman Sachs of our app so GS could go and advertise it to their client I guess?</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaInstall.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Install" class="svg-icon">
+            </div>
+            <p>Dealerships</p>
+            <div class="detail-content">
+              <p>1.3k dealerships in-network</p>
+            </div>
+          </div>
+
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaImprovement.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Improvement" class="svg-icon">
+            </div>
+            <p>App History</p>
+            <div class="detail-content">
+              <p>The Sunnova consumer facing app was launched in 2023. The Sunnova Catalyst app has been designed twice now-- the first time with Xamarin and the most recent app was built on react native.</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaDOE.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="DOE" class="svg-icon">
+            </div>
+            <p>Department of Energy</p>
+            <div class="detail-content">
+              <p>In 2022 the DoE provided Sunnova with $3 billion worth of financing for customers that stop paying for their solar systems. The goal with this financing is to allow lower income areas access to solar power.</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaSalesforce.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Salesforce" class="svg-icon">
+            </div>
+            <p>Salesforce</p>
+            <div class="detail-content">
+              <p>Salesforce used Sunnova as a case study in their Dreamforce 2023 conference, and I was told that Sunnova had the largest salesforce instance in the southern US.</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaDailyInstalls.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Daily Installs" class="svg-icon">
+            </div>
+            <p> Daily Installs</p>
+            <div class="detail-content">
+              <p>There are approximately ~500 systems installed daily</p>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class= "content-container">
+  <div id="animation-trigger"></div>
+  <div class="threejs-container1">
+    <div id="loader" class="loader">
+      <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+    </div>
+    <canvas id="threejs-canvas1"></canvas>
+    <!--    <button id="nextButton">Next</button>-->
+    <button id="resetButton">Reset Animations</button>
+  </div>
 </div>
 
 
@@ -151,11 +209,11 @@
   <!--######FEATURES######-->
   <!--####################-->
 
-  <div class="section-padding" id="features-section">
+  <div class="center-section-padding" id="features-section">
     <h2>App Features</h2>
   </div>
 
-  <div class="section-padding" >
+  <div class="center-section-padding" >
     <h2> Department of Energy </h2>
     <p>DOE loan</p>
     <p>Project Hestia is a joint project, The Sunnova app and portal aims to reduce greenhouse gas emissions, enhance the integration of load controllers and smart appliances, and support grid stability by giving consumers near real-time insight into their residential energy system and quantifying the location-specific emissions impact of changes in consumer behavior. (https://solarbuildermag.com/news/details-on-sunnovas-3-billion-loan-guarantee-from-department-of-energy/)</p>
@@ -196,7 +254,7 @@
 <!--####ARCHITECTURE####-->
 <!--####################-->
 
-  <div class="section-padding" id="architecture-section">
+  <div class="center-section-padding" id="architecture-section">
   <h2>App Architecture</h2>
   <p>The Catalyst Mobile app is a mobile app on the Apple App Store + Google Play Store built on React Native.  the image carousel below showcases the technologies Sunnova used to build the 3rd version of the Catalyst app for their dealers. The first and second versions of the app were built with Microsoft Xamrin and had different capabilities. The newest</p>
 
@@ -260,7 +318,6 @@
 
 
 
-</div>
 
 <!-- 3D rendering-->
 <!--<div class="threejs-container">-->

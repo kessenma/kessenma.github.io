@@ -1,12 +1,65 @@
-$(window).scroll(function() {
-    var scrollPos = $(this).scrollTop();
+document.addEventListener('DOMContentLoaded', function () {
+    const expandableContentRow = document.querySelector('.expandable-content-row');
 
-    // Apply parallax effect to the sun
-    $('.sun').css('transform', 'translateY(' + scrollPos/3 + 'px)');
+    document.querySelectorAll('.small-box').forEach(function(box) {
+        // Event for both click and hover
+        function handleBoxInteraction() {
+            // Populate the expandable content row with the detail content
+            const detailContent = box.querySelector('.detail-content').innerHTML;
+            expandableContentRow.innerHTML = detailContent;
+        }
 
-    // Apply parallax effect to the SVGs
-    $('#phoneSvg').parent().css('transform', 'translateY(' + (-scrollPos/3) + 'px)');
-    $('#DealershipSVG').parent().css('transform', 'translateY(' + scrollPos/4 + 'px)');
+        // Click event for mobile and desktop
+        box.addEventListener('click', function(event) {
+            handleBoxInteraction();
+            // Toggle expanded class for background change
+            box.classList.add('expanded');
+        });
+
+        // Hover event for desktop
+        box.addEventListener('mouseenter', function(event) {
+            if (window.matchMedia("(hover: hover)").matches) {
+                handleBoxInteraction();
+            }
+        });
+
+        // Remove the background color when mouse leaves the box
+        box.addEventListener('mouseleave', function(event) {
+            if (window.matchMedia("(hover: hover)").matches) {
+                box.classList.remove('expanded');
+            }
+        });
+    });
+});
+
+
+
+
+$(document).ready(function() {
+    // Menu and other jQuery-related setup code...
+
+    // Combine both scroll functionalities into one
+    $(window).scroll(function() {
+        var scrollPos = $(this).scrollTop();
+        var windowHeight = $(document).height() - $(window).height();
+        var percentScrolled = (scrollPos / windowHeight) * 100;
+
+        // Apply parallax effects
+        $('.sun').css('transform', 'translateY(' + scrollPos/3 + 'px)');
+        $('#phoneSvg').parent().css('transform', 'translateY(' + (-scrollPos/3) + 'px)');
+        $('#DealershipSVG').parent().css('transform', 'translateY(' + scrollPos/4 + 'px)');
+        $('#bentoDescription').parent().css('transform', 'translateY(' + scrollPos/4 + 'px)');
+
+        // Update the progress bar width
+        $('.scroll-progress-bar').css('width', percentScrolled + '%');
+
+        // Show or hide the menu button based on scroll position
+        if (scrollPos > $(window).height()) {
+            $(".menu-button").fadeIn();
+        } else {
+            $(".menu-button").fadeOut();
+        }
+    });
 });
 
 
@@ -28,22 +81,7 @@ $(document).ready(function() {
             $(".menu-items").hide();
         }
     });
-
-    // Check if the user scrolls past the fold
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > $(window).height()) {
-            $(".menu-button").fadeIn(); // Use fadeIn for a smoother appearance
-        } else {
-            $(".menu-button").fadeOut(); // Use fadeOut for a smoother disappearance
-        }
-    });
 });
 
-window.addEventListener('scroll', function() {
-    var windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var scrollPos = window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
-    var percentScrolled = (scrollPos / windowHeight) * 100;
-    document.querySelector('.scroll-progress-bar').style.width = percentScrolled + '%';
-});
 
 

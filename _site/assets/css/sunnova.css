@@ -7,7 +7,7 @@
 /* Root font size */
 html {
     font-size: 1rem;
-    max-width: 100vw;
+    max-width: 100%;
     overflow-x: hidden;
 }
 
@@ -41,14 +41,19 @@ h3 {
 }
 
 p {
-    font-family: 'Quattrocento Sans', sans-serif;
-    font-weight: 400;
-    font-size: 1rem; /* equivalent to 16px when root is 16px */
+    font-family: 'Cinzel Sans', serif;
+    color: inherit;
+    /*background-color: white;*/
+    /*font-size: 1.5rem; !* equivalent to 16px when root is 16px *!*/
     word-break: break-word; /* Break words if they are too long for the container */
     white-space: pre-wrap; /* Honor newlines and spaces, and allow wrapping */
-    max-height: calc(100% - 10px); /* Adjust to fit your needs */
     overflow-y: auto; /* Add vertical scrolling if the content is too tall */
+    font-size: 1.5rem;
+    z-index: 10;
+    /*width: 90vw;*/
 }
+
+
 
 
 
@@ -57,7 +62,8 @@ p {
     --darkOrange: #59200F;
     --lightOrange: #EE805E;
     --orange: #EA7651FF;
-    --yellow: #FEFB53FF;
+    --lightYellow: #fbf9c1;
+    --yellow: #F7F065;
     --blue: #66c1f8;
     --lightBlue: #94d1f7;
     --purple: #9150e8;
@@ -113,13 +119,6 @@ p {
 .content-container {
     position: relative;
     width: 100vw;
-    height: 100vh;
-}
-
-.sticky-section {
-    position: sticky;
-    top: 0; /* Adjust this value as needed */
-    z-index: 10; /* Higher than other content but lower than fixed elements like a navbar */
 }
 
 
@@ -129,11 +128,8 @@ p {
     position: relative;
     background-position: center;
     background-repeat: no-repeat;
-    /*background-size: cover;*/
     background-attachment: fixed;
     background-size: 100% 100%;
-    /*background-image: url('/assets/img/sunnova/sunnova_splash_screen.png');*/
-    /*background-size: contain;*/
     filter: grayscale(5%);
     z-index: 2;
 }
@@ -150,7 +146,6 @@ p {
     background-size: cover;
     filter: grayscale(5%);
     z-index: 2;
-    margin-bottom: 5vh;
 }
 
 /* Gradient animation */
@@ -172,7 +167,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, white, black);
+    background: linear-gradient(270deg, white, black);
     opacity: 0.9;
     z-index: 0;
 }
@@ -195,8 +190,8 @@ p {
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 50px;  /* Spacing between buttons */
-    z-index: 5;
+    gap: 4vw;  /* Spacing between buttons */
+    z-index: 10;
     justify-content: center; /* Center buttons horizontally */
     flex-wrap: wrap; /* Wrap buttons if space is insufficient */
 }
@@ -215,6 +210,7 @@ p {
     color: black;
     overflow: hidden;
     transition: color 0.5s, background-color 0.3s, border-color 0.3s;
+    z-index: 5;
 }
 
 .parallax-button::before, .parallax-button::after {
@@ -259,16 +255,16 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 9999;
+    z-index: 9;
 }
 
 .dealership-svg-container {
     position: absolute;
-    top: 20vh;
+    top: 20%;
     left: 0;
-    width: 70vw;
+    width: 70%;
     height: auto;
-    max-height: 50vh;
+    max-height: 50%;
 }
 
 #DealershipSVG {
@@ -280,9 +276,8 @@ p {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 70vw; /* This will control the size on mobile */
-    max-width: 700px; /* Maximum width on desktop */
-    max-height: 50vh;
+    width: 70%; /* This will control the size on mobile */
+    max-height: 50%;
 }
 
 #phoneSvg {
@@ -290,18 +285,37 @@ p {
     height: auto;
 }
 
+.desert-svg-container {
+    /*position: absolute;*/
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    /*max-height: 50vh;*/
+}
+
+#desertPanelSvg {
+    width: 100%;
+    height: auto;
+}
+
 /* Media query for desktop layout */
 @media (min-width: 768px) {
     .dealership-svg-container {
-        width: 50vw; /* Adjust width on desktop */
+        width: 50%; /* Adjust width on desktop */
         max-height: 50vh;
         z-index: 3;
     }
 
     .phone-svg-container {
-        width: 50vw; /* Adjust width on desktop */
-        max-width: 1000px; /* New max width for desktop to prevent it from being too large */
-        max-height: 50vh;
+        width: 50%; /* Adjust width on desktop */
+        max-height: 50%;
+        z-index: 3;
+    }
+
+    .desert-svg-container {
+        width: 100%; /* Adjust width on desktop */
+        /*max-height: 50vh;*/
         z-index: 3;
     }
 }
@@ -309,11 +323,9 @@ p {
 
 
 
-#phoneSvg, #DealershipSVG {
+#phoneSvg, #DealershipSVG, #desertPanelSvg {
     visibility: hidden; /* Hide the SVG containers initially */
 }
-
-
 
 @keyframes dash {
     to {
@@ -357,7 +369,7 @@ p {
     z-index: 3;
 }
 .ray {
-    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, var(--gray) 50%, rgba(255,255,255,0) 100%);
     background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
     margin-left:10px;
     border-radius:80% 80% 0 0;
@@ -450,16 +462,17 @@ p {
 /*#####################*/
 
 .menu-container {
+    padding-right: 0;
     position: fixed;
-    bottom: 5vh;
-    right: 3vw;
+    bottom: 5%;
+    right: 3%;
     z-index: 100;
 }
 
 .menu-button {
     display: none;
-    width: 6vh; /* Same value for width and height to make a circle */
-    height: 6vh; /* Same value for width and height to make a circle */
+    width: 8vh; /* Same value for width and height to make a circle */
+    height: 8vh; /* Same value for width and height to make a circle */
     background-color: black;
     color: white;
     border: white 3px solid;
@@ -536,137 +549,189 @@ p {
     display: flex;
     align-items: center; /* Center vertically */
     flex-direction: column; /* Stack children vertically */
-    font-size: 2rem;
-}
-
-#about-section p {
-    color: black;
-    padding: 5%;
-    width: 90vw;
+    /*font-size: 2rem;*/
 }
 .about-container {
     position: relative;
 }
 
-/*### boxes ###*/
+.about-background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, var(--white), var(--lightBlue));
+    opacity: 1;
+    z-index: 0;
+}
+
+.desert-background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, var(--lightBlue), var(--lightYellow));
+    opacity: 1;
+    z-index: 0;
+}
+
+.bento-gradient-background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, var(--lightYellow), var(--white));
+    opacity: 1;
+    z-index: 0;
+}
+
+.desertSunBackground {
+    --size: 10rem;
+    --speed: 10s;
+    --easing: cubic-bezier(0.8, 0.5, 0.8, 0.5);
+    position: absolute;
+    /*margin-top: -100vh;*/
+    top: 65%;
+    left: 65%;
+    /*transform: translateX(-50%);*/
+    width: 30%;
+    aspect-ratio: 1 / 1;
+    filter: blur(calc(var(--size) / 5));
+    background-image: linear-gradient(white, var(--lightYellow));
+    animation: rotate var(--speed) var(--easing) alternate infinite;
+    border-radius: 50% 50% 50% 50%/50% 50% 50% 50%;
+    /*background-color: #222;*/
+    overflow: visible;
+    /*background: linear-gradient(white, var(--lightGray));*/
+}
+
 
 .bento-box {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    overflow: visible;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    border-radius: 15px;
-    /*color: #000;*/
+    gap: 5%;
     text-decoration-color: transparent;
-    width: 100%;
-    z-index: 2;
+    width: auto;
+    height: 60%;
+    z-index: 1;
+    padding: 1rem;
+    z-index: 999;
 }
-
 
 .small-box {
     position: relative;
-    z-index: 2;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    transition: transform 0.2s;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2), 0 0.25rem 1.25rem 0 rgba(0, 0, 0, 0.19);
     display: flex;
-    flex-direction: row; /* Changed to row to make the icons side-by-side */
-    align-items: center;
-    justify-content: center;
+    flex-direction: row; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
     text-align: center;
-    padding: 2%;
-    border-radius: 15px; /* Rounded corners */
+    padding: 5%;
+    border-radius: 0%; /* Make the boxes circular */
+    overflow: hidden; /* Hide overflow content */
+    /*border-radius: 50%;*/
+    /*width: 0%;*/
+    height: 70%;
+    aspect-ratio: 10 / 4;
+    margin: auto;
+    z-index: 999;
 }
 
-.small-box:hover {
-    transform: translateY(-5px);
-}
-
-.small-box::before {
-    content: "";
+.detail-content {
     position: absolute;
-    top: 0;
+    width: 100%;
+    padding: 10px;
+    max-height: none; /* Ensure the detail content can fit */
+    visibility: hidden; /* Hide the detail content initially */
+    bottom: 0; /* Align with the bottom */
+    left: 0; /* Align to the left */
+    transform: translateY(100%); /* Move it down outside the expandable-content-row */
+    visibility: hidden; /* Hide the detail content initially */
+    transition: max-height 0.3s ease;
+    z-index: 999;
+}
+
+.expandable-content-row {
+    display: grid;
+    grid-column: 1 / -1; /* Span all columns */
+    height: 25rem; /* Fixed height for the description */
+    overflow: hidden; /* Hide overflow content */
+    z-index: 3;
+    margin-bottom: 0rem; /* Adjust as necessary to create space between description and boxes */
+    position: relative;
+    z-index: 3;
+    top: 16rem; /* Start at the vertical center of the parent */
+    left: 50%; /* Start at the horizontal center of the parent */
+    transform: translate(-50%, -50%); /* Center it precisely */
+    width: 70%; /* Adjust the width to fit the white space */
+    padding: 2rem; /* Add some padding inside the content row */
+    text-align: center;
+    align-items: stretch;
+    z-index: 998;
+}
+
+.bento-description {
+    position: absolute;
+    top: -20%;
     left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    background-size: 200% 200%;
-    animation: gradientAnimation 10s infinite;
-    border-radius: 15px;
-    opacity: 1;
+    width: 50%;
+    height: 50%;
+    max-height: 50%;
 }
 
-@media (max-width: 800px) {
-    .bento-box {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    }
+.small-box .detail-content {
+    display: none;
 }
 
-@media (max-width: 500px) {
-    .bento-box {
-        grid-template-columns: repeat(1, 1fr); /* 1 column */
-    }
+.svg-icon {
+    width: 100%; /* Adjust as necessary */
+    margin-bottom: 0vh; /* Space between SVG and text */
 }
 
-/*### SVG/IMG ###*/
-.svg-icon, .germany-icon {
-    width: 50px;
-    height: auto;
-    display: block;
+.svg-container {
+    position: relative;
+    width: 30%;
+    /*height: 100%;*/
+    display: flex;
+    background: linear-gradient(45deg, var(--white), var(--orange), var(--darkOrange), var(--lightOrange), var(--yellow), var(--white));
+    background-size: 600% 100%;
+    transition: background 0.3s ease;
 }
 
-.germany-icon {
-    margin-right: 15px;
+/* Animate the gradient on hover */
+.svg-container:hover {
+    animation: gradient 30s linear infinite alternate;
 }
 
-/*### background ### */
+/* Hide the original SVG on hover */
+.svg-container:hover .svg-icon,
+.svg-container:active .svg-icon {
+    visibility: hidden;
+}
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+/* Mask properties */
+.svg-container {
+    -webkit-mask-image: var(--svg-mask-image);
+    mask-image: var(--svg-mask-image);
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+/* No need for translation on mobile as we have a single column */
+.bento-box > :nth-child(n) {
+    transform: none;
 }
 
 
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-.aboutGradientBackground {
-    --size: 30rem;
-    --speed: 100s;
-    --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
-    position: absolute;
-    margin-top: 10vh;
-    /*top: 50%;*/
-    /*left: 50%;*/
-    transform: translateX(-10%);
-    width: 500px;
-    height: 500px;
-    filter: blur(calc(var(--size) / 5));
-    background-image: linear-gradient(white, var(--yellow));
-    animation: rotate var(--speed) var(--easing) alternate infinite;
-    border-radius: 50% 50% 50% 50%/50% 50% 50% 50%;
-    background-color: #222;
-    overflow: auto;
-    /*background: linear-gradient(white, var(--lightGray));*/
-    z-index: -1;
-}
 
-* {
-    transition: all 0.25s ease-out;
-}
+
+
 
 
 
@@ -676,10 +741,9 @@ p {
 /*### FEATURES ###*/
 /*####################*/
 
-.section-padding {
-    padding: 5%;
-    width: 90vw;
-    /*position: sticky;*/
+.center-section-padding {
+    padding: 10%;
+    /*right: 35vw;*/
     align-items: center;
     justify-content: center;
 }
@@ -698,16 +762,6 @@ p {
     transition: width 0.4s ease;
 }
 
-.threejs-container {
-    top: 0;
-    position: absolute;
-    display: block;
-    height: auto;
-    z-index: 10;
-    background: white;
-    /* Set other properties like width, height, etc. */
-}
-
 @keyframes fadeInAnimation {
     0% { opacity: 0; }
     33% { opacity: 0; }
@@ -715,46 +769,64 @@ p {
     100% { opacity: 1; }
 }
 
+.threejs-container1 {
+    width: 100%;
+    padding-top: 56.25%; /* Aspect ratio of 16:9 */
+    position: relative; /* Not absolute */
+    z-index: 10;
+    background: white;
+}
 
 #threejs-canvas1 {
-    width: 100%; /* Use 100% of the container width */
-    height: 100vh; /* Adjust the height value as needed */
-    /*display: block; !* Remove extra space below the canvas *!*/
-    position: static;
+    width: 100%;
+    height: 100%; /* Fill the container */
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 3;
     animation: fadeInAnimation ease 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
 
-#nextButton {
+
+/*#nextButton {*/
+/*    display: block;*/
+/*    !*position: absolute;*!*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    padding: 10px 20px;*/
+/*    font-size: 1rem;*/
+/*    color: white;*/
+/*    background-color: #007bff; !* Example blue color *!*/
+/*    border: none;*/
+/*    border-radius: 5px;*/
+/*    cursor: pointer;*/
+/*    z-index: 1000;*/
+/*}*/
+
+#resetButton {
     display: block;
-    /*position: absolute;*/
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    right: 30%; /* Align to the right */
+    transform: translate(50%, -50%); /* Adjust position */
     padding: 10px 20px;
     font-size: 1rem;
     color: white;
-    background-color: #007bff; /* Example blue color */
+    background-color: #28a745; /* Example green color */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     z-index: 1000;
-}
-
-#features-section {
-    font-size: 2rem;
-    /*background: linear-gradient(var(--lightGray), var(--darkGrey));*/
-    /*background: linear-gradient(-45deg, var(--purple), var(--blue), white, var(--yellow), var(--lightOrange), var(--orange), white);*/
-    /*animation: gradient 120s ease infinite;*/
+    /*position: absolute; !* Ensure positioning *!*/
 }
 
 
 .circle-path-container {
     position: relative;
-    width: 50vh;
-    height: 50vw;
+    width: 40vh;
+    height: 50vh;
     margin: auto;
 }
 
@@ -782,11 +854,36 @@ border-radius: 50%;
     z-index: 2; /* Above the circle, below the SVG */
 }
 
+/*### hestia background ### */
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 
 
 .doe-container {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 60vw;
     /*background-color: black;*/
 }
@@ -840,12 +937,7 @@ border-radius: 50%;
 /*### ARCHITECTURE ###*/
 /*####################*/
 
-
-
-
 /*### architecture viewer ###*/
-
-/* Optional: Add smooth scrolling */
 
 .architecture-gallery-wrapper {
     overflow-x: auto;
@@ -854,7 +946,8 @@ border-radius: 50%;
 }
 
 .architecture-gallery-container {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
+    width: 400%;
     height: 70vh;
     align-content: center;
     align-self: center;
@@ -870,10 +963,12 @@ border-radius: 50%;
 }
 
 .architecture-gallery-item {
-    display: inline-block;
-    flex: 0 0 auto;
-    /*width: 97vw;*/
-    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-right: 10px;
+    /*height: 70vh;*/
     box-sizing: border-box;
     overflow-y: hidden;
     white-space: normal;
@@ -881,40 +976,23 @@ border-radius: 50%;
 }
 
 .architecture-gallery-item img {
-    height: calc(70vh - 20vh - 30px);
+    max-height: 70%;
     width: 100%;
     display: block;
-    max-width: 100%;
     object-fit: contain;
     object-position: center;
-    background-color: black;
+    background-color: white;
 }
 .architecture-gallery-item-description{
-    max-height: 20vh;
-    width: 100%;
+    max-height: 16rem;
+    width: 70%;
     display: block;
-    max-width: 100%;
     object-fit: contain;
     object-position: center;
+    align-items: center;
+    margin-left: 10%;
+    /*margin-right: 10%;*/
     background-color: black;
-}
-
-
-.architecture-gallery-item-description h2 {
-    margin: 0;  /* Remove default margin */
-}
-
-.architecture-gallery-item-description p {
-    /*height: 10vh;  !* Adjust as needed *!*/
-    margin: 0;  /* Remove default margin */
-    padding-bottom: 10px;  /* Add padding to space it out */
-}
-.architecture-gallery-item-description h2,
-.architecture-gallery-item-description p {
-    color: white;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
 }
 
 .arrow-button {
@@ -976,38 +1054,42 @@ border-radius: 50%;
 }
 
 
-/* Default styles - mobile first approach */
+ /*Default styles - mobile first approach*/
 .architecture-desktop {
     display: none;
-    max-width: 100vw;
+    max-width: 100%;
 }
 
 .architecture-mobile {
-    max-width: 100vw;
+    max-width: 100%;
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .architecture-mobile {
         display: none;
-        max-width: 100vw;
+        max-width: 100%;
     }
     .architecture-desktop {
         display: block;
     }
 }
 
+.architecture-gallery-item-description h2 {
+    margin: 0;  /* Remove default margin */
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.architecture-gallery-item-description p {
+    /*height: 10vh;  !* Adjust as needed *!*/
+    margin: 0;  /* Remove default margin */
+    padding-bottom: 10px;  /* Add padding to space it out */
+}
+.architecture-gallery-item-description h2,
+.architecture-gallery-item-description p {
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
 
 

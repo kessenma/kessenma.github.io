@@ -29,24 +29,24 @@
   <!--####################-->
   <!--###SPLASH SCREEN ###-->
   <!--####################-->
-  <div class= "content-container sticky-section parallax-container">
-    <div class="parallax-content">
+  <div class= "content-container parallax-container">
+    <div class="">
     <h1 class="sunnova-text">{{ page.title }}</h1>
 
-      <div class="sun">
-        <div class="ray_box">
-          <div class="ray ray1"></div>
-          <div class="ray ray2"></div>
-          <div class="ray ray3"></div>
-          <div class="ray ray4"></div>
-          <div class="ray ray5"></div>
-          <div class="ray ray6"></div>
-          <div class="ray ray7"></div>
-          <div class="ray ray8"></div>
-          <div class="ray ray9"></div>
-          <div class="ray ray10"></div>
-        </div>
-      </div>
+<!--      <div class="sun">-->
+<!--        <div class="ray_box">-->
+<!--          <div class="ray ray1"></div>-->
+<!--          <div class="ray ray2"></div>-->
+<!--          <div class="ray ray3"></div>-->
+<!--          <div class="ray ray4"></div>-->
+<!--          <div class="ray ray5"></div>-->
+<!--          <div class="ray ray6"></div>-->
+<!--          <div class="ray ray7"></div>-->
+<!--          <div class="ray ray8"></div>-->
+<!--          <div class="ray ray9"></div>-->
+<!--          <div class="ray ray10"></div>-->
+<!--        </div>-->
+<!--      </div>-->
 
       <div class="button-container">
       <a href="#about-section" class="parallax-button">About Sunnova</a>
@@ -56,17 +56,12 @@
 
       <div id="initial-overlay" class="initial-overlay"></div>
 
-      <!--Dealership SVG-->
-      <div class="svg-parallax-wrapper">
         <div class="dealership-svg-container">
           <img id="DealershipSVG" src="assets/js/sunnova/dealership.svg" alt="dealership" />
-        </div>
       </div>
 
-      <div class="svg-parallax-wrapper">
-        <div class="phone-svg-container">
-          <img id="phoneSvg" src="assets/js/sunnova/phone.svg" alt="phone" />
-        </div>
+      <div class="phone-svg-container">
+        <img id="phoneSvg" src="assets/js/sunnova/phone.svg" alt="phone" />
       </div>
 
       <div class="gradient-overlay"></div>
@@ -76,22 +71,14 @@
 <!--####################-->
 <!--#######ABOUT#######-->
 <!--####################-->
-
-<div class="section-padding about-section sticky-section" id="about-section">
-  <p>{{ page.about }}</p>
-  <p>{{ page.about1 }}</p>
-  <p>{{ page.about2 }}</p>
-
-  <div id="loader" class="loader">
-    <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+<div class="about-background">
+  <div class="center-section-padding about-section top-divider" id="about-section">
+    <p>{{ page.about }}</p>
+    <p>{{ page.about1 }}</p>
+    <p>{{ page.about2 }}</p>
   </div>
-
-  <div id="animation-trigger"></div>
-  <div class="threejs-container1">
-    <canvas id="threejs-canvas1"></canvas>
-    <button id="nextButton">Next</button>
-  </div>
-
+  <div class="desertSunBackground"></div>
+</div>
 
 <!--DEALERSHIP SVG -->
 <!--<div class="svg-container">-->
@@ -104,44 +91,115 @@
 <!--    <object id="mySvg1" type="image/svg+xml" data="assets/img/sunnova/texas_outline.svg" preserveAspectRatio="none" alt="Sunnova Splash"></object>-->
 <!--  </div>-->
 
-  <div class="section-padding">
-    <div class="aboutGradientBackground"></div> <!-- Position this before the bento box -->
-    <div class="bento-box">
-      <div class="small-box content-wrapper">
-        <img src="/assets/img/sunnnovaSolarHome.svg" alt="Solar Home" class="svg-icon">
-        {{ page.customers }}
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaGermany.svg" alt="Germany" class="germany-icon">
-        <img src="/assets/img/sunnovaUS.svg" alt="US" class="svg-icon">
-        {{ page.locations }}
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaIPO.svg" alt="IPO" class="svg-icon">
-        Founded in {{ page.founded }}<br>
-        {{ page.ipo_info }}
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaInstall.svg" alt="Install" class="svg-icon">
-        {{ page.dealers }}
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaImprovement.svg" alt="Improvement" class="svg-icon">
-        {{ page.app_reeditions }}
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaDOE.svg" alt="DOE" class="svg-icon">
-        {{ page.energy_loan }}
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaSalesforce.svg" alt="Salesforce" class="svg-icon">
-        {{ page.salesforce }}
-      </div>
-      <div class="small-box">
-        <img src="/assets/img/sunnovaDailyInstalls.svg" alt="Daily Installs" class="svg-icon">
-        {{ page.daily_installs }}
-      </div>
+  <div class="desert-background">
+  <div class="desert-svg-container">
+    <img id="desertPanelSvg" src="assets/img/sunnova/panelsInDesert.svg" alt="soalr panels in the desert" />
+  </div>
+  </div>
+
+  <div class="bento-gradient-background">
+    <div class="bento-description">
+      <img id="bentoDescription" src="assets/img/sunnova/bentoDescription.svg" alt="lineDrawing1" />
     </div>
+    <div class="">
+      <div class="expandable-content-row" aria-hidden="true"></div>
+        <div class="bento-box">
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnnovaSolarHome.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Solar Home" class="svg-icon">
+            </div>
+            <p> {{ page.customers }} </p>
+            <div class="detail-content">
+              <p>{{page.customers1}}</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaWorldMap.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="IPO" class="svg-icon">
+            </div>
+            <p> {{ page.locations }}</p>
+            <div class="detail-content">
+              <p>{{page.locations1}}</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaFounding.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt=Foounding" class="svg-icon">
+            </div>
+            <p>{{ page.founded }}</p>
+            <div class="detail-content">
+              <p>{{page.founded1}}</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaIPO.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="IPO" class="svg-icon">
+            </div>
+            <p> {{ page.ipo_info }}</p>
+            <div class="detail-content">
+              <p>{{page.ipo_info1}}</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaInstall.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Install" class="svg-icon">
+            </div>
+            <p>{{ page.dealers }}</p>
+            <div class="detail-content">
+              <p>{{page.dealers1}}</p>
+            </div>
+          </div>
+
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaImprovement.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Improvement" class="svg-icon">
+            </div>
+            <p>{{ page.app_reeditions }}</p>
+            <div class="detail-content">
+              <p>{{page.app_reeditions1}}</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaDOE.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="DOE" class="svg-icon">
+            </div>
+            <p>{{ page.energy_loan }}</p>
+            <div class="detail-content">
+              <p>{{page.energy_loan1}}</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaSalesforce.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Salesforce" class="svg-icon">
+            </div>
+            <p>{{ page.salesforce }}</p>
+            <div class="detail-content">
+              <p>{{page.salesforce1}}</p>
+            </div>
+          </div>
+          <div class="small-box">
+            <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaDailyInstalls.svg');">
+              <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Daily Installs" class="svg-icon">
+            </div>
+            <p> {{ page.daily_installs }}</p>
+            <div class="detail-content">
+              <p>{{page.daily_installs1}}</p>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class= "content-container">
+  <div id="animation-trigger"></div>
+  <div class="threejs-container1">
+    <div id="loader" class="loader">
+      <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+    </div>
+    <canvas id="threejs-canvas1"></canvas>
+    <!--    <button id="nextButton">Next</button>-->
+    <button id="resetButton">Reset Animations</button>
+  </div>
 </div>
 
 
@@ -151,11 +209,11 @@
   <!--######FEATURES######-->
   <!--####################-->
 
-  <div class="section-padding" id="features-section">
+  <div class="center-section-padding" id="features-section">
     <h2>App Features</h2>
   </div>
 
-  <div class="section-padding" >
+  <div class="center-section-padding" >
     <h2> Department of Energy </h2>
     <p>{{ page.doe_loan }}</p>
     <p>{{ page.doe_hestia }}</p>
@@ -196,7 +254,7 @@
 <!--####ARCHITECTURE####-->
 <!--####################-->
 
-  <div class="section-padding" id="architecture-section">
+  <div class="center-section-padding" id="architecture-section">
   <h2>App Architecture</h2>
   <p>{{ page.architecture }}</p>
 
@@ -236,7 +294,6 @@
 
 
 
-</div>
 
 <!-- 3D rendering-->
 <!--<div class="threejs-container">-->

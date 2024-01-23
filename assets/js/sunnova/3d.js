@@ -1,6 +1,39 @@
 import * as THREE from "https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.module.js";
 import { GLTFLoader } from "https://cdn.jsdelivr.net/gh/mrdoob/three.js@r121/examples/jsm/loaders/GLTFLoader.js";
 
+function setRendererSize() {
+    const container = document.querySelector('.threejs-container1');
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    console.log('Renderer Size:', width, height); // Add this line for debugging
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+}
+
+
+// setup the animation to only start when in view
+const animationTrigger = document.getElementById("animation-trigger");
+const options = {
+    root: null, // Observe the entire viewport
+    threshold: 0.7, // Trigger when 50% of the element is visible
+};
+const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+        startAnimation(); // Call a function to start the animation
+        observer.disconnect(); // Stop observing after starting
+    }
+}, options);
+observer.observe(animationTrigger);
+
+function startAnimation() {
+    animationStarted = true;
+    shouldAnimate = true; // Assuming this controls the animation loop
+    animate();
+}
+let animationStarted = false;
+
+
 // Set up the scene, camera, and renderer as global variables
 let scene, camera, renderer, mixer;
 let nextButtonClicked = false;
@@ -17,14 +50,17 @@ function init() {
 
     // Set up the renderer
     renderer = new THREE.WebGLRenderer({antialias: true, canvas: document.getElementById("threejs-canvas1")});
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
 
+    // Use this function to set the size based on the container's dimensions
+    setRendererSize();
+
+    renderer.setPixelRatio(window.devicePixelRatio);
     setupLights();
     window.addEventListener("resize", onWindowResize);
     initModel();
-    console.log("Scene initialized");
+    // console.log("Scene initialized");
 }
+document.addEventListener("DOMContentLoaded", onWindowResize);
 
 function setupLights() {
     const mainLight = new THREE.DirectionalLight(0xffffff, 5);
@@ -43,10 +79,12 @@ function setupLights() {
 }
 
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    const container = document.querySelector('.threejs-container1');
+    camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(container.clientWidth, container.clientHeight);
 }
+
 
 const frameRate = 30; // Frame rate of your Blender animation
 let startTime = null; // Start time of the animation
@@ -55,7 +93,7 @@ let actions = {};  // Actions dictionary should be in a higher scope to be acces
 function initModel() {
     const loader = new GLTFLoader();
     const progressBarElement = document.getElementById("progress-bar");
-    loader.load("assets/js/sunnova/install_scene.glb", function (gltf) {
+    loader.load("assets/js/sunnova/install_scene1.glb", function (gltf) {
         scene.add(gltf.scene);
 
         mixer = new THREE.AnimationMixer(gltf.scene);
@@ -64,7 +102,7 @@ function initModel() {
         fetch("assets/js/sunnova/exported_actions.json")
             .then(response => response.json())
             .then(exportedActions => {
-                console.log("Animations loaded:", exportedActions);
+                // console.log("Animations loaded:", exportedActions);
 
                 // Setup the actions dictionary and schedule animations
                 gltf.animations.forEach((clip) => {
@@ -83,22 +121,40 @@ function initModel() {
                 });
             });
 
-        // Next button event listener
-        document.getElementById("nextButton").addEventListener("click", function() {
-            console.log("Next button clicked");
-            nextButtonClicked = true;
-            isPaused = false;
+        // // Next button event listener
+        // document.getElementById("nextButton").addEventListener("click", function() {
+        //     console.log("Next button clicked");
+        //     nextButtonClicked = true;
+        //     isPaused = false;
+        //
+        //     // Retrieve the house object to focus the camera on it
+        //     const house = scene.getObjectByName("overhand_wall_004_mesh_n3d");
+        //     if (house) {
+        //         if (!house.geometry.boundingBox) {
+        //             house.geometry.computeBoundingBox();
+        //             console.log("Computed bounding box", house.geometry.boundingBox);
+        //         }
+        //         moveCamera();
+        //     }
+        // });
 
-            // Retrieve the house object to focus the camera on it
-            const house = scene.getObjectByName("overhand_wall_004_mesh_n3d");
-            if (house) {
-                if (!house.geometry.boundingBox) {
-                    house.geometry.computeBoundingBox();
-                    console.log("Computed bounding box", house.geometry.boundingBox);
+        document.getElementById("resetButton").addEventListener("click", resetAnimations);
+        function resetAnimations() {
+            // console.log("Resetting animations. Current state:", { shouldAnimate, isPaused, startTime });
+            if (mixer) {
+                mixer.stopAllAction(); // Stop all current actions
+                for (let actionName in actions) {
+                    actions[actionName].reset(); // Reset each action
+                    actions[actionName].play(); // Replay if needed, or remove this line to just reset without playing
                 }
-                moveCamera();
             }
-        }); // Close addEventListener here
+            // Reset other animation-related variables if needed
+            isPaused = false;
+            shouldAnimate = true;
+            startTime = Date.now(); // Reset start time for new animation cycle
+            // console.log("Animations reset. New state:", { shouldAnimate, isPaused, startTime });
+        }
+
 
         startTime = Date.now();
         animate();
@@ -120,15 +176,16 @@ function playAction(name) {
 }
 
 function scheduleAction(name, delay) {
+    // console.log(`Scheduling action ${name} with delay ${delay}`);
     if (delay <= 0) {
         playAction(name);
     } else {
         setTimeout(() => playAction(name), delay * 1000); // delay in seconds
     }
 }
-// console.log(`Animation loaded: ${clip.name}, Duration: ${clip.duration}`);
+
 function calculateDelay(startFrame) {
-    console.log(`Received start frame: ${startFrame}, type: ${typeof startFrame}`);
+    // console.log(`Received start frame: ${startFrame}, type: ${typeof startFrame}`);
     startFrame = Number(startFrame); // Cast to number to ensure correct type
 
     if (isNaN(startFrame)) {
@@ -156,76 +213,79 @@ let isPaused = false;
 let currentFrame = 0;
 
 function animate() {
-    // console.log("Animating scene", currentFrame);
-    if (!shouldAnimate) {
-        return;
-    }
-    requestAnimationFrame(animate);
-
-    const delta = clock.getDelta(); // Get the time elapsed since the last call
-
-    if (mixer && !isPaused) { // Ensure mixer updates only when not paused
-        mixer.update(delta);
-
-        // Calculate the current frame
-        const elapsedTime = (Date.now() - startTime) / 1000; // Time in seconds
-        currentFrame = elapsedTime * frameRate;
-
-        if (currentFrame >= 60) {
-            isPaused = true;
-            document.getElementById("nextButton").style.display = "block";}
-
-        // Stop the animation after it exceeds the length of the animation
-        if (currentFrame > 150) {
-            shouldAnimate = false;
-            mixer.stopAllAction();
+    if (animationStarted) {
+        // console.log("Animating scene", currentFrame);
+        if (!shouldAnimate) {
+            return;
         }
-    }
+        requestAnimationFrame(animate);
 
-    // Update the camera to follow the van
-    const van = scene.getObjectByName("Van_Plane_Van_Plane_n3d");
-    if (van) {
-        const vanPosition = new THREE.Vector3();
-        van.getWorldPosition(vanPosition);
-        const vanDirection = new THREE.Vector3();
-        van.getWorldDirection(vanDirection);
-        vanDirection.normalize();
+        const delta = clock.getDelta(); // Get the time elapsed since the last call
 
-        // Calculate the desired camera position
-        // Create a vector that represents
-        // the right direction relative to the van
-        const rightDirection = new THREE.Vector3();
-        rightDirection.crossVectors(vanDirection, new THREE.Vector3(0, 1, 0)).normalize();
-
-        // Calculate the offset in the right direction and the forward direction
-        const rightOffset = rightDirection.multiplyScalar(offset.x);
-        const forwardOffset = vanDirection.multiplyScalar(offset.z);
-
-        // Combine all components of the offset
-        const desiredPosition = vanPosition.clone()
-            .add(rightOffset) // Add the right offset
-            .add(new THREE.Vector3(0, offset.y, 0)) // Add the upward offset
-            .add(forwardOffset); // Add the forward offset
-
-        // Optionally, smoothly interpolate the camera position
-        camera.position.lerp(desiredPosition, 0.05); // Smoothing factor, adjust as needed
-
-        camera.lookAt(vanPosition); // Ensure the camera is always looking at the van
-    }
-
-    if (!isPaused) {
-        const elapsedTime = (Date.now() - startTime) / 1000;
-        currentFrame = elapsedTime * frameRate;
-
-        if (currentFrame >= 60) {
-            isPaused = true;
-            document.getElementById("nextButton").style.display = "block"; // Show the next button
-        } else if (mixer) {
+        if (mixer && !isPaused) { // Ensure mixer updates only when not paused
             mixer.update(delta);
-        }
-    }
 
-    renderer.render(scene, camera);
+            // Calculate the current frame
+            const elapsedTime = (Date.now() - startTime) / 1000; // Time in seconds
+            currentFrame = elapsedTime * frameRate;
+
+            // if (currentFrame >= 60) {
+            //     isPaused = true;
+            //     document.getElementById("nextButton").style.display = "block";
+            // }
+
+            // Stop the animation after it exceeds the length of the animation
+            if (currentFrame > 150) {
+                shouldAnimate = false;
+                mixer.stopAllAction();
+            }
+        }
+
+        // Update the camera to follow the van
+        const van = scene.getObjectByName("Van_Plane_Van_Plane_n3d");
+        if (van) {
+            const vanPosition = new THREE.Vector3();
+            van.getWorldPosition(vanPosition);
+            const vanDirection = new THREE.Vector3();
+            van.getWorldDirection(vanDirection);
+            vanDirection.normalize();
+
+            // Calculate the desired camera position
+            // Create a vector that represents
+            // the right direction relative to the van
+            const rightDirection = new THREE.Vector3();
+            rightDirection.crossVectors(vanDirection, new THREE.Vector3(0, 1, 0)).normalize();
+
+            // Calculate the offset in the right direction and the forward direction
+            const rightOffset = rightDirection.multiplyScalar(offset.x);
+            const forwardOffset = vanDirection.multiplyScalar(offset.z);
+
+            // Combine all components of the offset
+            const desiredPosition = vanPosition.clone()
+                .add(rightOffset) // Add the right offset
+                .add(new THREE.Vector3(0, offset.y, 0)) // Add the upward offset
+                .add(forwardOffset); // Add the forward offset
+
+            // Optionally, smoothly interpolate the camera position
+            camera.position.lerp(desiredPosition, 0.05); // Smoothing factor, adjust as needed
+
+            camera.lookAt(vanPosition); // Ensure the camera is always looking at the van
+        }
+
+        if (!isPaused) {
+            const elapsedTime = (Date.now() - startTime) / 1000;
+            currentFrame = elapsedTime * frameRate;
+
+            if (currentFrame >= 149) {
+                isPaused = true;
+                document.getElementById("resetButton").style.display = "block"; // Show the next button
+            } else if (mixer) {
+                mixer.update(delta);
+            }
+        }
+
+        renderer.render(scene, camera);
+    }
 }
 
 init();

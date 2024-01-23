@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    let itemWidth = $('.architecture-gallery-item').outerWidth(true);
     let galleryContainer = $('.architecture-gallery-container');
+    let itemWidth = galleryContainer.children().first().width();
     let maxScroll = galleryContainer[0].scrollWidth - galleryContainer.width();
 
     function checkButtons() {
