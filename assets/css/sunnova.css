@@ -35,23 +35,21 @@ h2 {
 }
 
 h3 {
-    font-family: 'Quattrocento Sans', sans-serif;
-    font-weight: 700;
+    font-family: 'Quattrocento', serif;
+    font-weight: 400;
     font-size: 2.25rem; /* equivalent to 36px when root is 16px */
+    flex: 0 0 auto;
 }
 
 p {
     font-family: 'Cinzel Sans', serif;
-    color: inherit;
+    /*color: inherit;*/
     /*background-color: white;*/
-    /*font-size: 1.5rem; !* equivalent to 16px when root is 16px *!*/
-    word-break: break-word; /* Break words if they are too long for the container */
-    white-space: pre-wrap; /* Honor newlines and spaces, and allow wrapping */
-    overflow-y: auto; /* Add vertical scrolling if the content is too tall */
     font-size: 1.5rem;
     z-index: 10;
-    /*width: 90vw;*/
 }
+
+
 
 
 
@@ -148,18 +146,18 @@ p {
     z-index: 2;
 }
 
-/* Gradient animation */
-@keyframes gradient {
-    0% {
-        background: transparent;
-    }
-    50% {
-        background: rgba(255, 255, 255, 0.3);
-    }
-    100% {
-        background: transparent;
-    }
-}
+/*!* Gradient animation *!*/
+/*@keyframes gradient {*/
+/*    0% {*/
+/*        background: transparent;*/
+/*    }*/
+/*    50% {*/
+/*        background: rgba(255, 255, 255, 0.3);*/
+/*    }*/
+/*    100% {*/
+/*        background: transparent;*/
+/*    }*/
+/*}*/
 
 .gradient-overlay {
     position: absolute;
@@ -167,8 +165,30 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(270deg, white, black);
-    opacity: 0.9;
+    background: linear-gradient(135deg, var(--darkOrange), black);
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.gradient-overlay2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(30deg, white, black);
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.gradient-overlay3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, black, black);
+    opacity: 0.8;
     z-index: 0;
 }
 
@@ -191,7 +211,7 @@ p {
     transform: translateX(-50%);
     display: flex;
     gap: 4vw;  /* Spacing between buttons */
-    z-index: 10;
+    z-index: 20;
     justify-content: center; /* Center buttons horizontally */
     flex-wrap: wrap; /* Wrap buttons if space is insufficient */
 }
@@ -210,7 +230,7 @@ p {
     color: black;
     overflow: hidden;
     transition: color 0.5s, background-color 0.3s, border-color 0.3s;
-    z-index: 5;
+    z-index: 20;
 }
 
 .parallax-button::before, .parallax-button::after {
@@ -265,9 +285,10 @@ p {
     width: 70%;
     height: auto;
     max-height: 50%;
+    z-index: 10;
 }
 
-#DealershipSVG {
+#dealershipSVG {
     width: 100%;
     height: auto;
 }
@@ -278,6 +299,7 @@ p {
     right: 0;
     width: 70%; /* This will control the size on mobile */
     max-height: 50%;
+    z-index: 11;
 }
 
 #phoneSvg {
@@ -295,6 +317,43 @@ p {
 }
 
 #desertPanelSvg {
+    width: 100%;
+    height: auto;
+}
+
+
+.site-survey-content-container{
+    display: flex; /* This enables flexbox */
+    align-items: center;
+    justify-content: space-between;
+}
+
+#roof-pitch-svg-container {
+    /*position: absolute;*/
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    /*max-height: 50vh;*/
+}
+
+#roofPitchSvg {
+    width: 100%;
+    height: auto;
+}
+
+#power-line-svg-container {
+    /*position: absolute;*/
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    /*max-height: 50vh;*/
+}
+
+#powerLineSvg {
     width: 100%;
     height: auto;
 }
@@ -323,7 +382,7 @@ p {
 
 
 
-#phoneSvg, #DealershipSVG, #desertPanelSvg {
+#phoneSvg, #dealershipSVG, #desertPanelSvg, #roofPitchSvg, #powerLineSvg {
     visibility: hidden; /* Hide the SVG containers initially */
 }
 
@@ -334,7 +393,8 @@ p {
 }
 
 .path {
-    visibility: hidden;
+    animation: dash 10s linear forwards;
+    animation-delay: 0.1s; /* or however long it takes to ensure the blink is not visible */
 }
 
 
@@ -344,11 +404,11 @@ p {
 
 .sun {
     position: absolute;
-    bottom:66%;
-    right:10%;
+    bottom:60%;
+    right:25%;
     margin: auto;
-    width:15vh;
-    height:15vh;
+    width: 10vw;
+    aspect-ratio: 1 / 1;
     border-radius:50%;
     background:white;
     opacity:0.9;
@@ -369,7 +429,7 @@ p {
     z-index: 3;
 }
 .ray {
-    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, var(--gray) 50%, rgba(255,255,255,0) 100%);
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 100%);
     background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
     margin-left:10px;
     border-radius:80% 80% 0 0;
@@ -506,7 +566,7 @@ p {
     text-decoration: none;
     color: var(--yellow);
     border-bottom: 1px white;
-    font-size: 2vw;
+    font-size: 2rem;
 }
 
 .menu-items a:last-child {
@@ -531,7 +591,7 @@ p {
 
 .scroll-progress-bar {
     height: 1vh;
-    background: var(--yellow);
+    background: black;
     position: sticky;
     top: 0;
     left: 0;
@@ -539,6 +599,53 @@ p {
     z-index: 1000;
 }
 
+
+/*.divider{*/
+/*    !*margin-top: 10vh;*!*/
+/*    !*z-index: 10001;*!*/
+/*    !*background-color: white;*!*/
+/*    !*transform: translateY(10vh);*!*/
+/*    width: 100vw;*/
+/*    height: 20vh;*/
+/*}*/
+
+/* CSS for mobile first: .divider1 will be styled this way on mobile */
+.divider {
+    display: none; /* or any other default mobile styling */
+    height: 10vh;
+}
+
+.divider1{
+    width: 100vw;
+    height: 40vh;
+}
+
+/* Hide the divider by default for mobile or smaller screens */
+.desktop-divider {
+    display: none;
+}
+
+/* Show the divider on screens wider than 1000px */
+@media (min-width: 1001px) {
+    .desktop-divider {
+        display: block;
+        height: 10vh; /* Example height */
+        margin: 20px 0; /* Example margin, adjust as needed */
+    }
+}
+
+.desktop-divider2 {
+    display: none;
+}
+
+/* Show the divider on screens wider than 1000px */
+@media (min-width: 768px) {
+    .desktop-divider2 {
+        display: block;
+        height: 10rem; /* Example height */
+        margin: 20px 0; /* Example margin, adjust as needed */
+    }
+}
 
 
 /*############
@@ -561,7 +668,7 @@ p {
     height: 100%;
     background: linear-gradient(180deg, var(--white), var(--lightBlue));
     opacity: 1;
-    z-index: 0;
+    z-index: 1;
 }
 
 .desert-background {
@@ -577,9 +684,19 @@ p {
     position: relative;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, var(--lightYellow), var(--white));
+    background: linear-gradient(180deg, var(--lightYellow), white);
     opacity: 1;
     z-index: 0;
+}
+
+.site-survey-background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /*background: linear-gradient(180deg, var(--yellow), var(--lightYellow));*/
+    opacity: 1;
+    z-index: 0;
+    margin-bottom: -40vh;
 }
 
 .desertSunBackground {
@@ -592,7 +709,7 @@ p {
     left: 65%;
     /*transform: translateX(-50%);*/
     width: 30%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 8 / 7;
     filter: blur(calc(var(--size) / 5));
     background-image: linear-gradient(white, var(--lightYellow));
     animation: rotate var(--speed) var(--easing) alternate infinite;
@@ -602,26 +719,28 @@ p {
     /*background: linear-gradient(white, var(--lightGray));*/
 }
 
-
 .bento-box {
-    position: relative;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    /*grid-template-rows: repeat(3, 1fr);*/
     overflow: visible;
-    justify-content: center;
     align-items: center;
     gap: 5%;
     text-decoration-color: transparent;
     width: auto;
-    height: 60%;
-    z-index: 1;
+    height: 60vh;
     padding: 1rem;
     z-index: 999;
 }
 
+.expandable-content-container{
+    width: 100vw;
+    display: flex; /* Use flexbox to align children */
+    justify-content: center; /* Center horizontally */
+}
+
 .small-box {
-    position: relative;
+    position: sticky;
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2), 0 0.25rem 1.25rem 0 rgba(0, 0, 0, 0.19);
     display: flex;
     flex-direction: row; /* Stack items vertically */
@@ -629,56 +748,126 @@ p {
     justify-content: center; /* Center items vertically */
     text-align: center;
     padding: 5%;
-    border-radius: 0%; /* Make the boxes circular */
-    overflow: hidden; /* Hide overflow content */
-    /*border-radius: 50%;*/
-    /*width: 0%;*/
-    height: 70%;
-    aspect-ratio: 10 / 4;
+    border-radius: 0%;
+    overflow: hidden;
+    width: 70%;
+    height: 50%;
     margin: auto;
     z-index: 999;
+    /*background: red;*/
+}
+
+.small-box .detail-content {
+    /*position: absolute; !important;*/
+    padding: 10px;
+    bottom: 0;
+    left: 0;
+    visibility: visible;
+    transition: max-height 0.3s ease;
+    z-index: 999;
+    /*display: flex;*/
+    /*flex-wrap: nowrap;*/
 }
 
 .detail-content {
     position: absolute;
-    width: 100%;
-    padding: 10px;
-    max-height: none; /* Ensure the detail content can fit */
-    visibility: hidden; /* Hide the detail content initially */
-    bottom: 0; /* Align with the bottom */
-    left: 0; /* Align to the left */
-    transform: translateY(100%); /* Move it down outside the expandable-content-row */
-    visibility: hidden; /* Hide the detail content initially */
-    transition: max-height 0.3s ease;
-    z-index: 999;
+    /*padding: 10px;*/
+    display: block;
+    justify-content: center;
+    flex-direction: row; /* Align children horizontally */
+    align-items: center; /* Center items vertically */
+    flex-wrap: wrap; /* Allow items to wrap onto the next line */
 }
 
-.expandable-content-row {
-    display: grid;
-    grid-column: 1 / -1; /* Span all columns */
-    height: 25rem; /* Fixed height for the description */
-    overflow: hidden; /* Hide overflow content */
-    z-index: 3;
-    margin-bottom: 0rem; /* Adjust as necessary to create space between description and boxes */
-    position: relative;
-    z-index: 3;
-    top: 16rem; /* Start at the vertical center of the parent */
-    left: 50%; /* Start at the horizontal center of the parent */
-    transform: translate(-50%, -50%); /* Center it precisely */
-    width: 70%; /* Adjust the width to fit the white space */
-    padding: 2rem; /* Add some padding inside the content row */
-    text-align: center;
-    align-items: stretch;
-    z-index: 998;
+.video-container {
+    text-align: center; /* Center the iframe */
+    overflow: hidden; /* Ensures no overflow from the iframe */
+    /* Optional: Depending on your layout, you might want to add padding or margins here */
 }
 
-.bento-description {
-    position: absolute;
-    top: -20%;
-    left: 0;
-    width: 50%;
-    height: 50%;
-    max-height: 50%;
+.responsive-video {
+    width: 100%; /* Make the video take up the full width of its container */
+    height: 40vh; /* Set a default height; adjust as necessary */
+    max-width: 100%; /* Ensures the video does not exceed its container's width */
+    /* Helps maintain aspect ratio for different screens, adjust height as necessary */
+}
+
+.detail-content-header {
+    width: 20rem;
+}
+
+.detail-content-header h3 {
+    display: block;
+    /*flex-direction: row; !* Stack items vertically *!*/
+    /*align-items: center; !* Center items horizontally *!*/
+    /*justify-content: center; !* Center items vertically *!*/
+    /*text-align: center;*/
+    /*font-family: 'Quattrocento', serif; !* Match the font family of h3 *!*/
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 400; /* Match the font weight of h3 */
+    font-size: 2.25rem; /* Match the font size of h3, equivalent to 36px when root is 16px */
+    color: var(--lightYellow); /* Match the color of h3 */
+    background-color: black;
+    line-height: 3rem; /* Match the line height of h3 */
+    margin-right: 1rem; /* Space between this paragraph and anything that follows */
+    margin-top: -1.5rem;
+    margin-bottom: -1.5rem;
+    /* Remove any additional margin or padding that might be causing layout issues */
+    padding: 0;
+}
+
+.detail-content p {
+    /*flex: 1; !* Allow p to fill up the remaining space *!*/
+}
+
+.expandable-content-row-top-container {
+    height: 25rem; /* or whatever fixed height you prefer */
+    /*flex-direction: row; !* Stack children vertically *!*/
+    justify-content: flex-end;
+    /*align-items: center; !* Center vertically *!*/
+    /*display: flex;*/
+}
+
+.expandable-content-row-top {
+    /*display: block; !* Use flexbox to align children *!*/
+    flex-wrap: wrap;
+    /*flex-direction: column; !* Stack children vertically *!*/
+    /*justify-content: center; !* Center horizontally *!*/
+    /*align-items: center; !* Center vertically *!*/
+    /*height: 10rem; !* or whatever fixed height you prefer *!*/
+    width: 80%; /* Take full width of the container */
+    margin-bottom: 0rem;
+    margin-top: 5rem;
+    padding: 2rem;
+    /*text-align: center;*/
+    border: 2px solid black; /* This is just for debugging purposes */
+    border-radius: 2rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2), 0 0.25rem 1.25rem 0 rgba(0, 0, 0, 0.19);
+    /*background-color: var(--lightYellow);*/
+}
+
+
+.expandable-content-row-bottom-container {
+    margin-top: 3rem;
+    /*height: 25rem; !* or whatever fixed height you prefer *!*/
+    /*flex-direction: column; !* Stack children vertically *!*/
+    /*justify-content: center; !* Center horizontally *!*/
+    /*align-items: center; !* Center vertically *!*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+}
+
+.expandable-content-row-bottom {
+    /*display: flex; !* Use flexbox to align children *!*/
+    flex-wrap: wrap;
+    width: 80%; /* Take full width of the container */
+    margin-bottom: 0rem;
+    padding: 2rem;
+    /*text-align: center;*/
+    border: 2px solid black; /* This is just for debugging purposes */
+    border-radius: 2rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2), 0 0.25rem 1.25rem 0 rgba(0, 0, 0, 0.19);
+    /*background-color: var(--lightYellow);*/
 }
 
 .small-box .detail-content {
@@ -695,19 +884,27 @@ p {
     width: 30%;
     /*height: 100%;*/
     display: flex;
-    background: linear-gradient(45deg, var(--white), var(--orange), var(--darkOrange), var(--lightOrange), var(--yellow), var(--white));
+    background: linear-gradient(45deg, var(--white), var(--lightYellow), var(--yellow), var(--lightYellow), var(--lightOrange), var(--lightYellow), var(--white));
     background-size: 600% 100%;
     transition: background 0.3s ease;
+    margin-bottom: 0vh;
+    margin-right: 1vw;
+    z-index: 999;
 }
 
-/* Animate the gradient on hover */
-.svg-container:hover {
+.small-box:hover .svg-container {
     animation: gradient 30s linear infinite alternate;
 }
 
+.small-box:hover {
+    border: 2px solid var(--yellow);
+    background-color: black;
+    color: var(--lightYellow);
+}
+
 /* Hide the original SVG on hover */
-.svg-container:hover .svg-icon,
-.svg-container:active .svg-icon {
+.small-box:hover .svg-icon,
+.small-box:active .svg-icon {
     visibility: hidden;
 }
 
@@ -728,11 +925,29 @@ p {
     transform: none;
 }
 
+@media screen and (max-width: 768px) {
+    .expandable-content-row {
+        width: 85%;
+    }
+}
 
+@media screen and (max-width: 1000px) {
+    .small-box {
+        flex-direction: column; /* Change direction to column */
+        height: 85%;
+        width: 85%;
+    }
+}
 
-
-
-
+@media screen and (max-width: 768px) {
+    .svg-container {
+        margin-bottom: 0vh;
+        margin-right: 0vw;
+    }
+    /*.p {*/
+    /*    font-size: 1rem;*/
+    /*}*/
+}
 
 
 
@@ -741,13 +956,183 @@ p {
 /*### FEATURES ###*/
 /*####################*/
 
-.center-section-padding {
-    padding: 10%;
-    /*right: 35vw;*/
-    align-items: center;
-    justify-content: center;
+.app-features {
+    /*margin-top: -3vh;*/
+    z-index: 100;
 }
 
+/*### site survey ###*/
+
+.roof-pitch-container {
+    position: relative;
+    display: block;
+    width: 50%;
+    height: auto;
+    /*top: -60vh;*/
+    left: 5vh;
+}
+
+.roof-pitch-svg-container {
+    position: relative;
+    display: block;
+    top: 0%;
+    left: 0;
+    width: 60%;
+    height: auto;
+    z-index: 2;
+}
+
+
+.roofPitchCircleContainer{
+    z-index: 0;
+    margin-bottom: 10vh;
+}
+
+.roofPitchSpinningCircle {
+    --size: 40rem;
+    --speed: 10s;
+    --easing: cubic-bezier(0.8, 0.5, 0.8, 0.5);
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 70%;
+    aspect-ratio:1/1;
+    filter: blur(calc(var(--size) / 8));
+    background-image: linear-gradient(var(--white), var(--lightGray), white);
+    animation: rotate var(--speed) var(--easing) alternate infinite;
+    border-radius: 50% 50% 50% 50%/50% 50% 50% 50%;
+    /*background-color: #222;*/
+    overflow: visible;
+}
+
+
+.rafters-container {
+    position: relative;
+    display: block;
+    width: 50%;
+    height: auto;
+    /*top: 30vh;*/
+}
+
+.rafters-svg-container {
+    position: relative;
+    display: block;
+    top: 0%;
+    left: 0;
+    width: 60%;
+    height: auto;
+    z-index: 2;
+}
+
+
+.raftersCircleContainer{
+    z-index: 0;
+    margin-bottom: 10vh;
+}
+
+.raftersSpinningCircle {
+    --size: 40rem;
+    --speed: 10s;
+    --easing: cubic-bezier(0.8, 0.5, 0.8, 0.5);
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 70%;
+    aspect-ratio:1/1;
+    filter: blur(calc(var(--size) / 8));
+    background-image: linear-gradient(var(--lightGray), var(--darkGrey), var(--lightGray));
+    animation: rotate var(--speed) var(--easing) alternate infinite;
+    border-radius: 50% 50% 50% 50%/50% 50% 50% 50%;
+    overflow: visible;
+}
+
+.sub-panel-container {
+    position: relative;
+    display: block;
+    width: 50%;
+    height: auto;
+    /*top: -65vh;*/
+    left: 5vh;
+}
+
+.sub-panel-svg-container {
+    position: relative;
+    display: block;
+    top: 0%;
+    left: 0;
+    width: 60%;
+    height: auto;
+    z-index: 2;
+}
+
+
+.subPanelCircleContainer{
+    z-index: 0;
+    margin-bottom: 10vh;
+}
+
+.subPanelSpinningCircle {
+    --size: 40rem;
+    --speed: 10s;
+    --easing: cubic-bezier(0.8, 0.5, 0.8, 0.5);
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 70%;
+    aspect-ratio:1/1;
+    filter: blur(calc(var(--size) / 8));
+    background-image: linear-gradient( black, var(--lightGray));
+    animation: rotate var(--speed) var(--easing) alternate infinite;
+    border-radius: 50% 50% 50% 50%/50% 50% 50% 50%;
+    overflow: visible;
+}
+
+.power-line-container {
+    position: relative;
+    display: block;
+    width: 50%;
+    height: auto;
+    /*top: 30vh;*/
+}
+
+.power-line-svg-container {
+    position: relative;
+    display: block;
+    top: 0%;
+    left: 0;
+    width: 60%;
+    height: auto;
+    z-index: 2;
+}
+
+
+.powerLineCircleContainer{
+    z-index: 0;
+    margin-bottom: 10vh;
+}
+
+.powerLineSpinningCircle {
+    --size: 40rem;
+    --speed: 10s;
+    --easing: cubic-bezier(0.8, 0.5, 0.8, 0.5);
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 70%;
+    aspect-ratio:1/1;
+    filter: blur(calc(var(--size) / 8));
+    background-image: linear-gradient(black, var(--darkGrey));;
+    animation: rotate var(--speed) var(--easing) alternate infinite;
+    border-radius: 50% 50% 50% 50%/50% 50% 50% 50%;
+    overflow: visible;
+}
+
+
+
+
+
+
+/*### 3D rendering ###*/
 .loader {
     width: 100%;
     background-color: #ddd;
@@ -822,23 +1207,40 @@ p {
     /*position: absolute; !* Ensure positioning *!*/
 }
 
-
-.circle-path-container {
+.DOE-section-container {
+    display: flex;
+    flex-direction: row; /* Stack them by default */
     position: relative;
-    width: 40vh;
-    height: 50vh;
-    margin: auto;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
 }
 
-.circle-path-container::before {
+
+.doeCircle-container {
+    flex: 0 0 auto; /* Do not grow or shrink */
+    position: relative;
+    width: 35vw;
+    margin: auto;
+    left: 60vw;
+    /*top: 0vw;*/
+    z-index: 10;
+    /*background-color: var(--darkGrey);*/
+    border-radius: 50%;
+    background-color: rgba(251, 249, 193, 0.7);
+    pointer-events: none;
+}
+
+.doeCircle-container::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.1); // Use a semi-transparent color for visibility
-border-radius: 50%;
+    /*background-color: rgba(0, 0, 0, 0.1); // Use a semi-transparent color for visibility*/
+    border-radius: 100%;
     transform: translate(-50%, -50%);
     z-index: -1; // Place it behind the SVG content
 }
@@ -847,89 +1249,323 @@ border-radius: 50%;
     position: absolute;
     width: 48px; /* Width of the arrow image */
     height: 48px; /* Height of the arrow image */
-    top: 0;
+    top: 0%;
     left: 50%;
-    transform-origin: 50% calc(100% + 30vw); /* Half of the image width and offset by the radius of the circle */
-    transform: translate(-50%, -50%) rotate(0deg);
-    z-index: 2; /* Above the circle, below the SVG */
+    transform-origin: 50% calc(50% + 10vw); /* Half of the image width and offset by the radius of the circle */
+    /*transform: translate(-50%, -50%) rotate(0deg);*/
+    z-index: 10; /* Above the circle, below the SVG */
 }
 
-/*### hestia background ### */
+/*@media screen and (max-width: 768px) {*/
+/*    #moving-arrow {*/
+/*        position: absolute;*/
+/*        width: 48px; !* Width of the arrow image *!*/
+/*        height: 48px; !* Height of the arrow image *!*/
+/*        top: 70vh;*/
+/*        left: 50%;*/
+/*        transform-origin: 50% calc(50% + 20vw); !* Half of the image width and offset by the radius of the circle *!*/
+/*        transform: translate(-50%, -50%) rotate(0deg);*/
+/*        z-index: 10; !* Above the circle, below the SVG *!*/
+/*    }*/
+/*}*/
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-
-
-
-.doe-container {
+.microgrid-container {
+    width: 100vw;
+    height: 60vh;
+    margin-left: -20px; /* Overlap the previous element by -20px */
+    z-index: 1; /* Below the doeCircle-container but above the base layer */
     position: relative;
-    width: 100%;
-    height: 60vw;
-    /*background-color: black;*/
 }
 
 #particles-js {
     z-index: 2;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 20vh;
+    right: 10vw;
     width: 100%;
     height: 100%;
-    /*mask: url('/assets/img/sunnova/particles_USA_mask.svg#usa-mask') no-repeat center / contain;*/
-    /*-webkit-mask: url('/assets/img/sunnova/particles_USA_mask.svg#usa-mask') no-repeat center / contain;*/
+    mask: url('/assets/img/sunnova/particles_USA_mask.svg#usa-mask') no-repeat center / contain;
+    -webkit-mask: url('/assets/img/sunnova/particles_USA_mask.svg#usa-mask') no-repeat center / contain;
 }
 
 #svgObject {
     display: block;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 20vh;
+    right: 10vw;
     width: 100%;
     height: 100%;
     pointer-events: auto; /* Changed to auto to make SVG interactive */
     overflow: visible;
 }
 
-.aboutDOE-image {
+/*@media screen and (max-width: 768px) {*/
+/*    #svgObject {*/
+/*        top: -500vh;*/
+/*    }*/
+/*}*/
+
+
+
+#svgObject1 {
+    /* other styles */
     position: absolute;
-    z-index: 2;
-    top: 10%; /* Adjust as needed to move the image from the top */
-    right: 10%; /* Adjust as needed to move the image from the right */
-    height: 10vh; /* Adjust the size of the image */
-    width: auto; /* Keep the image's aspect ratio */
-    transform: scale(0.33) translate(-50vw, 40vh) scaleX(-1);
-    transform-origin: top right; /* Pivot the scaling to the top right */
-    pointer-events: none; /* Allows click events to pass through the image */
-    opacity: 0.75;
-    /*opacity is inline in the html*/
+    /*top: 50%; !* Adjust as needed to the initial desired position *!*/
+    /*left: 50%;*/
+    transform: translate(-0%, -0%); /* Adjust translation to align it center at the beginning */
+    z-index: 2; /* Adjust if needed */
 }
 
 
 
 
+/*! Flickity v2.3.0
+https://flickity.metafizzy.co
+---------------------------------------------- */
+
+.flickity-enabled {
+    position: relative;
+}
+
+.flickity-enabled:focus { outline: none; }
+
+.flickity-viewport {
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+/*@media screen and (max-width: 768px) {*/
+/*    .flickity-viewport {*/
+/*        height: 120%;*/
+/*}*/
+
+.flickity-slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* draggable */
+
+.flickity-enabled.is-draggable {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport {
+    cursor: move;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}
+
+/* ---- flickity-button ---- */
+
+.flickity-button {
+    position: absolute;
+    background: white;
+    border: none;
+    color: #333;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2), 0 0.25rem 1.25rem 0 rgba(0, 0, 0, 0.19);
+}
+
+.flickity-button:hover {
+    background: black;
+    color: var(--lightYellow);
+    cursor: pointer;
+}
+
+.flickity-button:focus {
+    outline: none;
+    /*box-shadow: 0 0 0 5px #19F;*/
+}
+
+.flickity-button:active {
+    opacity: 0.6;
+}
+
+.flickity-button:disabled {
+    opacity: 0.3;
+    cursor: auto;
+    /* prevent disabled button from capturing pointer up event. #716 */
+    pointer-events: none;
+}
+
+.flickity-button-icon {
+    fill: currentColor;
+}
+
+/* ---- previous/next buttons ---- */
+
+.flickity-prev-next-button {
+    top: 50%;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    /* vertically center */
+    transform: translateY(-50%);
+}
+
+.flickity-prev-next-button.previous { left: 10px; }
+.flickity-prev-next-button.next { right: 10px; }
+/* right to left */
+.flickity-rtl .flickity-prev-next-button.previous {
+    left: auto;
+    right: 10px;
+}
+.flickity-rtl .flickity-prev-next-button.next {
+    right: auto;
+    left: 10px;
+}
+
+.flickity-prev-next-button .flickity-button-icon {
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    width: 60%;
+    height: 60%;
+}
+
+/* ---- page dots ---- */
+
+.flickity-page-dots {
+    position: absolute;
+    width: 100%;
+    bottom: -25px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    line-height: 1;
+}
+
+.flickity-rtl .flickity-page-dots { direction: rtl; }
+
+.flickity-page-dots .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 8px;
+    background: #333;
+    border-radius: 50%;
+    opacity: 0.25;
+    cursor: pointer;
+}
+
+.flickity-page-dots .dot.is-selected {
+    opacity: 1;
+}
+/*###################*/
+/*flickity css ^^ ######*/
+/*###################*/
+
+.gallery {
+    max-width: 60vw;
+    height: 100vh;
+    max-height: 100vh;
+    margin: 1rem auto 0 auto;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 1000px) {
+    .gallery {
+        width: 100vw;
+    }
+    .gallery-cell {
+        height: 100%;
+        width: 100vw;
+    }
+}
+
+.gallery .gallery-cell {
+    /*height: 100%;*/
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    background-color: var(--lightYellow);
+    border-radius: 5rem;
+}
+
+.gallery-nav {
+    max-width: 100vw;
+    margin: 0.5rem auto 5rem auto;
+}
+
+.gallery-nav .gallery-cell {
+    height: 6rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row; /* Stack items vertically */
+    width: 25%;
+    line-height: 45px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    color: var(--lightYellow);
+    background-color: black;
+}
+
+.gallery-nav .gallery-cell.is-nav-selected {
+    background-color: var(--darkGrey);
+}
+
+.commissioning-package h2 {
+    opacity: 0.7;
+}
+
+.commissioning-package-header {
+    height: 10rem;
+}
+
+.commissioning-package p {
+    background-color: #FFFFFF;
+    opacity: 0.7;
+    font-size: 1.5rem !important;
+}
+
+.commissioning-package {
+    height: 140rem;
+}
+
+ /*Medium devices (tablets, 768px and up)*/
+@media (max-width: 768px) {
+    .commissioning-package {
+       height: 90rem;
+    }
+}
 
 
 
+
+.handshake-container {
+    top: 20vh;
+    width: 100vw; /* Example width, adjust as needed */
+    height: 60vh;
+    overflow: visible;
+    position: relative; /* Change based on your layout needs */
+    margin: auto; /* Center the container if needed */
+    z-index: -1; /* Adjust based on your page's z-index requirements */
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+    .handshake-container {
+        top: 10vh;
+        height: 5vh;
+    }
+}
 
 
 
@@ -937,124 +1573,28 @@ border-radius: 50%;
 /*### ARCHITECTURE ###*/
 /*####################*/
 
-/*### architecture viewer ###*/
-
-.architecture-gallery-wrapper {
-    overflow-x: auto;
-    padding: 20px 0;
-    position: relative;
+.architecture-section {
+    /*margin-top: 50vh;*/
 }
 
-.architecture-gallery-container {
-    scroll-behavior: auto;
-    width: 400%;
-    height: 70vh;
-    align-content: center;
-    align-self: center;
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
+/*!* Medium devices (tablets, 768px and up) *!*/
+/*@media (min-width: 1000px) {*/
+/*    .architecture-section {*/
+/*        margin-top: -20vh;*/
+/*    }*/
+/*}*/
 
-.architecture-gallery-container::-webkit-scrollbar {
-    display: none;  /* Hide scrollbar for Chrome, Safari, and Opera */
-}
-
-.architecture-gallery-item {
-    display: flex;
-    flex-direction: column;
+.center-section-padding {
+    padding: 10%;
+    /*display: flex;*/
+    /*right: 35vw;*/
     align-items: center;
-    width: 100%;
-    margin-right: 10px;
-    /*height: 70vh;*/
-    box-sizing: border-box;
-    overflow-y: hidden;
-    white-space: normal;
-    word-wrap: break-word;
-}
-
-.architecture-gallery-item img {
-    max-height: 70%;
-    width: 100%;
-    display: block;
-    object-fit: contain;
-    object-position: center;
-    background-color: white;
-}
-.architecture-gallery-item-description{
-    max-height: 16rem;
-    width: 70%;
-    display: block;
-    object-fit: contain;
-    object-position: center;
-    align-items: center;
-    margin-left: 10%;
-    /*margin-right: 10%;*/
-    background-color: black;
-}
-
-.arrow-button {
-    width: 10vw; /* You can adjust this value as needed */
-    height: 10vw; /* This keeps the aspect ratio square */
-    /*max-width: 60px; !* Set a max width to avoid it becoming too large on big screens *!*/
-    /*max-height: 60px; !* Set a max height to match max width *!*/
-    border-radius: 50%;
-    background-color: white; /* Make the button background black */
-    border: none; /* Remove border if you want it completely black, or keep it if you want a border */
-    display: flex;
     justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 10; /* Ensure it's above other content */
-}
-
-.arrow-button.left::before {
-    content: '\2190';
-    font-size: 3rem;
-}
-
-.arrow-button.right::before {
-    content: '\2192';
-    font-size: 3rem;
 }
 
 
-.scroll-button {
-    position: absolute;
-    top: 30%;
-    transform: translateY(-50%);
-    color: black;
-}
 
-.scroll-button-left {
-    left: 0;
-}
-
-.scroll-button-right {
-    right: 0;
-}
-
-/* Add these to your existing CSS */
-.scroll-button-right.active {
-    color: var(--lightOrange);
-}
-
-.scroll-button-left.active {
-    color: var(--lightOrange);
-}
-
-.scroll-button-right.inactive {
-    color: var(--darkOrange);
-}
-
-.scroll-button-left.inactive {
-    color: var(--darkOrange);
-}
-
-
- /*Default styles - mobile first approach*/
+/*Default styles - mobile first approach*/
 .architecture-desktop {
     display: none;
     max-width: 100%;
@@ -1062,10 +1602,11 @@ border-radius: 50%;
 
 .architecture-mobile {
     max-width: 100%;
+    height: 100%;
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
     .architecture-mobile {
         display: none;
         max-width: 100%;
@@ -1074,22 +1615,3 @@ border-radius: 50%;
         display: block;
     }
 }
-
-.architecture-gallery-item-description h2 {
-    margin: 0;  /* Remove default margin */
-}
-
-.architecture-gallery-item-description p {
-    /*height: 10vh;  !* Adjust as needed *!*/
-    margin: 0;  /* Remove default margin */
-    padding-bottom: 10px;  /* Add padding to space it out */
-}
-.architecture-gallery-item-description h2,
-.architecture-gallery-item-description p {
-    color: white;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-}
-
-

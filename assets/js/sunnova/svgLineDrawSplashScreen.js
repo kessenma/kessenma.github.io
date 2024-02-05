@@ -2,12 +2,20 @@ document.addEventListener('DOMContentLoaded', function() {
     var observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
 
     var phoneSvg = document.getElementById('phoneSvg');
-    var dealershipSvg = document.getElementById('DealershipSVG');
+    var dealershipSvg = document.getElementById('dealershipSVG');
     var desertPanelSvg = document.getElementById('desertPanelSvg');
+    var roofPitch = document.getElementById('roofPitchSvg');
+    var powerLine = document.getElementById('powerLineSvg');
+    var rafters = document.getElementById('raftersSvg');
+    var subPanel = document.getElementById('subPanelSvg');
 
     observer.observe(phoneSvg);
     observer.observe(dealershipSvg);
     observer.observe(desertPanelSvg);
+    observer.observe(roofPitch);
+    observer.observe(powerLine);
+    observer.observe(rafters);
+    observer.observe(subPanel);
 });
 
 function hideInitialOverlay() {
@@ -33,38 +41,34 @@ function handleIntersection(entries, observer) {
 }
 
 function initSVGAnimation(imgElement) {
-    imgElement.style.visibility = 'visible'; // Ensure the container is visible
-
     fetch(imgElement.src)
         .then(response => response.text())
         .then(svgData => {
             var tempDiv = document.createElement("div");
             tempDiv.innerHTML = svgData;
             var svg = tempDiv.querySelector("svg");
-
-            // Prepare the animation for each path but do not start it yet
             var paths = svg.querySelectorAll('.path');
+
             paths.forEach(path => {
                 var length = path.getTotalLength();
                 path.style.strokeDasharray = length;
                 path.style.strokeDashoffset = length;
-                // Initially set visibility to hidden
                 path.style.visibility = 'hidden';
             });
 
-            // Insert the SVG and hide the original image
             imgElement.parentNode.insertBefore(svg, imgElement);
             imgElement.style.display = 'none';
 
-            // Make paths visible and start the animation
-            paths.forEach(path => {
-                // Set a slight delay to ensure the SVG is rendered before animation
-                setTimeout(() => {
+            requestAnimationFrame(() => {
+                paths.forEach(path => {
+                    path.getBoundingClientRect(); // Trigger reflow
                     path.style.visibility = 'visible';
                     path.style.animation = 'dash 10s linear forwards';
-                }, 50);
+                });
             });
         })
         .catch(error => console.error('Error loading SVG:', error));
 }
+
+
 

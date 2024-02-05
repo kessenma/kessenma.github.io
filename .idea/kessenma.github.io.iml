@@ -13,11 +13,13 @@
     <orderEntry type="library" name="GLTFLoader" level="application" />
     <orderEntry type="library" name="three.js" level="application" />
     <orderEntry type="library" name="OwlCarousel2" level="application" />
-    <orderEntry type="library" name="@svgdotjs" level="application" />
     <orderEntry type="library" name="jquery-3.6.0" level="application" />
+    <orderEntry type="library" name="OwlCarousel2" level="application" />
+    <orderEntry type="library" name="@svgdotjs" level="application" />
     <orderEntry type="library" name="svg.js" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
-    <orderEntry type="library" name="svg.js" level="application" />
+    <orderEntry type="library" name="@svgdotjs" level="application" />
+    <orderEntry type="library" name="two" level="application" />
   </component>
 </module>

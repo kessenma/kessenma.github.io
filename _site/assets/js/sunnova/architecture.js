@@ -1,50 +1,73 @@
+// $(document).ready(function() {
+//     let galleryContainer = $('.architecture-gallery-container');
+//     let $scrollButtonLeft = $('.scroll-button-left');
+//     let $scrollButtonRight = $('.scroll-button-right');
+//
+//     function calculateDimensions() {
+//         // Calculate the width of a single item
+//         itemWidth = galleryContainer.children('.architecture-gallery-item').first().outerWidth(true);
+//         // Calculate the maximum scroll distance
+//         maxScroll = galleryContainer[0].scrollWidth - galleryContainer.width();
+//         checkButtons();
+//     }
+//     $(window).on('load', function() {
+//         calculateDimensions();
+//         console.log('dimenstions:', calculateDimensions());
+//     });
+//
+//     function checkButtons() {
+//         let currentScroll = galleryContainer.scrollLeft();
+//
+//         $scrollButtonLeft.prop('disabled', currentScroll <= 0);
+//         $scrollButtonRight.prop('disabled', currentScroll >= maxScroll);
+//     }
+//
+//     galleryContainer.on('scroll', checkButtons);
+//     $(window).on('resize', calculateDimensions);
+//     calculateDimensions(); // Call this function on initial load as well
+//
+//     $scrollButtonLeft.click(function() {
+//         console.log('Left button clicked');
+//         console.log('Current itemWidth:', itemWidth);
+//         galleryContainer.animate({
+//             scrollLeft: '-=' + itemWidth
+//         }, 200, checkButtons);
+//     });
+//
+//     $scrollButtonRight.click(function() {
+//         console.log('Right button clicked');
+//         console.log('Current itemWidth:', itemWidth);
+//         galleryContainer.animate({
+//             scrollLeft: '+=' + itemWidth
+//         }, 200, checkButtons);
+//     });
+// });
+//
+
 $(document).ready(function() {
-    let galleryContainer = $('.architecture-gallery-container');
-    let itemWidth = galleryContainer.children().first().width();
-    let maxScroll = galleryContainer[0].scrollWidth - galleryContainer.width();
+    let currentIndex = 0;
+    let images = $('.architecture-gallery-item img').toArray();
+    updateImageViewer();
 
-    function checkButtons() {
-        let currentScroll = galleryContainer.scrollLeft();
-        let $scrollButtonLeft = $('.scroll-button-left');
-        let $scrollButtonRight = $('.scroll-button-right');
-
-        if (currentScroll <= 0) {
-            $scrollButtonLeft.prop('disabled', true).addClass('inactive').removeClass('active');
-        } else {
-            $scrollButtonLeft.prop('disabled', false).addClass('active').removeClass('inactive');
+    $('#prevButton').click(function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateImageViewer();
         }
+    });
 
-        if (currentScroll >= maxScroll - 1) { // "- 1" to fix any floating point inaccuracies
-            $scrollButtonRight.prop('disabled', true).addClass('inactive').removeClass('active');
-        } else {
-            $scrollButtonRight.prop('disabled', false).addClass('active').removeClass('inactive');
+    $('#nextButton').click(function() {
+        if (currentIndex < images.length - 1) {
+            currentIndex++;
+            updateImageViewer();
         }
+    });
+
+    function updateImageViewer() {
+        $('#imagesContainer img').removeClass('active');
+        $(images[currentIndex]).addClass('active');
+        // Optional: Update button states
+        $('#prevButton').prop('disabled', currentIndex === 0);
+        $('#nextButton').prop('disabled', currentIndex === images.length - 1);
     }
-
-    galleryContainer.on('scroll', checkButtons); // Check when manually scrolled
-    $(window).on('resize', function() { // Update maxScroll when window is resized
-        maxScroll = galleryContainer[0].scrollWidth - galleryContainer.width();
-        checkButtons(); // And check the buttons afterward
-    });
-    checkButtons();  // Check on initial load
-
-    $('.scroll-button-left').click(function() {
-        if (!$(this).prop('disabled')) {
-            galleryContainer.animate({
-                scrollLeft: "-=" + itemWidth + "px"
-            }, 200, function() {
-                checkButtons();
-            });
-        }
-    });
-
-    $('.scroll-button-right').click(function() {
-        if (!$(this).prop('disabled')) {
-            galleryContainer.animate({
-                scrollLeft: "+=" + itemWidth + "px"
-            }, 200, function() {
-                checkButtons();
-            });
-        }
-    });
 });
