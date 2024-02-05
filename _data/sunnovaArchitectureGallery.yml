@@ -1,0 +1,15 @@
+- title: "Database"
+  description: "these are the following data sources and microservices that the Catalyst mobiile app uses. "
+  image: "assets/img/sunnova/Database.png"
+
+- title: "Code"
+  description: "TypeScript + React Native + Sequlize are what a lot of the apps functions use as the backbone."
+  image: "assets/img/sunnova/Code.png"
+
+- title: "Launch"
+  description: "Github actions are used to trigger app launches to the three environments-- dev, QA, and Prod. Then Expo converts the code to JS for the (Google) Play + Apple app stores."
+  image: "assets/img/sunnova/Launch.png"
+
+- title: "Analytics"
+  description: "These are the different apps we used to help debug network calls mainly between salesforce and our SQL database hosted on Heroku"
+  image: "assets/img/sunnova/Analytics.png"

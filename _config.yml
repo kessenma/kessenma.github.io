@@ -18,3 +18,7 @@ google-analytics:
   id: "UA-55028506-1"
 
 exclude: ['package.json', 'src' , 'node_modules']
+
+mime_types:
+  js: application/javascript
+

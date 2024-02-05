@@ -1,0 +1,1570 @@
+{
+  "1Action.003": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "2Action.003": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "3Action.003": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "4Action.003": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "5Action.003": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "6Action.003": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "7Action.003": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "8Action.003": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_001_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_001_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_001_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_001_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_001_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_001_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_001_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_001_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_002_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_002_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_002_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_002_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_002_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_002_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_002_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_002_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_003_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_003_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_003_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_003_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_003_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_003_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_003_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_003_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_004_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_004_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_004_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_004_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_004_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_004_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_004_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "anchor_004_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "charger_n3dAction": {
+    "start_frame": 0.0,
+    "end_frame": 140.0
+  },
+  "clip_001_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_001_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_001_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_001_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_001_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_001_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_001_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_001_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_002_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_002_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_002_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_002_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_002_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_002_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_002_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_002_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_003_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_003_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_003_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_003_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_003_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_003_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_003_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_003_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_004_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_004_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_004_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_004_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_004_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_004_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_004_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "clip_004_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_001_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_001_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_001_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_001_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_001_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_001_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_001_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_001_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_002_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_002_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_002_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_002_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_002_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_002_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_002_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_002_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_003_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_003_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_003_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_003_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_003_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_003_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_003_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_003_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_004_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_004_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_004_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_004_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_004_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_004_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_004_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_004_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_005_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_005_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_005_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 125.0
+  },
+  "corner_005_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_005_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_005_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_005_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_005_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_006_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_006_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_006_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_006_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_006_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_006_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_006_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_006_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_007_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_007_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_007_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_007_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_007_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_007_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_007_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_007_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_008_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_008_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_008_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_008_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_008_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_008_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_008_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "corner_008_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_001_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_001_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_001_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_001_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_001_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_001_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_001_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_001_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_003_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_003_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_003_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_003_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_003_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_003_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_003_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_003_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_005_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_005_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_005_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_005_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_005_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_005_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_005_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_005_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_006_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_006_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_006_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_006_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_006_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_006_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_006_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "mechanism_006_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_001_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_001_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_001_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_001_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_001_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_001_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_001_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_001_mesh_n3d.016Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_002_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_002_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_002_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_002_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_002_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_002_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_002_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_002_mesh_n3d.016Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "panel_groupAction": {
+    "start_frame": 59.0,
+    "end_frame": 100.0
+  },
+  "panel_mesh_n3dAction": {
+    "start_frame": 120.0,
+    "end_frame": 125.0
+  },
+  "pin_001_mesh_n3dAction": {
+    "start_frame": 120.0,
+    "end_frame": 125.0
+  },
+  "pin_002_mesh_n3dAction": {
+    "start_frame": 120.0,
+    "end_frame": 125.0
+  },
+  "pin_003_mesh_n3dAction": {
+    "start_frame": 120.0,
+    "end_frame": 125.0
+  },
+  "port_mesh_n3dAction": {
+    "start_frame": 120.0,
+    "end_frame": 125.0
+  },
+  "shell_mesh_n3dAction": {
+    "start_frame": 120.0,
+    "end_frame": 125.0
+  },
+  "solar_panel_001_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_001_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_001_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_001_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_001_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_001_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_001_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_001_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_002_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_002_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_002_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_002_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_002_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_002_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_002_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_002_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_003_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_003_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_003_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_003_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_003_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_003_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_003_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_003_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_004_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_004_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_004_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_004_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_004_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_004_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_004_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_004_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_005_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_005_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_005_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_005_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_005_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_005_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_005_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_005_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_006_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_006_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_006_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_006_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_006_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_006_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_006_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_006_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_007_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_007_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_007_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_007_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_007_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_007_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_007_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_007_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_008_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_008_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_008_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_008_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_008_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_008_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_008_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_008_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_009_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_009_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_009_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_009_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_009_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_009_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_009_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_009_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_010_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_010_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_010_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_010_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_010_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_010_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_010_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_010_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_011_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_011_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_011_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_011_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_011_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_011_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_011_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_011_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_012_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_012_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_012_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_012_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_012_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_012_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_012_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_012_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_013_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_013_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_013_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_013_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_013_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_013_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_013_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_013_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_014_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_014_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_014_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_014_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_014_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_014_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_014_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_014_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_015_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_015_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_015_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_015_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_015_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_015_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_015_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_015_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_016_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_016_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_016_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_016_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_016_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_016_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_016_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_016_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_017_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_017_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_017_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_017_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_017_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_017_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_017_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_017_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_018_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_018_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_018_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_018_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_018_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_018_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_018_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_018_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_019_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_019_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_019_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_019_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_019_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_019_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_019_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_019_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_020_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_020_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_020_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_020_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_020_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_020_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_020_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_020_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_021_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_021_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_021_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_021_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_021_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_021_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_021_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_021_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_022_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_022_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_022_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_022_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_022_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_022_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_022_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_022_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_023_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_023_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_023_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_023_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_023_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_023_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_023_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_023_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_024_mesh_n3d.008Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_024_mesh_n3d.009Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_024_mesh_n3d.010Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_024_mesh_n3d.011Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_024_mesh_n3d.012Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_024_mesh_n3d.013Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_024_mesh_n3d.014Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "solar_panel_024_mesh_n3d.015Action": {
+    "start_frame": 59.0,
+    "end_frame": 120.0
+  },
+  "van_n3dAction": {
+    "start_frame": 0.0,
+    "end_frame": 150.0
+  },
+  "Van_Plane_Van_Plane_n3d2Action": {
+    "start_frame": 100.0,
+    "end_frame": 120.0
+  },
+  "Van_Plane_Van_Plane_n3d3Action": {
+    "start_frame": 100.0,
+    "end_frame": 120.0
+  },
+  "Van_Plane_Van_Plane_n3d4Action": {
+    "start_frame": 100.0,
+    "end_frame": 120.0
+  },
+  "Van_Plane_Van_Plane_n3d5Action": {
+    "start_frame": 100.0,
+    "end_frame": 120.0
+  },
+  "Van_Plane_Van_Plane_n3d6Action": {
+    "start_frame": 100.0,
+    "end_frame": 120.0
+  },
+  "Van_Plane_Van_Plane_n3dAction": {
+    "start_frame": 100.0,
+    "end_frame": 120.0
+  },
+  "wire to houseAction": {
+    "start_frame": 0.0,
+    "end_frame": 135.0
+  }
+}
