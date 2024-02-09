@@ -705,7 +705,7 @@ p {
     --easing: cubic-bezier(0.8, 0.5, 0.8, 0.5);
     position: absolute;
     /*margin-top: -100vh;*/
-    top: 65%;
+    top: -50%;
     left: 65%;
     /*transform: translateX(-50%);*/
     width: 30%;

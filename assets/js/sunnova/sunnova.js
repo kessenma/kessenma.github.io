@@ -19,8 +19,9 @@ $(document).ready(function() {
 
         // Adjust the movement of #svgObject to be more subtle and remain closer to doe-circle-container
         var svgTranslationDown = (scrollPos + initialSvgTop) / 14; // Larger division factor for a subtle effect
-        var svgTranslationUp = (-scrollPos + initialSvgTop) / 14; // Larger division factor for a subtle effect
+        var svgTranslationUp = (-scrollPos + initialSvgTop) / 4; // Larger division factor for a subtle effect
         $('#svgObject1').css('transform', 'translateY(' + svgTranslationDown + 'px)');
+        $('.desertSunBackground').css('transform', 'translateY(' + svgTranslationUp + 'px)');
         // $('#siteSurvey1').css('transform', 'translateY(' + svgTranslationDown + 'px)');
         // $('#siteSurvey2').css('transform', 'translateY(' + svgTranslationUp + 'px)');
         // $('#siteSurvey3').css('transform', 'translateY(' + svgTranslationDown + 'px)');
