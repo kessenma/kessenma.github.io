@@ -19,9 +19,8 @@ $(document).ready(function() {
 
         // Adjust the movement of #svgObject to be more subtle and remain closer to doe-circle-container
         var svgTranslationDown = (scrollPos + initialSvgTop) / 14; // Larger division factor for a subtle effect
-        var svgTranslationUp = (-scrollPos + initialSvgTop) / 4; // Larger division factor for a subtle effect
-        $('#svgObject1').css('transform', 'translateY(' + svgTranslationDown + 'px)');
-        $('.desertSunBackground').css('transform', 'translateY(' + svgTranslationUp + 'px)');
+        var svgTranslationUp = (-scrollPos + initialSvgTop) / 6; // Larger division factor for a subtle effect
+        $('#svgObject1').css('transform', 'translateY(' + svgTranslationUp + 'px)');
         // $('#siteSurvey1').css('transform', 'translateY(' + svgTranslationDown + 'px)');
         // $('#siteSurvey2').css('transform', 'translateY(' + svgTranslationUp + 'px)');
         // $('#siteSurvey3').css('transform', 'translateY(' + svgTranslationDown + 'px)');
@@ -143,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Now you can call this with any selector
     applyTypewriterEffect('#typewriter h2', 150);
-    applyTypewriterEffect('.commissioning-package h2', 150); // Use the correct selector for your second header
+    applyTypewriterEffect('.commissioning-package-header h2', 150); // Use the correct selector for your second header
     applyTypewriterEffectById('architecture-title', 150);
 });
 

@@ -64,8 +64,8 @@
 // custom image scroller code:
 //////////////
 $(document).ready(function() {
-    // Initialize Flickity for each gallery
-    $('.gallery').each(function() {
+    // Initialize Flickity for each main gallery
+    $('.commissioning-gallery').each(function() {
         var $gallery = $(this);
         var galleryPrefs = {
             cellAlign: 'center',
@@ -82,9 +82,13 @@ $(document).ready(function() {
     $('.gallery-nav').each(function() {
         var $galleryNav = $(this);
         var galleryNavId = $galleryNav.data('id');
-        var $gallery = $(".gallery[data-id='" + galleryNavId +"']");
+        var $gallery = $(".commissioning-gallery[data-id='" + galleryNavId +"']");
+
+        // Debugging: Ensure the correct gallery is targeted
+        console.log("Targeting gallery for navigation:", $gallery[0]);
+
         var galleryNavPrefs = {
-            asNavFor: $gallery[0],
+            asNavFor: $gallery[0], // Ensure this references the correct gallery element
             contain: true,
             wrapAround: false,
             pageDots: false,
@@ -96,10 +100,11 @@ $(document).ready(function() {
         // Bind click events to navigation cells
         $galleryNav.on('click', '.gallery-cell', function() {
             var index = $(this).index();
-            $gallery.flickity('select', index);
+            $gallery.flickity('select', index, false, true); // Added smooth scroll and no wrap options
         });
     });
 });
+
 
 
 
