@@ -6,7 +6,16 @@
     <link rel="stylesheet" href="/assets/css/sunnova.css">
     <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel&family=Cinzel+Decorative:wght@400;700&family=Tilt+Prism&display=swap" rel="stylesheet">
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -14,14 +23,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
     <!-- Lightbox2 JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-<!--    <script src="https://raw.githubusercontent.com/jonobr1/two.js/dev/build/two.min.js"></script>-->
-    <script rel="preload" type="module" src="/assets/js/sunnova/3d.js"></script>
+
+<!--    <script rel="preload" type="module" src="/assets/js/sunnova/3d.js"></script>-->
+    <script rel="preload" type="module" src="/assets/js/sunnova/siteSurvey.js"></script>
     <script src="/assets/js/sunnova/sunnova.js" defer></script>
     <link rel="preload" href="assets/img/sunnova/panelsInDesert.svg" as="image">
-<!--    &lt;!&ndash; Flickity CSS &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css" crossorigin="anonymous" referrerpolicy="no-referrer" />-->
-<!--    &lt;!&ndash; Flickity JavaScript &ndash;&gt;-->
-<!--    <script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
   </head>
 
 <!--Menu + scrollbar-->
@@ -68,11 +74,11 @@
       <div id="initial-overlay" class="initial-overlay"></div>
 
         <div class="dealership-svg-container">
-          <img id="dealershipSVG" src="assets/js/sunnova/dealership.svg" alt="dealership" />
+          <img id="dealershipSVG" src="assets/img/sunnova/dealership.svg" alt="dealership" />
       </div>
 
       <div class="phone-svg-container">
-        <img id="phoneSvg" src="assets/js/sunnova/phone.svg" alt="phone" />
+        <img id="phoneSvg" src="assets/img/sunnova/phone.svg" alt="phone" />
       </div>
 
       <div class="gradient-overlay"></div>
@@ -217,7 +223,7 @@
           </div>
           <p>{{page.salesforce1}}</p>
           <div class="video-container"> <!-- Add class here -->
-            <iframe class="responsive-video" src="https://www.youtube.com/embed/H6z6ErSbSjM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/H6z6ErSbSjM?si=AzL-o9EeS65irRWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -257,14 +263,8 @@
 
 </div>
 
-<!--  <div class="DOE-section-container">-->
-  <div class="desktop-divider"></div>
-
-    <div id="svgObject1" class="doeCircle-container">
-      <object  type="image/svg+xml" data="/assets/img/sunnova/hestiaCircle.svg"></object>
-      <div class="circle-path"></div>
-      <img src="https://img.icons8.com/?size=256&id=wcK894NIt5Wv&format=png" id="moving-arrow" alt="Moving Arrow"/>
-    </div>
+  <div class="DOE-section-container">
+   <div class="desktop-divider"></div>
 
     <div class="microgrid-container">
       <div id="particles-js"></div>
@@ -278,7 +278,13 @@
         });
       });
     </script>
-<!--  </div>-->
+
+    <div id="svgObject1" class="doeCircle-container">
+      <object  type="image/svg+xml" data="/assets/img/sunnova/hestiaCircle.svg"></object>
+      <img src="https://img.icons8.com/?size=256&id=wcK894NIt5Wv&format=png" id="moving-arrow" alt="Moving Arrow"/>
+    </div>
+
+  </div>
 
 
   <div class="divider1"></div>
@@ -296,6 +302,16 @@
       <div id="typewriter">
         <h2>Site Survey</h2>
       </div>
+
+      <!--SITE SURVEY ANIMATION-->
+      <div id="animation-container">
+        <div id="trigger-section" class="trigger-section">
+<!--          <div class="siteSurvey3d-container">-->
+          <canvas id="three-canvas"></canvas>
+<!--          </div>-->
+        </div>
+      </div>
+
       <p>{{ page.siteSurvey1 }}</p>
     </div>
 
@@ -348,6 +364,7 @@
   </div>
 </div>
 
+  <div class="commissioning-package-background">
   <div class="handshake-container">
     <div id="two-container" class="handshake-container"></div>
     <svg version="1.1" id="handshake" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" xml:space="preserve">
@@ -372,59 +389,74 @@
 
   </div>
 
+<!--    <script type="module" src="path/to/siteSurvey.js"></script>-->
+
+
   <div class="commissioning-package">
     <div class="center-section-padding">
-      <div class="commissioning-package-header">
-        <h2>Commissioning Package</h2>
-      </div>
+<!--      <div class="commissioning-package-header">-->
+<!--        <h2>Commissioning Package</h2>-->
+<!--      </div>-->
       <div class="divider"></div>
-      <p>{{page.commissioningPackage1}}</p>
 
-    <div id="commissioning-gallery-nav" class="gallery-nav" data-id="1">
-      <div class="gallery-cell">Initial CP setup</div>
-      <div class="gallery-cell">CP cont. setup </div>
-      <div class="gallery-cell">CP task list</div>
-      <div class="gallery-cell">CP task screen</div>
-      <div class="gallery-cell">CP submission</div>
-      <div class="gallery-cell">CP rejection</div>
-    </div>
 
-      <div id="commissioning-gallery" class="gallery" data-id="1">
-        <div class="gallery-cell">
-          <a href="../assets/img/sunnova/commissioningPackage/cp1Setup.png" data-lightbox="commissioning-gallery">
-            <img src="../assets/img/sunnova/commissioningPackage/cp1Setup.png" alt="commissioning package setup1">
-          </a>
+
+      <div>
+        <h4>{{page.commissioningPackage1}}</h4>
+        <h4> <span heroic="{{page.commissioningPackage2}}" class="heroic-text">{{page.commissioningPackage2}}</span></h4>
+        <p>{{page.commissioningPackage3}}</p>
+      </div>
+
+      <div class="commissioning-gallery-container">
+        <div id="commissioning-gallery-nav" class="gallery-nav" data-id="1">
+          <div class="gallery-cell">Initial CP setup</div>
+          <div class="gallery-cell">CP cont. setup </div>
+          <div class="gallery-cell">CP task list</div>
+          <div class="gallery-cell">CP task screen</div>
+          <div class="gallery-cell">CP submission</div>
+          <div class="gallery-cell">CP rejection</div>
         </div>
-        <div class="gallery-cell">
-          <a href="../assets/img/sunnova/commissioningPackage/cp2Setup2.png" data-lightbox="commissioning-gallery">
-          <img src="../assets/img/sunnova/commissioningPackage/cp2Setup2.png" alt="commissioning package setup 2">
-          </a>
-        </div>
-        <div class="gallery-cell">
-          <a href="../assets/img/sunnova/commissioningPackage/cp3TaskList.png" data-lightbox="commissioning-gallery">
-          <img src="../assets/img/sunnova/commissioningPackage/cp3TaskList.png" alt="commissioning package task list">
-          </a>
-        </div>
-        <div class="gallery-cell">
-          <a href="../assets/img/sunnova/commissioningPackage/cp4TaskScreen.png" data-lightbox="commissioning-gallery">
-          <img src="../assets/img/sunnova/commissioningPackage/cp4TaskScreen.png" alt="commissioning package task screen">
-          </a>
-        </div>
-        <div class="gallery-cell">
-          <a href="../assets/img/sunnova/commissioningPackage/cp5Submit.png" data-lightbox="commissioning-gallery">
-          <img src="../assets/img/sunnova/commissioningPackage/cp5Submit.png" alt="commissioning package submission">
-          </a>
-        </div>
-        <div class="gallery-cell">
-          <a href="../assets/img/sunnova/commissioningPackage/cp6Rejection.png" data-lightbox="commissioning-gallery">
-          <img src="../assets/img/sunnova/commissioningPackage/cp6Rejection.png" alt="commissioning package rejection">
-          </a>
+
+        <div id="commissioning-gallery" class="commissioning-gallery" data-id="1">
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp1Setup.png" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp1Setup.png" alt="commissioning package setup1">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp2Setup2.png" data-lightbox="commissioning-gallery">
+            <img src="../assets/img/sunnova/commissioningPackage/cp2Setup2.png" alt="commissioning package setup 2">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp3TaskList.png" data-lightbox="commissioning-gallery">
+            <img src="../assets/img/sunnova/commissioningPackage/cp3TaskList.png" alt="commissioning package task list">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp4TaskScreen.png" data-lightbox="commissioning-gallery">
+            <img src="../assets/img/sunnova/commissioningPackage/cp4TaskScreen.png" alt="commissioning package task screen">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp5Submit.png" data-lightbox="commissioning-gallery">
+            <img src="../assets/img/sunnova/commissioningPackage/cp5Submit.png" alt="commissioning package submission">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp6Rejection.png" data-lightbox="commissioning-gallery">
+            <img src="../assets/img/sunnova/commissioningPackage/cp6Rejection.png" alt="commissioning package rejection">
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  </div>
 
-<!--  <div class="desktop-divider2"></div>-->
+
+  <div class="desktop-divider2"></div>
+    <div class="divider"></div>
 <!--####################-->
 <!--####ARCHITECTURE####-->
 <!--####################-->
@@ -432,52 +464,50 @@
   <div class=" architecture-section center-section-padding" id="architecture-section">
 
 
-    <div class="architecture-gallery">
-      <div class="center-section-padding">
-        <div class="architecture-gallery-header">
-          <h2 id="architecture-title">App Architecture</h2>
-        </div>
-        <div class="divider"></div>
-        <p>{{page.architecture}}</p>
+<!--      <div class="center-section-padding">-->
+<!--        <div class="architecture-gallery-header">-->
+<!--          <h2 id="architecture-title">App Architecture</h2>-->
+<!--        </div>-->
+<!--        <div class="divider"></div>-->
+<!--        <p>{{page.architecture}}</p>-->
 
-        <div id="architecture-gallery-nav" class="gallery-nav" data-id="1">
-          <div class="gallery-cell">Database</div>
-          <div class="gallery-cell">Code </div>
-          <div class="gallery-cell">Release</div>
-          <div class="gallery-cell">Analytics</div>
-        </div>
+<!--        <div id="architecture-gallery-nav" class="gallery-nav" data-id="2">-->
+<!--          <div class="gallery-cell">Database</div>-->
+<!--          <div class="gallery-cell">Code </div>-->
+<!--          <div class="gallery-cell">Release</div>-->
+<!--          <div class="gallery-cell">Analytics</div>-->
+<!--        </div>-->
 
-        <div id="architecture-gallery" class="gallery" data-id="1">
-          <div class="gallery-cell">
-            <a href="../assets/img/sunnova/Database.png" data-lightbox="architecture-gallery">
-              <img src="../assets/img/sunnova/Database.png" alt="Database">
-            </a>
-          </div>
-          <div class="gallery-cell">
-            <a href="../assets/img/sunnova/Code.png" data-lightbox="architecture-gallery">
-              <img src="../assets/img/sunnova/Code.png" alt="app code">
-            </a>
-          </div>
-          <div class="gallery-cell">
-            <a href="../assets/img/sunnova/Launch.png" data-lightbox="architecture-gallery">
-              <img src="../assets/img/sunnova/Launch.png" alt="release">
-            </a>
-          </div>
-          <div class="gallery-cell">
-            <a href="../assets/img/sunnova/Analytics.png" data-lightbox="architecture-gallery">
-              <img src="../assets/img/sunnova/Analytics.png" alt="app analytics software">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--        <div id="architecture-gallery" class="arc-gallery" data-id="2">-->
+<!--          <div class="gallery-cell">-->
+<!--            <a href="../assets/img/sunnova/Database.png" data-lightbox="architecture-gallery">-->
+<!--              <img src="../assets/img/sunnova/Database.png" alt="Database">-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="gallery-cell">-->
+<!--            <a href="../assets/img/sunnova/Code.png" data-lightbox="architecture-gallery">-->
+<!--              <img src="../assets/img/sunnova/Code.png" alt="app code">-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="gallery-cell">-->
+<!--            <a href="../assets/img/sunnova/Launch.png" data-lightbox="architecture-gallery">-->
+<!--              <img src="../assets/img/sunnova/Launch.png" alt="release">-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="gallery-cell">-->
+<!--            <a href="../assets/img/sunnova/Analytics.png" data-lightbox="architecture-gallery">-->
+<!--              <img src="../assets/img/sunnova/Analytics.png" alt="app analytics software">-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
 
 
-    <div class="divider"></div>
-    <img class="architecture-desktop" src="/assets/img/sunnova/Architecture_Desktop_View.png" alt="Architecture Desktop View">
-    <img class="architecture-mobile" src="/assets/img/sunnova/Architecture_Mobile_View.png" alt="Architecture Mobile View">
+<!--    <div class="divider"></div>-->
+<!--    <img class="architecture-desktop" src="/assets/img/sunnova/Architecture_Desktop_View.png" alt="Architecture Desktop View">-->
+<!--    <img class="architecture-mobile" src="/assets/img/sunnova/Architecture_Mobile_View.png" alt="Architecture Mobile View">-->
 
-  </div>
+<!--  </div>-->
 
 <!--        <div class= "content-container">-->
 <!--          <div id="animation-trigger"></div>-->
@@ -505,7 +535,7 @@
   <!--  Architecture section photo viewing -->
 <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.16/svg.min.js"></script>-->
   <!-- Ensure your custom script is the last one loaded -->
-  <script src="/assets/js/sunnova/sunnova_particles.js"></script>
+  <script src="/assets/js/sunnova/doe-circle.js"></script>
   <script src="/assets/js/sunnova/architecture.js"></script>
   <script src="/assets/js/sunnova/svgLineDrawSplashScreen.js"></script>
   <script src="/assets/js/sunnova/flickity_carousel.js"></script>
