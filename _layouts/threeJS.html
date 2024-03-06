@@ -14,6 +14,10 @@
 
 </head>
 <body>
+
+<div id="loading-screen" style="z-index: 10; position: fixed; top: 0; left: 0; width: 100%; height: 100%; opacity: 50%; background: black; display: flex; justify-content: center; align-items: center; color: white;">
+    Loading Model... <span id="loading-progress">0%</span>
+</div>
 <!-- partial:index.partial.html -->
 <div class="scene one"></div>
 
@@ -52,10 +56,6 @@
 <script src='https://assets.codepen.io/16327/gsap-latest-beta.min.js'></script>
 <script src='https://assets.codepen.io/16327/ScrollTrigger.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r119/three.min.js'></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<!-- Include the GLTFLoader script after THREE is loaded -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
 <script type="module" src="/assets/js/threeJS.js"></script>
 
