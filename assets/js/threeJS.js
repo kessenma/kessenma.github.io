@@ -45,7 +45,7 @@ function addModelToBG() {
 
         // DRACO Compression
         const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath('./Draco/');
+        dracoLoader.setDecoderPath('./assets/js/three/Draco/');
 
         // GLTF Model Loader
         const loader = new GLTFLoader();
@@ -272,6 +272,7 @@ function addModelToBG() {
 // Slide 4 - The problem child
         car_anim.to(scene.rotation, {
             x: -0.5,
+            ease: "power1.inOut",
             ease: "power1.inOut",
             scrollTrigger: {
                 trigger: ".section-four",

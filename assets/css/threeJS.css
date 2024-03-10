@@ -12,6 +12,45 @@ h1 {
     font-size: 4rem;
 }
 
+#loading-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    /*background-color: rgba(0, 0, 0, 0.5); !* Assuming you want a semi-transparent overlay *!*/
+}
+
+#wrapper {
+    /* You can set a specific width for the wrapper if you want */
+    width: 50%; /* Example percentage width */
+}
+
+#border {
+    border: 2px solid white; /* White border color */
+    padding: 5px; /* Spacing between border and whitespace */
+}
+
+#whitespace {
+    background-color: #fff; /* White background for the loading bar */
+    height: 20px; /* Height of the loading bar */
+    display: flex; /* Use flexbox to center the line */
+    align-items: center;
+}
+
+#line {
+    height: 100%;
+    width: 0%; /* Initial width */
+    /*background-color: #000; !* Black color for the loading progress *!*/
+    transition: width 0.5s ease-out; /* Smooth transition for width change */
+    /*opacity: 0.5; !* 50% opacity *!*/
+}
+
+
 .scene.one {
     width: 100%;
     height: 100vh;
