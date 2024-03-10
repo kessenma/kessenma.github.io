@@ -1505,7 +1505,9 @@ https://flickity.metafizzy.co
 }
 
 .gallery-nav .gallery-cell.is-nav-selected {
-    background-color: var(--darkGrey);
+    background-color: var(--white);
+    color: #000000;
+    border-radius: 10rem;
 }
 
 .commissioning-package h2 {

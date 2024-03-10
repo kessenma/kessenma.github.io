@@ -2,9 +2,7 @@
 layout: sunnova
 title: Sunnova Catalyst
 
-about: Sunnova's main service offering is financing for solar panel systems for residential homes; and they use mobile apps to help accomplish this-- which is where my software development skillsets come in.  The app I helped build in 2023 (with a team of ~15 people) is called 'Sunnova Catalyst' on the app stores. Catalyst is a business-to-franchise app for Sunnova authorized solar panel dealerships to use with residential solar panel installation. After dealership employees install Sunnova-approved equipment on houses they submit photos of the installed equipment to Sunnova, and then Sunnova sends them a commissioning check after verifying that the equipment is installed correctly through a review website. Throughout this process the consumers also are following along in a "install wizard" through the consumer facing app (after they pass the underwriting process), and once their equipment is installed they can use the app to monitor/customize their residential home energy systems.
-
-about1: The app I spent about a year working on updated the photo submission process for solar panel dealers and the Sunnova infrastructure (photo) reviewers, and it is actually the third time Sunnova has updated this submission process. The first was dealers sending emails with photos to Sunnova, the second was a Xamarin-based (Microsoft's cross-platform mobile development framework) app that allowed single PDF uploading, and this latest app I built is their new update to the process— a React native and typescript app. This newest version of the commissioning app/process has custom survey logic that supports photo-uploading, comments, and approving/rejecting. The codebase also has a website for Sunnova´s electrical engineering reviewers that allows them to leave comments on why a commissioning package was rejected, and the rejection details + history are saved in Salesforce for Sunnova corporate staff to monitor and assist when needed.
+about: Sunnova's main service offering is financing + installation for solar panel systems for residential homes; and they use mobile apps to help accomplish this-- which is where my software development skillsets come in.  The app I helped build in 2023 (with a team of ~15 people) is called 'Sunnova Catalyst' on the app stores. Catalyst is a business-to-franchise app for Sunnova authorized solar panel dealerships to use with residential solar panel installation. After dealership employees install Sunnova-approved equipment on properties they submit photos of the installed equipment to Sunnova, and then Sunnova sends dealerships commissioning checks after verifying that the equipment is installed correctly. Throughout this process the consumers also are following along in a "install wizard" through the consumer facing app (after the underwriting process), and once their equipment is installed they can use the customer-facing-app to monitor/customize their residential home energy systems.
 
 about2:  The purpose of this website is to display what I built while at Sunnova because it was an innovative businesses and I enjoyed my time,... However, my time at Sunnova came to an end (consultants left, my boss quit, and I was burnt out).  I have rested a bit, and now I am ready to hop back on the saddle for new software developer opportunities utilizing any of the following languages> JavaScript, TypeScript, Ruby, Python, Swift, Kotlin, Flutter, or Rust.
 
@@ -24,14 +22,18 @@ ipo_info1: Sunnova IPO'd in 2019 with Bank of America, J.P. Morgan, Goldman Sach
 dealers: Dealerships
 dealers1: There are 1.3k dealerships in Sunnova's network that the Catalyst app was built to support.
 
+app_reeditions: App History
+app_reeditions1: The Sunnova consumer facing app was launched in 2023. The Sunnova Catalyst app has been designed twice now-- the first time with Xamarin for mobile apps and Ionic for web apps, and the most recent mobile and web apps were built in one typescript codebase for react native and react for web.
+
+salesforce: Salesforce
+salesforce1: Salesforce used Sunnova as a case study in their Dreamforce 2023 conference, and I was told that Sunnova had the largest salesforce instance in the southern US. I worked o n the development of the Mulesoft data flows mentioned in this video below that enable Sunnova to make quotes in 15 minutes on customers who want solar equipment installed on their home.
+
 energy_loan: D.o.E
 energy_loan1: In 2023 the Department of Energy approved $3 billion worth of financing as backstop for Sunnova for customers that stop paying for their solar systems. The goal with this financing is to provide lower income areas in the US access to solar power, and the funding is a part of "project Hestia".
 
-salesforce: Salesforce
-salesforce1: Salesforce used Sunnova as a case study in their Dreamforce 2023 conference, and I was told that Sunnova had the largest salesforce instance in the southern US. I worked on the development of the Mulesoft data flows mentioned in this video below that enable Sunnova to make quotes in 15 minutes on customers who want solar equipment installed on their home.
 
-app_reeditions: App History
-app_reeditions1: The Sunnova consumer facing app was launched in 2023. The Sunnova Catalyst app has been designed twice now-- the first time with Xamarin for mobile apps and Ionic for web apps, and the most recent mobile and web apps were built in one typescript codebase for react native and react for web.
+
+
 
 
 doe_hestia: Project Hestia is a joint project, The Sunnova app and portal aims to reduce greenhouse gas emissions, enhance the integration of load controllers and smart appliances, and support grid stability by giving consumers near real-time insight into their residential energy system and quantifying the location-specific emissions impact of changes in consumer behavior.
@@ -46,13 +48,13 @@ micro_grids_description1: Microgrids represent a convergence point for governmen
 
 Features: The codebase for Catalyst supports an ios and android app for solar-dealerships to submit (solar installation) 'site-survey's' and 'commissioning packages' to Sunnova for review so that the solar-dealerships can get a commissioning-payout from Sunnova. There also is a web app for Sunnova-corporate-staff/engineers to review site-survey's + commissioning packages and approve/reject them. All these apps use Salesforce to store data and communicate with each other. The main purpose of all these embedded apps inside/connecting other apps is to help dealerships (with Sunnova as the Franchise owner) sell + install solar panel systems and accessories.
 
-siteSurvey1: Before Sunnova can quote a customer with how much installing solar equipment on their property will cost they need to figure out some specifications of the property. ie; roof pitch, attic + roof rafter specs, subpanel + main breaker, what electrical utility company they are using, etc, etc. This portion of thier app is called "site survey", and it is a survey that dealers fill out, and then the data is saved in postgres Sql tables. Then the data from these SQL tables is ported over to Salesforce via Mulesoft. Below are some screenshots from this survey. the survey-prompt-types supported are> photo, number, long-text, multiple selection, boolean, and some questions can be marked as "does not apply". Below are some example screens from the site-survey portion of the app.
+siteSurvey1: Before Sunnova can install energy-equipment specifications on the property are required. ie; roof pitch, attic + roof rafter specs, subpanel + main breaker, what electrical utility company they are using, etc, etc. To accomplish this information discovery Sunnova has a feature in their B2B app (Catalyst) called "site survey", which allows solar-sales-consultants to submit relevant-customer-property--data to Salesforce for case-management. The survey-prompt-types supported are> photo, number, long-text, multiple selection, boolean, and some questions can be marked as "does not apply". Below are some example screens from the site-survey portion of the app.
 
 commissioningPackage1: After a customers property has been inspected, and they want to move forward with the solar installation process solar-dealerships will install the equipment to Sunnova's specifications, and then use the primary feature of the Catalyst mobile app-
 
 commissioningPackage2: submitting commissioning packages to Sunnova.
 
-commissioningPackage3: The gallery below displays the core process of submitting a commissioning package (CP) through the Catalyst app.
+commissioningPackage3: The gallery below displays the core process dealership employees go through when submitting a commissioning package (CP) through the Catalyst app to Sunnova-cooperate.
 
 architecture: below is the architecture of the Sunnova app.
 
