@@ -15,18 +15,24 @@
 </head>
 <body>
 
-<div id="loading-screen" style="z-index: 10; position: fixed; top: 0; left: 0; width: 100%; height: 100%; opacity: 50%; background: black; display: flex; justify-content: center; align-items: center; color: white;">
-    Loading Model... <span id="loading-progress">0%</span>
+<div id="loading-screen" style="z-index: 10; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 9999;">
+    <div id="wrapper">
+        <div id="border">
+            <div id="whitespace">
+                <div id="line">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 <!-- partial:index.partial.html -->
 <div class="scene one"></div>
 
 <section class="section-one">
     <h1>SECTION 1</h1>
 </section>
-
-
-
 <section class="section-two">
     <h1>SECTION 2</h1>
     <div id="trigger-section1" class="trigger-section"></div>
