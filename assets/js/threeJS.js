@@ -1,9 +1,7 @@
 import * as THREE from '/assets/js/three/three.module.js';
 import { GLTFLoader } from '/assets/js/three/GLTFLoader.js';
 import { DRACOLoader } from '/assets/js/three/Draco/DRACOLoader.js';
-// import { OrbitControlls } from '/assets/js/three/OrbitControls.js';
-
-
+import { KTX2Loader} from "/assets/js/three/ktx2/KTX2Loader.js";
 
 function addModelToBG() {
     let container;
@@ -29,7 +27,7 @@ function addModelToBG() {
         const near = 0.9;
         const far = 1000;
         camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-        // camera.position.set(0, 150, 150); //150 units up and 150 units back
+        camera.position.set(2, 15, 5);
         camera.lookAt(scene.position);
 
         renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
@@ -50,10 +48,17 @@ function addModelToBG() {
         // GLTF Model Loader
         const loader = new GLTFLoader();
         loader.setDRACOLoader(dracoLoader);
-        loader.load('./assets/js/three/03.02.24_setup9.glb', function (gltf) {
+
+        // KTX2 Texture Compression
+        const ktx2Loader = new KTX2Loader();
+        ktx2Loader.setTranscoderPath('/assets/js/three/ktx2/'); // Ensure this path is correct
+        ktx2Loader.detectSupport(renderer);
+        loader.setKTX2Loader(ktx2Loader); // Set the KTX2Loader here after GLTFLoader is instantiated
+
+        loader.load('./assets/js/three/03.15.24_INSTALL2.glb', function (gltf) {
             model = gltf.scene;
             scene.add(model);
-            model.rotation.y = (3 * Math.PI) / 2; // Rotate the model by 270 degrees
+            // model.rotation.y = (3 * Math.PI) / 2; // Rotate the model by 270 degrees
             model.scale.set(0.03, 0.03, 0.03);
             model.position.set(0, 0, 0);
             animationMixer = new THREE.AnimationMixer(model);
@@ -67,7 +72,7 @@ function addModelToBG() {
         }, function (xhr) {
             // During loading
             const progress = (xhr.loaded / xhr.total) * 100; // Calculate progress
-            document.getElementById('line').style.width = `${progress}%`; // Update loader width
+            document.getElementById('loadingLine').style.width = `${progress}%`; // Update loader width
         }, function (error) {
             console.error('An error happened', error);
         }, undefined, function (error) {
@@ -152,11 +157,6 @@ function addModelToBG() {
 // *******************************
 // 	➡️animations on scroll🖱️ ***
 // *******************************
-
-    scene.rotation.set(0, 0.5, 0)
-    camera.position.set(2, 10, 5)
-    camera.lookAt(scene.position);
-
     function setupScrollTrigger(gltf) {
         let masterAction = animationMixer.clipAction(gltf.animations.find(anim => anim.name === "MASTER"));
         masterAction.play();
@@ -188,99 +188,41 @@ function addModelToBG() {
             animationMixer.setTime(clampedTimeWithinAnimation);
         }
 
+        const initialCameraY = camera.position.y; // Use the initial Y position
+        const yStepDown = 8; // Adjust this value based on how much you want the camera to move down
+        const initialCameraX = camera.position.x; // Use the initial Y position
+        const xStepDown = 2; // Adjust this value based on how much you want the camera to move down
+        const initialCameraZ = camera.position.z; // Use the initial Y position
+        const zStepDown = -5; // Adjust this value based on how much you want the camera to move down
 
         gsap.timeline({
             scrollTrigger: {
-                trigger: ".section-one", // This is where the animation will start
-                start: "top top", // When the top of .section-one hits the top of the viewport
-                endTrigger: ".section-five", // This is where the animation will end
-                end: "bottom bottom", // When the bottom of .section-five hits the bottom of the viewport
+                trigger: ".section-one",
+                start: "top top",
+                endTrigger: ".section-five",
+                end: "bottom bottom",
                 scrub: true,
                 onUpdate: (self) => {
                     if (!animationMixer) return;
                     handleScrollAnimation(self.progress);
+                    let totalSections = 4;
+                    let rotationPerSection = 0.25; // Radians
+                    let cumulativeRotation = rotationPerSection * totalSections * self.progress;
+                    scene.rotation.y = cumulativeRotation;
+
+                    // Update the camera's elevation based on scroll progress
+                    let cameraYPosition = initialCameraY - (yStepDown * self.progress); // Adjust the Y-coordinate
+                    camera.position.y = cameraYPosition;
+
+                    let cameraXPosition = initialCameraX - (xStepDown * self.progress); // Adjust the X-coordinate
+                    camera.position.x = cameraXPosition;
+
+                    let cameraZPosition = initialCameraZ - (zStepDown * self.progress); // Adjust the Z-coordinate
+                    camera.position.z = cameraZPosition;
                 }
             }
         });
 
-
-
-// *******************************
-// 	🎥CAMERA + MODEL ROTATION 🔄***
-// *******************************
-
-        let car_anim = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".section-one",
-                scrub: 0.5,
-                start: "top top",
-                end: "bottom bottom",
-            }
-        });
-
-// Slide 1
-        car_anim.to(scene.rotation, {
-            x: 0.0, // Assuming you want no rotation on the x-axis for Slide 1
-            ease: "power1.inOut",
-            scrollTrigger: {
-                trigger: ".section-one",
-                scrub: 0.5,
-                endTrigger: ".section-two",
-                end: "bottom center", // Overlap between end of Slide 1 and start of Slide 2
-            }
-        });
-
-// Slide 2
-        car_anim.fromTo(scene.rotation, { y: 0.5 }, {
-            y: Math.PI / 2, // the value you want to animate to
-            ease: "power1.inOut",
-            scrollTrigger: {
-                trigger: ".section-two",
-                scrub: 0.5,
-                start: "top bottom",
-                end: "top top",
-            }
-        });
-
-// Ensure the camera starts at the specified position
-        car_anim.fromTo(camera.position, { x: 2, y: 10, z: 5 }, {
-            // New camera position you want to animate to
-            x: 2,
-            y: 10,
-            z: 3,
-            ease: "power1.inOut",
-            scrollTrigger: {
-                trigger: ".section-three",
-                scrub: 0.5,
-                start: "top center",
-                end: "bottom bottom",
-            }
-        });
-
-// Slide 3
-        car_anim.fromTo(scene.rotation, { y: 0.5 }, {
-            y: Math.PI / 2, // the value you want to animate to
-            ease: "power1.inOut",
-            scrollTrigger: {
-                trigger: ".section-two",
-                scrub: 0.5,
-                start: "top bottom",
-                end: "top top",
-            }
-        });
-
-// Slide 4 - The problem child
-        car_anim.to(scene.rotation, {
-            x: -0.5,
-            ease: "power1.inOut",
-            ease: "power1.inOut",
-            scrollTrigger: {
-                trigger: ".section-four",
-                scrub: 0.5,
-                start: "top center",
-                end: "bottom bottom",
-            }
-        })
     }
 }
 

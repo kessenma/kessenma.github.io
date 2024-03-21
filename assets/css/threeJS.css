@@ -1,16 +1,79 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative:wght@400;700&display=swap');
 
-    width: 100vw;
-    height: 100%;
-    margin: 0;
-
-    overflow-y: scroll;
+/* Root font size */
+html {
+    font-size: 1rem;
+    max-width: 100%;
     overflow-x: hidden;
 }
 
-h1 {
-    font-size: 4rem;
+/* Body default styles */
+body {
+    font-family: 'Cinzel Sans', serif;
+    color: inherit;
+    line-height: 1.5;
+    background-color: white;
 }
+
+/*font-family: 'Cinzel Decorative', serif;*/
+
+/* Typography Aliases */
+/*h1 {*/
+/*    font-family: 'Cinzel Decorative', serif;*/
+/*    font-weight: 700;*/
+/*    font-size: 5rem;*/
+/*}*/
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    letter-spacing: 0.25rem;
+}
+
+h2 {
+    font-family: 'Quattrocento', serif;
+    font-weight: 400;
+    font-size: 3rem; /* equivalent to 48px when root is 16px */
+}
+
+h3 {
+    font-family: 'Quattrocento', serif;
+    font-weight: 400;
+    font-size: 2.25rem; /* equivalent to 36px when root is 16px */
+    flex: 0 0 auto;
+}
+
+h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 0.2rem;
+}
+
+p {
+    font-family: 'Cinzel Sans', serif;
+    /*color: inherit;*/
+    /*background-color: white;*/
+    font-size: 1.5rem;
+    z-index: 10;
+}
+
+/* Color Aliases */
+:root {
+    --darkOrange: #59200F;
+    --lightOrange: #EE805E;
+    --orange: #EA7651FF;
+    --lightYellow: #fbf9c1;
+    --yellow: #F7F065;
+    --blue: #66c1f8;
+    --lightBlue: #94d1f7;
+    --purple: #9150e8;
+    --lightPurple: #9e66e8;
+    --lightGray: #d2d1d1;
+    --gray: #a8a8a8;
+    --darkGrey: #7a7a7a;
+    --white: #ffffff;
+}
+
 
 #loading-screen {
     display: flex;
@@ -25,29 +88,50 @@ h1 {
     /*background-color: rgba(0, 0, 0, 0.5); !* Assuming you want a semi-transparent overlay *!*/
 }
 
-#wrapper {
+#loadingWrapper {
     /* You can set a specific width for the wrapper if you want */
     width: 50%; /* Example percentage width */
 }
 
-#border {
+#loadingBorder {
     border: 2px solid white; /* White border color */
     padding: 5px; /* Spacing between border and whitespace */
 }
 
-#whitespace {
+#loadingWhitespace {
     background-color: #fff; /* White background for the loading bar */
     height: 20px; /* Height of the loading bar */
     display: flex; /* Use flexbox to center the line */
     align-items: center;
 }
 
-#line {
+#loadingLine {
     height: 100%;
     width: 0%; /* Initial width */
     /*background-color: #000; !* Black color for the loading progress *!*/
     transition: width 0.5s ease-out; /* Smooth transition for width change */
     /*opacity: 0.5; !* 50% opacity *!*/
+}
+
+.installSceneRight{
+    width: 50%;
+    margin-left: auto; /* This will push the div to the right side */
+    display: flex; /* Enables flexbox */
+    flex-direction: column; /* Stacks flex items vertically */
+    justify-content: center; /* Centers content vertically */
+    text-align: left; /* Keeps the text aligned to the left */
+    height: 100vh; /* Assuming you want it to be as tall as the viewport */
+    margin-right: 5vw;
+}
+
+.installSceneLeft{
+    width: 50%;
+    float: left;
+    display: flex; /* Enables flexbox */
+    flex-direction: column; /* Stacks flex items vertically */
+    justify-content: center; /* Centers content vertically */
+    text-align: right;
+    height: 100vh; /* Assuming you want it to be as tall as the viewport */
 }
 
 
@@ -90,26 +174,35 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0; /* Just to highlight the section, can be removed */
-    opacity: 0.5;
+}
+
+.gradient-overlay4 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    background: linear-gradient(white, black);
+    /*opacity: 0.5;*/
+    z-index: 0;
 }
 
 .section-one {
-    background-color: tomato;
+    /*background-color: tomato;*/
 }
 
 .section-two {
-    background-color: steelblue;
+    /*background-color: steelblue;*/
 }
 
 .section-three {
-    background-color: crimson;
+    /*background-color: crimson;*/
 }
 
 .section-four {
-    background-color: lime;
+    /*background-color: lime;*/
 }
 
 .section-five {
-    background-color: grey;
+    /*background-color: grey;*/
 }
