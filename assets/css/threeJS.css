@@ -90,27 +90,22 @@ p {
 
 #loadingWrapper {
     /* You can set a specific width for the wrapper if you want */
-    width: 50%; /* Example percentage width */
+    width: 10%; /* Example percentage width */
 }
 
-#loadingBorder {
-    border: 2px solid white; /* White border color */
-    padding: 5px; /* Spacing between border and whitespace */
-}
-
-#loadingWhitespace {
-    background-color: #fff; /* White background for the loading bar */
-    height: 20px; /* Height of the loading bar */
-    display: flex; /* Use flexbox to center the line */
-    align-items: center;
-}
 
 #loadingLine {
-    height: 100%;
-    width: 0%; /* Initial width */
-    /*background-color: #000; !* Black color for the loading progress *!*/
-    transition: width 0.5s ease-out; /* Smooth transition for width change */
-    /*opacity: 0.5; !* 50% opacity *!*/
+    border: 8px solid #f3f3f3; /* Light grey background for the spinner */
+    border-top: 8px solid #000; /* Blue color for the spinner */
+    border-radius: 50%; /* Circular shape */
+    width: 60px; /* Spinner size */
+    height: 60px; /* Spinner size */
+    animation: spin 2s linear infinite; /* Spinner animation */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .installSceneRight{
