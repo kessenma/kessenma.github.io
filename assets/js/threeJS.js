@@ -55,7 +55,7 @@ function addModelToBG() {
         ktx2Loader.detectSupport(renderer);
         loader.setKTX2Loader(ktx2Loader); // Set the KTX2Loader here after GLTFLoader is instantiated
 
-        loader.load('./assets/js/three/03.21.24_INSTALL3.glb', function (gltf) {
+        loader.load('./assets/js/three/03.21.24_install3.glb', function (gltf) {
             model = gltf.scene;
             scene.add(model);
             // model.rotation.y = (3 * Math.PI) / 2; // Rotate the model by 270 degrees
