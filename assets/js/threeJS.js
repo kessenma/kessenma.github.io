@@ -55,7 +55,7 @@ function addModelToBG() {
         ktx2Loader.detectSupport(renderer);
         loader.setKTX2Loader(ktx2Loader); // Set the KTX2Loader here after GLTFLoader is instantiated
 
-        loader.load('./assets/js/three/03.15.24_INSTALL2.glb', function (gltf) {
+        loader.load('./assets/js/three/03.21.24_INSTALL3.glb', function (gltf) {
             model = gltf.scene;
             scene.add(model);
             // model.rotation.y = (3 * Math.PI) / 2; // Rotate the model by 270 degrees
@@ -71,6 +71,7 @@ function addModelToBG() {
             document.getElementById('loading-screen').style.display = 'none'; // Hide loader once loaded
         }, function (xhr) {
             // During loading
+            console.log(`${(xhr.loaded / xhr.total * 100)}% loaded`);
             const progress = (xhr.loaded / xhr.total) * 100; // Calculate progress
             document.getElementById('loadingLine').style.width = `${progress}%`; // Update loader width
         }, function (error) {
@@ -113,6 +114,7 @@ function addModelToBG() {
     }
 
     function animate() {
+        console.log('Rendering frame');
         if (!isSceneVisible) return;
         requestAnimationFrame(animate);
         const delta = clock.getDelta();
@@ -126,6 +128,19 @@ function addModelToBG() {
             timer = setTimeout(() => { func.apply(this, args); }, timeout);
         };
     }
+
+    // ######################
+    // ### ERROR HANDLING + LOGGING ###
+    // ######################
+    if (window.performance && window.performance.memory) {
+        console.log(`Used JS Heap Size: ${window.performance.memory.usedJSHeapSize / 1048576} MB`);
+        console.log(`Total JS Heap Size: ${window.performance.memory.totalJSHeapSize / 1048576} MB`);
+    }
+
+    window.onerror = function(message, source, lineno, colno, error) {
+        console.log('An error occurred: ', message);
+    };
+
 
     function onWindowResize() {
         camera.aspect = container.clientWidth / container.clientHeight;
@@ -153,6 +168,7 @@ function addModelToBG() {
     gsap.registerPlugin(ScrollTrigger);
 
     init();
+
 
 // *******************************
 // 	➡️animations on scroll🖱️ ***
