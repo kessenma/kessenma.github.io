@@ -177,7 +177,7 @@ section {
     left: 0;
     /*width: 100%;*/
     /*height: 100%;*/
-    background: linear-gradient(white, black);
+    background: linear-gradient(white, var(--yellow));
     /*opacity: 0.5;*/
     z-index: 0;
 }
