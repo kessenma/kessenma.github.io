@@ -163,38 +163,81 @@ document.addEventListener('DOMContentLoaded', function () {
 // This function should now handle applying styles and animations to the SVGs
     function applyStylesAndAnimationsToSVGs() {
         const svgs = document.querySelectorAll('.floating-svg');
+        const container = document.querySelector('.handshake-container');
+        const containerRect = container.getBoundingClientRect();
+
         svgs.forEach((svg, index) => {
             const scale = Math.random() * 2 - 0.4;
-            const left = Math.random() * 120 - 20;
+            const left = Math.random() * (containerRect.width - svg.offsetWidth);
             const animationDuration = 6 + Math.random() * 15;
             const animationDelay = Math.random() * 5 - 5;
             const rotate = (Math.random() * 75) - 45;
             const rotateZ = (Math.random() * 60) - 30; // Random rotation between -30 and 30 degrees
-            const blurAmount = Math.max(0, index - 16); // Ensuring a minimum blur value of 0
+            const blurAmount = Math.max(0, index - 20); // Ensuring a minimum blur value of 0
 
-            svg.style.filter = `blur(${blurAmount}px)`;
-            svg.style.left = `${left}%`;
-            svg.style.animation = `raise  ${animationDuration}s linear infinite ${animationDelay}s`;
+            svg.style.position = 'absolute';
+            svg.style.bottom = '0'; // Start at the bottom of the container
+            svg.style.left = `${left}px`; // Position horizontally within the container
             svg.style.transform = `scale(${scale}) rotateZ(${rotateZ}deg)`;
-            svg.style.zIndex = index - 7;
-            svg.style.filter = `blur(${index - 6}px)`;
+            svg.style.filter = `blur(${blurAmount}px)`;
+            svg.style.animation = `raise ${animationDuration}s linear infinite ${animationDelay}s`;
         });
     }
 
     adjustFloatingSVGs();
 
-    const keyframes = `
+
+    function adjustKeyframesForContainer() {
+        const container = document.querySelector('.handshake-container');
+        const containerHeight = container.offsetHeight; // Get the container's height
+
+        // Calculate the target bottom position based on container height or another logic
+        const targetBottom = containerHeight * 0.8; // Example: target 80% of container's height
+
+        // Create keyframes with dynamic values
+        const keyframes = `
     @keyframes raise {
       to {
-        bottom: 50vh;
+        bottom: ${targetBottom}px;
         transform: scale(var(--scale)) rotate(var(--rotate)deg);
       }
     }`;
 
-    const styleSheet = document.createElement('style');
-    styleSheet.id = 'dynamic-raise-keyframes'; // Prevent multiple additions
-    styleSheet.innerText = keyframes;
-    document.head.appendChild(styleSheet);
+        // Check if the style tag for keyframes already exists, if so, replace it
+        let styleSheet = document.getElementById('dynamic-raise-keyframes');
+        if (styleSheet) {
+            styleSheet.innerText = keyframes;
+        } else {
+            styleSheet = document.createElement('style');
+            styleSheet.id = 'dynamic-raise-keyframes';
+            styleSheet.innerText = keyframes;
+            document.head.appendChild(styleSheet);
+        }
+    }
+
+// Adjust SVGs initially
+    adjustFloatingSVGs();
+// Adjust keyframes based on container size
+    adjustKeyframesForContainer();
+
+// Consider adding an event listener to re-adjust when the window resizes
+    window.addEventListener('resize', () => {
+        adjustKeyframesForContainer(); // Re-adjust keyframes on resize
+    });
+
+
+    // const keyframes = `
+    // @keyframes raise {
+    //   to {
+    //     bottom: 50vh;
+    //     transform: scale(var(--scale)) rotate(var(--rotate)deg);
+    //   }
+    // }`;
+    //
+    // const styleSheet = document.createElement('style');
+    // styleSheet.id = 'dynamic-raise-keyframes'; // Prevent multiple additions
+    // styleSheet.innerText = keyframes;
+    // document.head.appendChild(styleSheet);
 });
 
 

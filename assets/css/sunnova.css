@@ -1514,12 +1514,16 @@ https://flickity.metafizzy.co
     width: 100vw; /* Example width, adjust as needed */
     overflow: visible;
     position: relative; /* Change based on your layout needs */
-    z-index: -1; /* Adjust based on your page's z-index requirements */
+    z-index: 1; /* Adjust based on your page's z-index requirements */
 }
 
 .floating-backgound {
-    perspective-origin: 50% 50%;
-    position: relative;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
 }
 
 .floating-svg {
