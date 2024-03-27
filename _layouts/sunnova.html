@@ -4,13 +4,13 @@
     <meta charset="UTF-8" >
     <title>Sunnova Catalyst</title>
     <link rel="stylesheet" href="/assets/css/sunnova.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel&family=Cinzel+Decorative:wght@400;700&family=Tilt+Prism&display=swap" rel="stylesheet">
+<!--    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel&family=Cinzel+Decorative:wght@400;700&family=Tilt+Prism&display=swap" rel="stylesheet">-->
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
@@ -70,18 +70,21 @@
 
       <div id="initial-overlay" class="initial-overlay"></div>
 
+
         <div class="dealership-svg-container">
-          <img id="dealershipSVG" src="assets/img/sunnova/dealership.svg" alt="dealership" />
-      </div>
+          <img id="dealershipSvg" src="assets/img/sunnova/dealership.svg" alt="dealership" />
+        </div>
 
       <div class="phone-svg-container">
         <img id="phoneSvg" src="assets/img/sunnova/phone.svg" alt="phone" />
       </div>
 
+
+
       <div class="gradient-overlay"></div>
-<!--      <div class="gradient-overlay2"></div>-->
       <div class="gradient-overlay3"></div>
     </div>
+
   </div>
 
 <!--  <div class="white-divider"></div>-->
@@ -96,7 +99,7 @@
 <div class="about-background">
   <div class="center-section-padding about-section top-divider" id="about-section">
     <div class="divider"></div>
-    <p>{{ page.about }}</p>
+    <p>{{ page.about | safe }}</p>
 <!--    <p>{{ page.about1 }}</p>-->
     <p>{{ page.about2 }}</p>
   </div>
@@ -265,7 +268,7 @@
 
     <div class="microgrid-container">
       <div id="particles-js"></div>
-      <object id="svgObject" type="image/svg+xml" data="/assets/img/sunnova/particles_USA.svg"></object>
+      <object id="ParticlesBackground" type="image/svg+xml" data="/assets/img/sunnova/particles_USA.svg"></object>
     </div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
@@ -276,7 +279,7 @@
       });
     </script>
 
-    <div id="svgObject1" class="doeCircle-container">
+    <div id="doeCircle" class="doeCircle-container">
       <object  type="image/svg+xml" data="/assets/img/sunnova/hestiaCircle.svg"></object>
       <img src="https://img.icons8.com/?size=256&id=wcK894NIt5Wv&format=png" id="moving-arrow" alt="Moving Arrow"/>
     </div>
@@ -295,9 +298,9 @@
   <div class="site-survey-background">
     <div class="divider"></div>
     <div class="app-features center-section-padding" id="features-section">
-      <p>{{ page.Features }}</p>
+<!--      <p>{{ page.Features }}</p>-->
       <div id="typewriter">
-        <h2>Site Survey</h2>
+        <h1>Site Survey</h1>
       </div>
 
       <!--SITE SURVEY ANIMATION-->
@@ -383,6 +386,12 @@
                 V305z M791.9,270.1h-90.7v192.8h90.7V270.1z"/>
         </g>
     </svg>
+  </div>
+
+  <div class="floating-backgound">
+    <img class="floating-svg" src="assets/img/sunnova/checking-account.svg" alt="checking account" />
+    <img class="floating-svg" src="assets/img/sunnova/check-user.svg" alt="check purchaser" />
+  </div>
 </div>
 
 <!--    <script type="module" src="path/to/siteSurvey.js"></script>-->
@@ -448,7 +457,7 @@
       </div>
     </div>
   </div>
-  </div>
+
 
 
   <div class="desktop-divider2"></div>

@@ -3,6 +3,7 @@
 /*#####################*/
 @import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative:wght@400;700&display=swap');
+@import 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700i,900i';
 
 /* Root font size */
 html {
@@ -13,7 +14,8 @@ html {
 
 /* Body default styles */
 body {
-    font-family: 'Cinzel Sans', serif;
+    /*font-family: 'Cinzel Sans', serif;*/
+    font-family: 'Playfair Display', serif;
     color: inherit;
     line-height: 1.5;
     background-color: white;
@@ -28,32 +30,42 @@ body {
 /*    font-size: 5rem;*/
 /*}*/
 h1 {
-    font-family: 'Bebas Neue', sans-serif;
-        font-size: 5rem;
+    /*font-family: 'Bebas Neue', sans-serif;*/
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 6.5vw;
+    font-weight: 900;
+    font-style: italic;
+        /*font-size: 5rem;*/
     letter-spacing: 0.25rem;
 }
 
 h2 {
-    font-family: 'Quattrocento', serif;
+    /*font-family: 'Quattrocento', serif;*/
+    font-family: 'Playfair Display', serif;
     font-weight: 400;
     font-size: 3rem; /* equivalent to 48px when root is 16px */
 }
 
 h3 {
-    font-family: 'Quattrocento', serif;
+    /*font-family: 'Quattrocento', serif;*/
+    font-family: 'Playfair Display', serif;
     font-weight: 400;
     font-size: 2.25rem; /* equivalent to 36px when root is 16px */
     flex: 0 0 auto;
 }
 
 h4 {
-    font-family: 'Bebas Neue', sans-serif;
+    /*font-family: 'Bebas Neue', sans-serif;*/
+    font-family: 'Playfair Display', serif;
     font-size: 3rem;
+    font-weight: 400;
     letter-spacing: 0.2rem;
 }
 
 p {
-    font-family: 'Cinzel Sans', serif;
+    /*font-family: 'Cinzel Sans', serif;*/
+    font-family: 'Playfair Display', serif;
     /*color: inherit;*/
     /*background-color: white;*/
     font-size: 1.5rem;
@@ -306,9 +318,9 @@ p {
 
 .phone-svg-container {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 70%; /* This will control the size on mobile */
+    bottom: 1vh;
+    right: 1vw;
+    width: 50vw; /* This will control the size on mobile */
     max-height: 50%;
     z-index: 11;
 }
@@ -378,7 +390,7 @@ p {
     }
 
     .phone-svg-container {
-        width: 50%; /* Adjust width on desktop */
+        width: 35vw; /* Adjust width on desktop */
         max-height: 50%;
         z-index: 3;
     }
@@ -824,8 +836,9 @@ p {
     /*justify-content: center; !* Center items vertically *!*/
     /*text-align: center;*/
     /*font-family: 'Quattrocento', serif; !* Match the font family of h3 *!*/
-    font-family: 'Cinzel Decorative', serif;
-    font-weight: 400; /* Match the font weight of h3 */
+    /*font-family: 'Cinzel Decorative', serif;*/
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; /* Match the font weight of h3 */
     font-size: 2.25rem; /* Match the font size of h3, equivalent to 36px when root is 16px */
     color: var(--lightYellow); /* Match the color of h3 */
     background-color: black;
@@ -835,6 +848,9 @@ p {
     margin-bottom: -1.5rem;
     /* Remove any additional margin or padding that might be causing layout issues */
     padding: 0;
+    /*text-transform: capitalize;*/
+    text-transform: uppercase;
+    font-style: italic;
 }
 
 .detail-content p {
@@ -1085,86 +1101,6 @@ p {
     margin-bottom: 10vh;
 }
 
-
-
-
-
-
-/*### 3D rendering ###*/
-.loader {
-    width: 100%;
-    background-color: #ddd;
-}
-
-.progress-bar {
-    height: 30px;
-    background-color: black;
-    text-align: center;
-    line-height: 30px;
-    color: white;
-    transition: width 0.4s ease;
-}
-
-@keyframes fadeInAnimation {
-    0% { opacity: 0; }
-    33% { opacity: 0; }
-    66% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
-
-.threejs-container1 {
-    width: 100%;
-    padding-top: 56.25%; /* Aspect ratio of 16:9 */
-    position: relative; /* Not absolute */
-    z-index: 10;
-    background: white;
-}
-
-#threejs-canvas1 {
-    width: 100%;
-    height: 100%; /* Fill the container */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    animation: fadeInAnimation ease 1s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-}
-
-
-/*#nextButton {*/
-/*    display: block;*/
-/*    !*position: absolute;*!*/
-/*    top: 50%;*/
-/*    left: 50%;*/
-/*    transform: translate(-50%, -50%);*/
-/*    padding: 10px 20px;*/
-/*    font-size: 1rem;*/
-/*    color: white;*/
-/*    background-color: #007bff; !* Example blue color *!*/
-/*    border: none;*/
-/*    border-radius: 5px;*/
-/*    cursor: pointer;*/
-/*    z-index: 1000;*/
-/*}*/
-
-#resetButton {
-    display: block;
-    top: 50%;
-    right: 30%; /* Align to the right */
-    transform: translate(50%, -50%); /* Adjust position */
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    background-color: #28a745; /* Example green color */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000;
-    /*position: absolute; !* Ensure positioning *!*/
-}
-
 .DOE-section-container {
     display: flex;
     position: relative;
@@ -1174,13 +1110,12 @@ p {
 
 
 .doeCircle-container {
-    margin-top: 40vh;
     flex: 0 0 auto; /* Do not grow or shrink */
     position: relative;
     height: 30vw;
     aspect-ratio: 1/1;
     left: 60vw;
-    top: 60vw;
+    top: 30vh;
     z-index: 10;
     /*background-color: var(--darkGrey);*/
     border-radius: 50%;
@@ -1188,20 +1123,14 @@ p {
     pointer-events: none;
 }
 
-@media (min-width: 768px) {
-    .doeCircle-container {
-        top: 0vh;
-    }
-}
-
 
 .doeCircle-container::before {
     content: '';
     position: absolute;
     /*top: 50%;*/
-    left: 50%;
     width: 100%;
     height: 100%;
+    margin-bottom: 80vh;
     /*background-color: rgba(0, 0, 0, 0.1); // Use a semi-transparent color for visibility*/
     border-radius: 100%;
     transform: translate(-50%, -50%);
@@ -1218,19 +1147,6 @@ p {
     /*transform: translate(-50%, -50%) rotate(0deg);*/
     z-index: 10; /* Above the circle, below the SVG */
 }
-
-/*@media screen and (max-width: 768px) {*/
-/*    #moving-arrow {*/
-/*        position: absolute;*/
-/*        width: 48px; !* Width of the arrow image *!*/
-/*        height: 48px; !* Height of the arrow image *!*/
-/*        top: 70vh;*/
-/*        left: 50%;*/
-/*        transform-origin: 50% calc(50% + 20vw); !* Half of the image width and offset by the radius of the circle *!*/
-/*        transform: translate(-50%, -50%) rotate(0deg);*/
-/*        z-index: 10; !* Above the circle, below the SVG *!*/
-/*    }*/
-/*}*/
 
 .microgrid-container {
     width: 100vw;
@@ -1251,7 +1167,7 @@ p {
     -webkit-mask: url('/assets/img/sunnova/particles_USA_mask.svg#usa-mask') no-repeat center / contain;
 }
 
-#svgObject {
+#ParticlesBackground {
     display: block;
     position: absolute;
     top: 20vh;
@@ -1262,22 +1178,23 @@ p {
     overflow: visible;
 }
 
-/*@media screen and (max-width: 768px) {*/
-/*    #svgObject {*/
-/*        top: -500vh;*/
-/*    }*/
-/*}*/
 
-
-
-#svgObject1 {
+#doeCircle {
     /* other styles */
     position: absolute;
-    /*top: 50%; !* Adjust as needed to the initial desired position *!*/
+    top: -55vh; /* Adjust as needed to the initial desired position */
     /*left: 50%;*/
     transform: translate(-0%, -0%); /* Adjust translation to align it center at the beginning */
     z-index: 2; /* Adjust if needed */
 }
+
+/*!*!* Media query for desktop screens *!*!*/
+/*@media (min-width: 768px) {*/
+/*    #doeCircle {*/
+/*        top: -80vh; !* Override top for desktop screens *!*/
+/*    }*/
+/*}*/
+
 
 
 
@@ -1598,6 +1515,24 @@ https://flickity.metafizzy.co
     overflow: visible;
     position: relative; /* Change based on your layout needs */
     z-index: -1; /* Adjust based on your page's z-index requirements */
+}
+
+.floating-backgound {
+    perspective-origin: 50% 50%;
+    position: relative;
+}
+
+.floating-svg {
+    stroke: var(--yellow);
+    position: absolute;
+    bottom: -100vh;
+    transform-style: preserve-3d;
+    max-height: 40vh;
+    max-width: 40vw;
+    min-height: 10vh;
+    min-width: 10vw;
+    height: auto;
+    width: auto;
 }
 
 

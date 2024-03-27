@@ -225,6 +225,23 @@ var Two=(()=>{var me=Object.defineProperty;var Yi=Object.getOwnPropertyDescripto
 
 (function(){if(typeof exports==='object'&&typeof module!=='undefined'){module.exports=Two}})()
 
+// Assume 'two' is your Two.js instance controlling the animation
+let observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Element is in view, start or resume the animation
+            two.play();
+        } else {
+            // Element is not in view, pause the animation
+            two.pause();
+        }
+    });
+}, {threshold: 0.5}); // Adjust threshold as needed
+
+// Assuming 'two-container' is the element you want to observe
+observer.observe(document.getElementById('two-container'));
+
+
 var hands, arms;
 var two = new Two({
     fullscreen: false, // Consider setting to false if you're controlling size via CSS

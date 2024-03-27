@@ -1,31 +1,83 @@
+function throttle(func, limit) {
+    let lastFunc;
+    let lastRan;
+    return (...args) => { // Use rest parameters instead of arguments
+        if (!lastRan) {
+            func(...args); // Call function with spread syntax
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(() => {
+                if ((Date.now() - lastRan) >= limit) {
+                    func(...args); // Call function with spread syntax
+                    lastRan = Date.now();
+                }
+            }, limit - (Date.now() - lastRan));
+        }
+    };
+}
+
+
+// Function to check if an element is in the viewport
+function isInViewport(el, threshold = 0) {
+    const rect = el.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+    return (
+        rect.top >= (0 - threshold) &&
+        rect.left >= 0 &&
+        rect.bottom <= (viewportHeight + threshold) && // Add threshold to bottom check
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+function handleIntersection(entries, observer) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+            entry.target.style.visibility = "visible"; // Make the SVG visible
+            entry.target.classList.add('is-visible'); // Indicate that the element is ready
+            hideInitialOverlay();
+            initSVGAnimation(entry.target);
+            observer.unobserve(entry.target);
+        }
+    });
+}
+
+
+
+
 $(document).ready(function() {
-    // Menu and other jQuery-related setup code...
-
     // Get the initial top offset of the SVG relative to the window
-    var initialSvgTop = $('#svgObject').offset().top - $(window).scrollTop();
+    var initialSvgTop = $('#dealershipSvg').offset().top - $(window).scrollTop();
 
-    // Combine both scroll functionalities into one
-    $(window).scroll(function() {
-        var scrollPos = $(this).scrollTop();
-        var windowHeight = $(document).height() - $(window).height();
+    $(window).scroll(throttle(function() {
+        let scrollPos = $(this).scrollTop();
+        let windowHeight = $(document).height() - $(window).height();
+        let percentScrolled = (scrollPos / windowHeight) * 100;
 
-        // Calculate the percentage of the page scrolled
-        var percentScrolled = (scrollPos / windowHeight) * 100;
+        const sunIsVisible = isInViewport($('.sun')[0]);
+        const phoneSvgIsVisible = isInViewport($('.phone-svg-container')[0]);
+        const dealershipSvgIsVisible = isInViewport($('.dealership-svg-container')[0]);
+        const doeCircleSvgIsVisible = isInViewport($('.DOE-section-container')[0]);
+        const bentoBoxIsVisible = isInViewport($('.bento-box')[0]);
+        const desertBackgroundIsVisible = isInViewport($('.desert-background')[0]);
+        // console.log('Phone SVG visible:', phoneSvgIsVisible, 'Sun visible:', sunIsVisible,  'Dealership SVG visible:', dealershipSvgIsVisible);
 
-        // Apply parallax effects
-        $('.sun').css('transform', 'translateY(' + scrollPos/3 + 'px)');
-        $('#phoneSvg').parent().css('transform', 'translateY(' + (-scrollPos/3) + 'px)');
-        $('#dealershipSVG').parent().css('transform', 'translateY(' + scrollPos/4 + 'px)');
+        if (sunIsVisible) {
+            $('.sun').css('transform', 'translateY(' + scrollPos/3 + 'px)');
+        }
+        if (phoneSvgIsVisible) {
+            $('#phoneSvg').parent().css('transform', 'translateY(' + (-scrollPos/3) + 'px)');
+        }
+        if (dealershipSvgIsVisible) {
+            $('#dealershipSvg').parent().css('transform', 'translateY(' + scrollPos/3 + 'px)');
+        }
 
-        // Adjust the movement of #svgObject to be more subtle and remain closer to doe-circle-container
-        var svgTranslationDown = (scrollPos + initialSvgTop) / 14; // Larger division factor for a subtle effect
-        var svgTranslationUp = (-scrollPos + initialSvgTop) / 6; // Larger division factor for a subtle effect
-        $('#svgObject1').css('transform', 'translateY(' + svgTranslationUp + 'px)');
-        // $('#siteSurvey1').css('transform', 'translateY(' + svgTranslationDown + 'px)');
-        // $('#siteSurvey2').css('transform', 'translateY(' + svgTranslationUp + 'px)');
-        // $('#siteSurvey3').css('transform', 'translateY(' + svgTranslationDown + 'px)');
-        // $('#siteSurvey4').css('transform', 'translateY(' + svgTranslationUp + 'px)');
-        // $('#particles-js').css('transform', 'translateY(' + svgTranslationDown + 'px)');
+        if (doeCircleSvgIsVisible || bentoBoxIsVisible || desertBackgroundIsVisible) {
+            $('#doeCircle').css('transform', 'translateY(' + scrollPos/4 + 'px)');
+        }
+
+        // $('#doeCircle').css('transform', 'translateY(' + scrollPos/4 + 'px)');
 
         // Update the progress bar width
         $('.scroll-progress-bar').css('width', percentScrolled + '%');
@@ -36,7 +88,7 @@ $(document).ready(function() {
         } else {
             $(".menu-button").fadeOut();
         }
-    });
+    }, 50)); // 100ms throttle limit
 });
 
 
@@ -84,7 +136,67 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.small-box').forEach(function(box) {
         box.addEventListener('click', handleBoxInteraction);
     });
+    ///
+    /// floating-background floating-svg
+    ///
+    //randomization for svg's
+    function adjustFloatingSVGs() {
+        const container = document.querySelector('.floating-backgound');
+        container.innerHTML = ''; // Clear existing SVGs
+        const svgSources = [
+            'assets/img/sunnova/checking-account.svg',
+            'assets/img/sunnova/check-user.svg'
+        ];
+        const desiredCount = Math.floor(Math.random() * 9) + 2; // Random number between 2 and 10
+
+        for (let i = 0; i < desiredCount; i++) {
+            const imgElement = document.createElement('img');
+            imgElement.src = svgSources[Math.floor(Math.random() * svgSources.length)];
+            // Randomly select SVG source
+            imgElement.classList.add('floating-svg');
+            container.appendChild(imgElement);
+        }
+// Apply styles and animations to new SVGs
+        applyStylesAndAnimationsToSVGs();
+    }
+
+// This function should now handle applying styles and animations to the SVGs
+    function applyStylesAndAnimationsToSVGs() {
+        const svgs = document.querySelectorAll('.floating-svg');
+        svgs.forEach((svg, index) => {
+            const scale = Math.random() * 2 - 0.4;
+            const left = Math.random() * 120 - 20;
+            const animationDuration = 6 + Math.random() * 15;
+            const animationDelay = Math.random() * 5 - 5;
+            const rotate = (Math.random() * 75) - 45;
+            const rotateZ = (Math.random() * 60) - 30; // Random rotation between -30 and 30 degrees
+            const blurAmount = Math.max(0, index - 16); // Ensuring a minimum blur value of 0
+
+            svg.style.filter = `blur(${blurAmount}px)`;
+            svg.style.left = `${left}%`;
+            svg.style.animation = `raise  ${animationDuration}s linear infinite ${animationDelay}s`;
+            svg.style.transform = `scale(${scale}) rotateZ(${rotateZ}deg)`;
+            svg.style.zIndex = index - 7;
+            svg.style.filter = `blur(${index - 6}px)`;
+        });
+    }
+
+    adjustFloatingSVGs();
+
+    const keyframes = `
+    @keyframes raise {
+      to {
+        bottom: 50vh;
+        transform: scale(var(--scale)) rotate(var(--rotate)deg);
+      }
+    }`;
+
+    const styleSheet = document.createElement('style');
+    styleSheet.id = 'dynamic-raise-keyframes'; // Prevent multiple additions
+    styleSheet.innerText = keyframes;
+    document.head.appendChild(styleSheet);
 });
+
 
 
 // typewriter
@@ -141,7 +253,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Now you can call this with any selector
-    applyTypewriterEffect('#typewriter h2', 150);
+    applyTypewriterEffect('#typewriter h1', 150);
     applyTypewriterEffect('.commissioning-package-header h2', 150); // Use the correct selector for your second header
     applyTypewriterEffectById('architecture-title', 150);
 });
