@@ -716,7 +716,7 @@ p {
     position: relative;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, white, var(--darkGrey));
+    background: linear-gradient(180deg, white, black);
     opacity: 1;
     z-index: 0;
     /*margin-bottom: -40vh;*/
@@ -726,7 +726,8 @@ p {
     position: relative;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, var(--darkGrey), black);
+    /*background: linear-gradient(180deg, var(--darkGrey), black);*/
+    background: linear-gradient(180deg, black, var(--lightGray));
     opacity: 1;
     z-index: 0;
     margin-bottom: -40vh;
@@ -1521,7 +1522,7 @@ https://flickity.metafizzy.co
     width: 100%;
     height: 100%;
     position: absolute;
-    overflow: hidden;
+    /*overflow: hidden;*/
     top: 0;
     left: 0;
 }

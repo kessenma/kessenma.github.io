@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const left = Math.random() * (containerRect.width - svg.offsetWidth);
             const animationDuration = 6 + Math.random() * 15;
             const animationDelay = Math.random() * 5 - 5;
-            const rotate = (Math.random() * 75) - 45;
+            // const rotate = (Math.random() * 75) - 45;
             const rotateZ = (Math.random() * 60) - 30; // Random rotation between -30 and 30 degrees
             const blurAmount = Math.max(0, index - 20); // Ensuring a minimum blur value of 0
 
@@ -196,12 +196,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Create keyframes with dynamic values
         const keyframes = `
-    @keyframes raise {
-      to {
-        bottom: ${targetBottom}px;
-        transform: scale(var(--scale)) rotate(var(--rotate)deg);
-      }
-    }`;
+        @keyframes raise {
+          0% {
+            bottom: 0;
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            bottom: ${targetBottom}px;
+            opacity: 0;
+          }
+        }`;
 
         // Check if the style tag for keyframes already exists, if so, replace it
         let styleSheet = document.getElementById('dynamic-raise-keyframes');
@@ -220,24 +230,11 @@ document.addEventListener('DOMContentLoaded', function () {
 // Adjust keyframes based on container size
     adjustKeyframesForContainer();
 
-// Consider adding an event listener to re-adjust when the window resizes
-    window.addEventListener('resize', () => {
+// Add an event listener to re-adjust when the window resizes
+    window.addEventListener('resize', throttle(() => {
         adjustKeyframesForContainer(); // Re-adjust keyframes on resize
-    });
+    }, 1000)); // Throttle to avoid running too frequently
 
-
-    // const keyframes = `
-    // @keyframes raise {
-    //   to {
-    //     bottom: 50vh;
-    //     transform: scale(var(--scale)) rotate(var(--rotate)deg);
-    //   }
-    // }`;
-    //
-    // const styleSheet = document.createElement('style');
-    // styleSheet.id = 'dynamic-raise-keyframes'; // Prevent multiple additions
-    // styleSheet.innerText = keyframes;
-    // document.head.appendChild(styleSheet);
 });
 
 
