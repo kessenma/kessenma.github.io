@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
 
     var phoneSvg = document.getElementById('phoneSvg');
-    var dealershipSvg = document.getElementById('dealershipSVG');
+    var dealershipSvg = document.getElementById('dealershipSvg');
     var desertPanelSvg = document.getElementById('desertPanelSvg');
     var roofPitch = document.getElementById('roofPitchSvg');
     var powerLine = document.getElementById('powerLineSvg');
