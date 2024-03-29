@@ -169,22 +169,23 @@ document.addEventListener('DOMContentLoaded', function () {
         svgs.forEach((svg, index) => {
             const scale = Math.random() * 2 - 0.4;
             const left = Math.random() * (containerRect.width - svg.offsetWidth);
-            const animationDuration = 6 + Math.random() * 15;
-            const animationDelay = Math.random() * 5 - 5;
+            const animationDuration = 4 + Math.random() * 6;
+            const animationDelay = Math.random() * 5 - 3.5;
             // const rotate = (Math.random() * 75) - 45;
-            const rotateZ = (Math.random() * 60) - 30; // Random rotation between -30 and 30 degrees
-            const blurAmount = Math.max(0, index - 20); // Ensuring a minimum blur value of 0
+            const rotateZ = (Math.random() * 120) - 60; // Random rotation between -30 and 30 degrees
+            const blurAmount = Math.max(0, index - 4); // Ensuring a minimum blur value of 0
+            const zIndex = Math.floor(Math.random() * 4) + 1;
 
             svg.style.position = 'absolute';
             svg.style.bottom = '0'; // Start at the bottom of the container
-            svg.style.left = `${left}px`; // Position horizontally within the container
+            svg.style.left = `${left}px`;
             svg.style.transform = `scale(${scale}) rotateZ(${rotateZ}deg)`;
+            // svg.style.transform = `scale(${scale})`;
             svg.style.filter = `blur(${blurAmount}px)`;
+            svg.style.zIndex = zIndex; // Set the randomized z-index
             svg.style.animation = `raise ${animationDuration}s linear infinite ${animationDelay}s`;
         });
     }
-
-    adjustFloatingSVGs();
 
 
     function adjustKeyframesForContainer() {
@@ -225,17 +226,30 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-// Adjust SVGs initially
-    adjustFloatingSVGs();
-// Adjust keyframes based on container size
-    adjustKeyframesForContainer();
-
-// Add an event listener to re-adjust when the window resizes
     window.addEventListener('resize', throttle(() => {
-        adjustKeyframesForContainer(); // Re-adjust keyframes on resize
-    }, 1000)); // Throttle to avoid running too frequently
+        adjustKeyframesForContainer();
+    }, 1000));
+
+    adjustFloatingSVGs();
+    adjustKeyframesForContainer();
+    observeSVGs();
+
 
 });
+
+// Control SVG Animation Based on Visibility
+function observeSVGs() {
+    const svgElements = document.querySelectorAll('.floating-svg'); // Your selector for SVGs
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            entry.target.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+        });
+    }, { threshold: 0.1 });
+
+    svgElements.forEach(svg => {
+        observer.observe(svg);
+    });
+}
 
 
 

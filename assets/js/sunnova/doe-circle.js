@@ -1,20 +1,3 @@
-// document.addEventListener('DOMContentLoaded', (event) => {
-//     console.log('Document is fully loaded');
-//     console.log('SVG.js available:', SVG && typeof SVG === 'function');
-//
-//     // particlesJS.load('particles-js', 'assets/js/sunnova/sunnova_particles.json', function() {
-//     //     console.log('callback - particles.js config loaded');
-//     // });
-//
-//     var svgObject = document.getElementById('svgObject');
-//     if (!svgObject) {
-//         console.error('SVG object not found');
-//         return;
-//     } else {
-//         console.log('SVG object found');
-//     }
-// });
-
 let lastScrollTop = 0; // Variable to hold the last position
 let rotationDegrees = 0; // Start at 0 degrees
 
@@ -32,12 +15,6 @@ document.addEventListener('scroll', function() {
     var arrow = document.getElementById('moving-arrow');
     arrow.style.transform = `rotate(${rotationDegrees}deg)`;
 });
-
-// function initializeParticlesJS() {
-//     particlesJS.load('particles-js', '/assets/js/sunnova/sunnova_particles.json', function() {
-//         console.log('callback - particles.js config loaded');
-//     });
-// }
 
 
 

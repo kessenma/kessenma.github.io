@@ -1515,7 +1515,7 @@ https://flickity.metafizzy.co
     width: 100vw; /* Example width, adjust as needed */
     overflow: visible;
     position: relative; /* Change based on your layout needs */
-    z-index: 1; /* Adjust based on your page's z-index requirements */
+    z-index: 4; /* Adjust based on your page's z-index requirements */
 }
 
 .floating-backgound {
@@ -1528,10 +1528,10 @@ https://flickity.metafizzy.co
 }
 
 .floating-svg {
-    stroke: var(--yellow);
+    /*stroke: var(--yellow);*/
     position: absolute;
-    bottom: -100vh;
-    transform-style: preserve-3d;
+    /*bottom: -100vh;*/
+    /*transform-style: preserve-3d;*/
     max-height: 40vh;
     max-width: 40vw;
     min-height: 10vh;
