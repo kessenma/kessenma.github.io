@@ -726,10 +726,11 @@ p {
     position: relative;
     width: 100%;
     height: 100%;
+    background: linear-gradient(rgba(1, 1, 1), rgba(210, 209, 209));
     /*background: linear-gradient(180deg, var(--darkGrey), black);*/
-    background: linear-gradient(180deg, black, var(--lightGray));
+/*    background: linear-gradient(180deg, black, var(--lightGray));*/
     opacity: 1;
-    z-index: 0;
+    z-index: 2;
     margin-bottom: -40vh;
 }
 
@@ -1350,6 +1351,10 @@ https://flickity.metafizzy.co
 /*flickity css ^^ ######*/
 /*###################*/
 
+.commissioning-package {
+    background-color: var(--darkOrange);
+}
+
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 1000px) {
@@ -1458,7 +1463,6 @@ https://flickity.metafizzy.co
     /*font-size: 2rem !important;*/
 }
 .heroic-text {
-    /*background: linear-gradient(45deg, #ffdc73, #fa7d1e, #d72878, #962dbe, #505ad7);*/
     background-image: linear-gradient(
             to right,
             var(--lightYellow) 0%,       /* Start with white */
@@ -1488,10 +1492,10 @@ https://flickity.metafizzy.co
             var(--yellow) 75%,/* Then to light purple */
             var(--lightYellow) 100%      /* And back to white */
     );
-    background-size: 200%;
+    background-size: 300%;
     animation: gradient 5s ease infinite;
     content: attr(heroic);
-    filter: blur(3vw);
+    filter: blur(5vw);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -1510,12 +1514,13 @@ https://flickity.metafizzy.co
 .handshake-container {
     /* Default mobile styles */
     /*margin-top: -40vh;*/
-    top: -20%;
-    height: 80vh;
+/*    top: -20%;*/
+    height: 100vh;
     width: 100vw; /* Example width, adjust as needed */
     overflow: visible;
     position: relative; /* Change based on your layout needs */
-    z-index: 4; /* Adjust based on your page's z-index requirements */
+    z-index: 3; /* Adjust based on your page's z-index requirements */
+    margin-bottom: 35vh;
 }
 
 .floating-backgound {
@@ -1557,12 +1562,182 @@ https://flickity.metafizzy.co
 /*    color: red;*/
 /*}*/
 
-.trigger-section {
-    height: 50vh; /* Height can be adjusted based on when you want the animation to start */
+/*.trigger-section {*/
+/*    height: 50vh; !* Height can be adjusted based on when you want the animation to start *!*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    background-color: #f0f0f0; !* Just to highlight the section, can be removed *!*/
+/*}*/
+
+
+/*Install scene animation*/
+
+
+
+
+#loading-screen {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0; /* Just to highlight the section, can be removed */
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+/*    z-index: 9999;*/
+    /*background-color: rgba(0, 0, 0, 0.5); !* Assuming you want a semi-transparent overlay *!*/
+}
+
+#loadingWrapper {
+    /* You can set a specific width for the wrapper if you want */
+    width: 10%; /* Example percentage width */
+}
+
+
+#loadingLine {
+    border: 8px solid #f3f3f3; /* Light grey background for the spinner */
+    border-top: 8px solid #000; /* Blue color for the spinner */
+    border-radius: 50%; /* Circular shape */
+    width: 60px; /* Spinner size */
+    height: 60px; /* Spinner size */
+    animation: spin 2s linear infinite; /* Spinner animation */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.installSceneRight{
+    width: 50%;
+    margin-left: auto; /* This will push the div to the right side */
+    display: flex; /* Enables flexbox */
+    flex-direction: column; /* Stacks flex items vertically */
+    justify-content: center; /* Centers content vertically */
+    text-align: left; /* Keeps the text aligned to the left */
+    height: 100vh; /* Assuming you want it to be as tall as the viewport */
+    margin-right: 5vw;
+}
+
+.installSceneLeft{
+    width: 50%;
+    float: left;
+    display: flex; /* Enables flexbox */
+    flex-direction: column; /* Stacks flex items vertically */
+    justify-content: center; /* Centers content vertically */
+    text-align: right;
+    height: 100vh; /* Assuming you want it to be as tall as the viewport */
+}
+
+/*.fixed-canvas {*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100vw;*/
+/*    height: 100vh;*/
+/*    z-index: 10; !* Ensure this is above other content but below any overlays *!*/
+/*}*/
+
+
+.three-js-canvas {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+/*    margin-bottom: -100vh;*/
+    visibility: visible;
+}
+
+section {
+
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+}
+
+.buffer {
+    height: 40vh;
+}
+
+.loading-screen {
+    z-index: 10;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 50%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.trigger-section {
+    height: 100vh; /* Height can be adjusted based on when you want the animation to start */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.three-js-background {
+    position: relative;
+    top: 0;
+    left: 0;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    background: linear-gradient(var(--lightGray), var(--yellow));
+    /*opacity: 0.5;*/
+    z-index: 0;
+}
+
+.three-js-container{
+    margin-top: -30vh;
+}
+
+.section-zero {
+    z-index: 1003;
+    height: 60vh;
+    background: var(--lightGray);
+}
+
+.section-one {
+    z-index: 10001;
+    height: 100vh;
+    background: linear-gradient(rgba(210, 209, 209), rgba(0, 0, 0, 0));
+}
+
+.section-two {
+}
+
+.section-three {
+    /*background-color: crimson;*/
+}
+
+.section-four {
+    /*background-color: lime;*/
+}
+
+.section-five {
+    z-index: 10001;
+    height: 80vh;
+/*    background: linear-gradient(rgba(0, 0, 0, 0), rgba(210, 209, 209));*/
+}
+
+.section-six {
+    z-index: 10001;
+    height: 50vh;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(238, 128, 94));
+}
+
+.section-seven {
+    z-index: 10001;
+    height: 100vh;
+/*    background: var(--darkGrey);*/
+    background: linear-gradient(rgba(238, 128, 94), rgba(89, 32, 15));
 }
 
 

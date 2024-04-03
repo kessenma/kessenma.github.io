@@ -4,6 +4,7 @@
     <meta charset="UTF-8" >
     <title>Sunnova Catalyst</title>
     <link rel="stylesheet" href="/assets/css/sunnova.css">
+<!--    <link rel="stylesheet" href="/assets/css/threeJS.css">-->
 <!--    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">-->
 <!--    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">-->
 <!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
@@ -13,9 +14,6 @@
 <!--    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel&family=Cinzel+Decorative:wght@400;700&family=Tilt+Prism&display=swap" rel="stylesheet">-->
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -39,14 +37,8 @@
     </div>
   </div>
 
-
-  <!--####################-->
-  <!--###SPLASH SCREEN ###-->
-  <!--####################-->
   <div class= "content-container parallax-container">
-    <div class="">
     <h1 class="sunnova-text">{{ page.title }}</h1>
-
       <div class="sun">
         <div class="ray_box">
           <div class="ray ray1"></div>
@@ -61,70 +53,38 @@
           <div class="ray ray10"></div>
         </div>
       </div>
-
-      <div class="button-container">
+    <div class="button-container">
       <a href="#about-section" class="parallax-button">About</a>
       <a href="#features-section" class="parallax-button">features</a>
       <a href="#architecture-section" class="parallax-button">Architecture</a>
     </div>
-
-      <div id="initial-overlay" class="initial-overlay"></div>
-
-
-        <div class="dealership-svg-container">
-          <img id="dealershipSvg" src="assets/img/sunnova/dealership.svg" alt="dealership" />
-        </div>
-
-      <div class="phone-svg-container">
-        <img id="phoneSvg" src="assets/img/sunnova/phone.svg" alt="phone" />
-      </div>
-
-
-
-      <div class="gradient-overlay"></div>
-      <div class="gradient-overlay3"></div>
+    <div id="initial-overlay" class="initial-overlay"></div>
+    <div class="dealership-svg-container">
+      <img id="dealershipSvg" src="assets/img/sunnova/dealership.svg" alt="dealership" />
     </div>
-
+    <div class="phone-svg-container">
+      <img id="phoneSvg" src="assets/img/sunnova/phone.svg" alt="phone" />
+    </div>
+    <div class="gradient-overlay"></div>
+    <div class="gradient-overlay3"></div>
   </div>
 
-<!--  <div class="white-divider"></div>-->
-
-<!--  <div class="svg-container">-->
-<!--    <object id="" type="image/svg+xml" data="assets/img/sunnova/whiteSquare.svg"></object>-->
-<!--  </div>-->
-
-<!--####################-->
-<!--#######ABOUT#######-->
-<!--####################-->
-<div class="about-background">
-  <div class="center-section-padding about-section top-divider" id="about-section">
-    <div class="divider"></div>
-    <p>{{ page.about | safe }}</p>
-<!--    <p>{{ page.about1 }}</p>-->
-    <p>{{ page.about2 }}</p>
+  <div class="about-background">
+    <div class="center-section-padding about-section top-divider" id="about-section">
+      <div class="divider"></div>
+      <p>{{ page.about | safe }}</p>
+      <p>{{ page.about2 }}</p>
+    </div>
+    <div class="desertSunBackground"></div>
   </div>
-  <div class="desertSunBackground"></div>
-</div>
 
-<!--DEALERSHIP SVG -->
-<!--<div class="svg-container">-->
-<!--  <object id="mySvg1" type="image/svg+xml" data="assets/js/sunnova/dealership.svg" preserveAspectRatio="none" alt="Sunnova Splash"></object>-->
-<!--</div>-->
-
-
-<!--  TEXAS SVG -->
-<!--  <div class="svg-container">-->
-<!--    <object id="mySvg1" type="image/svg+xml" data="assets/img/sunnova/texas_outline.svg" preserveAspectRatio="none" alt="Sunnova Splash"></object>-->
-<!--  </div>-->
-
-<div class="desert-background">
-  <div class="desert-svg-container">
-    <img id="desertPanelSvg" src="assets/img/sunnova/panelsInDesert.svg" style="visibility: hidden;" alt="solar panels in the desert" />
-
+  <div class="desert-background">
+    <div class="desert-svg-container">
+      <img id="desertPanelSvg" src="assets/img/sunnova/panelsInDesert.svg" style="visibility: hidden;" alt="solar panels in the desert" />
+    </div>
   </div>
-</div>
 
-<div class="bento-gradient-background">
+  <div class="bento-gradient-background">
 
   <div class="expandable-content-row-top-container">
     <div class="expandable-content-container top">
@@ -132,142 +92,141 @@
     </div>
   </div>
 
-    <div class="bento-box">
+  <div class="bento-box">
 
-      <div class="small-box expand-up">
-        <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnnovaSolarHome.svg');">
-          <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Solar Home" class="svg-icon">
-        </div>
-        <p> {{ page.customers }} </p>
-        <div class="detail-content">
-          <p>{{page.customers1}}</p>
-          <div class="detail-content-header">
-            <h3>{{ page.customers }}</h3>
-          </div>
-        </div>
+    <div class="small-box expand-up">
+      <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnnovaSolarHome.svg');">
+        <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Solar Home" class="svg-icon">
       </div>
-
-      <div class="small-box expand-up">
-        <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaWorldMap.svg');">
-          <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="IPO" class="svg-icon">
-        </div>
-        <p> {{ page.locations }}</p>
-        <div class="detail-content">
-          <p>{{page.locations1}}</p>
-          <div class="detail-content-header">
-            <h3>{{ page.locations }}</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="small-box expand-up">
-        <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaFounding.svg');">
-          <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt= "Founding" class="svg-icon">
-        </div>
-        <p>{{ page.founded }}</p>
-        <div class="detail-content">
-          <p>{{page.founded1}}</p>
-          <div class="detail-content-header">
-            <h3>{{ page.founded }}</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="small-box expand-up">
-        <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaIPO.svg');">
-          <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="IPO" class="svg-icon">
-        </div>
-        <p> {{ page.ipo_info }}</p>
-        <div class="detail-content">
-          <p>{{page.ipo_info1}}</p>
-          <div class="detail-content-header">
-            <h3>Initial Public Offering</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="small-box expand-up">
-        <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaInstall.svg');">
-          <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Install" class="svg-icon">
-        </div>
-        <p>{{ page.dealers }}</p>
-        <div class="detail-content">
-          <p>{{page.dealers1}}</p>
-          <div class="detail-content-header">
-            <h3> {{ page.dealers }}</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="small-box expand-up">
-        <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaImprovement.svg');">
-          <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Improvement" class="svg-icon">
-        </div>
-        <p>{{ page.app_reeditions }}</p>
-        <div class="detail-content">
-          <p>{{page.app_reeditions1}}</p>
-          <div class="detail-content-header">
-            <h3>{{ page.app_reeditions }}</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="small-box expand-down">
-        <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaSalesforce.svg');">
-          <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Salesforce" class="svg-icon">
-        </div>
-        <p>{{ page.salesforce }}</p>
-        <div class="detail-content">
-          <div class="detail-content-header">
-            <h3>{{ page.salesforce }}</h3>
-          </div>
-          <p>{{page.salesforce1}}</p>
-          <div class="video-container"> <!-- Add class here -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/H6z6ErSbSjM?si=AzL-o9EeS65irRWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-
-      <div class="small-box expand-down">
-        <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/microgrids.svg');">
-          <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Daily Installs" class="svg-icon">
-        </div>
-        <p> {{ page.microgrid }}</p>
-        <div class="detail-content">
-          <div class="detail-content-header">
-            <h3>{{page.microgrid}}</h3>
-          </div>
-          <p>{{page.microgrid1}}</p>
-        </div>
-      </div>
-
-      <div class="small-box expand-down">
-        <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaDOE.svg');">
-          <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="DOE" class="svg-icon">
-        </div>
-        <p>{{ page.energy_loan }}</p>
-        <div class="detail-content">
-          <div class="detail-content-header">
-            <h3>Department of Energy</h3>
-          </div>
-          <p>{{page.energy_loan1}}</p>
+      <p> {{ page.customers }} </p>
+      <div class="detail-content">
+        <p>{{page.customers1}}</p>
+        <div class="detail-content-header">
+          <h3>{{ page.customers }}</h3>
         </div>
       </div>
     </div>
 
-  <div class="expandable-content-row-bottom-container">
-    <div class="expandable-content-container bottom">
-      <div class="expandable-content-row-bottom" aria-hidden="true"></div>
+    <div class="small-box expand-up">
+      <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaWorldMap.svg');">
+        <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="IPO" class="svg-icon">
+      </div>
+      <p> {{ page.locations }}</p>
+      <div class="detail-content">
+        <p>{{page.locations1}}</p>
+        <div class="detail-content-header">
+          <h3>{{ page.locations }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="small-box expand-up">
+      <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaFounding.svg');">
+        <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt= "Founding" class="svg-icon">
+      </div>
+      <p>{{ page.founded }}</p>
+      <div class="detail-content">
+        <p>{{page.founded1}}</p>
+        <div class="detail-content-header">
+          <h3>{{ page.founded }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="small-box expand-up">
+      <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaIPO.svg');">
+        <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="IPO" class="svg-icon">
+      </div>
+      <p> {{ page.ipo_info }}</p>
+      <div class="detail-content">
+        <p>{{page.ipo_info1}}</p>
+        <div class="detail-content-header">
+          <h3>Initial Public Offering</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="small-box expand-up">
+      <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaInstall.svg');">
+        <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Install" class="svg-icon">
+      </div>
+      <p>{{ page.dealers }}</p>
+      <div class="detail-content">
+        <p>{{page.dealers1}}</p>
+        <div class="detail-content-header">
+          <h3> {{ page.dealers }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="small-box expand-up">
+      <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaImprovement.svg');">
+        <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Improvement" class="svg-icon">
+      </div>
+      <p>{{ page.app_reeditions }}</p>
+      <div class="detail-content">
+        <p>{{page.app_reeditions1}}</p>
+        <div class="detail-content-header">
+          <h3>{{ page.app_reeditions }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="small-box expand-down">
+      <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaSalesforce.svg');">
+        <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Salesforce" class="svg-icon">
+      </div>
+      <p>{{ page.salesforce }}</p>
+      <div class="detail-content">
+        <div class="detail-content-header">
+          <h3>{{ page.salesforce }}</h3>
+        </div>
+        <p>{{page.salesforce1}}</p>
+        <div class="video-container"> <!-- Add class here -->
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/H6z6ErSbSjM?si=AzL-o9EeS65irRWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="small-box expand-down">
+      <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/microgrids.svg');">
+        <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Daily Installs" class="svg-icon">
+      </div>
+      <p> {{ page.microgrid }}</p>
+      <div class="detail-content">
+        <div class="detail-content-header">
+          <h3>{{page.microgrid}}</h3>
+        </div>
+        <p>{{page.microgrid1}}</p>
+      </div>
+    </div>
+
+    <div class="small-box expand-down">
+      <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaDOE.svg');">
+        <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="DOE" class="svg-icon">
+      </div>
+      <p>{{ page.energy_loan }}</p>
+      <div class="detail-content">
+        <div class="detail-content-header">
+          <h3>Department of Energy</h3>
+        </div>
+        <p>{{page.energy_loan1}}</p>
+      </div>
     </div>
   </div>
 
-</div>
+    <div class="expandable-content-row-bottom-container">
+      <div class="expandable-content-container bottom">
+        <div class="expandable-content-row-bottom" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
 
-  <div class="DOE-section-container">
-   <div class="desktop-divider"></div>
+    <div class="DOE-section-container">
+      <div class="desktop-divider"></div>
 
-    <div class="microgrid-container">
-      <div id="particles-js"></div>
+      <div class="microgrid-container">
+         <div id="particles-js"></div>
       <object id="ParticlesBackground" type="image/svg+xml" data="/assets/img/sunnova/particles_USA.svg"></object>
     </div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -278,18 +237,14 @@
         });
       });
     </script>
-
-    <div id="doeCircle" class="doeCircle-container">
-      <object  type="image/svg+xml" data="/assets/img/sunnova/hestiaCircle.svg"></object>
-      <img src="https://img.icons8.com/?size=256&id=wcK894NIt5Wv&format=png" id="moving-arrow" alt="Moving Arrow"/>
+      <div id="doeCircle" class="doeCircle-container">
+        <object  type="image/svg+xml" data="/assets/img/sunnova/hestiaCircle.svg"></object>
+        <img src="https://img.icons8.com/?size=256&id=wcK894NIt5Wv&format=png" id="moving-arrow" alt="Moving Arrow"/>
+      </div>
     </div>
 
-  </div>
-
-
-  <div class="divider1"></div>
-  <div class="desktop-divider"></div>
-
+    <div class="divider1"></div>
+    <div class="desktop-divider"></div>
 
   <!--####################-->
   <!--######FEATURES######-->
@@ -298,34 +253,20 @@
   <div class="site-survey-background">
     <div class="divider"></div>
     <div class="app-features center-section-padding" id="features-section">
-<!--      <p>{{ page.Features }}</p>-->
       <div id="typewriter">
         <h1>Site Survey</h1>
       </div>
-
-      <!--SITE SURVEY ANIMATION-->
-<!--      <div id="animation-container">-->
-<!--        <div id="trigger-section" class="trigger-section">-->
-<!--&lt;!&ndash;          <div class="siteSurvey3d-container">&ndash;&gt;-->
-<!--          <canvas id="three-canvas"></canvas>-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--        </div>-->
-<!--      </div>-->
-
       <p>{{ page.siteSurvey1 }}</p>
     </div>
 
-<div class="site-survey-content-container">
+  <div class="site-survey-content-container">
     <div id="siteSurvey1" class="roof-pitch-container">
       <div class="roof-pitch-svg-container">
         <img id="roofPitchSvg" src="assets/img/sunnova/site-survey-roof-pitch.svg" style="visibility: hidden;" alt="measuring the slope/pitch of a roof" />
       </div>
-<!--      <div class="roofPitchCircleContainer">-->
-<!--        <div class="roofPitchSpinningCircle"></div>-->
-<!--      </div>-->
     </div>
-    <img src="../assets/img/sunnova/siteSurvey/siteSurveyRoof.png"/>
-</div>
+      <img src="../assets/img/sunnova/siteSurvey/siteSurveyRoof.png"/>
+  </div>
 
   <div class="site-survey-content-container">
     <img src="../assets/img/sunnova/siteSurvey/siteSurveyRoofMaterial.png" height="1176" width="542"/>
@@ -333,9 +274,6 @@
       <div class="rafters-svg-container">
         <img id="raftersSvg" src="assets/img/sunnova/site-survey-rafters.svg" style="visibility: hidden;" alt="rafters in a roof" />
       </div>
-<!--      <div class="raftersCircleContainer">-->
-<!--        <div class="raftersSpinningCircle"></div>-->
-<!--      </div>-->
     </div>
   </div>
 
@@ -344,9 +282,6 @@
       <div class="sub-panel-svg-container">
         <img id="subPanelSvg" src="assets/img/sunnova/site-survey-sub-panel.svg" style="visibility: hidden;" alt="sub panels " />
       </div>
-<!--      <div class="subPanelCircleContainer">-->
-<!--        <div class="subPanelSpinningCircle"></div>-->
-<!--      </div>-->
     </div>
     <img src="../assets/img/sunnova/siteSurvey/siteSurveySubPanel.png" height="838" width="548"/>
   </div>
@@ -357,57 +292,110 @@
       <div class="power-line-svg-container">
         <img id="powerLineSvg" src="assets/img/sunnova/site-survey-power-line.svg" style="visibility: hidden;" alt="power lines connecting to a house" />
       </div>
-<!--      <div class="powerLineCircleContainer">-->
-<!--        <div class="powerLineSpinningCircle"></div>-->
-<!--      </div>-->
     </div>
   </div>
 </div>
 
-<div class="commissioning-package-background">
-  <div class="handshake-container">
-    <div id="two-container" class="handshake-container"></div>
-      <svg version="1.1" id="handshake" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" xml:space="preserve">
-        <g>
-            <path d="M42,260v212h114v-25h48.5L399,602h17l18-8.5l6-22.5l32,6l17-9l11.7-24l18.3,7h25c0,0,1-5,6-10s9-20,9-20
-                s22,4,26,4s20.6-5,20.6-5s8.4-15,8.4-19s-8.4-19-8.4-19l-9.6-12l33-29.2h63V473h110V260H688v35h-66l-77-41.1l-67-9.9l-56,26.1
-                L385.7,282l-77.7-2h-47l-39,21h-63v-41H42z"/>
-          <path d="M314,349.8c19.2-20.8,38.2-42.2,58.9-61.6h-99.1L230,309.3c-0.3,0.2-4.4,1-4.4,1h-59.9v127.2h31.8
-                c2.7,0,5.2,1.1,7,2.8c10.2,8.4,167,137.4,195.2,150.9c19.1,9.2,39.1-11.4,27.9-20.4c-19-15.6-38.2-31.2-57.4-46.8l12.8-15.7
-                c4.7,3.8,73.6,55.9,73.6,55.9c28.9,13.7,40.3-10.8,20.8-26.8l-77.1-62.8l12.8-15.7c26.1,21.2,73,65.7,104.2,81.1
-                c26.6,12.6,41.2-8.1,20.5-26.9l-77.1-62.9l12.8-15.7c25.7,21,73.8,66,101.8,79.5c28.8,13.8,40.2-11,20.7-26.8l-10.5-8.6
-                c-9.6,0.4-19.6-2.9-29-12.8L437.8,341.6c-14.5,14.4-47.7,46.1-70.2,60.4C329,426.5,273.9,393,314,349.8L314,349.8z M165.7,290h57.7
-                l43.1-20.7c1.5-0.9,3.2-1.4,5-1.4h125c43.5-33.6,93.2-49.9,158.1-16.6l65,33.3h61.4v-34.9c43.7,0,87.5,0,131.2,0v233.4
-                c-43.8,0-87.5,0-131.2,0V452h-49.8c-4.3,4.8-12.6,13-22.9,19.1l0.5,0.4c37.4,30.4,9,84.4-41.2,61.2c-2,32.6-36.2,36.9-60.4,24.8
-                c-2,28.2-31.4,37.1-56.7,26.2c-5.9,25.5-36.7,36.6-59.4,25.8c-28.8-13.8-174.7-133.2-197.1-151.6h-28.2v25.4
-                c-43.8,0-87.5,0-131.2,0V249.8c43.7,0,87.5,0,131.2,0L165.7,290L165.7,290z M145.4,270.1H54.8v192.8h90.7V270.1z M680.9,305
-                l-63.7,0c-1.5,0-3.1-0.4-4.6-1.1l-67.2-34.5c-98.7-50.7-158.3,34.3-216.5,94.2c-24.7,26.6,12,31.4,27.8,21.4
-                c29.2-18.5,49.2-43.6,74.3-65.1c4-3.8,10.5-3.7,14.3,0.4L571,451.8c17.6,18.4,43.2-10.9,47.1-15.6c1.8-2.7,4.9-4.5,8.4-4.5h54.4
-                V305z M791.9,270.1h-90.7v192.8h90.7V270.1z"/>
-        </g>
-    </svg>
+  <div class="commissioning-package-background">
+    <div class="handshake-container">
+      <div id="two-container" class="handshake-container"></div>
+        <svg version="1.1" id="handshake" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" xml:space="preserve">
+          <g>
+              <path d="M42,260v212h114v-25h48.5L399,602h17l18-8.5l6-22.5l32,6l17-9l11.7-24l18.3,7h25c0,0,1-5,6-10s9-20,9-20
+                  s22,4,26,4s20.6-5,20.6-5s8.4-15,8.4-19s-8.4-19-8.4-19l-9.6-12l33-29.2h63V473h110V260H688v35h-66l-77-41.1l-67-9.9l-56,26.1
+                  L385.7,282l-77.7-2h-47l-39,21h-63v-41H42z"/>
+            <path d="M314,349.8c19.2-20.8,38.2-42.2,58.9-61.6h-99.1L230,309.3c-0.3,0.2-4.4,1-4.4,1h-59.9v127.2h31.8
+                  c2.7,0,5.2,1.1,7,2.8c10.2,8.4,167,137.4,195.2,150.9c19.1,9.2,39.1-11.4,27.9-20.4c-19-15.6-38.2-31.2-57.4-46.8l12.8-15.7
+                  c4.7,3.8,73.6,55.9,73.6,55.9c28.9,13.7,40.3-10.8,20.8-26.8l-77.1-62.8l12.8-15.7c26.1,21.2,73,65.7,104.2,81.1
+                  c26.6,12.6,41.2-8.1,20.5-26.9l-77.1-62.9l12.8-15.7c25.7,21,73.8,66,101.8,79.5c28.8,13.8,40.2-11,20.7-26.8l-10.5-8.6
+                  c-9.6,0.4-19.6-2.9-29-12.8L437.8,341.6c-14.5,14.4-47.7,46.1-70.2,60.4C329,426.5,273.9,393,314,349.8L314,349.8z M165.7,290h57.7
+                  l43.1-20.7c1.5-0.9,3.2-1.4,5-1.4h125c43.5-33.6,93.2-49.9,158.1-16.6l65,33.3h61.4v-34.9c43.7,0,87.5,0,131.2,0v233.4
+                  c-43.8,0-87.5,0-131.2,0V452h-49.8c-4.3,4.8-12.6,13-22.9,19.1l0.5,0.4c37.4,30.4,9,84.4-41.2,61.2c-2,32.6-36.2,36.9-60.4,24.8
+                  c-2,28.2-31.4,37.1-56.7,26.2c-5.9,25.5-36.7,36.6-59.4,25.8c-28.8-13.8-174.7-133.2-197.1-151.6h-28.2v25.4
+                  c-43.8,0-87.5,0-131.2,0V249.8c43.7,0,87.5,0,131.2,0L165.7,290L165.7,290z M145.4,270.1H54.8v192.8h90.7V270.1z M680.9,305
+                  l-63.7,0c-1.5,0-3.1-0.4-4.6-1.1l-67.2-34.5c-98.7-50.7-158.3,34.3-216.5,94.2c-24.7,26.6,12,31.4,27.8,21.4
+                  c29.2-18.5,49.2-43.6,74.3-65.1c4-3.8,10.5-3.7,14.3,0.4L571,451.8c17.6,18.4,43.2-10.9,47.1-15.6c1.8-2.7,4.9-4.5,8.4-4.5h54.4
+                  V305z M791.9,270.1h-90.7v192.8h90.7V270.1z"/>
+          </g>
+      </svg>
+    </div>
+    <div class="floating-backgound">
+      <img class="floating-svg" src="assets/img/sunnova/checking-account.svg" alt="checking account" />
+      <img class="floating-svg" src="assets/img/sunnova/check-user.svg" alt="check purchaser" />
+    </div>
   </div>
 
-  <div class="floating-backgound">
-    <img class="floating-svg" src="assets/img/sunnova/checking-account.svg" alt="checking account" />
-    <img class="floating-svg" src="assets/img/sunnova/check-user.svg" alt="check purchaser" />
+  <!--  /////////-->
+  <!--  THREEJS-->
+  <!--  ////////-->
+  <div class="three-js-background">
+    <div class="three-js-container">
+      <div id="loading-screen">
+        <div id="loadingWrapper">
+          <div id="loadingLine"></div>
+        </div>
+      </div>
+
+      <div class="three-js-canvas"></div>
+
+      <section class="section-zero">
+        <div id="typewriter">
+          <h1>Commissioning Package</h1>
+        </div>
+      </section>
+
+      <section class="section-one">
+        <div class="installSceneRight">
+          <h2>After a site-survey has been; submitted, approved, and a cusomter wants to proceed- Sunnova dealers start installing equipment on properties.</h2>
+        </div>
+      </section>
+      <section class="section-two">
+        <div class="installSceneLeft">
+          <h2> Sunnova primarily offered solar panel installations in its infancy</h2>
+        </div>
+        <div id="trigger-section1" class="trigger-section"></div>
+      </section>
+
+      <section class="section-three">
+        <div class="installSceneRight">
+          <h2> However, they also started installing solar-panel-adjacent-technology too. They currently install: </h2>
+        </div>
+        <div id="trigger-section2" class="trigger-section"></div>
+      </section>
+
+      <section class="section-four">
+        <div class="installSceneLeft">
+          <h2> storage batteries, battery electric vehicle chargers, and connections to electric utility companies for energy transferring. </h2>
+        </div>
+        <div id="trigger-section3" class="trigger-section"></div>
+      </section>
+
+      <section class="section-five"></section>
+      <section class="section-six"></section>
+      <section class="section-seven"></section>
+    </div>
   </div>
-</div>
 
-<!--    <script type="module" src="path/to/siteSurvey.js"></script>-->
+  <!-- partial -->
+  <script src='https://assets.codepen.io/16327/gsap-latest-beta.min.js'></script>
+  <script src='https://assets.codepen.io/16327/ScrollTrigger.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 
+  <script type="module" src="/assets/js/threeJS.js"></script>
+
+
+  <!--  //////////////-->
+  <!--  THREEJS END-->
+  <!--//////////////-->
 
   <div class="commissioning-package">
     <div class="center-section-padding">
-<!--      <div class="commissioning-package-header">-->
-<!--        <h2>Commissioning Package</h2>-->
-<!--      </div>-->
       <div class="divider"></div>
 
 
 
       <div>
-        <h4>{{page.commissioningPackage1}}</h4>
+        <p>{{page.commissioningPackage1}}</p>
         <h4> <span heroic="{{page.commissioningPackage2}}" class="heroic-text">{{page.commissioningPackage2}}</span></h4>
         <p>{{page.commissioningPackage3}}</p>
       </div>
@@ -533,7 +521,6 @@
 
 
   <!-- Your custom script that uses THREE and GLTFLoader -->
-<!--  <script type="module" src="/assets/js/sunnova/three.js"></script>&lt;!&ndash;&ndash;&gt;-->
   <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js"></script>
 
 

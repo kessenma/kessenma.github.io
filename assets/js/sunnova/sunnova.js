@@ -136,9 +136,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.small-box').forEach(function(box) {
         box.addEventListener('click', handleBoxInteraction);
     });
-    ///
+
+    /////////////////////////////////////
     /// floating-background floating-svg
-    ///
+    /////////////////////////////////////
+
     //randomization for svg's
     function adjustFloatingSVGs() {
         const container = document.querySelector('.floating-backgound');
@@ -160,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
         applyStylesAndAnimationsToSVGs();
     }
 
-// This function should now handle applying styles and animations to the SVGs
+// handle applying styles and animations to the SVGs in the handshake container
     function applyStylesAndAnimationsToSVGs() {
         const svgs = document.querySelectorAll('.floating-svg');
         const container = document.querySelector('.handshake-container');
@@ -172,9 +174,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const animationDuration = 4 + Math.random() * 6;
             const animationDelay = Math.random() * 5 - 3.5;
             // const rotate = (Math.random() * 75) - 45;
-            const rotateZ = (Math.random() * 120) - 60; // Random rotation between -30 and 30 degrees
-            const blurAmount = Math.max(0, index - 4); // Ensuring a minimum blur value of 0
-            const zIndex = Math.floor(Math.random() * 4) + 1;
+            const rotateZ = (Math.random() * 120) - 60; // Random rotation between +/- 60 degrees
+            const blurAmount = Math.max(0, index - 3); // Ensuring a minimum blur value of 4
+            const zIndex = Math.floor(Math.random() * 6) + 1;
 
             svg.style.position = 'absolute';
             svg.style.bottom = '0'; // Start at the bottom of the container

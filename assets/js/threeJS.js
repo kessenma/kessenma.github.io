@@ -15,7 +15,7 @@ function addModelToBG() {
     let isSceneVisible = true;
 
     function init() {
-        container = document.querySelector(".scene.one");
+        container = document.querySelector(".three-js-canvas");
         if (!container) {
             console.error("Container element not found");
             return;
@@ -66,7 +66,8 @@ function addModelToBG() {
             window.addEventListener("scroll", onScroll);
             console.log("Animation Mixer initialized:", animationMixer);
             const masterAnimation = animationMixer.clipAction(gltf.animations.find(anim => anim.name === "MASTER"));
-            setupScrollTrigger(gltf);
+            setupScrollTrigger(gltf); // Important to see if this gets called
+            console.log("Setup ScrollTrigger called");
             animate();
             document.getElementById('loading-screen').style.display = 'none'; // Hide loader once loaded
         }, function (xhr) {
@@ -114,7 +115,7 @@ function addModelToBG() {
     }
 
     function animate() {
-        console.log('Rendering frame');
+        // console.log('Rendering frame');
         if (!isSceneVisible) return;
         requestAnimationFrame(animate);
         const delta = clock.getDelta();
@@ -133,8 +134,8 @@ function addModelToBG() {
     // ### ERROR HANDLING + LOGGING ###
     // ######################
     if (window.performance && window.performance.memory) {
-        console.log(`Used JS Heap Size: ${window.performance.memory.usedJSHeapSize / 1048576} MB`);
-        console.log(`Total JS Heap Size: ${window.performance.memory.totalJSHeapSize / 1048576} MB`);
+        // console.log(`Used JS Heap Size: ${window.performance.memory.usedJSHeapSize / 1048576} MB`);
+        // console.log(`Total JS Heap Size: ${window.performance.memory.totalJSHeapSize / 1048576} MB`);
     }
 
     window.onerror = function(message, source, lineno, colno, error) {
@@ -211,13 +212,38 @@ function addModelToBG() {
         const initialCameraZ = camera.position.z; // Use the initial Y position
         const zStepDown = -5; // Adjust this value based on how much you want the camera to move down
 
+        function calculateOffsetTop() {
+            let offsetTop = 0;
+            let sections = ['one', 'two', 'three', 'four', 'five'];
+            for (let i = 0; i < sections.length; i++) {
+                const section = document.querySelector('.section-' + sections[i]);
+                if (section) {
+                    offsetTop += section.offsetHeight;
+                } else {
+                    console.error('Missing section: .section-' + sections[i]);
+                    break; // Stop the loop if a section is missing
+                }
+            }
+            return offsetTop;
+        }
+
+        let lastScrollDirectionDown = true;
+
+        function getScrollDirection() {
+            const currentScrollY = window.pageYOffset;
+            const directionDown = currentScrollY > lastScrollY; // Determine scroll direction
+            lastScrollY = currentScrollY;
+            return directionDown;
+        }
+
         gsap.timeline({
             scrollTrigger: {
-                trigger: ".section-one",
+                trigger: ".section-zero",
                 start: "top top",
-                endTrigger: ".section-five",
+                endTrigger: ".section-seven",
                 end: "bottom bottom",
                 scrub: true,
+                markers: true,
                 onUpdate: (self) => {
                     if (!animationMixer) return;
                     handleScrollAnimation(self.progress);
@@ -225,20 +251,58 @@ function addModelToBG() {
                     let rotationPerSection = 0.25; // Radians
                     let cumulativeRotation = rotationPerSection * totalSections * self.progress;
                     scene.rotation.y = cumulativeRotation;
-
-                    // Update the camera's elevation based on scroll progress
                     let cameraYPosition = initialCameraY - (yStepDown * self.progress); // Adjust the Y-coordinate
                     camera.position.y = cameraYPosition;
-
                     let cameraXPosition = initialCameraX - (xStepDown * self.progress); // Adjust the X-coordinate
                     camera.position.x = cameraXPosition;
-
                     let cameraZPosition = initialCameraZ - (zStepDown * self.progress); // Adjust the Z-coordinate
                     camera.position.z = cameraZPosition;
-                }
+                },
+                onEnter: () => {
+                    // When re-entering the fixed section
+                    let sceneElement = document.querySelector('.three-js-canvas');
+                    sceneElement.style.position = 'fixed';
+                    sceneElement.style.top = '0';
+                },
+                onLeave: () => {
+                    let sceneElement = document.querySelector('.three-js-canvas');
+                    let offsetTop = calculateOffsetTop(); // Your existing function to calculate the offset
+                    lastScrollDirectionDown = getScrollDirection(); // Check scroll direction
+                    let topValue = lastScrollDirectionDown ? '100vh' : '0'; // Set top based on scroll direction
+                    sceneElement.style.position = 'absolute';
+                    sceneElement.style.top = topValue;
+                    },
+                onLeaveBack: () => {
+                    let sceneElement = document.querySelector('.three-js-canvas');
+                    let sections = ['one', 'two', 'three', 'four', 'five'];
+                    let offsetTop = 0;
+                    for (let i = 0; i < sections.length; i++) {
+                        const section = document.querySelector('.section-' + sections[i]);
+                        if (section) {
+                            offsetTop += section.offsetHeight;
+                        } else {
+                            console.error('Missing section: .section-' + sections[i]);
+                            return; // Exit the function if a section is missing
+                        }
+                    }
+                    if (sceneElement) {
+                        sceneElement.style.position = 'absolute';
+                        sceneElement.style.top = `${offsetTop}px`;
+                    }
+                },
+                onEnterBack: () => {
+                    let sceneElement = document.querySelector('.three-js-canvas');
+                    if (sceneElement) {
+                        sceneElement.style.position = 'fixed';
+                        sceneElement.style.top = '0';
+                        sceneElement.style.left = '0';
+                        sceneElement.style.width = '100vw';
+                        sceneElement.style.height = '100vh';
+                        console.log('Entering fixed section from the back');
+                    }
+                },
             }
         });
-
     }
 }
 

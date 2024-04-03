@@ -15,46 +15,68 @@
 </head>
 <body>
 
-<div class="gradient-overlay4">
-    <div id="loading-screen" style="z-index: 10; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 9999;">
+<!--  /////////-->
+  <!--  THREEJS-->
+  <!--  ////////-->
+  <div class="three-js-background">
+    <div class="three-js-container">
+      <div id="loading-screen">
         <div id="loadingWrapper">
-            <div id="loadingLine"></div>
+          <div id="loadingLine"></div>
+        </div>
+      </div>
+
+      <div class="three-js-canvas"></div>
+
+      <section class="section-zero">
+        <div id="typewriter">
+          <h1>Commissioning Package</h1>
+        </div>
+      </section>
+
+      <section class="section-one">
+        <div class="installSceneRight">
+          <h2>After a site-survey has been; submitted, approved, and a cusomter wants to proceed- Sunnova dealers start installing equipment on properties.</h2>
+        </div>
+      </section>
+      <section class="section-two">
+        <div class="installSceneLeft">
+          <h2> Their business primarily offered solar panel installations in its infancy</h2>
+        </div>
+        <div id="trigger-section1" class="trigger-section"></div>
+      </section>
+
+      <section class="section-three">
+        <div class="installSceneRight">
+          <h2> However, they also started installing solar-panel-adjacent-technology too. They currently install: </h2>
+        </div>
+        <div id="trigger-section2" class="trigger-section"></div>
+      </section>
+
+      <section class="section-four">
+        <div class="installSceneLeft">
+          <h2> storage batteries, battery electric vehicle chargers, and connections to electric utility companies for energy transferring. </h2>
+        </div>
+        <div id="trigger-section3" class="trigger-section"></div>
+      </section>
+
+      <section class="section-five"></section>
+      <section class="section-six"></section>
+            <section class="section-seven"></section>
         </div>
     </div>
 
+    <!-- partial -->
+    <script src='https://assets.codepen.io/16327/gsap-latest-beta.min.js'></script>
+    <script src='https://assets.codepen.io/16327/ScrollTrigger.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 
-    <!-- partial:index.partial.html -->
-    <div class="scene one"></div>
+    <script type="module" src="/assets/js/threeJS.js"></script>
 
-    <section class="section-one">
-        <div class="installSceneRight">
-            <h2>After a site-survey has been; submitted, approved, and a cusomter wants to proceed- Sunnova dealers start installing equipment on properties.</h2>
-        </div>
-    </section>
-    <section class="section-two">
-        <div class="installSceneLeft">
-            <h2> Their business primarily offered solar panel installations in its infancy</h2>
-        </div>
-        <div id="trigger-section1" class="trigger-section"></div>
-    </section>
 
-    <section class="section-three">
-        <div class="installSceneRight">
-            <h2> However, they also started installing solar-panel-adjacent-technology too. They currently install: </h2>
-        </div>
-        <div id="trigger-section2" class="trigger-section"></div>
-    </section>
-
-    <section class="section-four">
-        <div class="installSceneLeft">
-            <h2> storage batteries, battery electric vehicle chargers, and connections to electric utility companies for energy transferring. </h2>
-        </div>
-        <div id="trigger-section3" class="trigger-section"></div>
-    </section>
-
-    <section class="section-five">
-    </section>
-</div>
+    <!--  //////////////-->
+    <!--  THREEJS END-->
+    <!--//////////////-->
 
 <!-- partial -->
 <script src='https://assets.codepen.io/16327/gsap-latest-beta.min.js'></script>

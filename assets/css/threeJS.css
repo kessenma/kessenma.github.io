@@ -84,7 +84,7 @@ p {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9999;
+/*    z-index: 9999;*/
     /*background-color: rgba(0, 0, 0, 0.5); !* Assuming you want a semi-transparent overlay *!*/
 }
 
@@ -129,12 +129,23 @@ p {
     height: 100vh; /* Assuming you want it to be as tall as the viewport */
 }
 
+/*.fixed-canvas {*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100vw;*/
+/*    height: 100vh;*/
+/*    z-index: 10; !* Ensure this is above other content but below any overlays *!*/
+/*}*/
 
-.scene.one {
+
+.three-js-canvas {
     width: 100%;
     height: 100vh;
     position: fixed;
-    z-index: 999;
+    z-index: 1;
+/*    margin-bottom: -100vh;*/
+    visibility: visible;
 }
 
 section {
@@ -151,7 +162,7 @@ section {
 
 .loading-screen {
     z-index: 10;
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -171,23 +182,29 @@ section {
     align-items: center;
 }
 
-.gradient-overlay4 {
-    position: absolute;
+.three-js-background {
+    position: relative;
     top: 0;
     left: 0;
     /*width: 100%;*/
     /*height: 100%;*/
-    background: linear-gradient(white, var(--yellow));
+    background: linear-gradient(var(--lightGray), var(--yellow));
     /*opacity: 0.5;*/
     z-index: 0;
 }
 
+.three-js-container{
+    margin-top: -30vh;
+}
+
+
 .section-one {
-    /*background-color: tomato;*/
+    z-index: 10001;
+    height: 100vh;
+    background: linear-gradient(rgba(210, 209, 209), rgba(0, 0, 0, 0));
 }
 
 .section-two {
-    /*background-color: steelblue;*/
 }
 
 .section-three {
@@ -199,5 +216,25 @@ section {
 }
 
 .section-five {
-    /*background-color: grey;*/
+    z-index: 10001;
+    height: 100vh;
+    /*    background: linear-gradient(rgba(0, 0, 0, 0), rgba(210, 209, 209));*/
+}
+
+.section-six {
+    z-index: 10001;
+    height: 50vh;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(210, 209, 209));
+}
+
+.section-zero {
+    z-index: 1003;
+    height: 80vh;
+    background: var(--lightGray);
+}
+
+.section-seven {
+    z-index: 10001;
+    height: 100vh;
+    background: rgba(210, 209, 209);
 }
