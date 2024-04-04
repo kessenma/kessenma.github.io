@@ -42,20 +42,20 @@ function addModelToBG() {
         scene.add(directionalLight, ambientLight);
 
         // DRACO Compression
-        const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath('./assets/js/three/Draco/');
+        // const dracoLoader = new DRACOLoader();
+        // dracoLoader.setDecoderPath('./assets/js/three/Draco/');
 
         // GLTF Model Loader
         const loader = new GLTFLoader();
-        loader.setDRACOLoader(dracoLoader);
+        // loader.setDRACOLoader(dracoLoader);
 
         // KTX2 Texture Compression
-        const ktx2Loader = new KTX2Loader();
-        ktx2Loader.setTranscoderPath('/assets/js/three/ktx2/'); // Ensure this path is correct
-        ktx2Loader.detectSupport(renderer);
-        loader.setKTX2Loader(ktx2Loader); // Set the KTX2Loader here after GLTFLoader is instantiated
+        // const ktx2Loader = new KTX2Loader();
+        // ktx2Loader.setTranscoderPath('/assets/js/three/ktx2/'); // Ensure this path is correct
+        // ktx2Loader.detectSupport(renderer);
+        // loader.setKTX2Loader(ktx2Loader); // Set the KTX2Loader here after GLTFLoader is instantiated
 
-        loader.load('./assets/js/three/03.21.24_install3.glb', function (gltf) {
+        loader.load('./assets/js/three/04.04.23_install.glb', function (gltf) {
             model = gltf.scene;
             scene.add(model);
             // model.rotation.y = (3 * Math.PI) / 2; // Rotate the model by 270 degrees
