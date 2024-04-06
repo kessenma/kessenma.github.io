@@ -146,6 +146,7 @@ p {
 
 .parallax-container {
     height: 100vh;
+    width: 100%;
     position: relative;
     background-position: center;
     background-repeat: no-repeat;
@@ -548,7 +549,7 @@ p {
     padding-right: 0;
     position: fixed;
     bottom: 5%;
-    right: 3%;
+    right: 5%;
     z-index: 100;
 }
 
@@ -634,7 +635,8 @@ p {
 
 /* CSS for mobile first: .divider1 will be styled this way on mobile */
 .divider {
-    display: none; /* or any other default mobile styling */
+    display: block; /* or any other default mobile styling */
+    width: 100%;
     height: 10vh;
 }
 
@@ -1516,7 +1518,7 @@ https://flickity.metafizzy.co
     /*margin-top: -40vh;*/
 /*    top: -20%;*/
     height: 100vh;
-    width: 100vw; /* Example width, adjust as needed */
+    width: 100%; /* Example width, adjust as needed */
     overflow: visible;
     position: relative; /* Change based on your layout needs */
     z-index: 3; /* Adjust based on your page's z-index requirements */
@@ -1692,16 +1694,21 @@ section {
     background: linear-gradient(var(--lightGray), var(--yellow));
     /*opacity: 0.5;*/
     z-index: 0;
+    width: 100%;
 }
 
 .three-js-container{
     margin-top: -30vh;
+    width: 100%;
 }
 
 .section-zero {
     z-index: 1003;
     height: 60vh;
+    width: 100%;
     background: var(--lightGray);
+    align-items: center;
+    text-align: center;
 }
 
 .section-one {

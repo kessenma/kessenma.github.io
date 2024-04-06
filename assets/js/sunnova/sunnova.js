@@ -59,7 +59,7 @@ function handleScroll() {
     // console.log('Phone SVG visible:', phoneSvgIsVisible, 'Sun visible:', sunIsVisible,  'Dealership SVG visible:', dealershipSvgIsVisible);
 
     if (sunIsVisible) {
-        $('.sun').css('transform', 'translateY(' + scrollPos/3 + 'px)');
+        $('.sun').css('transform', 'translateY(' + scrollPos/4 + 'px)');
     }
     if (phoneSvgIsVisible) {
         $('#phoneSvg').parent().css('transform', 'translateY(' + (-scrollPos/3) + 'px)');
@@ -82,13 +82,13 @@ function handleScroll() {
 }
 
 // Attach the debounced scroll handler
-$(window).scroll(debounce(handleScroll, 50));
+$(window).scroll(debounce(handleScroll, 0));
 
 // Resize event handler to update cached sizes
 $(window).resize(debounce(function() {
     viewportHeight = $(window).height();
     documentHeight = $(document).height();
-}, 250));
+}, 0));
 
 function isInViewport(el, threshold = 0) {
     const rect = el.getBoundingClientRect();
