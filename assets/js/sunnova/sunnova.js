@@ -336,6 +336,18 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(element);
     }
 
+    // Check if the device is desktop
+    if (window.matchMedia("(min-width: 1024px)").matches) {
+        // Only execute the floating SVG related code on desktop
+        adjustFloatingSVGs();
+        adjustKeyframesForContainer();
+        observeSVGs();
+
+        window.addEventListener('resize', throttle(() => {
+            adjustKeyframesForContainer();
+        }, 1000));
+    }
+
     // Now you can call this with any selector
     applyTypewriterEffect('#typewriter h1', 150);
     applyTypewriterEffect('.commissioning-package-header h2', 150); // Use the correct selector for your second header

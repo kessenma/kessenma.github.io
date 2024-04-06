@@ -37,9 +37,18 @@ function addModelToBG() {
 
         // lighting
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight.position.set(0, 1, 0);
-        scene.add(directionalLight, ambientLight);
+        const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.25);
+        // right
+        const directionalLight2 = new THREE.DirectionalLight(0xfbf9c1, 5);
+        //left
+        const directionalLight3 = new THREE.DirectionalLight(0xF2B763, 3);
+
+
+        directionalLight1.position.set(5.000, 48.060, 213.371);
+        directionalLight2.position.set(328.649, -20.957, -214.535);
+        directionalLight3.position.set(-60.866, 159.137, -28.965);
+
+        scene.add(directionalLight1, directionalLight2, directionalLight3, ambientLight);
 
         // DRACO Compression
         // const dracoLoader = new DRACOLoader();
