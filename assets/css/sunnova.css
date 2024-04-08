@@ -38,6 +38,7 @@ h1 {
     font-style: italic;
         /*font-size: 5rem;*/
     letter-spacing: 0.25rem;
+    z-index: 10;
 }
 
 h2 {
@@ -81,8 +82,8 @@ p {
 /* Color Aliases */
 :root {
     --darkOrange: #59200F;
-    --lightOrange: #EE805E;
-    --orange: #EA7651FF;
+    --lightOrange: #F2B763;
+    --orange: #EE805E;
     --lightYellow: #fbf9c1;
     --yellow: #F7F065;
     --blue: #66c1f8;
@@ -1525,11 +1526,19 @@ https://flickity.metafizzy.co
     margin-bottom: 35vh;
 }
 
+/* Responsive adjustments for mobile devices */
+@media (max-width: 1023px) {
+    .handshake-container {
+        height: 40vh; /* Adjust the height for mobile devices */
+    }
+}
+
 .floating-backgound {
     width: 100%;
     height: 100%;
     position: absolute;
     /*overflow: hidden;*/
+    display: none;
     top: 0;
     left: 0;
 }
