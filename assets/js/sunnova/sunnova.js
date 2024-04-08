@@ -338,7 +338,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Check if the device is desktop
     if (window.matchMedia("(min-width: 1024px)").matches) {
-        // Only execute the floating SVG related code on desktop
+        // Make the .floating-backgound div visible
+        const floatingBackground = document.querySelector('.floating-backgound');
+        if (floatingBackground) {
+            floatingBackground.style.display = 'block';
+        }
+
+        // Proceed to adjust SVGs as previously
         adjustFloatingSVGs();
         adjustKeyframesForContainer();
         observeSVGs();

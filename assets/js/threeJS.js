@@ -1,7 +1,9 @@
 import * as THREE from '/assets/js/three/three.module.js';
 import { GLTFLoader } from '/assets/js/three/GLTFLoader.js';
-import { DRACOLoader } from '/assets/js/three/Draco/DRACOLoader.js';
-import { KTX2Loader} from "/assets/js/three/ktx2/KTX2Loader.js";
+
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 
 function addModelToBG() {
     let container;
@@ -14,7 +16,7 @@ function addModelToBG() {
     let lastScrollY = window.pageYOffset;
     let isSceneVisible = true;
 
-    function init() {
+    async function init() {
         container = document.querySelector(".three-js-canvas");
         if (!container) {
             console.error("Container element not found");
@@ -38,11 +40,19 @@ function addModelToBG() {
         // lighting
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
         const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.25);
-        // right
-        const directionalLight2 = new THREE.DirectionalLight(0xfbf9c1, 5);
-        //left
-        const directionalLight3 = new THREE.DirectionalLight(0xF2B763, 3);
 
+        const lightColorDesktop = 0xffffff; // White for desktop
+        const lightColorMobile1 = 0xfbf9c1; //  color 1 for mobile
+        const lightColorMobile2 = 0xF2B763; //  color 2 for mobile
+
+        // Determine light colors based on the device
+        const lightColor2 = isMobile() ? lightColorMobile1 : lightColorDesktop;
+        const lightColor3 = isMobile() ? lightColorMobile2 : lightColorDesktop;
+
+        // right
+        const directionalLight2 = new THREE.DirectionalLight(lightColor2, 5);
+        //left
+        const directionalLight3 = new THREE.DirectionalLight(lightColor3, 3);
 
         directionalLight1.position.set(5.000, 48.060, 213.371);
         directionalLight2.position.set(328.649, -20.957, -214.535);
@@ -50,21 +60,28 @@ function addModelToBG() {
 
         scene.add(directionalLight1, directionalLight2, directionalLight3, ambientLight);
 
-        // DRACO Compression
-        // const dracoLoader = new DRACOLoader();
-        // dracoLoader.setDecoderPath('./assets/js/three/Draco/');
-
         // GLTF Model Loader
         const loader = new GLTFLoader();
-        // loader.setDRACOLoader(dracoLoader);
+        if (!isMobile()) { // Adjusted to directly call isMobile()
+            const { DRACOLoader } = await import('/assets/js/three/Draco/DRACOLoader.js');
+            const { KTX2Loader } = await import('/assets/js/three/ktx2/KTX2Loader.js');
 
-        // KTX2 Texture Compression
-        // const ktx2Loader = new KTX2Loader();
-        // ktx2Loader.setTranscoderPath('/assets/js/three/ktx2/'); // Ensure this path is correct
-        // ktx2Loader.detectSupport(renderer);
-        // loader.setKTX2Loader(ktx2Loader); // Set the KTX2Loader here after GLTFLoader is instantiated
+            const dracoLoader = new DRACOLoader();
+            dracoLoader.setDecoderPath('./assets/js/three/Draco/');
+            loader.setDRACOLoader(dracoLoader);
 
-        loader.load('./assets/js/three/04.05.23_install2.glb', function (gltf) {
+            const ktx2Loader = new KTX2Loader();
+            ktx2Loader.setTranscoderPath('/assets/js/three/ktx2/');
+            ktx2Loader.detectSupport(renderer);
+            loader.setKTX2Loader(ktx2Loader);
+        }
+
+        const modelPath = isMobile()
+            ? './assets/js/three/04.05.23_install2.glb'
+            : './assets/js/three/03.15.24_INSTALL2.glb';
+
+        loader.load(modelPath, function (gltf) {
+        // loader.load('./assets/js/three/03.15.24_INSTALL2.glb', function (gltf) {
             model = gltf.scene;
             scene.add(model);
             // model.rotation.y = (3 * Math.PI) / 2; // Rotate the model by 270 degrees
@@ -92,21 +109,7 @@ function addModelToBG() {
             displayErrorMessage("Failed to load the 3D model. Please try refreshing the page.");
         });
 
-        function displayErrorMessage(message) {
-            // Check if there's already an error message displayed
-            const existingErrorMsg = container.querySelector(".error-message");
-            if (existingErrorMsg) {
-                // Update the existing message in case this function is called multiple times
-                existingErrorMsg.textContent = message;
-                return;
-            }
-            // Create a new div element to show the error message
-            const errorMsg = document.createElement("div");
-            errorMsg.textContent = message;
-            errorMsg.style.color = "red"; // Make the error message stand out
-            errorMsg.className = "error-message"; // Assign a class for potential styling with CSS
-            container.appendChild(errorMsg); // Append the error message to the container
-        }
+
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -142,10 +145,28 @@ function addModelToBG() {
     // ######################
     // ### ERROR HANDLING + LOGGING ###
     // ######################
-    if (window.performance && window.performance.memory) {
-        // console.log(`Used JS Heap Size: ${window.performance.memory.usedJSHeapSize / 1048576} MB`);
-        // console.log(`Total JS Heap Size: ${window.performance.memory.totalJSHeapSize / 1048576} MB`);
+
+    function displayErrorMessage(message) {
+        // Check if there's already an error message displayed
+        const existingErrorMsg = container.querySelector(".error-message");
+        if (existingErrorMsg) {
+            // Update the existing message in case this function is called multiple times
+            existingErrorMsg.textContent = message;
+            return;
+        }
+        // Create a new div element to show the error message
+        const errorMsg = document.createElement("div");
+        errorMsg.textContent = message;
+        errorMsg.style.color = "red"; // Make the error message stand out
+        errorMsg.className = "error-message"; // Assign a class for potential styling with CSS
+        container.appendChild(errorMsg); // Append the error message to the container
     }
+
+    // memory tracking inside chrome
+    // if (window.performance && window.performance.memory) {
+    //     console.log(`Used JS Heap Size: ${window.performance.memory.usedJSHeapSize / 1048576} MB`);
+    //     console.log(`Total JS Heap Size: ${window.performance.memory.totalJSHeapSize / 1048576} MB`);
+    // }
 
     window.onerror = function(message, source, lineno, colno, error) {
         console.log('An error occurred: ', message);
@@ -252,7 +273,7 @@ function addModelToBG() {
                 endTrigger: ".section-seven",
                 end: "bottom bottom",
                 scrub: true,
-                markers: true,
+                // markers: true,
                 onUpdate: (self) => {
                     if (!animationMixer) return;
                     handleScrollAnimation(self.progress);
