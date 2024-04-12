@@ -32,45 +32,14 @@ function debounce(func, wait, immediate) {
     };
 }
 
-const $sun = $('.sun');
-const $phoneSvg = $('#phoneSvg');
-const $dealershipSvg = $('#dealershipSvg');
-const $bentoBox = $('.bento-box');
-const $doeCircle = $('#doeCircle');
-const $desertBackground = $('.desert-background');
-const $progressBar = $('.scroll-progress-bar');
-const $menuButton = $(".menu-button");
-
-// Cache viewport size
-let viewportHeight = $(window).height();
-let documentHeight = $(document).height();
-
 function handleScroll() {
-    let scrollPos = $(this).scrollTop();
-    let windowHeight = documentHeight - viewportHeight;
-    let percentScrolled = (scrollPos / windowHeight) * 100;
+    //handle menu and progress bar with scroll progress
+    const $progressBar = $('.scroll-progress-bar');
+    const $menuButton = $(".menu-button");
 
-    const sunIsVisible = isInViewport($sun[0]);
-    const phoneSvgIsVisible = isInViewport($phoneSvg[0]);
-    const dealershipSvgIsVisible = isInViewport($dealershipSvg[0]);
-    const doeCircleSvgIsVisible = isInViewport(($doeCircle)[0]);
-    const bentoBoxIsVisible = isInViewport(($bentoBox)[0]);
-    const desertBackgroundIsVisible = isInViewport(($desertBackground)[0]);
-    // console.log('Phone SVG visible:', phoneSvgIsVisible, 'Sun visible:', sunIsVisible,  'Dealership SVG visible:', dealershipSvgIsVisible);
-
-    if (sunIsVisible) {
-        $('.sun').css('transform', 'translateY(' + scrollPos/4 + 'px)');
-    }
-    if (phoneSvgIsVisible) {
-        $('#phoneSvg').parent().css('transform', 'translateY(' + (-scrollPos/3) + 'px)');
-    }
-    if (dealershipSvgIsVisible) {
-        $('#dealershipSvg').parent().css('transform', 'translateY(' + scrollPos/3 + 'px)');
-    }
-    if (doeCircleSvgIsVisible || bentoBoxIsVisible || desertBackgroundIsVisible) {
-        $('#doeCircle').css('transform', 'translateY(' + scrollPos/4 + 'px)');
-    }
-    // $('#doeCircle').css('transform', 'translateY(' + scrollPos/4 + 'px)');
+    // Cache viewport size
+    let viewportHeight = $(window).height();
+    let documentHeight = $(document).height();
 
     $progressBar.css('width', percentScrolled + '%');
 
@@ -79,10 +48,66 @@ function handleScroll() {
     } else {
         $menuButton.fadeOut();
     }
+
 }
 
+// function isMobileDevice() {
+//     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+// }
+//
+// if (!isMobileDevice()) {
+    const $sun = $('.sun');
+    const $phoneSvg = $('#phoneSvg');
+    const $dealershipSvg = $('#dealershipSvg');
+    const $bentoBox = $('.bento-box');
+    const $doeCircle = $('#doeCircle');
+    const $desertBackground = $('.desert-background');
+    const $progressBar = $('.scroll-progress-bar');
+    const $menuButton = $(".menu-button");
+
+    // Cache viewport size
+    let viewportHeight = $(window).height();
+    let documentHeight = $(document).height();
+
+    function handleMobileScroll() {
+        let scrollPos = $(this).scrollTop();
+        let windowHeight = documentHeight - viewportHeight;
+        let percentScrolled = (scrollPos / windowHeight) * 100;
+
+        const sunIsVisible = isInViewport($sun[0]);
+        const phoneSvgIsVisible = isInViewport($phoneSvg[0]);
+        const dealershipSvgIsVisible = isInViewport($dealershipSvg[0]);
+        const doeCircleSvgIsVisible = isInViewport(($doeCircle)[0]);
+        const bentoBoxIsVisible = isInViewport(($bentoBox)[0]);
+        const desertBackgroundIsVisible = isInViewport(($desertBackground)[0]);
+        // console.log('Phone SVG visible:', phoneSvgIsVisible, 'Sun visible:', sunIsVisible,  'Dealership SVG visible:', dealershipSvgIsVisible);
+
+        if (sunIsVisible) {
+            $('.sun').css('transform', 'translateY(' + scrollPos / 4 + 'px)');
+        }
+        if (phoneSvgIsVisible) {
+            $('#phoneSvg').parent().css('transform', 'translateY(' + (-scrollPos / 3) + 'px)');
+        }
+        if (dealershipSvgIsVisible) {
+            $('#dealershipSvg').parent().css('transform', 'translateY(' + scrollPos / 3 + 'px)');
+        }
+        if (doeCircleSvgIsVisible || bentoBoxIsVisible || desertBackgroundIsVisible) {
+            $('#doeCircle').css('transform', 'translateY(' + scrollPos / 4 + 'px)');
+        }
+        // $('#doeCircle').css('transform', 'translateY(' + scrollPos/4 + 'px)');
+
+        $progressBar.css('width', percentScrolled + '%');
+
+        if (scrollPos > viewportHeight) {
+            $menuButton.fadeIn();
+        } else {
+            $menuButton.fadeOut();
+        }
+    }
+// }
+
 // Attach the debounced scroll handler
-$(window).scroll(debounce(handleScroll, 0));
+$(window).scroll(debounce(handleMobileScroll, 0));
 
 // Resize event handler to update cached sizes
 $(window).resize(debounce(function() {
