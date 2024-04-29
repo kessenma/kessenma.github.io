@@ -51,6 +51,12 @@ function handleScroll() {
 
 }
 
+function handleScroll () {
+    /// pseudo code:
+    // for both mobile and desktop get the progress bar and menu to work
+}
+
+
 // function isMobileDevice() {
 //     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 // }
@@ -108,6 +114,7 @@ function handleScroll() {
 
 // Attach the debounced scroll handler
 $(window).scroll(debounce(handleMobileScroll, 0));
+// $(window).scroll(debounce(handleScroll, 0));
 
 // Resize event handler to update cached sizes
 $(window).resize(debounce(function() {

@@ -313,10 +313,6 @@ p {
     z-index: 10;
 }
 
-#dealershipSVG {
-    width: 100%;
-    height: auto;
-}
 
 .phone-svg-container {
     position: absolute;
@@ -1711,8 +1707,15 @@ section {
     width: 100%;
 }
 
+.commissioning-package-header{
+    height: 10vh;
+    z-index: 11;
+    position: relative;
+    text-align: center;
+}
+
 .section-zero {
-    z-index: 1003;
+    z-index: 2;
     height: 60vh;
     width: 100%;
     background: var(--lightGray);
