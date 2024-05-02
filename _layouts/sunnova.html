@@ -231,11 +231,23 @@
     </div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', (event) => {
-        particlesJS.load('particles-js', '/assets/js/sunnova/sunnova_particles.json', function() {
-          console.log('callback - particles.js config loaded');
-        });
+      document.addEventListener('DOMContentLoaded', function () {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              particlesJS.load('particles-js', '/assets/js/sunnova/sunnova_particles.json', function() {
+                console.log('particles.js loaded because element is in view');
+              });
+            } else {
+              // Optional: unload or stop particles.js when not visible
+              particlesJS.destroy(); // Assuming such a method exists
+            }
+          });
+        }, {threshold: 0.1});
+
+        observer.observe(document.getElementById('particles-js'));
       });
+
     </script>
       <div id="doeCircle" class="doeCircle-container">
         <object  type="image/svg+xml" data="/assets/img/sunnova/hestiaCircle.svg"></object>
