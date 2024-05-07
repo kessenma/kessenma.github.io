@@ -66,9 +66,10 @@ function handleScroll () {
     const $phoneSvg = $('#phoneSvg');
     const $dealershipSvg = $('#dealershipSvg');
     const $bentoBox = $('.bento-box');
-    const $doeCircle = $('#doeCircle');
+    // const $doeCircle = $('#doeCircle');
     const $desertBackground = $('.desert-background');
     const $progressBar = $('.scroll-progress-bar');
+    const $aboutSun = $('#aboutSun');
     const $menuButton = $(".menu-button");
 
     // Cache viewport size
@@ -81,24 +82,30 @@ function handleScroll () {
         let percentScrolled = (scrollPos / windowHeight) * 100;
 
         const sunIsVisible = isInViewport($sun[0]);
+        const aboutSunIsVisible = isInViewport($aboutSun[0]);
         const phoneSvgIsVisible = isInViewport($phoneSvg[0]);
         const dealershipSvgIsVisible = isInViewport($dealershipSvg[0]);
-        const doeCircleSvgIsVisible = isInViewport(($doeCircle)[0]);
+        // const doeCircleSvgIsVisible = isInViewport(($doeCircle)[0]);
         const bentoBoxIsVisible = isInViewport(($bentoBox)[0]);
         const desertBackgroundIsVisible = isInViewport(($desertBackground)[0]);
         // console.log('Phone SVG visible:', phoneSvgIsVisible, 'Sun visible:', sunIsVisible,  'Dealership SVG visible:', dealershipSvgIsVisible);
 
-        if (sunIsVisible) {
-            $('.sun').css('transform', 'translateY(' + scrollPos / 4 + 'px)');
-        }
-        if (phoneSvgIsVisible) {
-            $('#phoneSvg').parent().css('transform', 'translateY(' + (-scrollPos / 3) + 'px)');
-        }
-        if (dealershipSvgIsVisible) {
-            $('#dealershipSvg').parent().css('transform', 'translateY(' + scrollPos / 3 + 'px)');
-        }
-        if (doeCircleSvgIsVisible || bentoBoxIsVisible || desertBackgroundIsVisible) {
-            $('#doeCircle').css('transform', 'translateY(' + scrollPos / 4 + 'px)');
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+            if (sunIsVisible) {
+                $('.sun').css('transform', 'translateY(' + scrollPos / 4 + 'px)');
+            }
+            if (phoneSvgIsVisible) {
+                $('#phoneSvg').parent().css('transform', 'translateY(' + (-scrollPos / 3) + 'px)');
+            }
+            if (dealershipSvgIsVisible) {
+                $('#dealershipSvg').parent().css('transform', 'translateY(' + scrollPos / 3 + 'px)');
+            }
+            // if (doeCircleSvgIsVisible || bentoBoxIsVisible || desertBackgroundIsVisible) {
+            //     $('#doeCircle').css('transform', 'translateY(' + scrollPos / 4 + 'px)');
+            // }
+            if (aboutSunIsVisible) {
+                $('#aboutSun').css('transform', 'translateY(' + scrollPos / 5 + 'px)');
+            }
         }
         // $('#doeCircle').css('transform', 'translateY(' + scrollPos/4 + 'px)');
 

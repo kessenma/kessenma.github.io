@@ -75,7 +75,7 @@
       <p>{{ page.about | safe }}</p>
       <p>{{ page.about2 }}</p>
     </div>
-    <div class="desertSunBackground"></div>
+    <div id="aboutSun" class="desertSunBackground"></div>
   </div>
 
   <div class="desert-background">
@@ -223,32 +223,29 @@
   </div>
 
     <div class="DOE-section-container">
-      <div class="desktop-divider"></div>
+        <div class="desktop-divider"></div>
 
-      <div class="microgrid-container">
-         <div id="particles-js"></div>
-      <object id="ParticlesBackground" type="image/svg+xml" data="/assets/img/sunnova/particles_USA.svg"></object>
-    </div>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              particlesJS.load('particles-js', '/assets/js/sunnova/sunnova_particles.json', function() {
-                console.log('particles.js loaded because element is in view');
-              });
-            } else {
-              // Optional: unload or stop particles.js when not visible
-              particlesJS.destroy(); // Assuming such a method exists
-            }
-          });
-        }, {threshold: 0.1});
+        <div class="microgrid-container">
+           <div id="particles-js"></div>
+        <object id="ParticlesBackground" type="image/svg+xml" data="/assets/img/sunnova/particles_USA.svg"></object>
+      </div>
+      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                particlesJS.load('particles-js', '/assets/js/sunnova/sunnova_particles.json', function() {
+                  console.log('particles.js loaded because element is in view');
+                });
+              }
+            });
+          }, {threshold: 0.1});
 
-        observer.observe(document.getElementById('particles-js'));
-      });
+          observer.observe(document.getElementById('particles-js'));
+        });
 
-    </script>
+        </script>
       <div id="doeCircle" class="doeCircle-container">
         <object  type="image/svg+xml" data="/assets/img/sunnova/hestiaCircle.svg"></object>
         <img src="https://img.icons8.com/?size=256&id=wcK894NIt5Wv&format=png" id="moving-arrow" alt="Moving Arrow"/>
