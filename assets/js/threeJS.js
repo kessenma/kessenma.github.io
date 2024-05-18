@@ -23,7 +23,6 @@ function addModelToBG() {
             return;
         }
         scene = new THREE.Scene();
-
         const fov = 100;
         const aspect = container.clientWidth / container.clientHeight;
         const near = 0.9;
@@ -31,8 +30,11 @@ function addModelToBG() {
         camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
         camera.position.set(2, 15, 5);
         camera.lookAt(scene.position);
-
-        renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+        if (isMobile()) {
+            renderer = new THREE.WebGLRenderer({ alpha: true });
+        } else {
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        }
         renderer.setSize(container.clientWidth, container.clientHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
         container.appendChild(renderer.domElement);
