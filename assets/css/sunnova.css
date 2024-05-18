@@ -1301,8 +1301,8 @@ https://flickity.metafizzy.co
     transform: translateY(-50%);
 }
 
-.flickity-prev-next-button.previous { left: -15vw; }
-.flickity-prev-next-button.next { right: -15vw; }
+.flickity-prev-next-button.previous { left: -5vw; }
+.flickity-prev-next-button.next { right: -5vw; }
 /* right to left */
 .flickity-rtl .flickity-prev-next-button.previous {
     left: auto;
