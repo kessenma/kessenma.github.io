@@ -721,7 +721,7 @@ p {
     /*margin-bottom: -40vh;*/
 }
 
-.commissioning-package-background {
+.handshake-background {
     position: relative;
     width: 100%;
     height: 100%;
@@ -1354,8 +1354,12 @@ https://flickity.metafizzy.co
 /*flickity css ^^ ######*/
 /*###################*/
 
-.commissioning-package {
+.commissioning-package-background {
     background-color: var(--darkOrange);
+}
+
+.architecture-background {
+    background: linear-gradient(var(--darkOrange), var(--yellow));
 }
 
 
@@ -1381,7 +1385,7 @@ https://flickity.metafizzy.co
     max-width: 30vw;
     aspect-ratio: 1/1;
     margin: 1rem auto 0 auto;
-    height: 50vh;
+    /*height: 50vh;*/
     text-align: center;
     font-weight: bold;
     /*color: red;*/
@@ -1413,6 +1417,7 @@ https://flickity.metafizzy.co
 }
 .gallery-cell {
     border: #ffffff 1rem;
+    margin-left: 0.2rem;
 }
 
 .architecture-gallery-nav .gallery-cell {
@@ -1431,12 +1436,35 @@ https://flickity.metafizzy.co
 }
 
 .architecture-gallery-nav .gallery-cell.is-nav-selected {
-    background-color: var(--white);
+    background-color: var(--lightYellow);
     color: #000000;
     border-radius: 10rem;
 }
 
-.commissioning-package h2 {
+.commissioning-gallery-nav .gallery-cell {
+    height: 10vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row; /* Stack items vertically */
+    width: 25%;
+    line-height: 45px;
+    font-weight: bold;
+    font-size: 2rem;
+    color: var(--lightOrange);
+    background-color: black;
+    margin-left: 0.2rem;
+}
+
+.commissioning-gallery-nav .gallery-cell.is-nav-selected {
+    background-color: var(--lightOrange);
+    color: #000000;
+    border-radius: 10rem;
+}
+
+
+.commissioning-package-background h2 {
     color: black;
     opacity: 0.7;
     background-color: white;
@@ -1444,24 +1472,29 @@ https://flickity.metafizzy.co
 }
 
 .architecture-gallery-header h2 {
-    color: black;
+    color: white;
     opacity: 0.7;
-    background-color: white;
+    /*background-color: white;*/
     text-align: center;
 }
+
+.architecture-gallery-header {
+    height: 12rem;
+}
+
 
 .commissioning-package-header {
     height: 10rem;
 }
 
-.commissioning-package p {
+.commissioning-package-background p {
     color: #FFFFFF;
     /*background-color: #FFFFFF;*/
     /*opacity: 0.7;*/
     font-size: 2rem !important;
 }
 
-.commissioning-package h4 {
+.commissioning-package-background h4 {
     color: #FFFFFF;
     /*font-size: 2rem !important;*/
 }
@@ -1773,12 +1806,6 @@ section {
     /*margin-top: 40vh;*/
 }
 
-/*!* Medium devices (tablets, 768px and up) *!*/
-/*@media (min-width: 1000px) {*/
-/*    .architecture-section {*/
-/*        margin-top: -20vh;*/
-/*    }*/
-/*}*/
 
 .center-section-padding {
     padding: 10%;

@@ -76,6 +76,13 @@ $(document).ready(function() {
             imagesLoaded: true
         };
         $gallery.flickity(galleryPrefs);
+
+        // Add event listener for when the gallery is selected
+        $gallery.on('select.flickity', function() {
+            var flkty = $gallery.data('flickity');
+            var index = flkty.selectedIndex;
+            highlightNav(index, 'commissioning-gallery-nav');
+        });
     });
 
     // Initialize Flickity for architecture gallery
@@ -90,19 +97,46 @@ $(document).ready(function() {
             imagesLoaded: true
         };
         $gallery.flickity(galleryPrefs);
+
+        // Add event listener for when the gallery is selected
+        $gallery.on('select.flickity', function() {
+            var flkty = $gallery.data('flickity');
+            var index = flkty.selectedIndex;
+            highlightNav(index, 'architecture-gallery-nav');
+        });
     });
 
-    // Initialize Flickity for each gallery navigation and bind click events
+    // Initialize Flickity for architecture gallery navigation and bind click events
     $('.architecture-gallery-nav').each(function() {
         var $galleryNav = $(this);
         var galleryNavId = $galleryNav.data('id');
-        var $gallery = $(".arc-gallery[data-id='" + galleryNavId +"']"); // Correct class name
-
-        // Debugging: Ensure the correct gallery is targeted
-        console.log("Targeting gallery for navigation:", $gallery[0]);
+        var $gallery = $(".arc-gallery[data-id='" + galleryNavId +"']");
 
         var galleryNavPrefs = {
-            asNavFor: $gallery[0], // Ensure this references the correct gallery element
+            asNavFor: $gallery[0],
+            contain: true,
+            wrapAround: false,
+            pageDots: false,
+            prevNextButtons: false,
+            imagesLoaded: true
+        };
+        $galleryNav.flickity(galleryNavPrefs);
+
+        // Bind click events to navigation cells
+        $galleryNav.on('click', '.gallery-cell', function() {
+            var index = $(this).index();
+            $gallery.flickity('select', index, false, true); // Added smooth scroll and no wrap options
+        });
+    });
+
+    // Initialize Flickity for commissioning gallery navigation and bind click events
+    $('.commissioning-gallery-nav').each(function() {
+        var $galleryNav = $(this);
+        var galleryNavId = $galleryNav.data('id');
+        var $gallery = $(".commissioning-gallery[data-id='" + galleryNavId +"']");
+
+        var galleryNavPrefs = {
+            asNavFor: $gallery[0],
             contain: true,
             wrapAround: false,
             pageDots: false,
@@ -118,6 +152,13 @@ $(document).ready(function() {
         });
     });
 });
+
+// Function to highlight the navigation
+function highlightNav(index, navClass) {
+    $('.' + navClass + ' .gallery-cell').removeClass('is-nav-selected');
+    $('.' + navClass + ' .gallery-cell').eq(index).addClass('is-nav-selected');
+}
+
 
 
 
