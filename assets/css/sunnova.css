@@ -1362,6 +1362,20 @@ https://flickity.metafizzy.co
     background: linear-gradient(var(--darkOrange), var(--yellow));
 }
 
+.commissioning-gallery {
+    /*max-width: 30vw;*/
+    aspect-ratio: 1/1;
+    margin: 1rem auto 0 auto;
+    /*height: 50vh;*/
+    text-align: center;
+    font-weight: bold;
+    /*color: red;*/
+    display: block;
+    /*background: linear-gradient(180deg, var(--lightBlue), var(--lightYellow));*/
+    /*background-color: var(--lightYellow);*/
+    /*box-shadow: 0px 0px 40px 15px var(--white);*/
+    /*border-radius: 150rem;*/
+}
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 1000px) {
@@ -1381,20 +1395,7 @@ https://flickity.metafizzy.co
     object-fit: contain; /* This will make sure that the image is scaled to be as large as possible within the container without being cropped or stretched */
 }
 
-.commissioning-gallery {
-    max-width: 30vw;
-    aspect-ratio: 1/1;
-    margin: 1rem auto 0 auto;
-    /*height: 50vh;*/
-    text-align: center;
-    font-weight: bold;
-    /*color: red;*/
-    display: block;
-    /*background: linear-gradient(180deg, var(--lightBlue), var(--lightYellow));*/
-    /*background-color: var(--lightYellow);*/
-    /*box-shadow: 0px 0px 40px 15px var(--white);*/
-    /*border-radius: 150rem;*/
-}
+
 
 .commissioning-gallery-container {
     height: auto;
@@ -1402,12 +1403,11 @@ https://flickity.metafizzy.co
 }
 
 .arc-gallery {
-    height: 50vh;
+    height: auto;
     width: 100%;
     text-align: center;
-    font-weight: bold;
     color: white;
-    background-color: black;
+    /*background-color: black;*/
     /*border-radius: 5rem;*/
 }
 
