@@ -18,22 +18,22 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(subPanel);
 });
 
-function hideInitialOverlay() {
-    const overlay = document.getElementById('initial-overlay');
-    if (overlay.style.display !== "none") {
-        overlay.style.transition = 'opacity 2s ease-out';
-        overlay.style.opacity = '0';
-        setTimeout(() => {
-            overlay.style.display = 'none';
-        }, 2000); // This should match the transition duration
-    }
-}
+// function hideInitialOverlay() {
+//     const overlay = document.getElementById('initial-overlay');
+//     if (overlay.style.display !== "none") {
+//         overlay.style.transition = 'opacity 2s ease-out';
+//         overlay.style.opacity = '0';
+//         setTimeout(() => {
+//             overlay.style.display = 'none';
+//         }, 2000); // This should match the transition duration
+//     }
+// }
 
 function handleIntersection(entries, observer) {
     entries.forEach(function(entry) {
         if (entry.isIntersecting) {
             entry.target.style.visibility = "visible"; // Make the SVG visible
-            hideInitialOverlay();
+            // hideInitialOverlay();
             initSVGAnimation(entry.target);
             observer.unobserve(entry.target);
         }

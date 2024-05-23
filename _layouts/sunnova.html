@@ -38,8 +38,9 @@
     <button class="menu-button">☰</button>
     <div class="menu-items">
       <a href="#about-section">about</a>
-      <a href="#features-section">features</a>
-      <a href="#architecture-section">architecture</a>
+      <a href="#site-survey">Site Survey</a>
+      <a href="#commissioning-package">Commissioning Package</a>
+      <a href="#app-architecture">architecture</a>
     </div>
   </div>
 
@@ -61,10 +62,11 @@
       </div>
     <div class="button-container">
       <a href="#about-section" class="parallax-button">About</a>
-      <a href="#features-section" class="parallax-button">features</a>
-      <a href="#architecture-section" class="parallax-button">Architecture</a>
+      <a href="#site-survey" class="parallax-button">Site Survey</a>
+      <a href="#commissioning-package" class="parallax-button">Commissioning Package</a>
+      <a href="#app-architecture" class="parallax-button">App Architecture</a>
     </div>
-    <div id="initial-overlay" class="initial-overlay"></div>
+<!--    <div id="initial-overlay" class="initial-overlay"></div>-->
     <div class="dealership-svg-container">
       <img id="dealershipSvg" src="assets/img/sunnova/dealership.svg" alt="dealership" />
     </div>
@@ -267,7 +269,7 @@
 
   <div class="site-survey-background">
     <div class="divider"></div>
-    <div class="app-features center-section-padding" id="features-section">
+    <div class="app-features center-section-padding" id="site-survey">
       <div id="typewriter">
         <h1>Site Survey</h1>
       </div>
@@ -340,7 +342,7 @@
     </div>
   </div>
 
-  <div class="commissioning-package-header">
+  <div class="commissioning-package-header" id="commissioning-package">
     <div id="typewriter"> <h1>Commissioning Package</h1></div>
   </div>
   <!--  /////////-->
@@ -469,7 +471,7 @@
 <!--####ARCHITECTURE####-->
 <!--####################-->
   <div class="architecture-background">
-    <div class=" architecture-section center-section-padding" id="architecture-section">
+    <div class=" architecture-section center-section-padding" id="app-architecture">
 
 
           <div class="architecture-gallery-header">
@@ -507,6 +509,19 @@
           </a>
         </div>
       </div>
+
+      <p>{{ page.architecture1 | markdownify }}</p>
+      <p>{{ page.architecture5 | markdownify }}</p>
+      {{ page.architecture6 | markdownify }}
+      {{ page.architecture7 | markdownify }}
+      <p>{{ page.architecture8 | markdownify }}</p>
+      {{ page.architecture9 | markdownify }}
+      <p>{{ page.architecture10 | markdownify }}</p>
+      {{ page.architecture11 | markdownify }}
+      {{ page.architecture12 | markdownify }}
+
+
+
 
 
 

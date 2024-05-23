@@ -146,7 +146,7 @@ function handleIntersection(entries, observer) {
         if (entry.isIntersecting) {
             entry.target.style.visibility = "visible"; // Make the SVG visible
             entry.target.classList.add('is-visible'); // Indicate that the element is ready
-            hideInitialOverlay();
+            // hideInitialOverlay();
             initSVGAnimation(entry.target);
             observer.unobserve(entry.target);
         }
