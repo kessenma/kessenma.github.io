@@ -1367,21 +1367,6 @@ https://flickity.metafizzy.co
     background: linear-gradient(var(--darkOrange), var(--yellow));
 }
 
-.commissioning-gallery {
-    /*max-width: 30vw;*/
-    aspect-ratio: 1/1;
-    margin: 1rem auto 0 auto;
-    /*height: 50vh;*/
-    text-align: center;
-    font-weight: bold;
-    /*color: red;*/
-    display: block;
-    /*background: linear-gradient(180deg, var(--lightBlue), var(--lightYellow));*/
-    /*background-color: var(--lightYellow);*/
-    /*box-shadow: 0px 0px 40px 15px var(--white);*/
-    /*border-radius: 150rem;*/
-}
-
 /* Medium devices (tablets, 768px and up) */
 /*@media (min-width: 1000px) {*/
 /*    .commissioning-gallery {*/
@@ -1397,14 +1382,48 @@ https://flickity.metafizzy.co
 .gallery-cell img {
     max-width: 100%;
     height: 100%;
-    object-fit: contain; /* This will make sure that the image is scaled to be as large as possible within the container without being cropped or stretched */
+    object-fit: contain;
+    overflow: hidden;
+    overflow-x: hidden; /* Hide horizontal overflow */
 }
 
-
-
 .commissioning-gallery-container {
-    height: auto;
+    height: 50vh;
     display: block;
+    padding-bottom: 10vh;
+    padding-top: 10vh;
+    width: 95%;
+    margin: 0 auto;
+    /*overflow: hidden ;*/
+}
+
+.commissioning-gallery {
+    /*max-width: 30vw;*/
+    aspect-ratio: 1/1;
+    margin: 1rem auto 0 auto;
+    height: 50vh;
+    width: 80%;
+    text-align: center;
+    font-weight: bold;
+    display: block;
+    /*background: linear-gradient(180deg, var(--lightBlue), var(--lightYellow));*/
+    /*background-color: var(--lightYellow);*/
+    /*box-shadow: 0px 0px 40px 15px var(--white);*/
+    /*border-radius: 150rem;*/
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 1000px) {
+    .commissioning-gallery {
+        width: 30%;
+        height: 60vh;
+    }
+    .arc-gallery {
+        width: 30%;
+    }
+    .gallery-cell img {
+        height: 100%;
+    }
 }
 
 .arc-gallery {
@@ -1421,6 +1440,7 @@ https://flickity.metafizzy.co
     margin: 0.5rem auto 5rem auto;
 }
 .gallery-cell {
+    height: 50vh;
     border: #ffffff 1rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
