@@ -509,21 +509,28 @@
       </div>
 
       <p>{{ page.architecture1 | markdownify }}</p>
-      <p>{{ page.frontend1 | markdownify }}</p>
-      {{ page.frontend2 | markdownify }}
-      {{ page.frontend3 | markdownify }}
-      {{ page.frontend4 | markdownify }}
 
-      <p>{{ page.backend1 | markdownify }}</p>
-      {{ page.backend2 | markdownify }}
-      {{ page.backend3 | markdownify }}
+      <div class="frontend-directory">
+        <p>{{ page.frontend1 | markdownify }}</p>
+        <p>{{ page.frontend2 | markdownify }}</p>
+        <p>{{ page.frontend3 | markdownify }}</p>
+        <p>{{ page.frontend4 | markdownify }}</p>
+      </div>
 
-      <p>{{ page.cloud1 | markdownify }}</p>
-      {{ page.cloud2 | markdownify }}
-      {{ page.cloud3 | markdownify }}
-      {{ page.cloud4 | markdownify }}
-      {{ page.cloud5 | markdownify }}
-      {{ page.cloud6 | markdownify }}
+      <div class="backend-directory">
+        <p>{{ page.backend1 | markdownify }}</p>
+        <p>{{ page.backend2 | markdownify }}</p>
+        <p>{{ page.backend3 | markdownify }}</p>
+      </div>
+
+      <div class="cloud-directory">
+        <p>{{ page.cloud1 | markdownify }}</p>
+        <p>{{ page.cloud2 | markdownify }}</p>
+        <p>{{ page.cloud3 | markdownify }}</p>
+        <p>{{ page.cloud4 | markdownify }}</p>
+        <p>{{ page.cloud5 | markdownify }}</p>
+        <p>{{ page.cloud6 | markdownify }}</p>
+      </div>
 
 
 
