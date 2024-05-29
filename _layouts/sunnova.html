@@ -395,7 +395,7 @@
   </div>
 
   <!-- partial -->
-  <script src='https://assets.codepen.io/16327/gsap-latest-beta.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
   <script src='https://assets.codepen.io/16327/ScrollTrigger.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 
@@ -460,6 +460,11 @@
         </div>
       </div>
     </div>
+
+    <div class="computerReview-container">
+      <img id="computerReviewSvg" src="assets/img/sunnova/computerReview.svg" alt="reviewer on computer" />
+    </div>
+
   </div>
 
 
@@ -470,21 +475,22 @@
 <!--####################-->
 <!--####ARCHITECTURE####-->
 <!--####################-->
+  <div class="architecture-buffer-overlay-background"></div>
   <div class="architecture-background">
-    <div class=" architecture-section center-section-padding" id="app-architecture">
+<!--    <div class="blur"></div>-->
+<!--    <div class="blur"></div>-->
+<!--    <div class="blur"></div>-->
 
-
-          <div class="architecture-gallery-header">
-            <h2 id="architecture-title">Catalyst Platform Architecture</h2>
-          </div>
-
+    <div class="architecture-gallery-container center-section-padding" id="app-architecture">
+      <div class="architecture-gallery-header">
+        <h2 id="architecture-title">Catalyst Platform Architecture</h2>
+      </div>
       <div class="architecture-gallery-nav" data-id="2">
         <div class="gallery-cell">Database</div>
-        <div class="gallery-cell">Code </div>
+        <div class="gallery-cell">Code</div>
         <div class="gallery-cell">Release</div>
         <div class="gallery-cell">Analytics</div>
       </div>
-
       <div id="architecture-gallery" class="arc-gallery" data-id="2">
         <div class="gallery-cell">
           <a href="../assets/img/sunnova/Database.png" data-lightbox="architecture-gallery">
@@ -507,40 +513,60 @@
           </a>
         </div>
       </div>
+    </div>
 
-      <p>{{ page.architecture1 | markdownify }}</p>
+    <div class=" architecture-macro">
+      <div class="divider"></div>
+      <div class="desktop-divider2"></div>
+
+      <img class="architecture-desktop" src="/assets/img/sunnova/Architecture_Desktop_View.png" alt="Architecture Desktop View">
+      <img class="architecture-mobile" src="/assets/img/sunnova/Architecture_Mobile_View.png" alt="Architecture Mobile View">
+    </div>
+
+    <div class="architecture-description-container">
+      <div class="architecture-description-header"
+      <div class="architecture-description-header">
+        <p>{{ page.architecture1 | markdownify }}</p>
+      </div>
+
+<!--      <div class="blur-container">-->
+<!--        <div class="blur"></div>-->
+<!--        <div class="blur"></div>-->
+<!--        <div class="blur"></div>-->
+<!--      </div>-->
 
       <div class="frontend-directory">
-        <p>{{ page.frontend1 | markdownify }}</p>
+        <h3>{{ page.frontend1 }}</h3>
         <p>{{ page.frontend2 | markdownify }}</p>
         <p>{{ page.frontend3 | markdownify }}</p>
         <p>{{ page.frontend4 | markdownify }}</p>
       </div>
 
+
+
       <div class="backend-directory">
-        <p>{{ page.backend1 | markdownify }}</p>
+        <h3>{{ page.backend1 }}</h3>
         <p>{{ page.backend2 | markdownify }}</p>
         <p>{{ page.backend3 | markdownify }}</p>
       </div>
-
       <div class="cloud-directory">
-        <p>{{ page.cloud1 | markdownify }}</p>
+        <h3>{{ page.cloud1 }}</h3>
         <p>{{ page.cloud2 | markdownify }}</p>
         <p>{{ page.cloud3 | markdownify }}</p>
         <p>{{ page.cloud4 | markdownify }}</p>
         <p>{{ page.cloud5 | markdownify }}</p>
         <p>{{ page.cloud6 | markdownify }}</p>
       </div>
+    </div>
+  </div>
 
 
 
 
 
 
-      <div class="divider"></div>
-        <div class="desktop-divider2"></div>
-      <img class="architecture-desktop" src="/assets/img/sunnova/Architecture_Desktop_View.png" alt="Architecture Desktop View">
-      <img class="architecture-mobile" src="/assets/img/sunnova/Architecture_Mobile_View.png" alt="Architecture Mobile View">
+
+
       <!-- Your custom script that uses THREE and GLTFLoader -->
     <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js"></script>
 

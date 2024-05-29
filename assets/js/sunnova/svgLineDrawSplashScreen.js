@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var powerLine = document.getElementById('powerLineSvg');
     var rafters = document.getElementById('raftersSvg');
     var subPanel = document.getElementById('subPanelSvg');
+    var computerReview = document.getElementById('computerReviewSvg');
 
     observer.observe(phoneSvg);
     observer.observe(dealershipSvg);
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(powerLine);
     observer.observe(rafters);
     observer.observe(subPanel);
+    observer.observe(computerReview);
 });
 
 // function hideInitialOverlay() {

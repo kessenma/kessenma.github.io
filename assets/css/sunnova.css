@@ -141,6 +141,7 @@ p {
 .content-container {
     position: relative;
     width: 100vw;
+    overflow: hidden;
 }
 
 
@@ -1360,7 +1361,7 @@ https://flickity.metafizzy.co
 /*###################*/
 
 .commissioning-package-background {
-    background-color: var(--darkOrange);
+    background: linear-gradient(var(--darkOrange), var(--lightOrange));
 }
 
 .commissioning-package-background h2 {
@@ -1491,6 +1492,19 @@ https://flickity.metafizzy.co
     background-color: var(--lightOrange);
     color: #000000;
     border-radius: 10rem;
+    z-index: 3;
+}
+
+
+
+.computerReview-container {
+    position: relative;
+    display: block;
+    top: 0%;
+    left: 0;
+    width: 60%;
+    height: auto;
+    z-index: 2;
 }
 
 .architecture-gallery-header h2 {
@@ -1504,29 +1518,49 @@ https://flickity.metafizzy.co
     height: 12rem;
 }
 
+.architecture-buffer-overlay-background {
+    height: 70vh;
+    background: linear-gradient(to bottom, rgba(255, 140, 0, 1), rgba(255, 140, 0, 0));
+    margin-bottom: -70vh;
+}
+
+
 .architecture-background {
-    background: linear-gradient(var(--darkOrange), var(--yellow));
+    background: linear-gradient(var(--lightOrange), white);
+}
+
+.frontend-directory h3,
+.backend-directory h3,
+.cloud-directory h3 {
+    color: white;
 }
 
 .architecture-background p {
     /*background-color: black;*/
     display: inline-block;
     padding: 5px; /* Adjust padding as needed */
+    z-index: 10;
 }
 
 .frontend-directory p,
 .backend-directory p,
 .cloud-directory p {
-    color: white;
-    /*background-color: black;*/
+    background-color: black;
+    color: rgba(255, 255, 255, 1.2); /* White color with 80% opacity */
+    padding: 5px;
     display: inline-block;
-    padding: 5px; /* Adjust padding as needed */
+    margin: 0; /* Remove default margins */
+    mix-blend-mode: multiply; /* Blending mode */
+    z-index: 10;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
 }
 
 .frontend-directory a,
 .backend-directory a,
 .cloud-directory a {
     color: var(--lightYellow);
+    z-index: 10;
 }
 
 
@@ -1539,10 +1573,23 @@ https://flickity.metafizzy.co
     display: inline-block;
     margin: 0; /* Remove default margins */
     mix-blend-mode: multiply; /* Blending mode */
+    z-index: 10;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    /*position: absolute;*/
 }
 
-
-
+.architecture-description-header {
+    background-color: black;
+    color: rgba(255, 255, 255, 1.2); /* White color with 80% opacity */
+    padding: 5px;
+    display: inline-block;
+    margin: 0; /* Remove default margins */
+    mix-blend-mode: multiply; /* Blending mode */
+    z-index: 10;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+}
 
 .commissioning-package-header {
     height: 10rem;
@@ -1756,11 +1803,9 @@ https://flickity.metafizzy.co
 }
 
 section {
-
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
-
 }
 
 .buffer {
@@ -1864,7 +1909,7 @@ section {
 /*### ARCHITECTURE ###*/
 /*####################*/
 
-.architecture-section {
+.architecture-gallery-container {
     /*margin-top: 40vh;*/
 }
 
@@ -1878,16 +1923,25 @@ section {
 }
 
 
-
+.architecture-macro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 90%;
+    height: 100%;
+    align-content: center;
+}
 /*Default styles - mobile first approach*/
 .architecture-desktop {
-    display: none;
-    max-width: 100%;
+    margin: 0 auto;
+    max-width: 90%;
+    height: auto;
 }
 
 .architecture-mobile {
-    max-width: 100%;
-    height: 100%;
+    margin: 0 auto;
+    max-width: 90%;
+    height: auto;
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -1900,3 +1954,77 @@ section {
         display: block;
     }
 }
+
+.architecture-description-container {
+    padding: 5%;
+}
+
+/*background gradient for architecture section*/
+
+:root {
+    --color: var(--lightYellow);
+    --blur-1-size: clamp(50vw, 50vw, 50vw);
+    --blur-2-size: clamp(30vw, 30vw, 30vw);
+    --blur-3-size: clamp(30vw, 30vw, 10vw);
+    --blur-amount: clamp(50vw, 50vw, 5vw);
+}
+
+.blur-container {
+        /*padding: 5vw;*/
+        /*height: 100vh;*/
+        background: #f4f4f4;
+        /*overflow: visible;*/
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+        /*overflow: hidden;*/
+}
+
+.blur {
+    position: absolute;
+    border-radius: 50rem;
+    filter: blur(var(--blur-amount));
+    background: var(--color);
+    width: 100%;
+    height: 100%;
+    margin-top: 100vh;
+    overflow: hidden;
+}
+
+.blur:nth-child(1) {
+    height: var(--blur-1-size);
+    width: calc(var(--blur-1-size) * 1.1);
+}
+
+.blur:nth-child(2) {
+    filter: blur(var(--blur-amount)) hue-rotate(135deg) brightness(1.3);
+    height: var(--blur-2-size);
+    width: calc(var(--blur-2-size) * 0.75);
+    top: 20vh;
+    right: 20vh;
+}
+
+.blur:nth-child(3) {
+    filter: blur(var(--blur-amount)) hue-rotate(-135deg);
+    height: var(--blur-3-size);
+    width: calc(var(--blur-3-size) * 2);
+    top: 60vh;
+    left: 20vw;
+}
+
+
+/*section {*/
+/*    padding: 5vw;*/
+/*    height: 100vh;*/
+/*    background: #f4f4f4;*/
+/*    overflow: visible;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    flex-direction: column;*/
+/*    position: relative;*/
+/*    overflow: hidden;*/
+/*}*/
+
