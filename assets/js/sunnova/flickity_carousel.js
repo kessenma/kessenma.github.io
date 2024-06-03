@@ -59,10 +59,6 @@
 
 
 
-
-///////////////
-// custom image scroller code:
-//////////////
 $(document).ready(function() {
     // Initialize Flickity for commissioning gallery
     $('.commissioning-gallery').each(function() {
@@ -82,6 +78,7 @@ $(document).ready(function() {
             var flkty = $gallery.data('flickity');
             var index = flkty.selectedIndex;
             highlightNav(index, 'commissioning-gallery-nav');
+            updateCaption(index); // Update caption on slide change
         });
     });
 
@@ -158,6 +155,18 @@ function highlightNav(index, navClass) {
     $('.' + navClass + ' .gallery-cell').removeClass('is-nav-selected');
     $('.' + navClass + ' .gallery-cell').eq(index).addClass('is-nav-selected');
 }
+
+// Function to update the caption
+function updateCaption(index) {
+    var captions = $('.hidden-captions div').map(function() {
+        return $(this).data('caption');
+    }).get();
+    $('.gallery-caption p').html(captions[index]);
+}
+
+
+
+
 
 
 

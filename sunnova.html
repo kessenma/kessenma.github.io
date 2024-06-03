@@ -7,7 +7,7 @@ about2: "The purpose of this website is to display what I built while at Sunnova
 
 
 customers: "Customers"
-customers1: As of 2023, Sunnova had 348k+ customers, and approximately 500 systems were installed daily through the Sunnova dealership network (before interest rates increased; now, I'm not sure of the current rate)."
+customers1: "As of 2023, Sunnova had 348k+ customers, and approximately 500 systems were installed daily through the Sunnova dealership network (before interest rates increased; now, I'm not sure of the current rate)."
 
 locations: Locations
 locations1: "Sunnova <a href='https://www.sunnova.com/locations/' target='_blank'> operates in 46 US States and is expanding </a> outside the US as well. They have a large presence in Puerto Rico already (<a href='https://solarmagazine.com/rebuilding-puerto-rico-power-infrastructure-hurricane-maria-first-annual-commemoration/' target='_blank'>assisted rebuilding electrical grid infrastructure after Hurricane Maria</a> in 2017), and they are attempting to expand into the German market. They also have remote employees all over the globe."
@@ -28,13 +28,13 @@ salesforce: Salesforce
 salesforce1: "Salesforce used Sunnova as a <a href='https://www.salesforce.com/customer-stories/sunnova-connected-data-automation/' target='_blank'>connected data automation</a> case study at their Dreamforce 2023 conference, and I was told that Sunnova had the largest Salesforce instance in the southern US. I worked on the development of the Mulesoft data flows mentioned in this video below that enable Sunnova to generate quotes within 15 minutes for customers who want solar equipment installed on their homes."
 
 energy_loan: D.o.E
-energy_loan1: In 2023 the Department of Energy approved $3 billion worth of financing as a backstop for Sunnova in case customers stop paying for their solar systems. The goal of this financing is to provide lower-income areas in the US with access to solar power, and the funding is a part of "<a href='https://www.energy.gov/lpo/articles/doe-announces-3-billion-partial-loan-guarantee-sunnovas-project-hestia' target='_blank'>Project Hestia</a>."
+energy_loan1: "In 2023 the Department of Energy approved $3 billion worth of financing as a backstop for Sunnova in case customers stop paying for their solar systems. The goal of this financing is to provide lower-income areas in the US with access to solar power, and the funding is a part of <a href='https://www.energy.gov/lpo/articles/doe-announces-3-billion-partial-loan-guarantee-sunnovas-project-hestia' target='_blank'>Project Hestia</a>."
 
 
 doe_hestia: Project Hestia is a joint project. The Sunnova app and portal aim to reduce greenhouse gas emissions, enhance the integration of load controllers and smart appliances, and support grid stability by giving consumers near real-time insights into their residential energy systems and quantifying the location-specific emissions impact of changes in consumer behavior.
 
 microgrid: Microgrids
-microgrid1: "Microgrids are extremely important to Sunnova's current strategy. A solar panel <a href='https://www.sunnova.com/microgrids' target='_blank'>Microgrid</a> is a localized energy system that uses solar panels to generate electricity, incorporates batteries for storage, and distributes power within a specific area. Sunnova is... (in my own words) essentially Enron reincarnated, except with solar power instead of gas pipelines. They recently acquired a homebuilding company called <a href='https://investors.sunnova.com/news-events-and-presentations/news-details/2021/Sunnova-Completes-Acquisition-of-SunStreetLennars-Solar-Platform-for-Homebuilders/default.aspx' target='_blank'>SunStreet</a> and approximately 250,000 homes were added to Sunnova's network."
+microgrid1: "Microgrids are extremely important to Sunnova's current strategy. A solar panel <a href='https://en.wikipedia.org/wiki/Microgrid' target='_blank'>Microgrid</a> is a localized energy system that uses solar panels to generate electricity, incorporates batteries for storage, and distributes power within a specific area. Sunnova is... (in my own words) essentially Enron reincarnated, except with solar power instead of gas pipelines. They recently acquired a homebuilding company called <a href='https://investors.sunnova.com/news-events-and-presentations/news-details/2021/Sunnova-Completes-Acquisition-of-SunStreetLennars-Solar-Platform-for-Homebuilders/default.aspx' target='_blank'>SunStreet</a> and approximately 250,000 homes were added to Sunnova's network."
 
 
 micro_grids_description1: Microgrids represent a convergence point for government initiatives, environmental projects, and private sector innovation. The Department of Energy's support for microgrid technologies fosters a regulatory and funding environment conducive to their growth. Projects like Hestia ($3 billion dollar grant for Sunnova if customers in low-income areas fail to pay their solar-equipment payments), which focus on sustainability and carbon reduction, highlight the need for decentralized and renewable energy solutions that microgrids offer. Meanwhile, solar companies provide the essential technology and expertise to build the renewable energy infrastructure that powers these microgrids, aligning with both governmental and environmental objectives.
@@ -50,7 +50,18 @@ commissioningPackage2: receive commissioning checks from Sunnova.
 
 commissioningPackage3: The gallery below displays the core process dealership employees go through when submitting a commissioning package through the Catalyst app to Sunnova corporate for their engineers to review.
 
-architecture1: "At a high level, the Catalyst app comprises two main features called <i>site survey</i> and <i>commissioning package</i>. Both of these features are essentially surveys that dealership employees use to submit information to Sunnova about a property. The codebase is divided into two main directories: <i>backend</i> and <i>frontend</i>, and the app architecture follows the <a href='https://medium.com/@hiteshsatwani/mvvm-a-guide-for-react-native-and-expo-projects-18d050bdbfb8' target='_blank'>MVVM (Model-View-ViewModel)</a> pattern. Here's how the structure is organized:"
+commissioningPackageCaptionLogin: "Login screen using Salesforce Experience Cloud for authentication."
+commissioningPackageCaptionHome: "This is what dealers see when they have bookmarked projects they are working on. If no projects are bookmarked, They can use the search bar for a project."
+commissioningPackageCaptionProjectScreen: "When a project is selected, dealers can see if the site survey or commissioning packages have been submitted, rejected, not started, or are incomplete."
+commissioningPackageCaptionInitialSetup: "If a commissioning package has not been started, dealers will be prompted to set up a commissioning package if they select it on the previous screen."
+commissioningPackageCaptionSystemDetails: "When setting up a commissioning package, this is where dealerships will enter the equipment being installed."
+commissioningPackageCaptionTaskList: "Once the equipment has been entered in the previous screen, the tasks needed to verify it has been installed correctly will be displayed."
+commissioningPackageCaptionTaskScreen: "This is an example of what an individual task looks like. All the tasks in the commissioning package are photo uploads. No Text inputs are required."
+commissioningPackageCaptionSubmission: "After all the tasks have been completed, the dealership can submit the commissioning package to Sunnova for review."
+commissioningPackageCaptionRejection: "If a task is not completed correctly, feedback is provided on how to fix the problem and then the dealership can resubmit the commissioning package to Sunnova"
+
+architecture1: "<b>Architecture</b>"
+architecture2: "At a high level, the Catalyst app comprises two main features called <i>site survey</i> and <i>commissioning package</i>. Both of these features are essentially surveys that dealership employees use to submit information to Sunnova about a property. The codebase is divided into two main directories: <i>backend</i> and <i>frontend</i>, and the app architecture follows the <a href='https://medium.com/@hiteshsatwani/mvvm-a-guide-for-react-native-and-expo-projects-18d050bdbfb8' target='_blank'>MVVM (Model-View-ViewModel)</a> pattern. Here's how the structure is organized:"
 
 
 frontend1: "<b>Frontend Directory:</b>"

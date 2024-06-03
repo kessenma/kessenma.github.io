@@ -294,14 +294,8 @@ p {
 /*#########drawings#######*/
 /*#####################*/
 
-.initial-overlay {
-    background: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9;
+.hidden-svg {
+    visibility: hidden;
 }
 
 .dealership-svg-container {
@@ -715,6 +709,10 @@ p {
     background: linear-gradient(180deg, var(--lightYellow), white);
     opacity: 1;
     z-index: 0;
+}
+
+.bento-gradient-background a{
+    color: var(--darkOrange);
 }
 
 .site-survey-background {
@@ -1371,18 +1369,6 @@ https://flickity.metafizzy.co
     text-align: center;
 }
 
-/* Medium devices (tablets, 768px and up) */
-/*@media (min-width: 1000px) {*/
-/*    .commissioning-gallery {*/
-/*        width: 100vw;*/
-/*        height: 60vh;*/
-/*    }*/
-/*    .gallery-cell {*/
-/*        height: 100%;*/
-/*        width: 100vw;*/
-/*    }*/
-/*}*/
-
 .gallery-cell {
     height: 50vh;
     border: #ffffff 1rem;
@@ -1495,6 +1481,112 @@ https://flickity.metafizzy.co
     z-index: 3;
 }
 
+.gallery-caption {
+    margin-top: 2vh;
+    font-size: 1rem;
+    text-align: center;
+    height: 35vh;
+}
+.hidden-captions {
+    display: none;
+}
+
+
+.commissioning-gallery-container {
+    height: 50vh;
+    display: block;
+    padding-bottom: 10vh;
+    padding-top: 10vh;
+    width: 95%;
+    margin: 0 auto;
+    /*overflow: hidden ;*/
+}
+
+.commissioning-gallery {
+    /*max-width: 30vw;*/
+    aspect-ratio: 1/1;
+    margin: 1rem auto 0 auto;
+    height: 50vh;
+    width: 80%;
+    text-align: center;
+    font-weight: bold;
+    display: block;
+    /*background: linear-gradient(180deg, var(--lightBlue), var(--lightYellow));*/
+    /*background-color: var(--lightYellow);*/
+    /*box-shadow: 0px 0px 40px 15px var(--white);*/
+    /*border-radius: 150rem;*/
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 1000px) {
+    .commissioning-gallery {
+        width: 30%;
+        height: 60vh;
+    }
+    .arc-gallery {
+        width: 30%;
+    }
+    .gallery-cell img {
+        height: 100%;
+    }
+}
+
+.arc-gallery {
+    height: auto;
+    width: 100%;
+    text-align: center;
+    color: white;
+    /*background-color: black;*/
+    /*border-radius: 5rem;*/
+}
+
+.architecture-gallery-nav {
+    max-width: 100vw;
+    margin: 0.5rem auto 5rem auto;
+}
+
+.architecture-gallery-nav .gallery-cell {
+    height: 5vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row; /* Stack items vertically */
+    width: 25%;
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--lightYellow);
+    background-color: black;
+}
+
+.architecture-gallery-nav .gallery-cell.is-nav-selected {
+    background-color: var(--lightYellow);
+    color: #000000;
+    border-radius: 10rem;
+}
+
+.commissioning-gallery-nav .gallery-cell {
+    height: 8vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row; /* Stack items vertically */
+    width: 25%;
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--lightOrange);
+    background-color: black;
+    margin-left: 0.2rem;
+}
+
+.commissioning-gallery-nav .gallery-cell.is-nav-selected {
+    background-color: var(--lightOrange);
+    color: #000000;
+    border-radius: 10rem;
+    z-index: 3;
+}
+
 
 
 .computerReview-container {
@@ -1507,10 +1599,34 @@ https://flickity.metafizzy.co
     z-index: 2;
 }
 
+.dealerOnPhone-svg-container  {
+    position: relative;
+    /*display: block;*/
+    /*top: -50%;*/
+    /*margin-bottom: 50%;*/
+    /*bottom: 20%;*/
+    left: 10%;
+    width: 80%;
+    height: auto;
+    z-index: 2;
+}
+
+.dealerOnPhone-svg-container img {
+    position: relative;
+    /*display: block;*/
+    top: 0%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    /*left: 50%;*/
+    width: 100%;
+    height: auto;
+    z-index: 2;
+}
+
+
 .architecture-gallery-header h2 {
     color: white;
-    opacity: 0.7;
-    /*background-color: white;*/
     text-align: center;
 }
 
@@ -1591,6 +1707,10 @@ https://flickity.metafizzy.co
     margin-bottom: 5vh;
 }
 
+.architecture-description-header a {
+    color: var(--lightYellow);
+}
+
 .commissioning-package-header {
     height: 10rem;
 }
@@ -1599,12 +1719,14 @@ https://flickity.metafizzy.co
     color: #FFFFFF;
     /*background-color: #FFFFFF;*/
     /*opacity: 0.7;*/
-    font-size: 2rem !important;
+    font-size: 2rem;
+    text-align: center;
 }
 
 .commissioning-package-background h4 {
     color: #FFFFFF;
-    /*font-size: 2rem !important;*/
+    text-align: center;
+    font-size: 2rem !important;
 }
 .heroic-text {
     background-image: linear-gradient(
@@ -1933,27 +2055,29 @@ section {
 }
 /*Default styles - mobile first approach*/
 .architecture-desktop {
+    display: none; /* Hide by default */
     margin: 0 auto;
     max-width: 90%;
     height: auto;
 }
 
 .architecture-mobile {
+    display: block; /* Show by default */
     margin: 0 auto;
     max-width: 90%;
     height: auto;
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 1000px) {
+@media (min-width: 768px) {
     .architecture-mobile {
-        display: none;
-        max-width: 100%;
+        display: none; /* Hide on medium and larger devices */
     }
     .architecture-desktop {
-        display: block;
+        display: block; /* Show on medium and larger devices */
     }
 }
+
 
 .architecture-description-container {
     padding: 5%;

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var rafters = document.getElementById('raftersSvg');
     var subPanel = document.getElementById('subPanelSvg');
     var computerReview = document.getElementById('computerReviewSvg');
+    var dealerOnPhone = document.getElementById('DealerOnPhoneSvg');
 
     observer.observe(phoneSvg);
     observer.observe(dealershipSvg);
@@ -18,25 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(rafters);
     observer.observe(subPanel);
     observer.observe(computerReview);
+    observer.observe(dealerOnPhone);
 });
-
-// function hideInitialOverlay() {
-//     const overlay = document.getElementById('initial-overlay');
-//     if (overlay.style.display !== "none") {
-//         overlay.style.transition = 'opacity 2s ease-out';
-//         overlay.style.opacity = '0';
-//         setTimeout(() => {
-//             overlay.style.display = 'none';
-//         }, 2000); // This should match the transition duration
-//     }
-// }
 
 function handleIntersection(entries, observer) {
     entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-            entry.target.style.visibility = "visible"; // Make the SVG visible
-            // hideInitialOverlay();
-            initSVGAnimation(entry.target);
+            setTimeout(function() {
+                entry.target.classList.remove('hidden-svg'); // Make the SVG visible after 0.5 seconds
+                initSVGAnimation(entry.target);
+            }, 500); // 500 milliseconds = 0.5 seconds
             observer.unobserve(entry.target);
         }
     });
@@ -61,16 +53,13 @@ function initSVGAnimation(imgElement) {
             imgElement.parentNode.insertBefore(svg, imgElement);
             imgElement.style.display = 'none';
 
-            requestAnimationFrame(() => {
+            setTimeout(() => {
                 paths.forEach(path => {
                     path.getBoundingClientRect(); // Trigger reflow
                     path.style.visibility = 'visible';
                     path.style.animation = 'dash 10s linear forwards';
                 });
-            });
+            }, 0); // Ensure animation starts immediately after SVG is inserted
         })
         .catch(error => console.error('Error loading SVG:', error));
 }
-
-
-
