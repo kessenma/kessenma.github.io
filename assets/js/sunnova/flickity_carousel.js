@@ -60,8 +60,8 @@
 
 
 $(document).ready(function() {
-    // Initialize Flickity for commissioning gallery
-    $('.commissioning-gallery').each(function() {
+    // Initialize Flickity for both galleries
+    $('.commissioning-gallery, .arc-gallery').each(function() {
         var $gallery = $(this);
         var galleryPrefs = {
             cellAlign: 'center',
@@ -77,60 +77,21 @@ $(document).ready(function() {
         $gallery.on('select.flickity', function() {
             var flkty = $gallery.data('flickity');
             var index = flkty.selectedIndex;
-            highlightNav(index, 'commissioning-gallery-nav');
-            updateCaption(index); // Update caption on slide change
+            if ($gallery.hasClass('commissioning-gallery')) {
+                highlightNav(index, 'commissioning-gallery-nav');
+                updateCaption(index, 'commissioning'); // Update caption on slide change
+            } else if ($gallery.hasClass('arc-gallery')) {
+                highlightNav(index, 'architecture-gallery-nav');
+                updateCaption(index, 'architecture'); // Update caption on slide change
+            }
         });
     });
 
-    // Initialize Flickity for architecture gallery
-    $('.arc-gallery').each(function() {
-        var $gallery = $(this);
-        var galleryPrefs = {
-            cellAlign: 'center',
-            contain: true,
-            wrapAround: false,
-            pageDots: false,
-            prevNextButtons: true,
-            imagesLoaded: true
-        };
-        $gallery.flickity(galleryPrefs);
-
-        // Add event listener for when the gallery is selected
-        $gallery.on('select.flickity', function() {
-            var flkty = $gallery.data('flickity');
-            var index = flkty.selectedIndex;
-            highlightNav(index, 'architecture-gallery-nav');
-        });
-    });
-
-    // Initialize Flickity for architecture gallery navigation and bind click events
-    $('.architecture-gallery-nav').each(function() {
+    // Initialize Flickity for both gallery navigations and bind click events
+    $('.gallery-nav').each(function() {
         var $galleryNav = $(this);
         var galleryNavId = $galleryNav.data('id');
-        var $gallery = $(".arc-gallery[data-id='" + galleryNavId +"']");
-
-        var galleryNavPrefs = {
-            asNavFor: $gallery[0],
-            contain: true,
-            wrapAround: false,
-            pageDots: false,
-            prevNextButtons: false,
-            imagesLoaded: true
-        };
-        $galleryNav.flickity(galleryNavPrefs);
-
-        // Bind click events to navigation cells
-        $galleryNav.on('click', '.gallery-cell', function() {
-            var index = $(this).index();
-            $gallery.flickity('select', index, false, true); // Added smooth scroll and no wrap options
-        });
-    });
-
-    // Initialize Flickity for commissioning gallery navigation and bind click events
-    $('.commissioning-gallery-nav').each(function() {
-        var $galleryNav = $(this);
-        var galleryNavId = $galleryNav.data('id');
-        var $gallery = $(".commissioning-gallery[data-id='" + galleryNavId +"']");
+        var $gallery = (galleryNavId == 1) ? $('.commissioning-gallery') : $('.arc-gallery');
 
         var galleryNavPrefs = {
             asNavFor: $gallery[0],
@@ -150,19 +111,32 @@ $(document).ready(function() {
     });
 });
 
+
 // Function to highlight the navigation
 function highlightNav(index, navClass) {
-    $('.' + navClass + ' .gallery-cell').removeClass('is-nav-selected');
-    $('.' + navClass + ' .gallery-cell').eq(index).addClass('is-nav-selected');
+    $(`.${navClass} .gallery-cell`).removeClass('is-nav-selected');
+    $(`.${navClass} .gallery-cell`).eq(index).addClass('is-nav-selected');
 }
 
 // Function to update the caption
-function updateCaption(index) {
-    var captions = $('.hidden-captions div').map(function() {
-        return $(this).data('caption');
-    }).get();
-    $('.gallery-caption p').html(captions[index]);
+// Function to update the caption
+function updateCaption(index, galleryType) {
+    var captionsContainer = (galleryType === 'architecture') ? '.hidden-architecture-captions' : '.hidden-commissioning-captions';
+    var captionContainerId = (galleryType === 'architecture') ? '#architecture-gallery-caption p' : '#commissioning-gallery-caption p';
+    var caption = $(`${captionsContainer} div`).eq(index).data('caption');
+    if (caption !== undefined) {
+        $(captionContainerId).html(caption);
+    } else {
+        $(captionContainerId).html(''); // Clear caption if not found
+    }
 }
+
+
+
+
+
+
+
 
 
 

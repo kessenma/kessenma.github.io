@@ -416,18 +416,17 @@
           <img id="DealerOnPhoneSvg" src="assets/img/sunnova/DealerOnPhone.svg" class="hidden-svg" alt="dealer submitting CP" />
         </div>
           <p>{{page.commissioningPackage3}}</p>
-
         <div class="commissioning-gallery-container">
-          <div id="commissioning-gallery-nav" class="commissioning-gallery-nav" data-id="1">
-            <div class="gallery-cell">login</div>
-            <div class="gallery-cell">home</div>
-            <div class="gallery-cell">project screen</div>
-            <div class="gallery-cell">initial setup</div>
-            <div class="gallery-cell">system details</div>
-            <div class="gallery-cell">task list</div>
-            <div class="gallery-cell">task screen</div>
-            <div class="gallery-cell">submission</div>
-            <div class="gallery-cell">rejection</div>
+          <div id="commissioning-gallery-nav" class="gallery-nav" data-id="1">
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionLogin | markdownify }}">login</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionHome | markdownify }}">home</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionProjectScreen | markdownify }}">project screen</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionInitialSetup | markdownify }}">initial setup</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionSystemDetails | markdownify }}">system details</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionTaskList | markdownify }}">task list</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionTaskScreen | markdownify }}">task screen</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionSubmission | markdownify }}">submission</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionRejection | markdownify }}">rejection</div>
           </div>
 
           <div id="commissioning-gallery" class="commissioning-gallery" data-id="1">
@@ -478,12 +477,17 @@
             </div>
           </div>
         </div>
-        <div class="gallery-caption">
-          <p></p>
+
+        <div class="gallery-caption-container">
+          <div class="gallery-caption center-section-padding" id="commissioning-gallery-caption">
+            <p></p>
+          </div>
         </div>
 
         <!-- Hidden captions for JavaScript to read -->
-        <div class="hidden-captions" style="display: none;">
+        <!-- Hidden captions for JavaScript to read -->
+        <div class="hidden-captions hidden-commissioning-captions" style="display: none;">
+          <!-- Commissioning captions -->
           <div data-caption="{{ page.commissioningPackageCaptionLogin | markdownify }}"></div>
           <div data-caption="{{ page.commissioningPackageCaptionHome | markdownify }}"></div>
           <div data-caption="{{ page.commissioningPackageCaptionProjectScreen | markdownify }}"></div>
@@ -495,108 +499,110 @@
           <div data-caption="{{ page.commissioningPackageCaptionRejection | markdownify }}"></div>
         </div>
       </div>
-
-<!--      <div class="gallery-caption">-->
-<!--        <p> test </p>-->
-<!--      </div>-->
-
       <div class="computerReview-container">
         <img id="computerReviewSvg" src="assets/img/sunnova/computerReview.svg" alt="reviewer on computer" />
       </div>
     </div>
 
 
-
-
-<!--  <div class="desktop-divider2"></div>-->
-<!--    <div class="divider"></div>-->
 <!--####################-->
 <!--####ARCHITECTURE####-->
 <!--####################-->
   <div class="architecture-buffer-overlay-background"></div>
   <div class="architecture-background">
-<!--    <div class="blur"></div>-->
-<!--    <div class="blur"></div>-->
-<!--    <div class="blur"></div>-->
-
     <div class="architecture-gallery-container center-section-padding" id="app-architecture">
-      <div class="architecture-gallery-header">
-        <h2 id="architecture-title">Catalyst Platform Architecture</h2>
+      <div class="architecture-gallery-header-container">
+        <div class="architecture-gallery-header">
+          <h2 id="architecture-title">Catalyst Platform Architecture</h2>
+        </div>
       </div>
-      <div class="architecture-gallery-nav" data-id="2">
-        <div class="gallery-cell">database</div>
-        <div class="gallery-cell">code</div>
-        <div class="gallery-cell">release</div>
-        <div class="gallery-cell">analytics</div>
+      <div class="gallery-nav" data-id="2">
+        <div class="gallery-cell" data-caption="{{ page.architectureCaptionDatabase | markdownify }}">database</div>
+        <div class="gallery-cell" data-caption="{{ page.architectureCaptionCode | markdownify }}">code</div>
+        <div class="gallery-cell" data-caption="{{ page.architectureCaptionRelease | markdownify }}">release</div>
+        <div class="gallery-cell" data-caption="{{ page.architectureCaptionAnalytics | markdownify }}">analytics</div>
       </div>
       <div id="architecture-gallery" class="arc-gallery" data-id="2">
-        <div class="gallery-cell">
-          <a href="../assets/img/sunnova/Database.png" data-lightbox="architecture-gallery">
-            <img src="../assets/img/sunnova/Database.png" alt="Database">
-          </a>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/Database.png" data-lightbox="architecture-gallery">
+              <img src="../assets/img/sunnova/Database.png" alt="Database">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/Code.png" data-lightbox="architecture-gallery">
+              <img src="../assets/img/sunnova/Code.png" alt="app code">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/Launch.png" data-lightbox="architecture-gallery">
+              <img src="../assets/img/sunnova/Launch.png" alt="release">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/Analytics.png" data-lightbox="architecture-gallery">
+              <img src="../assets/img/sunnova/Analytics.png" alt="app analytics software">
+            </a>
+          </div>
         </div>
-        <div class="gallery-cell">
-          <a href="../assets/img/sunnova/Code.png" data-lightbox="architecture-gallery">
-            <img src="../assets/img/sunnova/Code.png" alt="app code">
-          </a>
+
+        <div class="gallery-caption-container" id="architecture-gallery-caption">
+          <div class="gallery-caption center-section-padding">
+            <p></p>
+          </div>
         </div>
-        <div class="gallery-cell">
-          <a href="../assets/img/sunnova/Launch.png" data-lightbox="architecture-gallery">
-            <img src="../assets/img/sunnova/Launch.png" alt="release">
-          </a>
+        <div class="hidden-captions hidden-architecture-captions" style="display: none;">
+          <div data-caption="{{ page.architectureCaptionDatabase | markdownify }}"></div>
+          <div data-caption="{{ page.architectureCaptionCode | markdownify }}"></div>
+          <div data-caption="{{ page.architectureCaptionRelease | markdownify }}"></div>
+          <div data-caption="{{ page.architectureCaptionAnalytics | markdownify }}"></div>
         </div>
-        <div class="gallery-cell">
-          <a href="../assets/img/sunnova/Analytics.png" data-lightbox="architecture-gallery">
-            <img src="../assets/img/sunnova/Analytics.png" alt="app analytics software">
-          </a>
+      </div>
+
+      <div class=" architecture-overall-images-container">
+        <div class="divider"></div>
+        <div class="desktop-divider2"></div>
+
+        <img class="architecture-desktop" src="/assets/img/sunnova/Architecture_Desktop_View.png" alt="Architecture Desktop View">
+        <img class="architecture-mobile" src="/assets/img/sunnova/Architecture_Mobile_View.png" alt="Architecture Mobile View">
+      </div>
+
+      <div class="architecture-description-container">
+        <div class="architecture-description-header">
+  <!--        <p>{{ page.architecture1 | markdownify }}</p>-->
+          <p>{{ page.architecture2 | markdownify }}</p>
+        </div>
+
+
+        <div class="frontend-directory">
+          <h3>{{ page.frontend1 }}</h3>
+          <p>{{ page.frontend2 | markdownify }}</p>
+          <p>{{ page.frontend3 | markdownify }}</p>
+          <p>{{ page.frontend4 | markdownify }}</p>
+        </div>
+
+        <div class="backend-directory">
+          <h3>{{ page.backend1 }}</h3>
+          <p>{{ page.backend2 | markdownify }}</p>
+          <p>{{ page.backend3 | markdownify }}</p>
+        </div>
+
+        <div class="data-directory">
+          <h3>{{ page.Data1 }}</h3>
+          <p>{{ page.dataStorage | markdownify }}</p>
+          <p>{{ page.dataTransferring | markdownify }}</p>
+          <p>{{ page.dataBackups | markdownify }}</p>
+        </div>
+
+        <div class="cloud-directory">
+          <h3>{{ page.cloud1 }}</h3>
+          <p>{{ page.cloud2 | markdownify }}</p>
+          <p>{{ page.cloud3 | markdownify }}</p>
+          <p>{{ page.cloud4 | markdownify }}</p>
+          <p>{{ page.cloud5 | markdownify }}</p>
+          <p>{{ page.cloud6 | markdownify }}</p>
         </div>
       </div>
     </div>
-
-    <div class=" architecture-macro">
-      <div class="divider"></div>
-      <div class="desktop-divider2"></div>
-
-      <img class="architecture-desktop" src="/assets/img/sunnova/Architecture_Desktop_View.png" alt="Architecture Desktop View">
-      <img class="architecture-mobile" src="/assets/img/sunnova/Architecture_Mobile_View.png" alt="Architecture Mobile View">
-    </div>
-
-    <div class="architecture-description-container">
-      <div class="architecture-description-header">
-<!--        <p>{{ page.architecture1 | markdownify }}</p>-->
-        <p>{{ page.architecture2 | markdownify }}</p>
-      </div>
-
-<!--      <div class="blur-container">-->
-<!--        <div class="blur"></div>-->
-<!--        <div class="blur"></div>-->
-<!--        <div class="blur"></div>-->
-<!--      </div>-->
-
-      <div class="frontend-directory">
-        <h3>{{ page.frontend1 }}</h3>
-        <p>{{ page.frontend2 | markdownify }}</p>
-        <p>{{ page.frontend3 | markdownify }}</p>
-        <p>{{ page.frontend4 | markdownify }}</p>
-      </div>
-
-
-
-      <div class="backend-directory">
-        <h3>{{ page.backend1 }}</h3>
-        <p>{{ page.backend2 | markdownify }}</p>
-        <p>{{ page.backend3 | markdownify }}</p>
-      </div>
-      <div class="cloud-directory">
-        <h3>{{ page.cloud1 }}</h3>
-        <p>{{ page.cloud2 | markdownify }}</p>
-        <p>{{ page.cloud3 | markdownify }}</p>
-        <p>{{ page.cloud4 | markdownify }}</p>
-        <p>{{ page.cloud5 | markdownify }}</p>
-        <p>{{ page.cloud6 | markdownify }}</p>
-      </div>
-    </div>
-  </div>
 
 
 

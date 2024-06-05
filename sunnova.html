@@ -34,7 +34,7 @@ energy_loan1: "In 2023 the Department of Energy approved $3 billion worth of fin
 doe_hestia: Project Hestia is a joint project. The Sunnova app and portal aim to reduce greenhouse gas emissions, enhance the integration of load controllers and smart appliances, and support grid stability by giving consumers near real-time insights into their residential energy systems and quantifying the location-specific emissions impact of changes in consumer behavior.
 
 microgrid: Microgrids
-microgrid1: "Microgrids are extremely important to Sunnova's current strategy. A solar panel <a href='https://en.wikipedia.org/wiki/Microgrid' target='_blank'>Microgrid</a> is a localized energy system that uses solar panels to generate electricity, incorporates batteries for storage, and distributes power within a specific area. Sunnova is... (in my own words) essentially Enron reincarnated, except with solar power instead of gas pipelines. They recently acquired a homebuilding company called <a href='https://investors.sunnova.com/news-events-and-presentations/news-details/2021/Sunnova-Completes-Acquisition-of-SunStreetLennars-Solar-Platform-for-Homebuilders/default.aspx' target='_blank'>SunStreet</a> and approximately 250,000 homes were added to Sunnova's network."
+microgrid1: "Microgrids are extremely important to Sunnova's current strategy. A solar panel <a href='https://en.wikipedia.org/wiki/Microgrid' target='_blank'>Microgrid</a> is a localized energy system that use solar panels to generate electricity, incorporates batteries for storage, and distributes power within a specific area. Sunnova is... (in my own words) essentially Enron reincarnated, except with solar power instead of gas pipelines. They recently acquired a homebuilding company called <a href='https://investors.sunnova.com/news-events-and-presentations/news-details/2021/Sunnova-Completes-Acquisition-of-SunStreetLennars-Solar-Platform-for-Homebuilders/default.aspx' target='_blank'>SunStreet</a> and approximately 250,000 homes were added to Sunnova's network."
 
 
 micro_grids_description1: Microgrids represent a convergence point for government initiatives, environmental projects, and private sector innovation. The Department of Energy's support for microgrid technologies fosters a regulatory and funding environment conducive to their growth. Projects like Hestia ($3 billion dollar grant for Sunnova if customers in low-income areas fail to pay their solar-equipment payments), which focus on sustainability and carbon reduction, highlight the need for decentralized and renewable energy solutions that microgrids offer. Meanwhile, solar companies provide the essential technology and expertise to build the renewable energy infrastructure that powers these microgrids, aligning with both governmental and environmental objectives.
@@ -60,17 +60,22 @@ commissioningPackageCaptionTaskScreen: "This is an example of what an individual
 commissioningPackageCaptionSubmission: "After all the tasks have been completed, the dealership can submit the commissioning package to Sunnova for review."
 commissioningPackageCaptionRejection: "If a task is not completed correctly, feedback is provided on how to fix the problem and then the dealership can resubmit the commissioning package to Sunnova"
 
+architectureCaptionDatabase: "Sunnova relies on a serverless architecture for its Catalyst app-- using Heroku as the 'glue' connecting the databases and apps, Docker to view data in SQL tables, and Salesforce + Mulesoft as data pipelines between the apps and the databases."
+architectureCaptionCode: "As a React Native app, Typescript is used to handle the backend algorithmic coding logic and then JavaScript (in a React Native syntax) is used in the frontend portion of the app. Cypress and Jest are used for automated testing."
+architectureCaptionRelease: "The centerpiece of the release process for the Catalyst app to the app stores is Expo and GitHub actions. In order to release the app to stores for review, the automated tests (in Cypress and Jest) must pass (since it costs money for each Expo run)."
+architectureCaptionAnalytics: "New Relic is used to analyze database updates, Sentry is for monitoring click streams users go through along with, papertrail is used to monitor AWS database updates, and flipper plus postman is used by develoeprs for debugging API calls and errors."
+
 architecture1: "<b>Architecture</b>"
 architecture2: "At a high level, the Catalyst app comprises two main features called <i>site survey</i> and <i>commissioning package</i>. Both of these features are essentially surveys that dealership employees use to submit information to Sunnova about a property. The codebase is divided into two main directories: <i>backend</i> and <i>frontend</i>, and the app architecture follows the <a href='https://medium.com/@hiteshsatwani/mvvm-a-guide-for-react-native-and-expo-projects-18d050bdbfb8' target='_blank'>MVVM (Model-View-ViewModel)</a> pattern. Here's how the structure is organized:"
 
 
-frontend1: "<b>Frontend Directory:</b>"
+frontend1: "<u>Frontend Directory:</u>"
 
 frontend2: "<ul><li><u>View</u>: The view layer files are written in JavaScript. They're responsible for displaying the user interfaces.</li></ul>"
 
-frontend3: "<ul><li><u>ViewModel</u>: The view-model files are written in TypeScript. They uses the <a href='https://sequelize.org' target='_blank'>Sequelize</a> library as the Object-Relational Mapper (ORM) to connect the user interfaces to the SQL database. The functions written in the view-model files are called on in the view layer of the app.</li></ul>"
+frontend3: "<ul><li><u>View-model</u>: The view-model files are written in TypeScript. They use the <a href='https://sequelize.org' target='_blank'>Sequelize</a> library as the Object-Relational Mapper (ORM) to connect the user interfaces to the SQL database. The functions written in the view-model files are called on in the view layer of the app.</li></ul>"
 
-frontend4: "<ul><li><u>Package Managers</u>: There are ~100 <a href='https://www.npmjs.com/' target='_blank'>NPM</a> libraries imported and used in the frontend of the Catalyst app. Some example packages are: <a href='https://github.com/expo/google-fonts' target='_blank'>Expo Google Fonts</a> for access to Google fonts, <a href='https://www.npmjs.com/package/expo-image-picker' target='_blank'>Expo Image Picker</a> to access the image gallery from a user's device, <a href='https://react-redux.js.org/' target='_blank'>React Redux</a> to manage state in the app,<a href='https://alexcorvi.github.io/heic2any/' target='_blank'>HEIC to Any</a> to convert images on iOS/macOS to JPEG before submitting them, <a href='https://www.npmjs.com/package/expo-haptics' target='_blank'>Expo Haptics</a> to provide vibration feedback when commissioning packages were submitted correctly,<a href='https://www.npmjs.com/package/expo-clipboard' target='_blank'>Expo Clipboard</a> to access the users' clipboard.
+frontend4: "<ul><li><u>Package Managers</u>: There are ~100 <a href='https://www.npmjs.com/' target='_blank'>NPM</a> libraries imported and used in the frontend of the Catalyst app. Some example packages are: <a href='https://github.com/expo/google-fonts' target='_blank'>Expo Google Fonts</a> for access to Google fonts, <a href='https://www.npmjs.com/package/expo-image-picker' target='_blank'>Expo Image Picker</a> to access the image gallery from a user's device, <a href='https://react-redux.js.org/' target='_blank'>React Redux</a> to manage state in the app,<a href='https://alexcorvi.github.io/heic2any/' target='_blank'>HEIC 2 Any</a> to convert images on iOS/macOS to JPEG before submitting them, <a href='https://www.npmjs.com/package/expo-haptics' target='_blank'>Expo Haptics</a> to provide vibration feedback when commissioning packages were submitted correctly,<a href='https://www.npmjs.com/package/expo-clipboard' target='_blank'>Expo Clipboard</a> to access the users' clipboard.
 </li></ul>"
 
 
@@ -78,28 +83,34 @@ frontend4: "<ul><li><u>Package Managers</u>: There are ~100 <a href='https://www
 
 
 
-backend1: "<b>Backend Directory:</b>"
+backend1: "<u>Backend Directory:</u>"
 
-backend2: "<ul><li><u>Model</u>: The model files are responsible for defining the data structure and business logic. It is written in TypeScript and uses Sequelize to manage interactions with the SQL database. The model defines tables, fields, and relationships, and includes methods for data operations such as retrieving, inserting, updating, and deleting data.</li></ul>"
+backend2: "<ul><li><u>Model</u>: The model files are responsible for defining the data structure and business logic. It is written in TypeScript (with <a href='https://www.typescriptlang.org/docs/handbook/interfaces.html' target='_blank'>interfaces</a> as the data structure) and uses <a href='https://sequelize.org/' target='_blank'>Sequelize</a> to manage interactions with the SQL database. The model defines tables, fields, and relationships, and includes methods for data operations such as retrieving, inserting, updating, and deleting data.</li></ul>"
+
+
 
 backend3: "<ul><li><u>Migrations</u> manage the evolution of the database schema. They are SQL files that define changes such as adding, modifying, or deleting tables and columns. These migration files run using the <a href='https://flywaydb.org/' target='_blank'>Flyway</a> database-migration-tool.</li></ul>"
 
-cloud1: "<b>Cloud Infrastructure:</b>"
+cloud1: "<u>Cloud Infrastructure:</u>"
 
-cloud2: "<ul><li><u>Salesforce</u> is the root of Sunnova's business. Its core function at Sunnova is to store customer quotes + leads as well as track the financing of customer systems and dealerships. The Catalyst platform devles a bit deeper into the Salesforce infrastructure and uses the <a href='https://www.salesforce.com/products/experience-cloud/overview/' target='_blank'>Salesforce Experience Cloud</a> feature in three capacities to support Sunnova's dealership employees; <i>(1)</i> as a login screen for the dealer facing (React-based) desktop app on a <a href='https://nodejs.org/en' target='_blank'>Node.js</a> server called dealer portal, where the back-office-dealership-employees can take a closer look at the commissioning packages submitted, ready to submit, rejected, and resubmitted-- along with the status of the commissioning packages and rejection details for commissioning packages and what's needed to pass the engineering review. <i>(2)</i> as a login screen for the Catalyst mobile app used by dealership employees with differing levels of access depending on the user's level of authority. Lastly Salesforce Experience Cloud is used to host a <i>(3)</i> login screen for the commissioning-package-review-desktop-app used by the Sunnova-corporate-staff to review commissioning packages submitted by dealership employees using the Catalyst mobile app.</li></ul>"
+cloud2: "<ul><li><u>Authentication</u> Salesforce is at the root of Sunnova's authentication-process. Using the <a href='https://www.salesforce.com/products/experience-cloud/overview/' target='_blank'>Salesforce Experience Cloud</a> feature in three capacities to authenticate both Sunnova's corporate employees and dealership employees; <i>(1)</i> as a login screen for the Catalyst <i>mobile app</i> used by dealership franchise employees, as a login screen for two <a href='https://nodejs.org/en' target='_blank'>Node.js</a> web-apps hosted on AWS servers called <i>(2)</i>dealer portal (same functionality as the mobile app), and <i>(3)</i> the Engineering Review portal.</li></ul>"
 
+cloud3: "<ul><li><u>Heroku</u>: is a user-friendly way to interact with content in AWS databases/servers, and the Catalyst platform used Heroku to connect to six servers running node.js applications six databases in AWS. The servers use <a href='https://aws.amazon.com/ec2/' target='_blank'>AWS Elastic Compute Cloud (EC2)</a>, and they are called: dev, QA, and prod for both the mobile app and then the same naming convention for the desktop applications. Three of the <u>databases</u> (called dev, QA, and prod) hosted data using <a href='https://aws.amazon.com/rds/' target='_blank'>AWS Relataional Database Service (RDS)</a> for the SQL databases storing login information, survey prompt responses, and links to the photos uploaded. The last three <u>databases</u> (called dev, QA, and prod) were using <a href='https://aws.amazon.com/s3/' target='_blank'>AWS Simple Storage Service (S3)</a> for photo storage of images the dealership employees were uploading in the app of the properties they were working on.</li></ul>"
 
-cloud3: "<ul><li><u>Heroku</u>: is a user-friendly way to interact with content in AWS databases/servers, and the Catalyst platform used Heroku to connect to six servers running node.js applications six databases in AWS. The servers use <a href='https://aws.amazon.com/ec2/' target='_blank'>AWS Elastic Compute Cloud (EC2)</a>, and they were called: dev, QA, and prod for both the mobile app and then the same naming convention for the desktop applications. Three of the <u>databases</u> (called dev, QA, and prod) hosted were using <a href='https://aws.amazon.com/rds/' target='_blank'>AWS Relataional Database Service (RDS)</a> for the SQL databases storing login information, survey prompt responses, and links to the photos uploaded. The last three <u>databases</u> (called dev, QA, and prod) were using <a href='https://aws.amazon.com/s3/' target='_blank'>AWS Simple Storage Service (S3)</a> for photo storage of images the dealership employees were uploading in the app of the properties they were working on.</li></ul>"
-
-cloud4: "<ul><li><u>Mulesoft</u>: is used to connect the data populated in the SQL databases from the Catalyst apps to the Salesforce environments.</li></ul>"
+cloud4: "<ul><li><u>test</u>:</li></ul>"
 
 cloud5: "<ul><li><u>Continous Intergration (CI) / Deployment (CD)</u>: <a href='https://github.com/features/actions' target='_blank'> GitHub Actions</a> pipelines are used to run through the automated test suite before submitting app updates to Expo.</li></ul>"
-
-
 
 cloud6: "<ul><li><u>Build Process:</u> <a href='https://expo.com' target='_blank'> Expo </a> is used to automate the submission process to the Apple App Store and Google Play Store after all the tests have passed in the CI/CD pipeline. </li></ul>"
 
 
+Data1: "<ul><u>Data</u></ul>"
+
+dataStorage: "<ul><li><u>Data-Storage:</u> <a href='https://www.postgresql.org' target='_blank'>PostrgreSQL</a> databases hosted on <a href='https://aws.amazon.com/rds/' target='_blank'>AWS Relataional Database Service (RDS)</a> servers. </li></ul>"
+
+dataTransferring: "<ul><li><u>Data-Transferring</u> <a href='https://mulesoft.com' target='_blank'>Mulesoft</a> (a Salesforce owned product) is used to connect the data populated in the SQL databases from the Catalyst apps to the Salesforce environments. </li></ul>"
+
+dataBackups: "<ul><li><u>Data-Backups:</u> Sunnova uses <a href='https://www.informatica.com/' target='_blank'>Informatica</a> to process data extract transform and loads (ETL) from their mainframe Oracle database to Salesforce environments and SQL databases. </li></ul>"
 
 
 
