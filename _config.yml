@@ -14,8 +14,8 @@ github_username: kessenma
 gplus_username:
 
 # Google-analytics
-google-analytics:
-  id: "UA-55028506-1"
+google_analytics: G-6NFNZKB333
+
 
 exclude: ['package.json', 'src' , 'node_modules']
 

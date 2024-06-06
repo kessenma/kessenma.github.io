@@ -4,16 +4,6 @@
     <meta charset="UTF-8" >
     <title>Sunnova Catalyst</title>
     <link rel="stylesheet" href="/assets/css/sunnova.css">
-<!--    <link rel="stylesheet" href="/assets/css/threeJS.css">-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">-->
-<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
-<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
-<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel&family=Cinzel+Decorative:wght@400;700&family=Tilt+Prism&display=swap" rel="stylesheet">-->
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Lightbox2 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
@@ -29,6 +19,17 @@
       });
     </script>
 
+    {% if jekyll.environment == "production" and site.google_analytics %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '{{ site.google_analytics }}');
+    </script>
+    {% endif %}
   </head>
 
 <!--Menu + scrollbar-->
@@ -79,8 +80,7 @@
   <div class="about-background">
     <div class="center-section-padding about-section top-divider" id="about-section">
       <div class="divider"></div>
-      <p>{{ page.about | safe }}</p>
-      <p>{{ page.about2 }}</p>
+      <h5>{{ page.about | safe }}</h5>
     </div>
     <div id="aboutSun" class="desertSunBackground"></div>
   </div>
@@ -89,8 +89,12 @@
     <div class="desert-svg-container">
       <img id="desertPanelSvg" src="assets/img/sunnova/panelsInDesert.svg" class="hidden-svg" alt="solar panels in the desert" />
     </div>
-  </div>
+    <div class="center-section-padding">
+      <h5>{{ page.about2 }}</h5>
+    </div>
 
+
+  </div>
   <div class="bento-gradient-background">
 
   <div class="expandable-content-row-top-container">
@@ -105,7 +109,7 @@
       <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnnovaSolarHome.svg');">
         <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Solar Home" class="svg-icon">
       </div>
-      <p> {{ page.customers }} </p>
+      <h5> {{ page.customers }} </h5>
       <div class="detail-content">
         <p>{{page.customers1}}</p>
         <div class="detail-content-header">
@@ -118,7 +122,7 @@
       <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaWorldMap.svg');">
         <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="IPO" class="svg-icon">
       </div>
-      <p> {{ page.locations }}</p>
+      <h5> {{ page.locations }}</h5>
       <div class="detail-content">
         <p>{{page.locations1}}</p>
         <div class="detail-content-header">
@@ -131,7 +135,7 @@
       <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaFounding.svg');">
         <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt= "Founding" class="svg-icon">
       </div>
-      <p>{{ page.founded }}</p>
+      <h5>{{ page.founded }}</h5>
       <div class="detail-content">
         <p>{{page.founded1}}</p>
         <div class="detail-content-header">
@@ -144,7 +148,7 @@
       <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaIPO.svg');">
         <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="IPO" class="svg-icon">
       </div>
-      <p> {{ page.ipo_info }}</p>
+      <h5> {{ page.ipo_info }}</h5>
       <div class="detail-content">
         <p>{{page.ipo_info1}}</p>
         <div class="detail-content-header">
@@ -157,7 +161,7 @@
       <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaInstall.svg');">
         <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Install" class="svg-icon">
       </div>
-      <p>{{ page.dealers }}</p>
+      <h5>{{ page.dealers }}</h5>
       <div class="detail-content">
         <p>{{page.dealers1}}</p>
         <div class="detail-content-header">
@@ -170,7 +174,7 @@
       <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaImprovement.svg');">
         <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Improvement" class="svg-icon">
       </div>
-      <p>{{ page.app_reeditions }}</p>
+      <h5>{{ page.app_reeditions }}</h5>
       <div class="detail-content">
         <p>{{page.app_reeditions1}}</p>
         <div class="detail-content-header">
@@ -183,7 +187,7 @@
       <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaSalesforce.svg');">
         <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Salesforce" class="svg-icon">
       </div>
-      <p>{{ page.salesforce }}</p>
+      <h5>{{ page.salesforce }}</h5>
       <div class="detail-content">
         <div class="detail-content-header">
           <h3>{{ page.salesforce }}</h3>
@@ -199,7 +203,7 @@
       <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/microgrids.svg');">
         <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="Daily Installs" class="svg-icon">
       </div>
-      <p> {{ page.microgrid }}</p>
+      <h5> {{ page.microgrid }}</h5>
       <div class="detail-content">
         <div class="detail-content-header">
           <h3>{{page.microgrid}}</h3>
@@ -212,7 +216,7 @@
       <div class="svg-container" style="--svg-mask-image: url('/assets/img/sunnova/sunnovaDOE.svg');">
         <img src="/assets/img/sunnova/sunnovaBlackBackground.svg" alt="DOE" class="svg-icon">
       </div>
-      <p>{{ page.energy_loan }}</p>
+      <h5>{{ page.energy_loan }}</h5>
       <div class="detail-content">
         <div class="detail-content-header">
           <h3>Department of Energy</h3>
@@ -281,11 +285,11 @@
         <img id="roofPitchSvg" src="assets/img/sunnova/site-survey-roof-pitch.svg" class="hidden-svg" alt="measuring the slope/pitch of a roof" />
       </div>
     </div>
-      <img src="../assets/img/sunnova/siteSurvey/siteSurveyRoof.png"/>
+      <img src="../assets/img/sunnova/siteSurvey/siteSurveyRoof.jpg"/>
   </div>
 
   <div class="site-survey-content-container">
-    <img src="../assets/img/sunnova/siteSurvey/siteSurveyRoofMaterial.png" height="1176" width="542"/>
+    <img src="../assets/img/sunnova/siteSurvey/siteSurveyRoofMaterial.jpg"/>
     <div id="siteSurvey2" class="rafters-container">
       <div class="rafters-svg-container">
         <img id="raftersSvg" src="assets/img/sunnova/site-survey-rafters.svg" class="hidden-svg" alt="rafters in a roof" />
@@ -299,11 +303,11 @@
         <img id="subPanelSvg" src="assets/img/sunnova/site-survey-sub-panel.svg" class="hidden-svg" alt="sub panels " />
       </div>
     </div>
-    <img src="../assets/img/sunnova/siteSurvey/siteSurveySubPanel.png" height="838" width="548"/>
+    <img src="../assets/img/sunnova/siteSurvey/siteSurveySubPanel.jpg"/>
   </div>
 
     <div class="site-survey-content-container">
-      <img src="../assets/img/sunnova/siteSurvey/siteSurveyUtility.png" height="1178" width="548"/>
+      <img src="../assets/img/sunnova/siteSurvey/siteSurveyUtility.jpg"/>
       <div id="siteSurvey4" class="power-line-container">
       <div class="power-line-svg-container">
         <img id="powerLineSvg" src="assets/img/sunnova/site-survey-power-line.svg" class="hidden-svg" alt="power lines connecting to a house" />
@@ -426,52 +430,58 @@
           <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionTaskScreen | markdownify }}">task screen</div>
           <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionSubmission | markdownify }}">submission</div>
           <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionRejection | markdownify }}">rejection</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionApproved | markdownify }}">Approved</div>
         </div>
 
         <div id="commissioning-gallery" class="commissioning-gallery" data-id="1">
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackage/cp0Login.png" data-lightbox="commissioning-gallery">
-              <img src="../assets/img/sunnova/commissioningPackage/cp0Login.png" alt="commissioning package setup0">
+            <a href="../assets/img/sunnova/commissioningPackage/cp0Login.jpg" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp0Login.jpg" alt="commissioning package setup0">
             </a>
           </div>
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackage/cp1HomeScreen.png" data-lightbox="commissioning-gallery">
-              <img src="../assets/img/sunnova/commissioningPackage/cp1HomeScreen.png" alt="commissioning package setup0">
+            <a href="../assets/img/sunnova/commissioningPackage/cp1HomeScreen.jpg" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp1HomeScreen.jpg" alt="commissioning package setup0">
             </a>
           </div>
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackage/cp1ProjectScreen.png" data-lightbox="commissioning-gallery">
-              <img src="../assets/img/sunnova/commissioningPackage/cp1ProjectScreen.png" alt="commissioning package setup0">
+            <a href="../assets/img/sunnova/commissioningPackage/cp1ProjectScreen.jpg" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp1ProjectScreen.jpg" alt="commissioning package setup0">
             </a>
           </div>
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackage/cp1Setup.png" data-lightbox="commissioning-gallery">
-              <img src="../assets/img/sunnova/commissioningPackage/cp1Setup.png" alt="commissioning package setup1">
+            <a href="../assets/img/sunnova/commissioningPackage/cp1Setup.jpg" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp1Setup.jpg" alt="commissioning package setup1">
             </a>
           </div>
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackage/cp2Setup2.png" data-lightbox="commissioning-gallery">
-              <img src="../assets/img/sunnova/commissioningPackage/cp2Setup2.png" alt="commissioning package setup 2">
+            <a href="../assets/img/sunnova/commissioningPackage/cp2Setup2.jpg" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp2Setup2.jpg" alt="commissioning package setup 2">
             </a>
           </div>
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackage/cp3TaskList.png" data-lightbox="commissioning-gallery">
-              <img src="../assets/img/sunnova/commissioningPackage/cp3TaskList.png" alt="commissioning package task list">
+            <a href="../assets/img/sunnova/commissioningPackage/cp3TaskList.jpg" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp3TaskList.jpg" alt="commissioning package task list">
             </a>
           </div>
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackage/cp4TaskScreen.png" data-lightbox="commissioning-gallery">
-              <img src="../assets/img/sunnova/commissioningPackage/cp4TaskScreen.png" alt="commissioning package task screen">
+            <a href="../assets/img/sunnova/commissioningPackage/cp4TaskScreen.jpg" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp4TaskScreen.jpg" alt="commissioning package task screen">
             </a>
           </div>
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackage/cp5Submit.png" data-lightbox="commissioning-gallery">
-              <img src="../assets/img/sunnova/commissioningPackage/cp5Submit.png" alt="commissioning package submission">
+            <a href="../assets/img/sunnova/commissioningPackage/cp5Submit.jpg" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp5Submit.jpg" alt="commissioning package submission">
             </a>
           </div>
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackage/cp6Rejection.png" data-lightbox="commissioning-gallery">
-              <img src="../assets/img/sunnova/commissioningPackage/cp6Rejection.png" alt="commissioning package rejection">
+            <a href="../assets/img/sunnova/commissioningPackage/cp6Rejection.jpg" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp6Rejection.jpg" alt="commissioning package rejection">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp7Approved.jpg" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp7Approved.jpg" alt="commissioning package rejection">
             </a>
           </div>
         </div>
@@ -483,8 +493,6 @@
         </div>
       </div>
 
-      <!-- Hidden captions for JavaScript to read -->
-      <!-- Hidden captions for JavaScript to read -->
       <div class="hidden-captions hidden-commissioning-captions" style="display: none;">
         <!-- Commissioning captions -->
         <div data-caption="{{ page.commissioningPackageCaptionLogin | markdownify }}"></div>
@@ -496,77 +504,79 @@
         <div data-caption="{{ page.commissioningPackageCaptionTaskScreen | markdownify }}"></div>
         <div data-caption="{{ page.commissioningPackageCaptionSubmission | markdownify }}"></div>
         <div data-caption="{{ page.commissioningPackageCaptionRejection | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageCaptionApproved | markdownify }}"></div>
       </div>
-      <div class="divider desktop-divider"></div>
 
-      <p>{{page.commissioningPackageWeb1}}</p>
+      <div class="commissioning-web-gallery-container">
+        <p>{{page.commissioningPackageWeb1}}</p>
 
 
-      <div class="computerReview-container">
-        <img id="computerReviewSvg" src="assets/img/sunnova/computerReview.svg" alt="reviewer on computer" />
-      </div>
-      <p>{{page.commissioningPackageWeb2}}</p>
+        <div class="computerReview-container">
+          <img id="computerReviewSvg" src="assets/img/sunnova/computerReview.svg" alt="reviewer on computer" />
+        </div>
+        <p>{{page.commissioningPackageWeb2}}</p>
 
-      <div class="commissioning-gallery-container">
-        <div id="commissioning-web-gallery-nav" class="gallery-nav" data-id="3">
-          <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb1setup | markdownify }}">set up</div>
-          <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb2taskScreen | markdownify }}">task screen</div>
-          <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb3photoUpload | markdownify }}">photo upload</div>
-          <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb4photoViewer | markdownify }}">photo viewer</div>
-          <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb5rejectionReasons | markdownify }}"> rejection reasons</div>
-          <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb6approveOrReject | markdownify }}">approve or reject</div>
+        <div class="commissioning-gallery-container">
+          <div id="commissioning-web-gallery-nav" class="gallery-nav" data-id="3">
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb1setup | markdownify }}">set up</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb2taskScreen | markdownify }}">task screen</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb3photoUpload | markdownify }}">photo upload</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb4photoViewer | markdownify }}">photo viewer</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb5rejectionReasons | markdownify }}"> rejection reasons</div>
+            <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb6approveOrReject | markdownify }}">approve or reject</div>
+          </div>
+
+          <div id="commissioning-web-gallery" class="commissioning-web-gallery" data-id="3">
+            <div class="gallery-cell">
+              <a href="../assets/img/sunnova/commissioningPackageWeb/1setup.jpg" data-lightbox="commissioning-web-gallery">
+                <img src="../assets/img/sunnova/commissioningPackageWeb/1setup.jpg" alt="commissioning package web setup">
+              </a>
+            </div>
+            <div class="gallery-cell">
+              <a href="../assets/img/sunnova/commissioningPackageWeb/2taskScreen.jpg" data-lightbox="commissioning-web-gallery">
+                <img src="../assets/img/sunnova/commissioningPackageWeb/2taskScreen.jpg" alt="commissioning package web task screen">
+              </a>
+            </div>
+            <div class="gallery-cell">
+              <a href="../assets/img/sunnova/commissioningPackageWeb/3photoUpload.jpg" data-lightbox="commissioning-web-gallery">
+                <img src="../assets/img/sunnova/commissioningPackageWeb/3photoUpload.jpg" alt="commissioning package web photo upload">
+              </a>
+            </div>
+            <div class="gallery-cell">
+              <a href="../assets/img/sunnova/commissioningPackageWeb/4photoViewer.jpg" data-lightbox="commissioning-web-gallery">
+                <img src="../assets/img/sunnova/commissioningPackageWeb/4photoViewer.jpg" alt="commissioning package web photo viewer">
+              </a>
+            </div>
+            <div class="gallery-cell">
+              <a href="../assets/img/sunnova/commissioningPackageWeb/5rejectionReasons.jpg" data-lightbox="commissioning-web-gallery">
+                <img src="../assets/img/sunnova/commissioningPackageWeb/5rejectionReasons.jpg" alt="commissioning package web rejection reasons">
+              </a>
+            </div>
+            <div class="gallery-cell">
+              <a href="../assets/img/sunnova/commissioningPackageWeb/6approveOrReject.jpg" data-lightbox="commissioning-web-gallery">
+                <img src="../assets/img/sunnova/commissioningPackageWeb/6approveOrReject.jpg" alt="commissioning package web approve or reject">
+              </a>
+            </div>
+          </div>
         </div>
 
-        <div id="commissioning-web-gallery" class="commissioning-web-gallery" data-id="3">
-          <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackageWeb/1setup.png" data-lightbox="commissioning-web-gallery">
-              <img src="../assets/img/sunnova/commissioningPackageWeb/1setup.png" alt="commissioning package web setup">
-            </a>
-          </div>
-          <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackageWeb/2taskScreen.png" data-lightbox="commissioning-web-gallery">
-              <img src="../assets/img/sunnova/commissioningPackageWeb/2taskScreen.png" alt="commissioning package web task screen">
-            </a>
-          </div>
-          <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackageWeb/3photoUpload.png" data-lightbox="commissioning-web-gallery">
-              <img src="../assets/img/sunnova/commissioningPackageWeb/3photoUpload.png" alt="commissioning package web photo upload">
-            </a>
-          </div>
-          <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackageWeb/4photoViewer.png" data-lightbox="commissioning-web-gallery">
-              <img src="../assets/img/sunnova/commissioningPackageWeb/4photoViewer.png" alt="commissioning package web photo viewer">
-            </a>
-          </div>
-          <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackageWeb/5rejectionReasons.png" data-lightbox="commissioning-web-gallery">
-              <img src="../assets/img/sunnova/commissioningPackageWeb/5rejectionReasons.png" alt="commissioning package web rejection reasons">
-            </a>
-          </div>
-          <div class="gallery-cell">
-            <a href="../assets/img/sunnova/commissioningPackageWeb/6approveOrReject.png" data-lightbox="commissioning-web-gallery">
-              <img src="../assets/img/sunnova/commissioningPackageWeb/6approveOrReject.png" alt="commissioning package web approve or reject">
-            </a>
+        <div class="gallery-caption-container">
+          <div class="gallery-caption center-section-padding" id="commissioning-web-gallery-caption">
+            <p></p>
           </div>
         </div>
-      </div>
 
-      <div class="gallery-caption-container">
-        <div class="gallery-caption center-section-padding" id="commissioning-web-gallery-caption">
-          <p></p>
+        <!-- Hidden captions for JavaScript to read -->
+        <!-- Hidden captions for JavaScript to read -->
+        <div class="hidden-captions hidden-commissioning-web-captions" style="display: none;">
+          <!-- Commissioning captions -->
+          <div data-caption="{{ page.commissioningPackageWeb1setup | markdownify }}"></div>
+          <div data-caption="{{ page.commissioningPackageWeb2taskScreen | markdownify }}"></div>
+          <div data-caption="{{ page.commissioningPackageWeb3photoUpload | markdownify }}"></div>
+          <div data-caption="{{ page.commissioningPackageWeb4photoViewer | markdownify }}"></div>
+          <div data-caption="{{ page.commissioningPackageWeb5rejectionReasons | markdownify }}"></div>
+          <div data-caption="{{ page.commissioningPackageWeb6approveOrReject | markdownify }}"></div>
         </div>
-      </div>
-
-      <!-- Hidden captions for JavaScript to read -->
-      <!-- Hidden captions for JavaScript to read -->
-      <div class="hidden-captions hidden-commissioning-web-captions" style="display: none;">
-        <!-- Commissioning captions -->
-        <div data-caption="{{ page.commissioningPackageWeb1setup | markdownify }}"></div>
-        <div data-caption="{{ page.commissioningPackageWeb2taskScreen | markdownify }}"></div>
-        <div data-caption="{{ page.commissioningPackageWeb3photoUpload | markdownify }}"></div>
-        <div data-caption="{{ page.commissioningPackageWeb4photoViewer | markdownify }}"></div>
-        <div data-caption="{{ page.commissioningPackageWeb5rejectionReasons | markdownify }}"></div>
-        <div data-caption="{{ page.commissioningPackageWeb6approveOrReject | markdownify }}"></div>
       </div>
     </div>
 
@@ -592,32 +602,32 @@
       </div>
       <div id="architecture-gallery" class="arc-gallery" data-id="2">
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/Database.png" data-lightbox="architecture-gallery">
-              <img src="../assets/img/sunnova/Database.png" alt="Database">
+            <a href="../assets/img/sunnova/architecture/Database.jpg" data-lightbox="architecture-gallery">
+              <img src="../assets/img/sunnova/architecture/Database.jpg" alt="Database">
             </a>
           </div>
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/Code.png" data-lightbox="architecture-gallery">
-              <img src="../assets/img/sunnova/Code.png" alt="app code">
+            <a href="../assets/img/sunnova/architecture/Code.jpg" data-lightbox="architecture-gallery">
+              <img src="../assets/img/sunnova/architecture/Code.jpg" alt="app code">
             </a>
           </div>
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/Launch.png" data-lightbox="architecture-gallery">
-              <img src="../assets/img/sunnova/Launch.png" alt="release">
+            <a href="../assets/img/sunnova/architecture/Launch.jpg" data-lightbox="architecture-gallery">
+              <img src="../assets/img/sunnova/architecture/Launch.jpg" alt="release">
             </a>
           </div>
           <div class="gallery-cell">
-            <a href="../assets/img/sunnova/Analytics.png" data-lightbox="architecture-gallery">
-              <img src="../assets/img/sunnova/Analytics.png" alt="app analytics software">
+            <a href="../assets/img/sunnova/architecture/Analytics.jpg" data-lightbox="architecture-gallery">
+              <img src="../assets/img/sunnova/architecture/Analytics.jpg" alt="app analytics software">
             </a>
           </div>
         </div>
 
-        <div class="gallery-caption-container" id="architecture-gallery-caption">
-          <div class="gallery-caption center-section-padding">
-            <p></p>
-          </div>
+      <div class="gallery-caption-container architecture-gallery-caption-container" id="architecture-gallery-caption">
+        <div class="gallery-caption center-section-padding">
+          <p></p>
         </div>
+      </div>
         <div class="hidden-captions hidden-architecture-captions" style="display: none;">
           <div data-caption="{{ page.architectureCaptionDatabase | markdownify }}"></div>
           <div data-caption="{{ page.architectureCaptionCode | markdownify }}"></div>
@@ -630,8 +640,8 @@
         <div class="divider"></div>
         <div class="desktop-divider2"></div>
 
-        <img class="architecture-desktop" src="/assets/img/sunnova/Architecture_Desktop_View.png" alt="Architecture Desktop View">
-        <img class="architecture-mobile" src="/assets/img/sunnova/Architecture_Mobile_View.png" alt="Architecture Mobile View">
+        <img class="architecture-desktop" src="/assets/img/sunnova/architecture/Architecture_Desktop_View.jpg" alt="Architecture Desktop View">
+        <img class="architecture-mobile" src="/assets/img/sunnova/architecture/Architecture_Mobile_View.jpg" alt="Architecture Mobile View">
       </div>
 
       <div class="architecture-description-container">
@@ -642,32 +652,34 @@
 
 
         <div class="frontend-directory">
-          <h3>{{ page.frontend1 }}</h3>
-          <p>{{ page.frontend2 | markdownify }}</p>
-          <p>{{ page.frontend3 | markdownify }}</p>
-          <p>{{ page.frontend4 | markdownify }}</p>
+          <h2>{{ page.frontend1 }}</h2>
+          <h3>{{ page.frontend2 | markdownify }}</h3>
+          <h3>{{ page.frontend3 | markdownify }}</h3>
+          <h3>{{ page.frontend4 | markdownify }}</h3>
+          <h3>{{ page.frontend5 | markdownify }}</h3>
         </div>
 
         <div class="backend-directory">
-          <h3>{{ page.backend1 }}</h3>
-          <p>{{ page.backend2 | markdownify }}</p>
-          <p>{{ page.backend3 | markdownify }}</p>
+          <h2>{{ page.backend1 }}</h2>
+          <h3>{{ page.backend2 | markdownify }}</h3>
+          <h3>{{ page.backend3 | markdownify }}</h3>
+          <h3>{{ page.backend4 | markdownify }}</h3>
         </div>
 
         <div class="data-directory">
-          <h3>{{ page.Data1 }}</h3>
-          <p>{{ page.dataStorage | markdownify }}</p>
-          <p>{{ page.dataTransferring | markdownify }}</p>
-          <p>{{ page.dataBackups | markdownify }}</p>
+          <h2>{{ page.Data1 }}</h2>
+          <h3>{{ page.dataStorage | markdownify }}</h3>
+          <h3>{{ page.dataTransferring | markdownify }}</h3>
+          <h3>{{ page.dataBackups | markdownify }}</h3>
+          <h3>{{ page.dataAccess | markdownify }}</h3>
         </div>
 
         <div class="cloud-directory">
-          <h3>{{ page.cloud1 }}</h3>
-          <p>{{ page.cloud2 | markdownify }}</p>
-          <p>{{ page.cloud3 | markdownify }}</p>
-          <p>{{ page.cloud4 | markdownify }}</p>
-          <p>{{ page.cloud5 | markdownify }}</p>
-          <p>{{ page.cloud6 | markdownify }}</p>
+          <h2>{{ page.cloud1 }}</h2>
+          <h3>{{ page.cloud2 | markdownify }}</h3>
+          <h3>{{ page.cloud3 | markdownify }}</h3>
+          <h3>{{ page.cloud4 | markdownify }}</h3>
+          <h3>{{ page.cloud5 | markdownify }}</h3>
         </div>
       </div>
     </div>

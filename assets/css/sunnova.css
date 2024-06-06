@@ -5,6 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative:wght@400;700&display=swap');
 @import 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700i,900i';
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* Root font size */
 html {
     font-size: 1rem;
@@ -50,8 +52,9 @@ h2 {
 
 h3 {
     /*font-family: 'Quattrocento', serif;*/
-    font-family: 'Playfair Display', serif;
+    font-family: "Roboto Condensed", sans-serif;
     font-weight: 400;
+    font-style: normal;
     font-size: 2.25rem; /* equivalent to 36px when root is 16px */
     flex: 0 0 auto;
 }
@@ -64,9 +67,19 @@ h4 {
     letter-spacing: 0.2rem;
 }
 
-p {
+h5 {
     /*font-family: 'Cinzel Sans', serif;*/
     font-family: 'Playfair Display', serif;
+    /*color: inherit;*/
+    /*background-color: white;*/
+    font-size: 1.5rem;
+    z-index: 10;
+}
+p {
+    /*font-family: 'Cinzel Sans', serif;*/
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     /*color: inherit;*/
     /*background-color: white;*/
     font-size: 1.5rem;
@@ -140,7 +153,7 @@ p {
 /* Base styles for mobile layout (default) */
 .content-container {
     position: relative;
-    width: 100vw;
+    width: 100%;
     overflow: hidden;
 }
 
@@ -620,16 +633,6 @@ p {
     z-index: 1000;
 }
 
-
-/*.divider{*/
-/*    !*margin-top: 10vh;*!*/
-/*    !*z-index: 10001;*!*/
-/*    !*background-color: white;*!*/
-/*    !*transform: translateY(10vh);*!*/
-/*    width: 100vw;*/
-/*    height: 20vh;*/
-/*}*/
-
 /* CSS for mobile first: .divider1 will be styled this way on mobile */
 .divider {
     display: block; /* or any other default mobile styling */
@@ -638,7 +641,7 @@ p {
 }
 
 .divider1{
-    width: 100vw;
+    width: 100%;
     height: 40vh;
 }
 
@@ -772,7 +775,7 @@ p {
 }
 
 .expandable-content-container{
-    width: 100vw;
+    width: 100%;
     display: flex; /* Use flexbox to align children */
     justify-content: center; /* Center horizontally */
 }
@@ -1158,7 +1161,7 @@ p {
 }
 
 .microgrid-container {
-    width: 100vw;
+    width: 100%;
     height: 60vh;
     margin-left: -20px; /* Overlap the previous element by -20px */
     z-index: 1; /* Below the doeCircle-container but above the base layer */
@@ -1389,7 +1392,7 @@ https://flickity.metafizzy.co
 .commissioning-gallery-container {
     height: 50vh;
     display: block;
-    padding-bottom: 10vh;
+    padding-bottom: 15vh;
     padding-top: 10vh;
     width: 95%;
     margin: 0 auto;
@@ -1417,6 +1420,46 @@ https://flickity.metafizzy.co
     font-weight: bold;
     display: block;
 }
+.gallery-caption-container {
+    min-height: 10vh; /* Set a minimum height */
+    height: auto; /* Allow the height to adjust based on content */
+    border: 1px solid black;
+    box-shadow: 0px 0px 0.25rem 0.25rem black;
+    display: flex; /* Use flexbox to control alignment */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    border-radius: 10rem;
+}
+
+
+.architecture-gallery-caption-container {
+    min-height: 25vh; /* Set a minimum height */
+    height: auto; /* Allow the height to adjust based on content */
+    background-color: black;
+    box-shadow: 0px 0px 40px 15px var(--orange);
+}
+
+.gallery-caption {
+    overflow: hidden; /* Ensure content doesn't overflow */
+    display: flex; /* Use flexbox to control alignment */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    width: 100%; /* Ensure it takes the full width */
+    min-height: 0rem;
+    height: auto; /* Allow the height to adjust based on content */
+}
+
+
+.gallery-caption p {
+    font-size: 1.3rem !important;
+    color: black !important;
+    margin: 0;
+    text-align: center;
+}
+
+.architecture-gallery-caption-container .gallery-caption p{
+        color: #FFFFFF !important;
+}
 
 @media (min-width: 1000px) {
     .commissioning-gallery {
@@ -1432,34 +1475,10 @@ https://flickity.metafizzy.co
     .gallery-caption-container {
         margin-top: 15vh;
     }
+    .architecture-gallery-caption-container {
+        margin-top: 10vh; /* Adjust this value as needed */
+    }
 }
-
-.gallery-caption-container {
-    /*margin-top: 15vh;*/
-    height: 15vh;
-    border: 1px solid black;
-    box-shadow: 0px 0px 0.25rem 0.25rem black;
-    display: flex; /* Use flexbox to control alignment */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
-    border-radius: 10rem;
-}
-
-.gallery-caption {
-    overflow: hidden; /* Ensure content doesn't overflow */
-    display: flex; /* Use flexbox to control alignment */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
-    width: 100%; /* Ensure it takes the full width */
-}
-
-.gallery-caption p {
-    font-size: 1.3rem !important;
-    color: black !important;
-    margin: 0; /* Ensure no margin is added */
-    text-align: center; /* Center the text horizontally */
-}
-
 
 
 
@@ -1468,7 +1487,7 @@ https://flickity.metafizzy.co
 }
 
 .gallery-nav {
-    max-width: 100vw;
+    max-width: 100%;
     margin: 1rem auto 5rem auto; /* Adjust margins to ensure space around the navigation */
     padding-bottom: 1rem; /* Add padding to the bottom */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
@@ -1529,6 +1548,10 @@ https://flickity.metafizzy.co
     width: 100%;
     height: auto;
     z-index: 2;
+}
+
+.commissioning-web-gallery-container {
+    margin-top: 30vh;
 }
 
 
@@ -1806,15 +1829,6 @@ https://flickity.metafizzy.co
     text-align: right;
     height: 100vh; /* Assuming you want it to be as tall as the viewport */
 }
-
-/*.fixed-canvas {*/
-/*    position: fixed;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    width: 100vw;*/
-/*    height: 100vh;*/
-/*    z-index: 10; !* Ensure this is above other content but below any overlays *!*/
-/*}*/
 
 
 .three-js-canvas {
