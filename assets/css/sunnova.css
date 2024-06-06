@@ -1429,10 +1429,13 @@ https://flickity.metafizzy.co
     .gallery-cell img {
         height: 100%;
     }
+    .gallery-caption-container {
+        margin-top: 15vh;
+    }
 }
 
 .gallery-caption-container {
-    margin-top: 15vh;
+    /*margin-top: 15vh;*/
     height: 15vh;
     border: 1px solid black;
     box-shadow: 0px 0px 0.25rem 0.25rem black;
@@ -1501,10 +1504,8 @@ https://flickity.metafizzy.co
 
 .computerReview-container {
     position: relative;
-    display: block;
-    top: 0%;
-    left: 0;
-    width: 60%;
+    left: 10%;
+    width: 80%;
     height: auto;
     z-index: 2;
 }

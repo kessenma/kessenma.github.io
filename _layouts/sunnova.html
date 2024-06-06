@@ -405,104 +405,172 @@
   <!--  THREEJS END-->
   <!--//////////////-->
 
-    <div class="commissioning-package-background">
-      <div class="center-section-padding">
-        <div class="divider"></div>
+    <div class="commissioning-package-background center-section-padding">
+      <div class="divider"></div>
 
 
-          <p>{{page.commissioningPackage1}}</p>
-          <h4> <span heroic="{{page.commissioningPackage2}}" class="heroic-text">{{page.commissioningPackage2}}</span></h4>
-        <div class="dealerOnPhone-svg-container">
-          <img id="DealerOnPhoneSvg" src="assets/img/sunnova/DealerOnPhone.svg" class="hidden-svg" alt="dealer submitting CP" />
-        </div>
-          <p>{{page.commissioningPackage3}}</p>
-        <div class="commissioning-gallery-container">
-          <div id="commissioning-gallery-nav" class="gallery-nav" data-id="1">
-            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionLogin | markdownify }}">login</div>
-            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionHome | markdownify }}">home</div>
-            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionProjectScreen | markdownify }}">project screen</div>
-            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionInitialSetup | markdownify }}">initial setup</div>
-            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionSystemDetails | markdownify }}">system details</div>
-            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionTaskList | markdownify }}">task list</div>
-            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionTaskScreen | markdownify }}">task screen</div>
-            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionSubmission | markdownify }}">submission</div>
-            <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionRejection | markdownify }}">rejection</div>
-          </div>
-
-          <div id="commissioning-gallery" class="commissioning-gallery" data-id="1">
-            <div class="gallery-cell">
-              <a href="../assets/img/sunnova/commissioningPackage/cp0Login.png" data-lightbox="commissioning-gallery">
-                <img src="../assets/img/sunnova/commissioningPackage/cp0Login.png" alt="commissioning package setup0">
-              </a>
-            </div>
-            <div class="gallery-cell">
-              <a href="../assets/img/sunnova/commissioningPackage/cp1HomeScreen.png" data-lightbox="commissioning-gallery">
-                <img src="../assets/img/sunnova/commissioningPackage/cp1HomeScreen.png" alt="commissioning package setup0">
-              </a>
-            </div>
-            <div class="gallery-cell">
-              <a href="../assets/img/sunnova/commissioningPackage/cp1ProjectScreen.png" data-lightbox="commissioning-gallery">
-                <img src="../assets/img/sunnova/commissioningPackage/cp1ProjectScreen.png" alt="commissioning package setup0">
-              </a>
-            </div>
-            <div class="gallery-cell">
-              <a href="../assets/img/sunnova/commissioningPackage/cp1Setup.png" data-lightbox="commissioning-gallery">
-                <img src="../assets/img/sunnova/commissioningPackage/cp1Setup.png" alt="commissioning package setup1">
-              </a>
-            </div>
-            <div class="gallery-cell">
-              <a href="../assets/img/sunnova/commissioningPackage/cp2Setup2.png" data-lightbox="commissioning-gallery">
-                <img src="../assets/img/sunnova/commissioningPackage/cp2Setup2.png" alt="commissioning package setup 2">
-              </a>
-            </div>
-            <div class="gallery-cell">
-              <a href="../assets/img/sunnova/commissioningPackage/cp3TaskList.png" data-lightbox="commissioning-gallery">
-                <img src="../assets/img/sunnova/commissioningPackage/cp3TaskList.png" alt="commissioning package task list">
-              </a>
-            </div>
-            <div class="gallery-cell">
-              <a href="../assets/img/sunnova/commissioningPackage/cp4TaskScreen.png" data-lightbox="commissioning-gallery">
-                <img src="../assets/img/sunnova/commissioningPackage/cp4TaskScreen.png" alt="commissioning package task screen">
-              </a>
-            </div>
-            <div class="gallery-cell">
-              <a href="../assets/img/sunnova/commissioningPackage/cp5Submit.png" data-lightbox="commissioning-gallery">
-                <img src="../assets/img/sunnova/commissioningPackage/cp5Submit.png" alt="commissioning package submission">
-              </a>
-            </div>
-            <div class="gallery-cell">
-              <a href="../assets/img/sunnova/commissioningPackage/cp6Rejection.png" data-lightbox="commissioning-gallery">
-                <img src="../assets/img/sunnova/commissioningPackage/cp6Rejection.png" alt="commissioning package rejection">
-              </a>
-            </div>
-          </div>
+        <p>{{page.commissioningPackage1}}</p>
+        <h4> <span heroic="{{page.commissioningPackage2}}" class="heroic-text">{{page.commissioningPackage2}}</span></h4>
+      <div class="dealerOnPhone-svg-container">
+        <img id="DealerOnPhoneSvg" src="assets/img/sunnova/DealerOnPhone.svg" class="hidden-svg" alt="dealer submitting CP" />
+      </div>
+        <p>{{page.commissioningPackage3}}</p>
+      <div class="commissioning-gallery-container">
+        <div id="commissioning-gallery-nav" class="gallery-nav" data-id="1">
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionLogin | markdownify }}">login</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionHome | markdownify }}">home</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionProjectScreen | markdownify }}">project screen</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionInitialSetup | markdownify }}">initial setup</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionSystemDetails | markdownify }}">system details</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionTaskList | markdownify }}">task list</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionTaskScreen | markdownify }}">task screen</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionSubmission | markdownify }}">submission</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageCaptionRejection | markdownify }}">rejection</div>
         </div>
 
-        <div class="gallery-caption-container">
-          <div class="gallery-caption center-section-padding" id="commissioning-gallery-caption">
-            <p></p>
+        <div id="commissioning-gallery" class="commissioning-gallery" data-id="1">
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp0Login.png" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp0Login.png" alt="commissioning package setup0">
+            </a>
           </div>
-        </div>
-
-        <!-- Hidden captions for JavaScript to read -->
-        <!-- Hidden captions for JavaScript to read -->
-        <div class="hidden-captions hidden-commissioning-captions" style="display: none;">
-          <!-- Commissioning captions -->
-          <div data-caption="{{ page.commissioningPackageCaptionLogin | markdownify }}"></div>
-          <div data-caption="{{ page.commissioningPackageCaptionHome | markdownify }}"></div>
-          <div data-caption="{{ page.commissioningPackageCaptionProjectScreen | markdownify }}"></div>
-          <div data-caption="{{ page.commissioningPackageCaptionInitialSetup | markdownify }}"></div>
-          <div data-caption="{{ page.commissioningPackageCaptionSystemDetails | markdownify }}"></div>
-          <div data-caption="{{ page.commissioningPackageCaptionTaskList | markdownify }}"></div>
-          <div data-caption="{{ page.commissioningPackageCaptionTaskScreen | markdownify }}"></div>
-          <div data-caption="{{ page.commissioningPackageCaptionSubmission | markdownify }}"></div>
-          <div data-caption="{{ page.commissioningPackageCaptionRejection | markdownify }}"></div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp1HomeScreen.png" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp1HomeScreen.png" alt="commissioning package setup0">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp1ProjectScreen.png" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp1ProjectScreen.png" alt="commissioning package setup0">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp1Setup.png" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp1Setup.png" alt="commissioning package setup1">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp2Setup2.png" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp2Setup2.png" alt="commissioning package setup 2">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp3TaskList.png" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp3TaskList.png" alt="commissioning package task list">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp4TaskScreen.png" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp4TaskScreen.png" alt="commissioning package task screen">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp5Submit.png" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp5Submit.png" alt="commissioning package submission">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackage/cp6Rejection.png" data-lightbox="commissioning-gallery">
+              <img src="../assets/img/sunnova/commissioningPackage/cp6Rejection.png" alt="commissioning package rejection">
+            </a>
+          </div>
         </div>
       </div>
+
+      <div class="gallery-caption-container">
+        <div class="gallery-caption center-section-padding" id="commissioning-gallery-caption">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Hidden captions for JavaScript to read -->
+      <!-- Hidden captions for JavaScript to read -->
+      <div class="hidden-captions hidden-commissioning-captions" style="display: none;">
+        <!-- Commissioning captions -->
+        <div data-caption="{{ page.commissioningPackageCaptionLogin | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageCaptionHome | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageCaptionProjectScreen | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageCaptionInitialSetup | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageCaptionSystemDetails | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageCaptionTaskList | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageCaptionTaskScreen | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageCaptionSubmission | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageCaptionRejection | markdownify }}"></div>
+      </div>
+      <div class="divider desktop-divider"></div>
+
+      <p>{{page.commissioningPackageWeb1}}</p>
+
+
       <div class="computerReview-container">
         <img id="computerReviewSvg" src="assets/img/sunnova/computerReview.svg" alt="reviewer on computer" />
       </div>
+      <p>{{page.commissioningPackageWeb2}}</p>
+
+      <div class="commissioning-gallery-container">
+        <div id="commissioning-web-gallery-nav" class="gallery-nav" data-id="3">
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb1setup | markdownify }}">set up</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb2taskScreen | markdownify }}">task screen</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb3photoUpload | markdownify }}">photo upload</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb4photoViewer | markdownify }}">photo viewer</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb5rejectionReasons | markdownify }}"> rejection reasons</div>
+          <div class="gallery-cell" data-caption="{{ page.commissioningPackageWeb6approveOrReject | markdownify }}">approve or reject</div>
+        </div>
+
+        <div id="commissioning-web-gallery" class="commissioning-web-gallery" data-id="3">
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackageWeb/1setup.png" data-lightbox="commissioning-web-gallery">
+              <img src="../assets/img/sunnova/commissioningPackageWeb/1setup.png" alt="commissioning package web setup">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackageWeb/2taskScreen.png" data-lightbox="commissioning-web-gallery">
+              <img src="../assets/img/sunnova/commissioningPackageWeb/2taskScreen.png" alt="commissioning package web task screen">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackageWeb/3photoUpload.png" data-lightbox="commissioning-web-gallery">
+              <img src="../assets/img/sunnova/commissioningPackageWeb/3photoUpload.png" alt="commissioning package web photo upload">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackageWeb/4photoViewer.png" data-lightbox="commissioning-web-gallery">
+              <img src="../assets/img/sunnova/commissioningPackageWeb/4photoViewer.png" alt="commissioning package web photo viewer">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackageWeb/5rejectionReasons.png" data-lightbox="commissioning-web-gallery">
+              <img src="../assets/img/sunnova/commissioningPackageWeb/5rejectionReasons.png" alt="commissioning package web rejection reasons">
+            </a>
+          </div>
+          <div class="gallery-cell">
+            <a href="../assets/img/sunnova/commissioningPackageWeb/6approveOrReject.png" data-lightbox="commissioning-web-gallery">
+              <img src="../assets/img/sunnova/commissioningPackageWeb/6approveOrReject.png" alt="commissioning package web approve or reject">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-caption-container">
+        <div class="gallery-caption center-section-padding" id="commissioning-web-gallery-caption">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Hidden captions for JavaScript to read -->
+      <!-- Hidden captions for JavaScript to read -->
+      <div class="hidden-captions hidden-commissioning-web-captions" style="display: none;">
+        <!-- Commissioning captions -->
+        <div data-caption="{{ page.commissioningPackageWeb1setup | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageWeb2taskScreen | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageWeb3photoUpload | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageWeb4photoViewer | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageWeb5rejectionReasons | markdownify }}"></div>
+        <div data-caption="{{ page.commissioningPackageWeb6approveOrReject | markdownify }}"></div>
+      </div>
     </div>
+
+
 
 
 <!--####################-->

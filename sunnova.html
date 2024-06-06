@@ -60,10 +60,20 @@ commissioningPackageCaptionTaskScreen: "This is an example of what an individual
 commissioningPackageCaptionSubmission: "After all the tasks have been completed, the dealership can submit the commissioning package to Sunnova for review."
 commissioningPackageCaptionRejection: "If a task is not completed correctly, feedback is provided on how to fix the problem and then the dealership can resubmit the commissioning package to Sunnova"
 
+commissioningPackageWeb1: "There also is a complimentary web app to the mobile app solar-dealerships can use. This web app is dual-faceted and accessed via a different login by Sunnova Engineering reviewers to approve, provide feedback, and reject system-installs submitted by dealerships."
+commissioningPackageWeb2: "The features in the web app share a lot of the same core-components as the mobile app with some minor UX differences to suit different ways of working with a keyboard and mouse instead of a touch screen mobile phone."
+
+commissioningPackageWeb1setup: "dealership employees access the commissioning package web app via a URL specific to the customer they're servicing."
+commissioningPackageWeb2taskScreen: "Once they set up the equipment being installed, they get a list of tasks to complete."
+commissioningPackageWeb3photoUpload: "The photo upload process on web supports uploading via drag and drop."
+commissioningPackageWeb4photoViewer: "There is a customized photo viewer for images uploaded."
+commissioningPackageWeb5rejectionReasons: "After all the tasks have been completed, the commissioning package can be submitted. Then, once it is submitted, the reviewers at Sunnova use this web app via a different login to approve and reject tasks. If a task is rejected, rejection reason(s) and description(s) are provided."
+commissioningPackageWeb6approveOrReject: "Once all the tasks have been reviewed, the entire commissioning package can be submitted or rejected."
+
 architectureCaptionDatabase: "Sunnova relies on a serverless architecture for its Catalyst app-- using Heroku as the 'glue' connecting the databases and apps, Docker to view data in SQL tables, and Salesforce + Mulesoft as data pipelines between the apps and the databases."
 architectureCaptionCode: "As a React Native app, Typescript is used to handle the backend algorithmic coding logic and then JavaScript (in a React Native syntax) is used in the frontend portion of the app. Cypress and Jest are used for automated testing."
 architectureCaptionRelease: "The centerpiece of the release process for the Catalyst app to the app stores is Expo and GitHub actions. In order to release the app to stores for review, the automated tests (in Cypress and Jest) must pass (since it costs money for each Expo run)."
-architectureCaptionAnalytics: "New Relic is used to analyze database updates, Sentry is for monitoring click streams users go through along with, papertrail is used to monitor AWS database updates, and flipper plus postman is used by develoeprs for debugging API calls and errors."
+architectureCaptionAnalytics: "New Relic is used to analyze SQL database updates, Sentry is for monitoring click streams users go through along with which screens errors appear, Papertrail is used to monitor AWS errors, and flipper plus postman is used by developers for debugging API calls and errors."
 
 architecture1: "<b>Architecture</b>"
 architecture2: "At a high level, the Catalyst app comprises two main features called <i>site survey</i> and <i>commissioning package</i>. Both of these features are essentially surveys that dealership employees use to submit information to Sunnova about a property. The codebase is divided into two main directories: <i>backend</i> and <i>frontend</i>, and the app architecture follows the <a href='https://medium.com/@hiteshsatwani/mvvm-a-guide-for-react-native-and-expo-projects-18d050bdbfb8' target='_blank'>MVVM (Model-View-ViewModel)</a> pattern. Here's how the structure is organized:"

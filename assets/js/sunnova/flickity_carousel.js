@@ -58,10 +58,9 @@
 
 
 
-
 $(document).ready(function() {
-    // Initialize Flickity for both galleries
-    $('.commissioning-gallery, .arc-gallery').each(function() {
+    // Initialize Flickity for all galleries
+    $('.commissioning-gallery, .arc-gallery, .commissioning-web-gallery').each(function() {
         var $gallery = $(this);
         var galleryPrefs = {
             cellAlign: 'center',
@@ -83,15 +82,25 @@ $(document).ready(function() {
             } else if ($gallery.hasClass('arc-gallery')) {
                 highlightNav(index, 'architecture-gallery-nav');
                 updateCaption(index, 'architecture'); // Update caption on slide change
+            } else if ($gallery.hasClass('commissioning-web-gallery')) {
+                highlightNav(index, 'commissioning-web-gallery-nav');
+                updateCaption(index, 'commissioning-web'); // Update caption on slide change
             }
         });
     });
 
-    // Initialize Flickity for both gallery navigations and bind click events
+    // Initialize Flickity for all gallery navigations and bind click events
     $('.gallery-nav').each(function() {
         var $galleryNav = $(this);
         var galleryNavId = $galleryNav.data('id');
-        var $gallery = (galleryNavId == 1) ? $('.commissioning-gallery') : $('.arc-gallery');
+        var $gallery;
+        if (galleryNavId == 1) {
+            $gallery = $('.commissioning-gallery');
+        } else if (galleryNavId == 2) {
+            $gallery = $('.arc-gallery');
+        } else if (galleryNavId == 3) {
+            $gallery = $('.commissioning-web-gallery');
+        }
 
         var galleryNavPrefs = {
             asNavFor: $gallery[0],
@@ -111,7 +120,6 @@ $(document).ready(function() {
     });
 });
 
-
 // Function to highlight the navigation
 function highlightNav(index, navClass) {
     $(`.${navClass} .gallery-cell`).removeClass('is-nav-selected');
@@ -119,10 +127,21 @@ function highlightNav(index, navClass) {
 }
 
 // Function to update the caption
-// Function to update the caption
 function updateCaption(index, galleryType) {
-    var captionsContainer = (galleryType === 'architecture') ? '.hidden-architecture-captions' : '.hidden-commissioning-captions';
-    var captionContainerId = (galleryType === 'architecture') ? '#architecture-gallery-caption p' : '#commissioning-gallery-caption p';
+    var captionsContainer;
+    var captionContainerId;
+
+    if (galleryType === 'architecture') {
+        captionsContainer = '.hidden-architecture-captions';
+        captionContainerId = '#architecture-gallery-caption p';
+    } else if (galleryType === 'commissioning') {
+        captionsContainer = '.hidden-commissioning-captions';
+        captionContainerId = '#commissioning-gallery-caption p';
+    } else if (galleryType === 'commissioning-web') {
+        captionsContainer = '.hidden-commissioning-web-captions';
+        captionContainerId = '#commissioning-web-gallery-caption p';
+    }
+
     var caption = $(`${captionsContainer} div`).eq(index).data('caption');
     if (caption !== undefined) {
         $(captionContainerId).html(caption);
@@ -130,6 +149,7 @@ function updateCaption(index, galleryType) {
         $(captionContainerId).html(''); // Clear caption if not found
     }
 }
+
 
 
 
