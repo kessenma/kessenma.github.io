@@ -19,17 +19,15 @@
       });
     </script>
 
-    {% if jekyll.environment == "production" and site.google_analytics %}
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6NFNZKB333"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', '{{ site.google_analytics }}');
+      gtag('config', 'G-6NFNZKB333');
     </script>
-    {% endif %}
   </head>
 
 <!--Menu + scrollbar-->
@@ -80,7 +78,7 @@
   <div class="about-background">
     <div class="center-section-padding about-section top-divider" id="about-section">
       <div class="divider"></div>
-      <h5>{{ page.about | safe }}</h5>
+      <h5>{{ page.about | markdownify }}</h5>
     </div>
     <div id="aboutSun" class="desertSunBackground"></div>
   </div>
@@ -90,7 +88,7 @@
       <img id="desertPanelSvg" src="assets/img/sunnova/panelsInDesert.svg" class="hidden-svg" alt="solar panels in the desert" />
     </div>
     <div class="center-section-padding">
-      <h5>{{ page.about2 }}</h5>
+      <h5>{{ page.about2 | markdownify}}</h5>
     </div>
 
 

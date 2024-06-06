@@ -64,7 +64,7 @@ function handleScroll() {
     // const $doeCircle = $('#doeCircle');
     const $desertBackground = $('.desert-background');
     const $progressBar = $('.scroll-progress-bar');
-    const $aboutSun = $('#aboutSun');
+    // const $aboutSun = $('#aboutSun');
     const $menuButton = $(".menu-button");
 
     // Cache viewport size
@@ -77,7 +77,7 @@ function handleScroll() {
         let percentScrolled = (scrollPos / windowHeight) * 100;
 
         const sunIsVisible = isInViewport($sun[0]);
-        const aboutSunIsVisible = isInViewport($aboutSun[0]);
+        // const aboutSunIsVisible = isInViewport($aboutSun[0]);
         const phoneSvgIsVisible = isInViewport($phoneSvg[0]);
         const dealershipSvgIsVisible = isInViewport($dealershipSvg[0]);
         // const doeCircleSvgIsVisible = isInViewport(($doeCircle)[0]);
@@ -98,9 +98,9 @@ function handleScroll() {
             // if (doeCircleSvgIsVisible || bentoBoxIsVisible || desertBackgroundIsVisible) {
             //     $('#doeCircle').css('transform', 'translateY(' + scrollPos / 4 + 'px)');
             // }
-            if (aboutSunIsVisible) {
-                $('#aboutSun').css('transform', 'translateY(' + scrollPos / 5 + 'px)');
-            }
+            // if (aboutSunIsVisible) {
+            //     $('#aboutSun').css('transform', 'translateY(' + scrollPos / 5 + 'px)');
+            // }
         }
         // $('#doeCircle').css('transform', 'translateY(' + scrollPos/4 + 'px)');
 
