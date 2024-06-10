@@ -32,6 +32,21 @@
 
 <!--Menu + scrollbar-->
 <body>
+
+<body>
+<div id="login-modal" class="modal">
+  <div class="modal-content">
+    <p>If you are here from my grad school applications to the Technical University of Munich or Vienna, please contact me for access <a href='https://kessenma.github.io/#contact' target='_blank'>here</a></p>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+    <button onclick="authenticate()">Login</button>
+  </div>
+</div>
+
+<div id="protected-content">
+
   <div class="scroll-progress-bar"></div>
   <div class="menu-container">
     <button class="menu-button">☰</button>
@@ -700,9 +715,10 @@
     <script src="/assets/js/sunnova/architecture.js"></script>
     <script src="/assets/js/sunnova/svgLineDrawSplashScreen.js"></script>
     <script src="/assets/js/sunnova/flickity_carousel.js"></script>
+    <script src="/assets/js/sunnova/auth.js"></script>
+</div>
 
-    </div>
-  </div>
+
 </body>
 
 </html>
