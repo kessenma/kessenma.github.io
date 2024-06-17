@@ -1,0 +1,4 @@
+main.svelte-pc6co1{display:flex;flex-direction:column;align-items:center;margin-top:50px;font-family:Arial, sans-serif}form.svelte-pc6co1{display:flex;flex-direction:column;gap:20px;width:300px}label.svelte-pc6co1{font-size:1.1em;color:#333}input[type="text"].svelte-pc6co1{padding:10px;font-size:1em;border:1px solid #ccc;border-radius:4px}input[type="text"].svelte-pc6co1:focus{border-color:#007bff;outline:none}h1.svelte-pc6co1{font-size:2em;color:#333}button.svelte-pc6co1{padding:10px 20px;font-size:1em;color:white;background-color:#007bff;border:none;border-radius:4px;cursor:pointer}button.svelte-pc6co1:hover{background-color:#0056b3}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
