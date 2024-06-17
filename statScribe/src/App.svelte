@@ -1,80 +1,56 @@
-<script>
-	let researchQuestion1 = '';
-	let researchQuestion2 = '';
-	let researchQuestion3 = '';
-	let hypothesis = '';
-	let uploadMessage = '';
+<script lang="ts">
+	let researchQuestions = [''];
+	let hypotheses = [''];
+
+	const addQuestion = () => {
+		researchQuestions = [...researchQuestions, ''];
+	};
+
+	const addHypothesis = () => {
+		hypotheses = [...hypotheses, ''];
+	};
 </script>
 
 <style>
-	main {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin-top: 50px;
-		font-family: Arial, sans-serif;
+	.field-container {
+		margin-bottom: 1rem;
 	}
-	form {
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
-		width: 300px;
-	}
-	label {
-		font-size: 1.1em;
-		color: #333;
-	}
-	input[type="text"] {
-		padding: 10px;
-		font-size: 1em;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-	}
-	input[type="text"]:focus {
-		border-color: #007bff;
-		outline: none;
-	}
-	h1 {
-		font-size: 2em;
-		color: #333;
-	}
-	button {
-		padding: 10px 20px;
-		font-size: 1em;
-		color: white;
-		background-color: #007bff;
-		border: none;
-		border-radius: 4px;
+	.add-button {
+		margin-top: 0.5rem;
 		cursor: pointer;
-	}
-	button:hover {
-		background-color: #0056b3;
+		color: blue;
 	}
 </style>
 
-<main>
+<div class="container">
 	<h1>Stat Scribe</h1>
-	<form>
-		<label>
-			What are your research questions?
-			<input type="text" bind:value={researchQuestion1} placeholder="Enter your research questions" />
-		</label>
-		<label>
-			What are your research questions?
-			<input type="text" bind:value={researchQuestion2} placeholder="Enter your research questions" />
-		</label>
-		<label>
-			What are your research questions?
-			<input type="text" bind:value={researchQuestion3} placeholder="Enter your research questions" />
-		</label>
-		<label>
-			Do you have a hypothesis?
-			<input type="text" bind:value={hypothesis} placeholder="Enter your hypothesis" />
-		</label>
-		<label>
-			Please upload the paper(s) you'd like analyzed
-			<input type="text" bind:value={uploadMessage} placeholder="Upload message" />
-		</label>
-		<button type="submit">Submit</button>
-	</form>
-</main>
+
+	{#each researchQuestions as question, index (index)}
+		<div class="field-container">
+			<label for="question-{index}">What are your research questions?</label>
+			<input type="text" id="question-{index}" bind:value={researchQuestions[index]} placeholder="Enter your research question" />
+		</div>
+	{/each}
+
+	<div class="add-button" on:click={addQuestion}>
+		Add another research question
+	</div>
+
+	{#each hypotheses as hypothesis, index (index)}
+		<div class="field-container">
+			<label for="hypothesis-{index}">Do you have a hypothesis?</label>
+			<input type="text" id="hypothesis-{index}" bind:value={hypotheses[index]} placeholder="Enter your hypothesis" />
+		</div>
+	{/each}
+
+	<div class="add-button" on:click={addHypothesis}>
+		Add another hypothesis
+	</div>
+
+	<div class="field-container">
+		<label for="file-upload">Please upload the paper(s) you'd like analyzed</label>
+		<input type="file" id="file-upload" />
+	</div>
+
+	<button type="submit">Submit</button>
+</div>
