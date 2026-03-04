@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "setup": "rbenv local 3.4.2 && gem install jekyll bundler",
+    "start": "rbenv exec jekyll serve --livereload",
+    "build": "rbenv exec jekyll build"
   },
   "author": "Nathan Randecker",
   "license": "ISC",
