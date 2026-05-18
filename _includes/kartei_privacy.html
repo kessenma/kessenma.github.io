@@ -1,0 +1,184 @@
+<style>
+  .kartei-privacy {
+    background: #000;
+    min-height: 100vh;
+    padding: 4rem 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    color: #fff;
+    position: relative;
+  }
+  #karte-ai-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  .kartei-privacy * {
+    display: revert;
+    text-align: revert;
+  }
+  .kartei-privacy .kp-container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: rgba(28, 28, 30, 0.3);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border: 1px solid rgba(52, 199, 89, 0.2);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .kartei-privacy .kp-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #38383A;
+  }
+  .kartei-privacy .kp-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #34C759;
+    margin: 0 0 0.25rem 0;
+    letter-spacing: -0.02em;
+  }
+  .kartei-privacy .kp-version {
+    font-size: 0.85rem;
+    color: #8E8E93;
+  }
+  .kartei-privacy .kp-intro {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #ccc;
+    margin-bottom: 2rem;
+  }
+  .kartei-privacy h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #5EDE7A;
+    margin: 2rem 0 0.5rem 0;
+  }
+  .kartei-privacy p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #ccc;
+    margin: 0 0 1rem 0;
+  }
+  .kartei-privacy ul {
+    padding-left: 1.25rem;
+    margin: 0 0 1rem 0;
+  }
+  .kartei-privacy li {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #ccc;
+    list-style: disc;
+    margin-bottom: 0.25rem;
+  }
+  .kartei-privacy a {
+    color: #34C759;
+    text-decoration: none;
+  }
+  .kartei-privacy a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 600px) {
+    .kartei-privacy .kp-container {
+      padding: 2rem 1.25rem;
+    }
+  }
+</style>
+
+<div class="kartei-privacy">
+  <div id="karte-ai-particles"></div>
+  <div class="kp-container">
+    <div class="kp-header">
+      <h1>Die Kartei — Privacy Policy</h1>
+      <span class="kp-version">May 18, 2026 &middot; Version 1.0</span>
+    </div>
+
+    <p class="kp-intro">
+      Die Kartei is designed with privacy as a core principle. All AI processing happens entirely on your device — no data is sent to external servers, no cloud processing occurs, and no account is required.
+    </p>
+
+    <h2>Data Collection</h2>
+    <p>Die Kartei does <strong>not</strong> collect, store, transmit, or share any personal data. This includes:</p>
+    <ul>
+      <li>Flashcard decks and study content you create</li>
+      <li>German vocabulary, phrases, and learning progress</li>
+      <li>AI-generated flashcard content and translations</li>
+      <li>Model selections and app preferences</li>
+      <li>Device usage and performance metrics</li>
+    </ul>
+
+    <h2>On-Device Processing</h2>
+    <p>All AI inference, flashcard generation, and German language processing runs locally on your iPhone using on-device models. No internet connection is required after initial model downloads.</p>
+
+    <h2>Network Usage</h2>
+    <p>The only network activity Die Kartei performs is downloading AI models from their respective providers when you explicitly choose to download a model. No user data is transmitted during this process.</p>
+
+    <h2>Third-Party Services</h2>
+    <p>Die Kartei does not integrate with any third-party analytics, advertising, or tracking services.</p>
+
+    <h2>Data Storage</h2>
+    <p>All app data — including flashcard decks, study history, and downloaded models — is stored locally on your device. Deleting the app removes all associated data.</p>
+
+    <h2>Children's Privacy</h2>
+    <p>Die Kartei does not collect data from anyone, including children under 13.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>If this privacy policy is updated, the new version will be posted at this URL. Since Die Kartei collects no data, meaningful changes are unlikely.</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+  particlesJS('karte-ai-particles', {
+    particles: {
+      number: { value: 40, density: { enable: true, value_area: 900 } },
+      color: { value: ["#34C759", "#5EDE7A", "#248A3D"] },
+      shape: { type: "edge" },
+      opacity: {
+        value: 0.35,
+        random: true,
+        anim: { enable: true, speed: 0.3, opacity_min: 0.1, sync: false }
+      },
+      size: {
+        value: 8,
+        random: true,
+        anim: { enable: true, speed: 1, size_min: 2, sync: false }
+      },
+      line_linked: {
+        enable: true,
+        distance: 160,
+        color: "#34C759",
+        opacity: 0.12,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 0.8,
+        direction: "none",
+        random: true,
+        straight: false,
+        out_mode: "out",
+        bounce: false
+      }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: { enable: true, mode: "grab" },
+        onclick: { enable: true, mode: "push" },
+        resize: true
+      },
+      modes: {
+        grab: { distance: 180, line_linked: { opacity: 0.3 } },
+        push: { particles_nb: 3 }
+      }
+    },
+    retina_detect: true
+  });
+</script>
