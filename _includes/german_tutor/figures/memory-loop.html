@@ -1,0 +1,56 @@
+    <figure>
+      <h4>The memory loop — bounded, structured, archived</h4>
+      <p class="gta-fig-sub">Session ends → extract → decay/cap/heal → archive → brief next session. The ~60-token briefing is all the small model ever sees — the full profile lives for you in Coach's Notes.</p>
+      <div class="gta-loop">
+        <svg viewBox="0 0 320 320" role="img" aria-label="Learner memory loop: session end extracts WEAK/STRONG, vocab, slips; bounded profile with LRU caps and decay; archive; briefing injection into next session">
+          <!-- circle -->
+          <circle cx="160" cy="160" r="102" fill="none" stroke="#2C2C2E" stroke-width="1"/>
+          <circle cx="160" cy="160" r="102" fill="none" stroke="#0A84FF" stroke-width="1.4" stroke-dasharray="7 7" class="gta-loop-flow" opacity="0.55"/>
+          <!-- top: session end -->
+          <g>
+            <rect x="98" y="14" width="124" height="40" rx="10" fill="#1a1a1d" stroke="#2C2C2E"/>
+            <text x="160" y="32" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" font-family="-apple-system">Session ends</text>
+            <text x="160" y="44" text-anchor="middle" font-size="8" fill="#8E8E93" font-family="-apple-system">endAndSummarize() +</text>
+            <text x="160" y="52" text-anchor="middle" font-size="8" fill="#8E8E93" font-family="-apple-system">WEAK:/STRONG: tags (no extra call)</text>
+          </g>
+          <!-- right: extract -->
+          <g class="gta-bob">
+            <rect x="226" y="96" width="92" height="62" rx="10" fill="#1a1a1d" stroke="rgba(10,132,255,0.35)"/>
+            <text x="272" y="112" text-anchor="middle" font-size="9" font-weight="700" fill="#4DA3FF" font-family="-apple-system">Extract</text>
+            <text x="272" y="122" text-anchor="middle" font-size="7.5" fill="#c3c2b7" font-family="-apple-system">grammar: struggle</text>
+            <text x="272" y="130" text-anchor="middle" font-size="7.5" fill="#c3c2b7" font-family="-apple-system">vocab: 60-cap LRU</text>
+            <text x="272" y="138" text-anchor="middle" font-size="7.5" fill="#c3c2b7" font-family="-apple-system">slips: 20-cap self-heal</text>
+          </g>
+          <!-- bottom: bounded profile -->
+          <g>
+            <rect x="96" y="246" width="128" height="54" rx="10" fill="#101011" stroke="#0A84FF" stroke-width="1.2"/>
+            <text x="160" y="262" text-anchor="middle" font-size="9" font-weight="700" fill="#8FC2FF" font-family="-apple-system">Active Profile (bounded)</text>
+            <text x="160" y="273" text-anchor="middle" font-size="7.5" fill="#8E8E93" font-family="-apple-system">grammar fixed keys · vocab/slips LRU</text>
+            <text x="160" y="282" text-anchor="middle" font-size="7.5" fill="#8E8E93" font-family="-apple-system">samples cap 2 · decay per session</text>
+          </g>
+          <!-- left: archive -->
+          <g>
+            <rect x="8" y="158" width="84" height="48" rx="10" fill="#1a1a1d" stroke="#2C2C2E"/>
+            <text x="50" y="174" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" font-family="-apple-system">Archive</text>
+            <text x="50" y="184" text-anchor="middle" font-size="7" fill="#8E8E93" font-family="-apple-system">Mastered / Aged / LRU</text>
+            <text x="50" y="192" text-anchor="middle" font-size="7" fill="#8E8E93" font-family="-apple-system">never injected · paged</text>
+          </g>
+          <!-- center: briefing -->
+          <g class="gta-pulse">
+            <rect x="118" y="132" width="84" height="52" rx="12" fill="#1c1c1f" stroke="#4DA3FF" stroke-width="1.2"/>
+            <text x="160" y="150" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" font-family="-apple-system">~60-token</text>
+            <text x="160" y="162" text-anchor="middle" font-size="10" font-weight="700" fill="#4DA3FF" font-family="-apple-system">briefing</text>
+            <text x="160" y="173" text-anchor="middle" font-size="7" fill="#8E8E93" font-family="-apple-system">→ next session system prompt</text>
+          </g>
+        </svg>
+        <div class="gta-loop-steps">
+          <dl>
+            <div><dt>{% include german_tutor/icon.html name="square-pen" %}</dt><dd><strong>Bounded by design</strong> — not a growing log. Fixed grammar keys can't balloon; vocab 60 / slips 20 LRU; samples 2. Keeps small model prompt tiny.</dd></div>
+            <div><dt>{% include german_tutor/icon.html name="eraser" %}</dt><dd><strong>Self-cleaning</strong> — struggle decays each session; slips heal on correct use; eviction → archive (never injected), swipable restore/auto-pin.</dd></div>
+            <div><dt>{% include german_tutor/icon.html name="eye" %}</dt><dd><strong>Visible & editable</strong> — Coach's Notes shows "Solid / Getting there / Needs work" + samples, words building, slip-ups watching. Pin / remove / reset. Build a drill deck from it offline → SRS.</dd></div>
+            <div><dt>{% include german_tutor/icon.html name="calendar-days" %}</dt><dd><strong>Today + spaced chat</strong> — Today plan reads profile + due cards + streak (StudyDay); due words steered into conversation and credited as real SRS reviews ("🔁 reviewed: …") when you use them correctly.</dd></div>
+          </dl>
+        </div>
+      </div>
+      <figcaption>Why structured, not vectors: keyed retrieval by rule (top-N struggle/recency) — no on-device embedding model, human-readable/editable, and dedup is trivial. Vectors reserved for future transcript search. Doc: <code>docs/LEARNER_MEMORY.md</code>, model: <code>Models/LearnerProfile.swift</code>, service: <code>Services/LearnerMemoryService.swift</code> + <code>MatchingStatsService.swift</code> (matching → vocab) + <code>TodayPlanner</code> / <code>StudyLogService</code>.</figcaption>
+    </figure>

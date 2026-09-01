@@ -1,0 +1,45 @@
+{%- comment -%}
+  Inline Lucide icon. Path data lives in _data/gt_icons.yml — add icons there.
+
+  Two modes, picked automatically by whether you pass x/y:
+
+  1. HTML flow (no x/y) — emits a standalone <svg>. Box defaults to 1em, so the
+     icon tracks the surrounding font-size and needs no per-site tuning:
+       {% include german_tutor/icon.html name="brain" %}
+       {% include german_tutor/icon.html name="flame" box="18" %}
+
+  2. Inside an existing <svg> (pass x and y) — emits a <g transform="translate…">
+     instead, because a bare nested <svg> would ignore positioning. x/y are the
+     icon's TOP-LEFT corner in the parent SVG's user units, not a text baseline:
+       {% include german_tutor/icon.html name="flask-conical" x="185" y="24" box="16" %}
+
+  Parameters
+    name    required, key in _data/gt_icons.yml
+    box     icon box size. HTML mode default "1em"; SVG mode default 24 (user units)
+    class   extra classes appended to .gt-ico
+    stroke  stroke-width on the 24x24 grid, default 2
+    fill    default "none"; pass "currentColor" for a solid glyph (e.g. a filled star)
+    label   accessible name. Omit for decoration — icons are aria-hidden by default,
+            which is what you want whenever adjacent text already says the same thing.
+
+  The size parameter is called "box", not "size", on purpose: Liquid's `include` is
+  a Hash, and `include.size` silently resolves to Hash#size (the number of params
+  passed) instead of a missing key, so every icon came out N pixels wide. Any name
+  outside Liquid's command methods — size, first, last — is safe.
+{%- endcomment -%}
+{%- assign gt_ico_d = site.data.gt_icons[include.name] -%}
+{%- if gt_ico_d == nil -%}<!-- icon not found in _data/gt_icons.yml: {{ include.name }} -->{%- else -%}
+{%- assign gt_ico_stroke = include.stroke | default: 2 -%}
+{%- assign gt_ico_fill = include.fill | default: "none" -%}
+{%- capture gt_ico_a11y -%}
+{%- if include.label -%}role="img" aria-label="{{ include.label }}"{%- else -%}aria-hidden="true" focusable="false"{%- endif -%}
+{%- endcapture -%}
+{%- if include.x -%}
+{%- assign gt_ico_box = include.box | default: 24 -%}
+{%- assign gt_ico_scale = gt_ico_box | divided_by: 24.0 -%}
+<g class="gt-ico {{ include.class }}" transform="translate({{ include.x }} {{ include.y }}) scale({{ gt_ico_scale }})" fill="{{ gt_ico_fill }}" stroke="currentColor" stroke-width="{{ gt_ico_stroke }}" stroke-linecap="round" stroke-linejoin="round" {{ gt_ico_a11y }}>{{ gt_ico_d }}</g>
+{%- else -%}
+{%- assign gt_ico_box = include.box | default: "1em" -%}
+<svg class="gt-ico {{ include.class }}" width="{{ gt_ico_box }}" height="{{ gt_ico_box }}" viewBox="0 0 24 24" fill="{{ gt_ico_fill }}" stroke="currentColor" stroke-width="{{ gt_ico_stroke }}" stroke-linecap="round" stroke-linejoin="round" {{ gt_ico_a11y }}>{{ gt_ico_d }}</svg>
+{%- endif -%}
+{%- endif -%}

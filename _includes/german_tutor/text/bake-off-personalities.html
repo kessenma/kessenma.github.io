@@ -1,0 +1,57 @@
+    <h3 id="personalities">Model families have personalities — and they're inverse</h3>
+    <p>
+      This was the finding I didn't expect. What came back from the survey wasn't really a
+      ranking. There are exactly two ways to be a bad German tutor, and each model family picks
+      one:
+    </p>
+
+    <div class="gta-lesson">
+      <p>
+        <span class="gta-lesson-head">The over-correctors have a judgment deficit.</span>
+        Both Gemma 4 models fail this way: over-eager corrections of sentences that were already
+        right. Other families take it to an extreme — Ministral 8B "fixed" <strong>84%</strong> of
+        the perfectly correct sentences shown to it, and Aya Expanse 8B, Cohere's multilingual
+        flagship, corrected <strong>all 32 of them</strong>. It knows German; it just can't say
+        "this is fine."
+      </p>
+      <p>
+        <span class="gta-lesson-head">The rubber-stampers have a knowledge deficit.</span>
+        Every Qwen fails the opposite way: waving broken German through as OK. Qwen3-8B falsely
+        corrects only 6% of the time — a great-looking number — but misses <strong>48%</strong> of
+        real errors. Phi-4 Mini misses 77%. Llama 3.2 1B took it to the logical conclusion and
+        answered OK to <em>all 69</em> errors in the suites: a perfect false-correction score,
+        achieved by never correcting anything.
+      </p>
+    </div>
+
+    <p>
+      The trap is that a model that never says "this is fine" and a model that never says "this is
+      wrong" score surprisingly similarly on a naive accuracy metric — and are equally useless as
+      tutors. That's why these two behavioral rates, not the headline score, became my primary
+      metrics, and why the bottom-left corner of the chart above is the only place worth being.
+      And if you have to pick a failure mode: the over-corrector is annoying, but the
+      rubber-stamper is fatal. A student can recover from being told a correct sentence was wrong.
+      A student can't learn from a teacher who validates their mistakes.
+    </p>
+
+    <p>
+      <strong>The model already on the phone is the worst tutor of all.</strong> The obvious
+      question about an on-device German app in 2026 is "why ship your own model — the iPhone
+      already has Apple Intelligence." So I ran it through the identical eval (through its
+      FoundationModels Swift API instead of MLX, same prompts, same scorer). Apple's ~3B on-device
+      model was the most extreme over-corrector in the whole survey: it "fixed" <strong>all
+      32</strong> correct sentences — a 100% false-correction rate — by echoing the student's
+      sentence back <em>unchanged</em> under a <code>FIX:</code> header with a made-up reason
+      (<em>"Incorrect subject-verb agreement needed"</em> on the flawless <em>Sie wartet auf ihren
+      Freund</em>). It never once said "this is fine." Its grammar knowledge is Mistral-tier — 42%
+      on the core four, 0/15 on da-/wo-compounds — and tellingly it made <em>zero</em> format
+      errors: it has learned the shape of a correction task perfectly and has none of the judgment
+      to know when not to apply it.
+    </p>
+    <p>
+      The meta-lesson: none of this was visible before building the eval. Every one of these
+      models ships with a beautiful model card and strong multilingual benchmark numbers — Phi-4
+      Mini in particular is a benchmark darling that turned in Mistral-tier German. The whole
+      bake-off cost nothing but Mac compute time, because the harness already existed. Evals are
+      the cheapest instrument in the on-device toolchain, and the highest-leverage one.
+    </p>

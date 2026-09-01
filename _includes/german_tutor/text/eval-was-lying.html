@@ -1,0 +1,87 @@
+    <h2 id="the-eval-was-lying">The eval was lying to me</h2>
+    <p>
+      Instead of asking <em>how many</em> false corrections the tuned E2B made, I decomposed
+      <em>how each one fails</em>. The answer changed the whole project:
+    </p>
+
+    <div class="gta-table-wrap">
+      <table>
+        <thead>
+          <tr><th>Model</th><th>False corrections</th><th>Byte-identical echo</th><th>Genuine bad rewrite</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>E2B stock</td><td>11/32</td><td>11</td><td>0</td></tr>
+          <tr class="gta-row-win"><td><strong>E2B tuned</strong></td><td><strong>19/32</strong></td><td><strong>18</strong></td><td><strong>1</strong></td></tr>
+          <tr><td>E4B stock</td><td>11/32</td><td>9</td><td>2</td></tr>
+          <tr><td>E4B tuned</td><td>7/32</td><td>5</td><td>2</td></tr>
+          <tr><td>Apple Intelligence</td><td>32/32</td><td>27</td><td>5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      An "echo" is the model emitting <code>FIX: &lt;the student's sentence, verbatim&gt;</code>
+      plus a confabulated reason. Of the tuned E2B's 19 false corrections, <strong>18 were
+      echoes</strong>. Its only genuinely wrong rewrite in the whole 121-item suite was swapping
+      <em>zumachen</em> for <em>zuschlagen</em> — "close" for "slam" — on one sentence. And here's
+      the punchline: the app's correction parser <strong>has discarded echoes since before any of
+      this training work existed</strong>. It compares the FIX line against the student's original
+      and returns "all clear" when they match. The app never showed a user a single one of those
+      18 echoed corrections. My eval harness simply didn't model that step — so every
+      false-correction number on the scoreboard measured the raw checkpoint rather than the
+      shipped behavior. The 59% was real as a statement about the checkpoint, and misleading as a
+      statement about the app.
+    </p>
+    <p>
+      Mirroring the app's parse contract into the scorer (the <a class="gterm" href="#gl-guarded">app guard</a>) and re-scoring the
+      saved responses — a pure post-process, no re-inference, verified across 10 models × 121
+      items with zero regressions — redrew the board. Two scales now exist: <em>raw</em> measures
+      the checkpoint, <em>guarded</em> measures what a user actually experiences. Guarded is the
+      honest one, and every number from here on is guarded:
+    </p>
+
+    <div class="gta-table-wrap">
+      <table>
+        <thead>
+          <tr><th>Model</th><th>Core (raw → guarded)</th><th>False corr. (raw → guarded)</th><th>Miss</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>E2B stock</td><td>65% → 73%</td><td>34% → 0%</td><td>28%</td></tr>
+          <tr class="gta-row-win"><td><strong>E2B tuned</strong></td><td>68% → <span class="gta-good">83%</span></td><td>59% → <span class="gta-good">3%</span></td><td><span class="gta-good">19%</span></td></tr>
+          <tr><td>E4B stock</td><td>72% → 80%</td><td>34% → 6%</td><td>16%</td></tr>
+          <tr class="gta-row-win"><td><strong>E4B tuned (shipped)</strong></td><td>85% → <span class="gta-good">90%</span></td><td>22% → <span class="gta-good">6%</span></td><td><span class="gta-good">9%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      The tuned E2B doesn't teeter on any cliff. It beats stock E2B by <strong>+10 points of core
+      accuracy and 9 points of miss rate</strong>, at the cost of one bad correction in 32. What
+      the 2B had actually learned was the FIX <em>format</em> — including the habit of using it to
+      say "no change needed" — while its knowledge gains were real all along. A formatting failure
+      with a two-line fix, not a capacity ceiling. (Gemma 3 1B produced zero echoes, so the 1B
+      collapse survives re-scoring untouched — the cliff is real; E2B was just never on it.)
+    </p>
+    <p>
+      Building the guard also fixed two real defects in the app's own filter: it compared
+      diacritic-<em>insensitively</em>, silently swallowing genuine umlaut corrections
+      (<em>Madchen → Mädchen</em> is exactly what a learner needs to see), and it demanded an
+      exact match otherwise, so an echo that merely added a period leaked through as a spurious
+      correction. Both fixed. A memory measurement closed the loop: the model's true resident
+      peak is 2.71 GB — the app's old estimate scaled the <em>download</em> size and overshot by
+      40%, which was the only thing excluding 6 GB phones. So on 2026-07-22 the fine-tune I had
+      written off <strong>shipped as the 6 GB tier</strong>, public on Hugging Face
+      (<a href="{{ site.data.german_tutor.links.model_e2b }}"><code>kessenma/gemma4-e2b-german-tutor-4bit</code></a>)
+      with the echo filter published right in the model card — without it, the raw model reads as
+      a 59%-false-correction disaster.
+    </p>
+
+    <div class="gta-lesson">
+      <p>
+        <span class="gta-lesson-head">Bench the app, not the checkpoint.</span>
+        My eval mirrored the model's output format but not the app's <em>parse contract</em>, and
+        the gap between those two nearly killed a shippable model. Implement every step of what
+        production does with a reply — filters, guards, fallbacks — or the bench measures a model
+        the user never meets. This lesson gets a second, crueler confirmation below.
+      </p>
+    </div>

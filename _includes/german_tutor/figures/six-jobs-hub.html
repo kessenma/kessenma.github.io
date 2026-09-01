@@ -1,0 +1,77 @@
+    <figure>
+      <h4>One model, six jobs</h4>
+      <p class="gta-fig-sub">Same 4-bit Gemma 4 E4B, six prompt formats. The fine-tune had to preserve all of them — hence the 35% general mix-in and the extension suite going up, not down.</p>
+      <div class="gta-hub">
+        <svg viewBox="0 0 520 416" role="img" aria-label="Diagram: central on-device model with six surrounding tasks: Conversation, Correction, Translation & Word Inspector, Flashcard JSON, Grammar Exercise Generation, and Stories">
+          <defs>
+            <linearGradient id="gta-icongrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#4DA3FF"/>
+              <stop offset="55%" stop-color="#007AFF"/>
+              <stop offset="100%" stop-color="#0A5CCC"/>
+            </linearGradient>
+          </defs>
+          <!-- connections -->
+          <g stroke="#383835" stroke-width="1.2" fill="none" stroke-dasharray="6 6" class="gta-flow">
+            <path d="M260 212 L 95 86"/><path d="M260 212 L 425 86"/><path d="M260 212 L 95 296"/><path d="M260 212 L 425 296"/><path d="M260 212 L 260 40"/><path d="M260 212 L 260 375"/>
+          </g>
+          <!-- central model, styled as the app's icon tile -->
+          <g class="gta-hub-chip gta-pulse">
+            <rect x="200" y="170" width="120" height="84" rx="22" fill="url(#gta-icongrad)"/>
+            <rect x="205" y="175" width="110" height="74" rx="17" fill="none" stroke="rgba(255,255,255,0.28)"/>
+            <text x="260" y="199" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="-apple-system">Gemma 4 E4B</text>
+            <text x="260" y="212" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,0.85)" font-family="-apple-system">German Tutor · 4-bit</text>
+            <circle cx="250" cy="230" r="2.5" fill="#fff" class="gta-led"/>
+            <circle cx="260" cy="230" r="2.5" fill="#fff" class="gta-led" style="animation-delay:0.4s"/>
+            <circle cx="270" cy="230" r="2.5" fill="#fff" class="gta-led" style="animation-delay:0.8s"/>
+          </g>
+          <!-- grammar gen -->
+          <g class="gta-bob gta-bob-5">
+            <rect x="185" y="16" width="150" height="48" rx="12" fill="#1C1C1E" stroke="#2C2C2E"/>
+            {% include german_tutor/icon.html name="flask-conical" x="193" y="22" box="16" %}
+            <text x="214" y="36" font-size="11" font-weight="700" fill="#fff" font-family="-apple-system">Grammar Gen</text>
+            <text x="214" y="48" font-size="9" fill="#898781" font-family="-apple-system">fresh cloze on any topic</text>
+          </g>
+          <!-- conversation -->
+          <g class="gta-bob">
+            <rect x="20" y="52" width="150" height="68" rx="12" fill="#1C1C1E" stroke="#2C2C2E"/>
+            {% include german_tutor/icon.html name="speech" x="28" y="57" box="20" %}
+            <text x="52" y="74" font-size="11" font-weight="700" fill="#fff" font-family="-apple-system">Conversation</text>
+            <text x="52" y="88" font-size="9" fill="#898781" font-family="-apple-system">CEFR-aware chat, hints,</text>
+            <text x="52" y="99" font-size="9" fill="#898781" font-family="-apple-system">"Say it" coaching</text>
+          </g>
+          <!-- correction -->
+          <g class="gta-bob gta-bob-2">
+            <rect x="350" y="52" width="150" height="68" rx="12" fill="#1C1C1E" stroke="rgba(255,159,10,0.4)"/>
+            <g style="color:#FF9F0A">{% include german_tutor/icon.html name="pencil" x="358" y="57" box="20" %}</g>
+            <text x="382" y="74" font-size="11" font-weight="700" fill="#FF9F0A" font-family="-apple-system">Correction</text>
+            <text x="382" y="88" font-size="9" fill="#E0A85A" font-family="-apple-system">FIX / WHY / OK — the exact</text>
+            <text x="382" y="99" font-size="9" fill="#E0A85A" font-family="-apple-system">format the eval measures</text>
+          </g>
+          <!-- translation / inspector -->
+          <g class="gta-bob gta-bob-3">
+            <rect x="20" y="262" width="150" height="68" rx="12" fill="#1C1C1E" stroke="#2C2C2E"/>
+            {% include german_tutor/icon.html name="search" x="28" y="267" box="20" %}
+            <text x="52" y="284" font-size="11" font-weight="700" fill="#fff" font-family="-apple-system">Translate & Inspect</text>
+            <text x="52" y="298" font-size="9" fill="#898781" font-family="-apple-system">Tap any word → meaning,</text>
+            <text x="52" y="309" font-size="9" fill="#898781" font-family="-apple-system">save as phrase / flashcard</text>
+          </g>
+          <!-- flashcards -->
+          <g class="gta-bob gta-bob-4">
+            <rect x="350" y="262" width="150" height="68" rx="12" fill="#1C1C1E" stroke="#2C2C2E"/>
+            {% include german_tutor/icon.html name="layers" x="358" y="267" box="20" %}
+            <text x="382" y="284" font-size="11" font-weight="700" fill="#fff" font-family="-apple-system">Flashcard JSON</text>
+            <text x="382" y="298" font-size="9" fill="#898781" font-family="-apple-system">vocab → {de,en,example,</text>
+            <text x="382" y="309" font-size="9" fill="#898781" font-family="-apple-system">gender, plural…}</text>
+          </g>
+          <!-- stories -->
+          <g class="gta-bob gta-bob-6">
+            <rect x="185" y="346" width="150" height="58" rx="12" fill="#1C1C1E" stroke="rgba(10,132,255,0.45)"/>
+            <g style="color:#4DA3FF">{% include german_tutor/icon.html name="book-open" x="193" y="353" box="17" %}</g>
+            <text x="216" y="368" font-size="11" font-weight="700" fill="#4DA3FF" font-family="-apple-system">Stories</text>
+            <text x="216" y="380" font-size="9" fill="#8FC2FF" font-family="-apple-system">writes &amp; grades level-</text>
+            <text x="216" y="391" font-size="9" fill="#8FC2FF" font-family="-apple-system">controlled short stories</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>One quantized checkpoint, six prompt templates. The correction slice is what the paper-trail eval scores, but the tutor diamond (conversation + correction) is what the user feels — and the JSON + exercise generation + story writing is what makes it an <em>app</em>, not a demo. Code: <code>ConversationView.swift</code>, <code>ConversationPrompts.correctionSystemPrompt</code>, <code>MLXGenerationService.buildJSONPrompt</code>, <code>generateGrammarExercises</code>, <code>StorySetupView.swift</code> + <code>StoryStudyService</code>.</figcaption>
+    </figure>

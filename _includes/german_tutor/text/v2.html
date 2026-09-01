@@ -1,0 +1,131 @@
+    <h2 id="v2">v2: 28× the data, and teaching the tutor to sound human</h2>
+    <p>
+      Round two's postmortem left a to-do list: reflexives had resisted the first data wave, the
+      "would more data help?" question was still open, and now a real learner had put a name on a
+      defect my eval couldn't see — grammatically solid, conversationally flat. So the second
+      training campaign started where the first one did: not with data, but with measurement.
+    </p>
+
+    <h3>First, fix the ruler</h3>
+    <p>
+      Twenty-plus models had been scored against the original eval suites, and ship decisions made
+      from the results — which quietly turns a held-out set into a <em>dev</em> set. So v2 got a
+      <strong>frozen 82-item holdout</strong> built from deliberately new lexical material,
+      verified to share not a single sentence (nor near-duplicate) with any training data, with a
+      standing rule: score each candidate once, never iterate against it. It immediately earned
+      its keep with an uncomfortable finding: on genuinely fresh material the shipped E4B drops
+      from ~92% (on the old, iterated-against suites) to <strong>85%</strong>, while E2B
+      reproduces its 84% <em>exactly</em>. Most of E4B's measured lead over its little sibling was
+      <a class="gterm" href="#gl-devdrift">dev-set drift</a> — it was the first tune, the hero,
+      the reference for every comparison, so it had the most opportunity to be selected on those
+      suites. The honest baseline for everything below is the holdout: <strong>E4B 85%, E2B
+      84%</strong>.
+    </p>
+    <p>
+      Second measurement: a <strong>naturalness bench</strong> — 50 frozen conversation items
+      scored on proxies for spoken register: <a class="gterm" href="#gl-modal">modal-particle</a> rate (<em>doch, mal, eigentlich,
+      halt</em>… — the words that make German sound like a person), opening variety, canned-phrase
+      repetition, question variety, English leakage. Proxies, not a certificate — but reliable for
+      before/after comparison, which is the job. The baseline confirmed the tester's ear: both
+      shipped tunes used modal particles at a bone-dry ~2.9 per 100 tokens, repeated one of their
+      top-5 phrases in 30% of replies, and leaned on the same openers.
+    </p>
+    <p>
+      And while wiring that bench to the app's real prompts, a third problem surfaced: the
+      training data had been built against prompt strings hand-copied from the app <em>months
+      earlier</em> — and the app had moved. Twenty-three role-play scenarios instead of one
+      generic sentence, twelve grammar-focus areas, and a shipped "Nudge me" feature whose
+      <code>HINT:</code> output format had <strong>zero training examples</strong>. The fix was
+      structural, not heroic: the data pipeline now parses the prompt strings directly out of the
+      app's Swift source at import time, with a drift guard that fails loudly. Training data
+      should match the exact token stream production sends — round one taught me that lesson
+      about chat templates; round three of it was self-inflicted.
+    </p>
+
+    <h3>Then, 28× the data</h3>
+    <p>
+      Generation moved from "batches of 60 from a coding assistant" to an actual pipeline: a
+      <a class="gterm" href="#gl-moe">mixture-of-experts</a> Gemma 4 26B teacher on a rented A100,
+      producing correction pairs, conversations (with the prompt explicitly demanding modal
+      particles, varied openers, and no yes/no-question monotony), flashcards, recovery dialogues
+      and native-German instruction data — <strong>61k generated, 45,097 surviving the validation
+      gate (73%), ~31.5k packed</strong> after dedup and subsampling to the target mix, for about
+      $6 of GPU time. Versus round one's 1,447 examples.
+    </p>
+
+    <div class="gta-lesson">
+      <p>
+        <span class="gta-lesson-head">Pass rate cannot detect valid data of the wrong shape.</span>
+        The scariest bug of the campaign: a one-line "repair" regex, written to fix a JSON glitch
+        the teacher emits, silently destroyed <em>every training example that contained an actual
+        correction</em> — the schema puts a value and a key of the same name side by side
+        (<code>"verdict":"fix","fix":…</code>), and the unanchored pattern mangled exactly those
+        rows. The validator then approved what remained (an "OK" row with correct German is
+        perfectly well-formed), so the pass rate went <em>up</em> while the correction slice
+        quietly contained zero corrections. The fix is an anchored regex plus a new gate that
+        checks batch <em>composition</em> — verdict mix, per-phenomenon presence — not just
+        validity. Cost of the lesson: ~$2 and 100 minutes.
+      </p>
+    </div>
+
+    <h3>What the corpus bought, by size</h3>
+    <p>
+      Same recipe, both Gemma 4 models, scored on the frozen holdout (app-equivalent, as
+      everything is from here on):
+    </p>
+
+    <div class="gta-table-wrap">
+      <table>
+        <thead>
+          <tr><th>Model</th><th>Core</th><th>False corrections</th><th>Missed errors</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>E4B v1 (shipped)</td><td>85%</td><td>8%</td><td><span class="gta-good">12%</span></td></tr>
+          <tr class="gta-row-win"><td><strong>E4B v2</strong></td><td><span class="gta-good">91%</span></td><td><span class="gta-good">0%</span></td><td>15%</td></tr>
+          <tr><td>E2B v1 (shipped)</td><td>84%</td><td>12%</td><td><span class="gta-good">10%</span></td></tr>
+          <tr><td>E2B v2</td><td>84%</td><td><span class="gta-good">4%</span></td><td><span class="gta-bad">20%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      <strong>E4B converted the data into capability: +6 points core, false corrections
+      eliminated.</strong> The gains landed exactly where v1 was weakest — da-/wo-compounds, the
+      app's hardest target area, went 6/10 → 9/10. And the naturalness metrics moved even more
+      than the grammar: modal particles <strong>5.1×</strong> (2.82 → 14.49 per 100 tokens),
+      canned-phrase repetition 0.30 → 0.12, follow-up questions in 90% of replies, richer
+      vocabulary, still zero English leakage. The trade I'd braced for — more human-sounding at
+      some cost in grammar — never had to be made: better on both axes. This model is the new
+      8 GB-tier tutor, queued to replace v1 in the app.
+    </p>
+    <p>
+      <strong>E2B converted the same data into caution: a trade, not an upgrade.</strong> Core
+      flat at 84%, false corrections 3× better (12% → 4%) — but missed errors doubled (10% →
+      20%). It sounds more natural (particles 4.2×, repetition halved) and became a more timid
+      corrector. For now, E2B v1 stays shipped — a tutor that misses a fifth of real errors is a
+      worse teacher than one that occasionally over-fusses. That's the capacity gradient showing
+      up one tier down, again: at 4B extra data buys knowledge; at ~2B effective, it buys
+      disposition.
+    </p>
+
+    <div class="gta-lesson">
+      <p>
+        <span class="gta-lesson-head">Measurement beats vivid examples.</span>
+        Since v1 I'd been convinced the ~35% machine-translated instruction mix-in was hurting —
+        one look at <em>"Funktionieren Sie als Softwareingenieur"</em> (machine-rendered "Act as a
+        software engineer", which actually reads as "Do you function as a software engineer") and
+        the case felt closed. The v2 campaign finally A/B-tested it: dropping the mix-in cost
+        <strong>7 points of core and doubled the miss rate</strong>, with no naturalness gain. It
+        was never contributing register — it was general language-modeling signal preventing the
+        fine-tune from narrowing. The vivid bad example lost to the measurement, and it wasn't
+        close.
+      </p>
+    </div>
+
+    <p>
+      One thread to pull later: relative pronouns regressed 6/6 → 4/6 in E4B v2 — and the same
+      phenomenon regressed by the same amount on a completely different architecture trained on
+      this corpus (next section). Two unrelated model families don't share noise; something in
+      the v2 corpus is taxing that area, and it needs investigating before anything else trains
+      on it.
+    </p>

@@ -1,0 +1,46 @@
+    <figure>
+      <h4>The data pipeline</h4>
+      <p class="gta-fig-sub">Ground truth in, gated examples out. The gate is the part that earns its keep.</p>
+      <div class="gta-pipe">
+        <div class="gta-pipe-step">
+          <h5>1 · Ground truth</h5>
+          <ul>
+            <li>268 verb + preposition entries (case, reflexivity, CEFR)</li>
+            <li>6,526 separable verbs (Wiktionary)</li>
+            <li>1,604 reflexive verbs (Wiktionary)</li>
+            <li>83,000 seed sentences mined from <a class="gterm" href="#gl-tatoeba">Tatoeba</a></li>
+          </ul>
+        </div>
+        <div class="gta-pipe-arrow">→</div>
+        <div class="gta-pipe-step">
+          <h5>2 · Teacher generation</h5>
+          <ul>
+            <li>Batches of ~60 in the app's <em>exact</em> prompts</li>
+            <li>Corrections, tutor dialogues, flashcard JSON</li>
+            <li>Mid-tier <a class="gterm" href="#gl-teacher">teacher model</a> — the budget one failed hard</li>
+          </ul>
+        </div>
+        <div class="gta-pipe-arrow">→</div>
+        <div class="gta-pipe-step gta-pipe-gate">
+          <h5>3 · Validation gate</h5>
+          <ul>
+            <li><a class="gterm" href="#gl-languagetool">LanguageTool</a> + <a class="gterm" href="#gl-spacy">spaCy</a> structural checks</li>
+            <li><strong>DeepL</strong> gloss cross-check</li>
+            <li>Dedup + eval-leak guard</li>
+          </ul>
+        </div>
+        <div class="gta-pipe-arrow">→</div>
+        <div class="gta-pipe-step">
+          <h5>4 · Packed</h5>
+          <ul>
+            <li>1,476 examples in chat format</li>
+            <li>1,447 train / 29 val</li>
+            <li>Rendered in production prompts</li>
+          </ul>
+        </div>
+      </div>
+      <figcaption>
+        The eval-leak guard caught the generator reproducing a held-out eval sentence on day one —
+        which is exactly why it exists.
+      </figcaption>
+    </figure>

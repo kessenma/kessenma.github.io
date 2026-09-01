@@ -1,0 +1,143 @@
+{%- assign gt = site.data.german_tutor -%}
+<style>
+  /* Scoped to the Writing section so it can't leak into the rest of the page.
+     NOTE: this site sets global rules on bare <span> (skewX + a nth-child width
+     clamp), so everything below uses <div> instead. Root font-size is 10px,
+     so 1rem here matches the body copy used elsewhere on the page. */
+  .wr-block {
+    width: 100%;
+    margin: 0 0 5rem 0;
+  }
+
+  .wr-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 14px;
+    box-shadow: 0 0.6em 1.4em -0.9em rgba(0, 0, 0, 0.5);
+    text-align: left;
+  }
+
+  .wr-icon {
+    width: 84px;
+    height: 84px;
+    border-radius: 18px;
+    flex: 0 0 auto;
+  }
+
+  .wr-body {
+    flex: 1 1 320px;
+    min-width: 0;
+  }
+
+  .wr-tag {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.3em 0.9em;
+    border-radius: 999px;
+    background: #000;
+    color: var(--limeGreen);
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .wr-body h3 {
+    margin: 0 0 0.8rem 0;
+  }
+
+  .wr-body p {
+    margin: 0 0 1rem 0;
+  }
+
+  .wr-meta {
+    margin-top: 1.5rem;
+    opacity: 0.65;
+  }
+
+  .wr-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem 2rem;
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .wr-kpis li {
+    min-width: 0;
+  }
+
+  .wr-kpi-value {
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .wr-kpi-label {
+    margin-top: 0.3rem;
+    opacity: 0.65;
+    line-height: 1.35;
+  }
+
+  @media only screen and (max-width: 640px) {
+    .wr-card {
+      padding: 1.6rem;
+      gap: 1.5rem;
+    }
+    .wr-icon {
+      width: 64px;
+      height: 64px;
+    }
+  }
+</style>
+
+<div class="diagonal-box bg-three">
+  <div class="content">
+    <div class="user-details">
+      <h1> Writing </h1>
+    </div>
+
+    <div class="wr-block">
+      <article class="wr-card">
+
+        <img class="wr-icon" src="{{ gt.icon }}" alt="{{ gt.icon_alt }}">
+
+        <div class="wr-body">
+          <div class="wr-tag">{{ gt.badge }}</div>
+
+          <h3> {{ gt.title }} </h3>
+
+          <p>
+            {{ gt.standfirst }}
+          </p>
+
+          {%- if gt.kpis %}
+          <ul class="wr-kpis">
+            {%- for kpi in gt.kpis %}
+            <li>
+              <div class="wr-kpi-value">{{ kpi.value }}</div>
+              <div class="wr-kpi-label">{{ kpi.label }}</div>
+            </li>
+            {%- endfor %}
+          </ul>
+          {%- endif %}
+
+          <div class="">
+            <button class="raise" onclick="window.location.href='{{ gt.url }}'">Read the article</button>
+            <button class="raise" onclick="window.location.href='{{ gt.links.model }}'">Fine-tuned model</button>
+            <button class="raise" onclick="window.location.href='{{ gt.links.profile }}'">Models &amp; dataset</button>
+          </div>
+
+          <p class="wr-meta">{{ gt.byline }} &middot; {{ gt.date }}</p>
+        </div>
+
+      </article>
+    </div>
+
+  </div>
+</div>

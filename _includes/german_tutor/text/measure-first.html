@@ -1,0 +1,45 @@
+    <h2 id="measure-first">Measure first: building the eval</h2>
+    <p>
+      Before generating a single training example, I built a
+      <a class="gterm" href="#gl-heldout">held-out evaluation set</a> that mirrors the app's actual
+      correction task: learner sentences with known errors (the model must produce the right fix)
+      and correct sentences that <em>look</em> wrong (the model must say "OK"). Scoring is fully
+      automated.
+    </p>
+    <p>The baseline results for the stock 4-bit Gemma 4 E4B were clarifying:</p>
+
+    <div class="gta-table-wrap">
+      <table>
+        <thead><tr><th>Area</th><th>Baseline</th></tr></thead>
+        <tbody>
+          <tr><td>Verbs + prepositions</td><td>87%</td></tr>
+          <tr><td>Separable verbs</td><td>80%</td></tr>
+          <tr><td><strong>Reflexive verbs</strong></td><td><span class="gta-bad">60%</span></td></tr>
+          <tr><td><strong>Da-/wo-compounds</strong></td><td><span class="gta-bad">60%</span></td></tr>
+          <tr><td><strong>Overall (core four)</strong></td><td><strong>72%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      My intuition was right — and wrong in an interesting way. I then tested ten <em>more</em>
+      candidate areas (word order, relative pronouns, Konjunktiv II, noun gender, haben/sein
+      auxiliaries, N-Deklination…). The model turned out to be <strong>strong</strong> at word
+      order, relative pronouns, and Konjunktiv II — no training data needed. But the failure
+      analysis surfaced something better than any single grammar gap.
+    </p>
+
+    <div class="gta-lesson">
+      <p>
+        <span class="gta-lesson-head">The dominant failure was behavioral, not grammatical.</span>
+        On 36% of <em>correct</em> sentences, the model returned a "fix" — usually the identical
+        sentence back, with an explanation admitting it was fine. In the app, that means users see
+        corrections for sentences they got right.
+      </p>
+      <p>
+        The second pattern: when unsure, the model <em>dodges</em> — asked to fix
+        <em>"Mit meiner alten Freund"</em>, it changed <em>Freund</em> to <em>Freundin</em>
+        (changing who the sentence is about!) rather than fixing the case. Neither of these shows
+        up in a benchmark number; both destroy trust in a tutor.
+      </p>
+    </div>

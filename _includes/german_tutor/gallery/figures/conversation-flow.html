@@ -1,0 +1,207 @@
+{% comment %}
+  Visual only — the prose for this slide lives in gallery/chatting.html, which
+  wraps this include in its <figure>.
+
+  Same one-phone flow as Stories and Cards, but taller (chat needs the room):
+  options → live chat → tap Translate (English expands inline) → tap Hint (a
+  card docks above the mic) → double-tap a word (the Word sheet rises) → Finish
+  (the end-of-chat report). Driven by the shared "flow" IIFE in scripts.html.
+  Greeting / hint / coaching German is model-generated in the app, so the exact
+  German here is a plausible stand-in; every chrome label is verbatim.
+{% endcomment %}
+      <div class="gta-fl gta-fl-chat" id="gta-fl-chat">
+        <div class="gta-phone">
+          <div class="gta-phone-screen">
+            <div class="gta-island"></div>
+            <div class="gta-fl-screens">
+
+              <!-- 1 · OPTIONS (ConversationSetupView) -->
+              <div class="gta-fl-screen gta-on" data-screen="0" role="img" aria-label="New Conversation setup: type set to Scenario, the Beim Arzt scenario, level A2 with informal du, and the Recommended Gemma 4 E4B German Tutor model.">
+                <div class="gta-sheetnav">
+                  <span class="gta-nav-action">Cancel</span>
+                  <span class="gta-nav-title2">New Conversation</span>
+                  <span class="gta-nav-action gta-bold">Start</span>
+                </div>
+                <div class="gta-fsec">Conversation type</div>
+                <div class="gta-fcard">
+                  <div class="gta-frow gta-fcol">
+                    <span class="gta-seg"><i>Freestyle</i><i>From Decks</i><i class="on">Scenario</i><i>Interview</i></span>
+                  </div>
+                </div>
+                <div class="gta-fsec">Scenario</div>
+                <div class="gta-fcard">
+                  <div class="gta-frow">
+                    <span class="gta-fico" style="color:#0A84FF;">{% include german_tutor/icon.html name="stethoscope" %}</span>
+                    <span class="gta-fstack"><span style="font-weight:600;">Beim Arzt</span><small>Describe your symptoms and understand the doctor's advice.</small></span>
+                  </div>
+                  <div class="gta-frow gta-faction">{% include german_tutor/icon.html name="dices" class="gt-ico-lead" %}Surprise me</div>
+                </div>
+                <div class="gta-fsec">Level &amp; formality</div>
+                <div class="gta-fcard">
+                  <div class="gta-frow gta-fcol">
+                    <span class="gta-seg"><i>A1</i><i class="on">A2</i><i>B1</i><i>B2</i><i>C1</i></span>
+                  </div>
+                  <div class="gta-frow gta-fcol">
+                    <span>Address me as</span>
+                    <span class="gta-seg"><i class="on">Informal (du)</i><i>Formal (Sie)</i></span>
+                  </div>
+                </div>
+                <div class="gta-fsec">Recommended</div>
+                <div class="gta-fcard">
+                  <div class="gta-frow gta-hero-row">
+                    <img class="gta-logo" src="assets/img/article/logo-gemma.png" alt="">
+                    <span class="gta-fstack"><span style="font-weight:600;">Gemma 4 E4B German Tutor <span class="gta-badge-rec">{% include german_tutor/icon.html name="star" fill="currentColor" class="gt-ico-lead" %}Recommended</span></span><small>~4.9 GB · Downloaded</small></span>
+                    <span style="color:#0A84FF; font-weight:700;">{% include german_tutor/icon.html name="check" %}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2 · LIVE CHAT (first model response) -->
+              <div class="gta-fl-screen" data-screen="1" data-dwell="6000" role="img" aria-label="The chat screen: the model has opened the conversation in German, with play, slow, translate and copy icons under its message, Hint and Say-it pills, and a mic to speak.">
+                <div class="gta-cv-chat">
+                  <div class="gta-topbar">
+                    <span class="gta-back">‹ Back</span>
+                    <span class="gta-tt"><b>Beim Arzt</b><span>0:14</span></span>
+                    <span class="gta-icons">{% include german_tutor/icon.html name="info" %}&nbsp;{% include german_tutor/icon.html name="ellipsis" %}</span>
+                  </div>
+                  <div class="gta-brandline"></div>
+                  <div class="gta-msglist">
+                    <div class="gta-mrow">
+                      <span class="gta-avatar"><img src="assets/img/article/logo-gemma.png" alt=""></span>
+                      <div>
+                        <div class="gta-bub gta-bub-model">Guten Tag! Schön, dass du da bist. Wo hast du <span class="gta-cv-w">Schmerzen</span>?</div>
+                        <div class="gta-actions"><span>{% include german_tutor/icon.html name="play" fill="currentColor" %}</span><span>{% include german_tutor/icon.html name="turtle" %}</span><span>{% include german_tutor/icon.html name="book-open" %}</span><span>{% include german_tutor/icon.html name="copy" %}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  {% include german_tutor/gallery/figures/_conv-input.html %}
+                </div>
+              </div>
+
+              <!-- 3 · TRANSLATE (English expands inline under the German) -->
+              <div class="gta-fl-screen" data-screen="2" role="img" aria-label="The same message with Translate tapped: the English expands inline beneath the German, marked by an accent bar, and the translate icon is gone.">
+                <div class="gta-cv-chat">
+                  <div class="gta-topbar">
+                    <span class="gta-back">‹ Back</span>
+                    <span class="gta-tt"><b>Beim Arzt</b><span>0:21</span></span>
+                    <span class="gta-icons">{% include german_tutor/icon.html name="info" %}&nbsp;{% include german_tutor/icon.html name="ellipsis" %}</span>
+                  </div>
+                  <div class="gta-brandline"></div>
+                  <div class="gta-msglist">
+                    <div class="gta-mrow">
+                      <span class="gta-avatar"><img src="assets/img/article/logo-gemma.png" alt=""></span>
+                      <div>
+                        <div class="gta-bub gta-bub-model">Guten Tag! Schön, dass du da bist. Wo hast du Schmerzen?</div>
+                        <div class="gta-cv-tr">Hello! Good to see you here. Where does it hurt?</div>
+                        <div class="gta-actions"><span>{% include german_tutor/icon.html name="play" fill="currentColor" %}</span><span>{% include german_tutor/icon.html name="turtle" %}</span><span>{% include german_tutor/icon.html name="copy" %}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  {% include german_tutor/gallery/figures/_conv-input.html %}
+                </div>
+              </div>
+
+              <!-- 4 · HINT (a card docks above the mic) -->
+              <div class="gta-fl-screen" data-screen="3" role="img" aria-label="The Hint pill tapped: a yellow card titled Hint — you could say docks above the mic, showing a suggested German reply and its English gloss.">
+                <div class="gta-cv-chat">
+                  <div class="gta-topbar">
+                    <span class="gta-back">‹ Back</span>
+                    <span class="gta-tt"><b>Beim Arzt</b><span>0:28</span></span>
+                    <span class="gta-icons">{% include german_tutor/icon.html name="info" %}&nbsp;{% include german_tutor/icon.html name="ellipsis" %}</span>
+                  </div>
+                  <div class="gta-brandline"></div>
+                  <div class="gta-msglist">
+                    <div class="gta-mrow">
+                      <span class="gta-avatar"><img src="assets/img/article/logo-gemma.png" alt=""></span>
+                      <div>
+                        <div class="gta-bub gta-bub-model">Guten Tag! Schön, dass du da bist. Wo hast du Schmerzen?</div>
+                        <div class="gta-actions"><span>{% include german_tutor/icon.html name="play" fill="currentColor" %}</span><span>{% include german_tutor/icon.html name="turtle" %}</span><span>{% include german_tutor/icon.html name="book-open" %}</span><span>{% include german_tutor/icon.html name="copy" %}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="gta-cv-hint">
+                    <div class="gta-cv-hint-head">{% include german_tutor/icon.html name="lightbulb" class="gt-ico-lead" %}Hint — you could say</div>
+                    <div class="gta-cv-hint-de">Ich habe seit gestern Halsschmerzen. <span class="gta-cv-hint-spk">{% include german_tutor/icon.html name="volume-2" %}</span></div>
+                    <div class="gta-cv-hint-en">I've had a sore throat since yesterday.</div>
+                  </div>
+                  {% include german_tutor/gallery/figures/_conv-input.html %}
+                </div>
+              </div>
+
+              <!-- 5 · DOUBLE-TAP WORD (a finger taps Schmerzen, then WordInspectorSheet rises) -->
+              <div class="gta-fl-screen" data-screen="4" data-dwell="7000" role="img" aria-label="A word double-tapped: a finger taps Schmerzen, the chat dims and a Word sheet rises from the bottom showing Schmerzen, its translation, a Hear it button and a Save to flashcard library button.">
+                <div class="gta-cv-chat gta-cv-under">
+                  <div class="gta-topbar">
+                    <span class="gta-back">‹ Back</span>
+                    <span class="gta-tt"><b>Beim Arzt</b><span>0:33</span></span>
+                    <span class="gta-icons">{% include german_tutor/icon.html name="info" %}&nbsp;{% include german_tutor/icon.html name="ellipsis" %}</span>
+                  </div>
+                  <div class="gta-brandline"></div>
+                  <div class="gta-msglist">
+                    <div class="gta-mrow">
+                      <span class="gta-avatar"><img src="assets/img/article/logo-gemma.png" alt=""></span>
+                      <div>
+                        <div class="gta-bub gta-bub-model">Guten Tag! Schön, dass du da bist. Wo hast du <span class="gta-cv-w">Schmerzen<span class="gta-cv-finger" aria-hidden="true">{% include german_tutor/icon.html name="pointer" %}</span></span>?</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="gta-cv-scrim"></div>
+                <div class="gta-cv-sheet">
+                  <div class="gta-cv-sheet-grab"></div>
+                  <div class="gta-cv-sheet-nav"><span></span><span class="gta-cv-sheet-t">Word</span><span class="gta-nav-action gta-bold">Done</span></div>
+                  <div class="gta-cv-sheet-word">Schmerzen</div>
+                  <div class="gta-cv-sheet-tr">pain · aches</div>
+                  <div class="gta-cv-sheet-actions">
+                    <span class="gta-cv-sheet-btn">{% include german_tutor/icon.html name="volume-2" class="gt-ico-lead" %}Hear it</span>
+                    <span class="gta-cv-sheet-btn gta-cv-sheet-save">{% include german_tutor/icon.html name="layers" class="gt-ico-lead" %}Save to flashcard library</span>
+                  </div>
+                  <div class="gta-cv-sheet-foot">Saved words become flashcards: they appear in your end-of-session report.</div>
+                </div>
+              </div>
+
+              <!-- 6 · REPORT (ConversationSummaryView) -->
+              <div class="gta-fl-screen" data-screen="5" data-dwell="6500" role="img" aria-label="The end-of-chat report: a stats grid with your turns, duration, corrections, hints and translations, coaching notes on what went well and what to improve, and the words you saved.">
+                <div class="gta-cv-report">
+                  <div class="gta-sheetnav">
+                    <span class="gta-nav-action" style="opacity:0;">Done</span>
+                    <span class="gta-nav-title2">Your report</span>
+                    <span class="gta-nav-action gta-bold">Done</span>
+                  </div>
+                  <div class="gta-cv-stats">
+                    <div class="gta-cv-stat"><b>8</b><small>Your turns</small></div>
+                    <div class="gta-cv-stat"><b>4:12</b><small>Duration</small></div>
+                    <div class="gta-cv-stat"><b>2</b><small>Corrections</small></div>
+                    <div class="gta-cv-stat"><b>1</b><small>Hints used</small></div>
+                    <div class="gta-cv-stat"><b>1</b><small>Translations</small></div>
+                    <div class="gta-cv-stat"><b>0</b><small>Phrase helps</small></div>
+                  </div>
+                  <div class="gta-cv-coach gta-cv-good">
+                    <div class="gta-cv-coach-h">{% include german_tutor/icon.html name="thumbs-up" class="gt-ico-lead" %}What you did well</div>
+                    <div class="gta-cv-coach-b">You described your symptoms clearly and kept going in German without switching to English.</div>
+                  </div>
+                  <div class="gta-cv-coach gta-cv-improve">
+                    <div class="gta-cv-coach-h">{% include german_tutor/icon.html name="trending-up" class="gt-ico-lead" %}Room to improve</div>
+                    <div class="gta-cv-coach-b">Watch the Dativ after <em>mit</em> — "mit meinem Freund", not "mit mein".</div>
+                  </div>
+                  <div class="gta-cv-coach gta-cv-saved">
+                    <div class="gta-cv-coach-h">{% include german_tutor/icon.html name="bookmark" class="gt-ico-lead" %}Words you saved (1)</div>
+                    <div class="gta-cv-saved-row"><span>Schmerzen</span><span>pain</span></div>
+                  </div>
+                  <div class="gta-write-btn">{% include german_tutor/icon.html name="layers" class="gt-ico-lead" %}Build a deck from this chat</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="gta-fl-steps" role="tablist" aria-label="Conversation flow — jump to a stage">
+          <button type="button" class="gta-fl-step gta-on" data-step="0" role="tab" aria-selected="true"><b></b>Options</button>
+          <button type="button" class="gta-fl-step" data-step="1" role="tab" aria-selected="false"><b></b>Chat</button>
+          <button type="button" class="gta-fl-step" data-step="2" role="tab" aria-selected="false"><b></b>Translate</button>
+          <button type="button" class="gta-fl-step" data-step="3" role="tab" aria-selected="false"><b></b>Hint</button>
+          <button type="button" class="gta-fl-step" data-step="4" role="tab" aria-selected="false"><b></b>Word</button>
+          <button type="button" class="gta-fl-step" data-step="5" role="tab" aria-selected="false"><b></b>Report</button>
+        </div>
+      </div>

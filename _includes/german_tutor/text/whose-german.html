@@ -1,0 +1,58 @@
+    <h2 id="whose-german">Whose German?</h2>
+    <p>
+      One question I never thought to evaluate until everything had already shipped: <em>which</em>
+      German is this. I learned mine in Vienna, and German is pluricentric — Germany, Austria and
+      Switzerland each maintain a codified standard — so <em>Semmel</em>, <em>Jänner</em> and
+      <em>Marille</em> aren't slang, they're correct Austrian standard German. Every item in my
+      eval was written in the German standard, and so, it turns out, is the corpus — not by
+      decision. No generation prompt ever named a variety; level and formality were the only
+      register controls I gave the teacher, and the monoculture emerged anyway. Scanning 3.6M
+      tokens of v2 training answers against 35 codified markers: the fourteen Austrian words hit
+      <strong>twice</strong> against 1,434 German counterparts, the eight Swiss ones
+      <strong>zero</strong> times. The model has seen <em>Kartoffel</em> 244 times and
+      <em>Erdapfel</em> never. The one regional voice the data does carry is northern German —
+      <em>Moin</em> opens 313 conversation rows.
+    </p>
+
+    <p>
+      Which would be trivia, except the app ships a correction mode: a tutor that marks correct
+      Austrian German as an error is broken in a way no grammar eval in this repo can see, because
+      every eval item was written in Bundesdeutsch. So I ran eight valid Austrian/Swiss sentences
+      through the app's real correction contract, with three German twins and two genuinely broken
+      sentences as controls:
+    </p>
+
+    <div class="gta-table-wrap">
+      <table>
+        <thead>
+          <tr><th>Model</th><th>Valid AT/CH sentences flagged as errors</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Gemma 4 E4B stock</td><td><span class="gta-bad">5 / 8</span></td></tr>
+          <tr class="gta-row-win"><td><strong>Gemma 4 E4B v2</strong></td><td><span class="gta-good">1 / 8</span></td></tr>
+          <tr><td>Granite 3.3 2B stock</td><td><span class="gta-bad">5 / 8</span></td></tr>
+          <tr><td>Granite 3.3 2B tuned</td><td>3 / 8</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Stock E4B rewrites <em>Ich bin gestern lange im Café gesessen</em> into Präteritum and
+      <em>Velo</em> into <em>Fahrrad</em>; on one sentence it swaps the verb outright,
+      <em>gestanden</em>&nbsp;→&nbsp;<em>gewartet</em>. The fine-tune leaves all of that alone —
+      but the honest reading is mixed, because it also waved through a genuinely broken control
+      (<em>eine Semmeln</em>), and its miss rate is higher than v1's, so some of that tolerance is
+      plain permissiveness rather than variety awareness. The counter-evidence that some of it is
+      real: on the other broken control it fixed the word-order error while leaving
+      <em>bin&nbsp;… gesessen</em> untouched — exactly what a variety-aware tutor should do — where
+      stock rewrote the whole sentence into Bundesdeutsch. Fine-tuning also <em>subtracts</em>
+      here: stock E4B writes passable Bavarian on request ("<em>I mog di vü und mia gsehn uns
+      morgn</em>"), while the tune answers all four dialect prompts in flat Standard German. And
+      the substrate lesson repeats one last time — a newer <strong>Granite 4.1 3B</strong>, stock,
+      is the only model in the study that performs the Austrian perfect on request (<em>Die Katze
+      ist auf dem Sofa gelegen</em>), and its tune loses that too. Neither Gemma manages it in
+      either direction, which is a little embarrassing given the app's own sein/haben guide teaches
+      exactly that contrast. Thirty-five markers are a sample, not a census, and none of this had
+      native-speaker validation — but it's enough to say the tuning made the tutor safer for
+      Austrian learners and narrower for everyone curious about how anyone else speaks.
+    </p>

@@ -1,0 +1,117 @@
+{% comment %}
+  Visual only — the prose for this slide lives in gallery/stories.html,
+  which wraps this include in its <figure>.
+
+  One phone, one flow: a single device that cross-fades through the four stages
+  of making a story — setup -> generating -> finished story -> quiz. The step
+  rail under the phone is clickable; it auto-advances unless reduced-motion is
+  set, and holds longer on a screen you tapped yourself. Driven by the shared
+  "Feature flow" IIFE in scripts.html; the generating screen reuses the
+  AnimatedStoryBook hooks (#gta-wpage / #gta-phase / #gta-prog-bar).
+{% endcomment %}
+      <div class="gta-fl" id="gta-fl">
+        <div class="gta-phone">
+          <div class="gta-phone-screen">
+            <div class="gta-island"></div>
+            <div class="gta-fl-screens">
+
+              <!-- 1 · SETUP -->
+              <div class="gta-fl-screen gta-on" data-screen="0" role="img" aria-label="New Story setup screen: a topic field with Surprise me and Browse 100 ideas, a Style row set to Mini mystery, a CEFR level picker on B1, an Illustrate this story toggle switched on with a picture-count picker set to 1, and a Write My Story button.">
+                <div class="gta-navtitle">New Story</div>
+                <div class="gta-fsec">What should the story be about?</div>
+                <div class="gta-fcard">
+                  <div class="gta-frow gta-fplaceholder">e.g. a trip to Berlin, at the doctor's…</div>
+                  <div class="gta-frow gta-faction">{% include german_tutor/icon.html name="dices" class="gt-ico-lead" %}Surprise me</div>
+                </div>
+                <div class="gta-fsec">Story</div>
+                <div class="gta-fcard">
+                  <div class="gta-frow">
+                    <span class="gta-fico" style="color:#5C6BC0;">{% include german_tutor/icon.html name="search" %}</span>
+                    <span class="gta-fstack"><small>Style</small>Mini mystery</span>
+                    <span class="gta-fchev">›</span>
+                  </div>
+                  <div class="gta-frow gta-fcol">
+                    <span>Level</span>
+                    <span class="gta-seg"><i>A1</i><i>A2</i><i class="on">B1</i><i>B2</i><i>C1</i></span>
+                  </div>
+                </div>
+                <div class="gta-fsec">Illustrations</div>
+                <div class="gta-fcard">
+                  <div class="gta-frow">
+                    <span class="gta-fstack">Illustrate this story<small>On-device, by Stable Diffusion.</small></span>
+                    <span class="gta-toggle on"><b></b></span>
+                  </div>
+                  <div class="gta-frow gta-fcol">
+                    <span>Pictures</span>
+                    <span class="gta-seg"><i class="on">1</i><i>2</i><i>3</i><i>4</i></span>
+                  </div>
+                </div>
+                <div class="gta-write-btn">{% include german_tutor/icon.html name="sparkles" class="gt-ico-lead" %}Write My Story</div>
+              </div>
+
+              <!-- 2 · GENERATING (reuses AnimatedStoryBook hooks) -->
+              <div class="gta-fl-screen" data-screen="1" data-dwell="6500" role="img" aria-label="Generating screen: a stack of pages writing themselves over a soft blue glow, with a phase label, a progress bar, a live token count, and a Stop button.">
+                <div class="gta-book">
+                  <div class="gta-book-glow"></div>
+                  <div class="gta-page gta-back1"></div>
+                  <div class="gta-page gta-back2"></div>
+                  <div class="gta-page gta-writing" id="gta-wpage">
+                    <span class="gta-wtitle"></span>
+                    <span class="gta-wline" style="width:92%"></span>
+                    <span class="gta-wline" style="width:74%"></span>
+                    <span class="gta-wline" style="width:86%"></span>
+                    <span class="gta-wline" style="width:62%"></span>
+                    <span class="gta-wline" style="width:80%"></span>
+                    <span class="gta-wline" style="width:50%"></span>
+                  </div>
+                </div>
+                <div class="gta-phase" id="gta-phase">Writing your story…</div>
+                <div class="gta-prog"><i id="gta-prog-bar"></i></div>
+                <div class="gta-tokens" id="gta-tokens">0 tokens</div>
+                <div class="gta-stop">{% include german_tutor/icon.html name="square" fill="currentColor" class="gt-ico-lead" %}Stop</div>
+              </div>
+
+              <!-- 3 · FINISHED STORY (StoryDetailView) -->
+              <div class="gta-fl-screen" data-screen="2" role="img" aria-label="Finished story screen: a B1 Mini-mystery with a CEFR chip, a genre chip, an AI-drawn header illustration, the title, body text, a Read-and-listen-aloud button, and a Start Questions button.">
+                <div class="gta-fl-chips">
+                  <span class="gta-fl-chip gta-fl-chip-lvl">B1</span>
+                  <span class="gta-fl-chip">Mini mystery</span>
+                  <span class="gta-fl-wc">248 Wörter</span>
+                </div>
+                <div class="gta-fl-illus" aria-hidden="true"></div>
+                <div class="gta-fl-title">Der Schlüssel im Schnee</div>
+                <div class="gta-fl-body">
+                  <span class="gta-fl-line" style="width:97%"></span>
+                  <span class="gta-fl-line" style="width:88%"></span>
+                  <span class="gta-fl-line" style="width:94%"></span>
+                  <span class="gta-fl-line" style="width:70%"></span>
+                </div>
+                <div class="gta-fl-pill">{% include german_tutor/icon.html name="play" fill="currentColor" class="gt-ico-lead" %}Vorlesen &amp; mitlesen</div>
+                <div class="gta-fl-cta">{% include german_tutor/icon.html name="check" class="gt-ico-lead" %}Start Questions (6)</div>
+              </div>
+
+              <!-- 4 · QUIZ (StoryQuizView) -->
+              <div class="gta-fl-screen" data-screen="3" role="img" aria-label="Quiz screen: question 1 of 6, multiple choice, with three answer options — the correct one highlighted green — and a Weiter button.">
+                <div class="gta-fl-qhead"><span>Fragen</span><span class="gta-fl-qprog">1 / 6</span></div>
+                <div class="gta-prog"><i style="width:16%"></i></div>
+                <div class="gta-fl-qkind">Multiple choice</div>
+                <div class="gta-fl-q">Warum ging Anna in den verschneiten Wald?</div>
+                <div class="gta-fl-opts">
+                  <div class="gta-fl-opt">Um Holz zu sammeln</div>
+                  <div class="gta-fl-opt on">Um den verlorenen Schlüssel zu suchen</div>
+                  <div class="gta-fl-opt">Weil es dort warm war</div>
+                </div>
+                <div class="gta-fl-weiter">Weiter</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="gta-fl-steps" role="tablist" aria-label="Story flow — jump to a stage">
+          <button type="button" class="gta-fl-step gta-on" data-step="0" role="tab" aria-selected="true"><b></b>Setup</button>
+          <button type="button" class="gta-fl-step" data-step="1" role="tab" aria-selected="false"><b></b>Generating</button>
+          <button type="button" class="gta-fl-step" data-step="2" role="tab" aria-selected="false"><b></b>Story</button>
+          <button type="button" class="gta-fl-step" data-step="3" role="tab" aria-selected="false"><b></b>Quiz</button>
+        </div>
+      </div>

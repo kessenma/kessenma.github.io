@@ -1,0 +1,258 @@
+    <h2 id="glossary">Glossary — the jargon, unpacked</h2>
+    <p>
+      Everything above in plain terms, roughly in the order it shows up.
+    </p>
+
+    <dl class="gta-glossary">
+      <div class="gta-gl-item" id="gl-mlx">
+        <dt>MLX</dt>
+        <dd>
+          Apple's machine-learning framework, built for the unified memory of Apple silicon — the CPU
+          and GPU share one pool of RAM, so a model doesn't have to be copied back and forth. It's what
+          makes running a ~5 GB language model on an iPhone practical at all. <code>mlx-lm</code> is its
+          language-model toolkit (loading, generating, converting); <strong>MLX Swift</strong> is the
+          Swift binding my app actually ships. Think of it as Apple's answer to PyTorch, tuned for
+          phones and Macs instead of data-center GPUs.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-quant">
+        <dt>Quantization / "4-bit"</dt>
+        <dd>
+          A model's weights are normally 16-bit numbers. Quantization rounds them to fewer bits — 4, in
+          my case — which shrinks the file roughly 4× and speeds up inference, at a small cost in
+          quality. It's the single reason a phone-sized model exists: Gemma 4 E4B is ~16 GB at full
+          precision and ~4.9 GB at 4-bit. Every number in this article was measured on the
+          <em>quantized</em> model, because that's what actually runs on the phone — measuring the
+          full-precision version would be measuring something I don't ship.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-lora">
+        <dt>LoRA (Low-Rank Adaptation)</dt>
+        <dd>
+          Fine-tuning a whole model means updating billions of weights — expensive, and you end up with
+          a whole new multi-gigabyte model. LoRA instead freezes the original model and trains a small
+          pair of "adapter" matrices alongside it, learning only the <em>change</em> you want. The
+          adapter is a few megabytes. The <strong>rank</strong> (<code>r=8</code> here) is how much
+          capacity the adapter has: higher rank learns more, but overfits faster on a small dataset.
+          The adapter can be merged back into the base weights afterward, which is what ships.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-qlora">
+        <dt>QLoRA</dt>
+        <dd>
+          <a class="gterm" href="#gl-lora">LoRA</a>, but with the frozen base model held in memory in
+          <em>quantized</em> form while you train. That's the whole trick: quantizing the frozen part
+          slashes the VRAM needed, so a fine-tune that would otherwise demand a data-center card fits on
+          a single rented consumer GPU. It's why this project's training bill was measured in cents
+          rather than hundreds of dollars. The output is still a small LoRA adapter.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-unsloth">
+        <dt>Unsloth</dt>
+        <dd>
+          An open-source library that wraps Hugging Face's training stack with hand-optimized kernels,
+          making <a class="gterm" href="#gl-qlora">QLoRA</a> fine-tuning roughly 2× faster and
+          substantially more memory-efficient. It also ships ready-made recipes per model family, which
+          is how a 19-minute training run on a rented GPU is even a sentence you can write.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-forgetting">
+        <dt>Catastrophic forgetting</dt>
+        <dd>
+          When you fine-tune a model hard on one narrow task, it can lose abilities it used to have —
+          it "forgets" everything that isn't the new task. The standard defense is to blend general-purpose
+          examples into the training mix so the model keeps practicing its old skills. That's what the
+          516 general-German examples (~35% of the set) are for, and the extension suite going
+          <em>up</em> (87% → 90%) rather than down is the evidence it worked.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-heldout">
+        <dt>Held-out eval</dt>
+        <dd>
+          A test set the model never sees during training. If an eval sentence leaks into the training
+          data, the model can memorize the answer and the score becomes a lie — which is why the
+          validation gate explicitly rejects any generated example that resembles an eval item. Mine are
+          two suites: <strong>core</strong> (60 items in the four target areas) and
+          <strong>extension</strong> (61 items in ten areas I deliberately did <em>not</em> train on, to
+          detect <a class="gterm" href="#gl-forgetting">catastrophic forgetting</a>).
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-teacher">
+        <dt>Teacher model</dt>
+        <dd>
+          A big, capable model used to <em>generate</em> training data for a smaller one — the small
+          model learns from the big one's output. The catch this project ran into: the student inherits
+          the teacher's mistakes, faithfully. A cheap teacher that mislabels 42% of its "this sentence is
+          correct" examples doesn't produce a slightly worse student; it produces a student trained to
+          make exactly the error you were trying to eliminate.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-languagetool">
+        <dt>LanguageTool</dt>
+        <dd>
+          An open-source grammar checker (the engine behind a lot of "proofread this" features). I
+          self-hosted it as an automated gate on generated data. Its German rules are strong on spelling,
+          agreement and punctuation — and, as I found out, caught <strong>none</strong> of my four target
+          error types. Useful as a floor, useless as a ceiling.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-spacy">
+        <dt>spaCy</dt>
+        <dd>
+          An industrial NLP library. I used its German model for structural checks the grammar checker
+          can't do: parsing a sentence into its parts of speech and dependency tree, so a script can ask
+          "is the verb actually separable here?" or "does this sentence really contain a reflexive
+          pronoun in the dative?" It's also what mined the 83,000 seed sentences out of Tatoeba's 774k.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-tatoeba">
+        <dt>Tatoeba</dt>
+        <dd>
+          A large, free, community-built corpus of example sentences with translations — 774,000 of them
+          in German. Crucially, they're <em>natural</em> sentences written by humans, which makes them
+          good seeds: I mined them for real usages of my target constructions, then built synthetic
+          learner errors from there rather than inventing sentences from nothing.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-cefr">
+        <dt>CEFR level (A1–C2)</dt>
+        <dd>
+          The European scale for language proficiency: A1/A2 beginner, B1/B2 intermediate, C1/C2
+          advanced. The app tracks yours so the tutor can pitch its German at you, and every training
+          example carries a CEFR tag so the model learns to answer a B1 learner differently from a C1 one.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-chattemplate">
+        <dt>Chat template</dt>
+        <dd>
+          The exact text format a chat model expects — special tokens marking where each turn starts and
+          who's speaking. Every family has its own, and they're strict: Gemma 4's requires that turns
+          strictly alternate user → model → user, which is why my tutor dialogues (where the model greets
+          you first) crashed training until I gave them an opening user turn. If your training data's
+          format doesn't match what the model sees in production, you're training on a token stream that
+          will never occur.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-kvcache">
+        <dt>KV cache</dt>
+        <dd>
+          As a model generates, it caches intermediate values ("keys" and "values") for every token so
+          far, so it doesn't recompute the whole conversation for each new word. It's what makes
+          generation fast — and it grows with conversation length, eating RAM the app also needs. On a
+          phone with a hard per-app memory cap, the KV cache is why you can't simply fill the budget with
+          model weights.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-safetensors">
+        <dt>safetensors</dt>
+        <dd>
+          The standard file format for model weights (a safer replacement for Python pickles, which could
+          execute code on load). Relevant here for an unglamorous reason: MLX Swift merges <em>every</em>
+          <code>.safetensors</code> file it finds in a model folder, so leaving a stray LoRA adapter in
+          the repo silently corrupts loading.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-guarded">
+        <dt>Raw vs. guarded ("app-equivalent") scoring</dt>
+        <dd>
+          Two ways to score the same saved model responses. <strong>Raw</strong> takes the model's text
+          at face value. <strong>Guarded</strong> first runs it through the same parsing and filtering
+          the app applies before showing anything to a learner — most importantly discarding "echo"
+          corrections, where the model wraps the student's own sentence unchanged in a
+          <code>FIX:</code> header. Raw measures the checkpoint; guarded measures what a user
+          experiences. Mixing the two scales is how this project fooled itself, twice.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-modal">
+        <dt>Modal particles</dt>
+        <dd>
+          The little flavoring words — <em>doch, mal, eigentlich, ja, halt, eben, schon</em> — that
+          carry tone rather than meaning and make spoken German sound like a person instead of a
+          textbook. ("Komm her" is an order; "Komm <em>mal</em> her" is an invitation.) Their frequency
+          per 100 tokens turned out to be the single clearest measurable marker of the "sounds AI
+          generated" complaint, which is why the naturalness bench tracks it.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-devdrift">
+        <dt>Dev-set drift</dt>
+        <dd>
+          A held-out test set stays honest only as long as you don't act on it. Score twenty models
+          against the same suite, make ship decisions from the results, iterate — and you've quietly
+          been <em>selecting</em> for whatever does well on those particular items. The numbers stay
+          reproducible while becoming optimistic. The fix is a fresh frozen holdout you score once and
+          never tune against; on one of those, the shipped E4B's lead over E2B mostly evaporated.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-moe">
+        <dt>Mixture of experts (MoE)</dt>
+        <dd>
+          A model architecture where each token activates only a fraction of the total weights — the
+          v2 data campaign's 26B teacher runs just ~4B "active" parameters per token. You pay for the
+          full model's memory but generate at close to a small model's speed, which is what made 61,000
+          teacher generations cost about $6.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-ple">
+        <dt>Per-layer embeddings (PLE)</dt>
+        <dd>
+          The architectural trick behind Gemma 4's E-series: much of the model's bulk lives in per-layer
+          embedding tables that can stream from storage, so a 5.1B-parameter model behaves like ~2B in
+          RAM. The catch discovered here: those embeddings are extremely sensitive to quantization and
+          must stay high-precision — which is why no real 3-bit version of these models can exist (the
+          protected part dominates the average bits-per-weight).
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-mcnemar">
+        <dt>McNemar test</dt>
+        <dd>
+          A statistical test for comparing two models on the <em>same</em> test items, looking only at
+          the items where they disagree. On an 82-item suite, one model scoring 67% and another 72% —
+          9 items gained, 5 lost — gives p&nbsp;=&nbsp;0.42: entirely consistent with a coin flip. It's
+          the honest way to admit that a small benchmark can rank models loosely but can't certify a
+          5-point gap.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-tokenizer">
+        <dt>Tokenizer (BPE vs. SentencePiece)</dt>
+        <dd>
+          The fixed dictionary that chops text into the units a model actually reads. A big multilingual
+          vocabulary (Gemma's 262k SentencePiece) stores whole German words as single tokens; a small,
+          English-and-code-heavy one (Granite's 49k byte-level BPE) has to spell German out in fragments
+          — same sentence, ~1.9× the tokens. That taxes generation speed and context length forever,
+          and no amount of fine-tuning changes it: the tokenizer is decided the day the model is
+          pretrained.
+        </dd>
+      </div>
+
+      <div class="gta-gl-item" id="gl-distill">
+        <dt>Knowledge distillation</dt>
+        <dd>
+          Training a small "student" model to match a big teacher's full output <em>distribution</em>
+          (its probabilities over every token), not just its final text — a richer signal than ordinary
+          fine-tuning. On-policy distillation was the planned last lever for the 4 GB tier, and it died
+          on a technicality: teacher and student must share a vocabulary for their token probabilities
+          to even line up, and Gemma and Granite don't.
+        </dd>
+      </div>
+    </dl>

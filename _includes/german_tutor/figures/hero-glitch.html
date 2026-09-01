@@ -1,0 +1,14 @@
+{% comment %}
+  Hero word field — a canvas of German words that reshuffle in place behind the
+  article header, plus the two overlay layers that keep the title readable: a
+  centre scrim under the text, then an outer vignette that dissolves the field's
+  rectangle into the container.
+
+  Painted by the WordGlitch block in _includes/german_tutor/scripts.html;
+  styled by the .gta-hero* rules in _includes/german_tutor/styles.html.
+{% endcomment %}
+<div class="gta-hero-bg" aria-hidden="true">
+  <canvas id="gta-glitch"></canvas>
+  <i class="gta-hero-scrim"></i>
+  <i class="gta-hero-vig"></i>
+</div>

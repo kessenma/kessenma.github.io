@@ -1,0 +1,54 @@
+{% comment %}
+  Visual only — the prose for this slide lives in gallery/matching.html,
+  which wraps this include in its <figure>.
+{% endcomment %}
+      <div class="gta-duo">
+        <!-- MatchingGameView, mid-round -->
+        <div class="gta-phone" role="img" aria-label="The app's matching game mid-round: a Goethe A1 Vocabulary round with a timer at 48 seconds, a progress bar, a 3 of 6 matched counter, and two columns of tiles — German words with articles on the left, English meanings on the right. A correct pair clears with a spring; a wrong pair flashes red.">
+          <div class="gta-phone-screen">
+            <div class="gta-island"></div>
+            <div class="gta-mtop">
+              <span class="gta-mclose">{% include german_tutor/icon.html name="x" box="0.9em" %}</span>
+              <span class="gta-mtitle">Goethe A1 Vocabulary</span>
+              <span class="gta-mtimer">{% include german_tutor/icon.html name="timer" class="gt-ico-lead" %}<b id="gta-mg-timer">48s</b></span>
+            </div>
+            <div class="gta-mprog"><i id="gta-mg-bar" style="width:50%"></i></div>
+            <div class="gta-mcap" id="gta-mg-cap">3 / 6 matched</div>
+            <div class="gta-mboard" id="gta-mg-board">
+              <div class="gta-mcol">
+                <div class="gta-mtile" id="gta-mg-apfel">der Apfel</div>
+                <div class="gta-mtile" id="gta-mg-ankunft">die Ankunft</div>
+                <div class="gta-mtile" id="gta-mg-alter">das Alter</div>
+              </div>
+              <div class="gta-mcol">
+                <div class="gta-mtile" id="gta-mg-age">age</div>
+                <div class="gta-mtile" id="gta-mg-apple">apple</div>
+                <div class="gta-mtile" id="gta-mg-arrival">arrival</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- End-of-round summary -->
+        <div class="gta-phone" role="img" aria-label="The round-complete card: a trophy line reading New personal best for this deck, stat rows for time 48 seconds, first-try accuracy 83 percent and 6 pairs, a Worth another look recap listing der Apfel — apple with a missed times 3 badge and the note that you keep pairing it with orange, and Play again and Done buttons.">
+          <div class="gta-phone-screen gta-mdim">
+            <div class="gta-island"></div>
+            <div class="gta-msum">
+              <div class="gta-msum-title">Round complete</div>
+              <div class="gta-msum-best">{% include german_tutor/icon.html name="trophy" class="gt-ico-lead" %}New personal best for this deck!</div>
+              <div class="gta-msrows">
+                <div class="gta-msrow"><span>{% include german_tutor/icon.html name="timer" class="gt-ico-lead" %}Time</span><b>48s</b></div>
+                <div class="gta-msrow"><span>{% include german_tutor/icon.html name="circle-check" class="gt-ico-lead" %}First-try accuracy</span><b>83%</b></div>
+                <div class="gta-msrow"><span>{% include german_tutor/icon.html name="layers" class="gt-ico-lead" %}Pairs</span><b>6</b></div>
+              </div>
+              <div class="gta-mlook">
+                <div class="gta-mlook-head">WORTH ANOTHER LOOK</div>
+                <div class="gta-mlook-row">der Apfel — apple <span class="gta-mbadge">missed ×3</span></div>
+                <div class="gta-mlook-sub">You keep pairing it with "orange".</div>
+              </div>
+              <div class="gta-mbtn gta-mbtn-blue">Play again</div>
+              <div class="gta-mbtn gta-mbtn-plain">Done</div>
+            </div>
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,85 @@
+{% comment %}
+  German tutor article shell. Title, standfirst, byline and Hugging Face
+  URLs all live in _data/german_tutor.yml — edit them there, not in the includes.
+
+  Modular structure (text kept separate from animations/diagrams):
+    _includes/german_tutor/styles.html   — all CSS for the article
+    _includes/german_tutor/text/         — prose sections, in reading order
+    _includes/german_tutor/figures/      — SVG diagrams & animated figures
+    _includes/german_tutor/gallery/      — the app feature tour, self-contained:
+                                           index.html is the carousel shell, one
+                                           file per slide holds all of that
+                                           slide's words, figures/ holds the
+                                           phone mockups they pull in
+    _includes/german_tutor/scripts.html  — JS driving the animated figures
+
+  Reading arc: the app → v1 (problem → eval → data → training → results) →
+  the bake-off survey → down-market (round two → the scoring reveal → learner
+  feedback → v2 → round three at the 4 GB floor) → whose German → pixels →
+  close.
+  Sections that span a figure are split into <name>.html / <name>-detail.html
+  around the figure include. ux-research.html pulls in its own line-art figure.
+{% endcomment %}
+
+{% include german_tutor/styles.html %}
+
+<div class="gta-article">
+  <div class="gta-wash" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="gta-container">
+
+    {% include german_tutor/text/header.html %}
+    {% include german_tutor/text/intro.html %}
+
+    <!-- What the model does in the app: swipeable feature tour + learner memory -->
+    {% include german_tutor/gallery/index.html %}
+    {% include german_tutor/text/memory.html %}
+    {% include german_tutor/figures/memory-loop.html %}
+    {% include german_tutor/figures/today-plan.html %}
+
+    {% include german_tutor/text/why-on-device.html %}
+    {% include german_tutor/text/problem.html %}
+    {% include german_tutor/text/measure-first.html %}
+
+    <!-- Building the dataset -->
+    {% include german_tutor/text/dataset.html %}
+    {% include german_tutor/figures/data-pipeline.html %}
+    {% include german_tutor/text/dataset-detail.html %}
+    {% include german_tutor/figures/dataset-composition.html %}
+    {% include german_tutor/text/dataset-outcome.html %}
+
+    <!-- Training -->
+    {% include german_tutor/text/training.html %}
+    {% include german_tutor/figures/gpu-training.html %}
+    {% include german_tutor/text/training-detail.html %}
+
+    {% include german_tutor/text/results.html %}
+    {% include german_tutor/figures/control-experiment.html %}
+
+    <!-- The survey: funnel → results table → scatter → personalities -->
+    {% include german_tutor/text/bake-off.html %}
+    {% include german_tutor/figures/model-funnel.html %}
+    {% include german_tutor/text/bake-off-results.html %}
+    {% include german_tutor/figures/failure-scatter.html %}
+    {% include german_tutor/text/bake-off-personalities.html %}
+
+    <!-- Down-market: round two, the scoring reveal, learner feedback, v2, the 4 GB floor -->
+    {% include german_tutor/text/round-two.html %}
+    {% include german_tutor/text/eval-was-lying.html %}
+    {% include german_tutor/text/ux-research.html %}
+    {% include german_tutor/text/v2.html %}
+    {% include german_tutor/text/round-three.html %}
+    {% include german_tutor/figures/budget-anatomy.html %}
+    {% include german_tutor/text/round-three-detail.html %}
+
+    {% include german_tutor/text/whose-german.html %}
+
+    {% include german_tutor/text/pixels.html %}
+    {% include german_tutor/text/takeaways.html %}
+    {% include german_tutor/text/where-it-stands.html %}
+    {% include german_tutor/text/glossary.html %}
+    {% include german_tutor/text/footer.html %}
+
+  </div>
+</div>
+
+{% include german_tutor/scripts.html %}

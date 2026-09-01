@@ -1,0 +1,47 @@
+    <p>
+      Over the last year I've tinkered with a handful of different libraries to run
+      small models on phones: <a href="https://cactuscompute.com">Cactus Compute</a>,
+      <a href="https://executorch.ai">ExecuTorch</a>,
+      <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a>,
+      <a href="https://onnxruntime.ai">ONNX Runtime Mobile</a>, and most recently Apple's
+      <a href="https://ml-explore.github.io/mlx/">MLX</a>. These libraries are all quite similar.
+      They have different formats, and some optimize for performance on lower-end
+      hardware (Cactus) while others focus on being as cross-compatible as possible (llama.cpp with
+      the .gguf format), but at the end of the day they're all running models between 0.5B and ~8B
+      parameters. Google's Gemma, Alibaba's Qwen, and Meta's Llama models have been the most
+      popular with these libraries lately.
+    </p>
+    <p>
+      All these baseline models are decent at
+      creating flashcards in German with conjugation tables, but&hellip; I wanted to push the boundaries and
+      see if these models could be used for a more interactive learning experience, with a hero-feature of
+      being able to have turn-based voice conversations in German with a LLM. All the baseline models
+      technically <em>can</em> converse in German, <strong>but</strong> &hellip; they didn't seem to follow all the grammar
+      rules I was being taught in my German classes, or they would form simple sentences lacking complexity. So I wanted to experiment with
+      <a href="https://unsloth.ai/">Unsloth</a>, an open-source fine-tuning framework for LLM's to
+      mold the available open-source models. <strong>Surprisingly, the "German-first" models are worse in my testing at catching German grammar mistakes</strong>. Then another complication I reached with many of the german-first models is their restricted licenses. Google Gemma's and IBM's Granite models are both licensed under the Apache 2.0 license, and I found them to be the best models for my use case.
+    </p>
+    <p>
+      This article is the write-up of those experiments: the eval, the dataset, the training runs,
+      a survey of every phone-sized model I could load — and the two times my own scoring pipeline
+      lied to me. <u>Every acronym in here (<a class="gterm" href="#gl-qlora">QLoRA</a>,
+      <a class="gterm" href="#gl-mlx">MLX</a>, <a class="gterm" href="#gl-quant">4-bit</a>…) is
+      unpacked in the <a href="#glossary">glossary</a> at the end — the first mention of each is a
+      dotted link straight to its definition.</u>
+    </p>
+
+    <h2 id="the-app">The app, briefly</h2>
+    <p>
+      The app started out as a simple flashcard app: download a model from HuggingFace, run it on
+      my phone, have it generate decks on prompt-generated topics. It worked well enough — but my
+      peers in class had family, partners, and more German-speaking friends than me, and I craved
+      more German <em>conversations</em>. That became the hero feature: a turn-based voice
+      conversation with the model, with the trimmings I wished other apps had — translating
+      phrases in either direction mid-conversation, saving words I didn't know straight into a
+      flashcard deck, and real-time correction of my German. Around it grew the rest of a study
+      routine, shaped by the A2/B1 practice exams and by life as an American job-hunting in
+      Vienna: reading-and-listening stories with comprehension quizzes, grammar drills, a vocab
+      matching game, a saved-phrases inbox for things overheard in the wild, a job-interview
+      role-play mode, a photo&nbsp;→&nbsp;vocab feature, and a learner profile the model quietly
+      maintains about my strengths and weaknesses. The tour below shows it one screen at a time.
+    </p>

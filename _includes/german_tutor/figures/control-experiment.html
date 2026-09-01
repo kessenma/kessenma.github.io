@@ -1,0 +1,99 @@
+    <figure>
+      <h4>Control and experiment, same bench</h4>
+      <p class="gta-fig-sub">One eval item at a time, fed to both models under identical conditions. Three representative items from the held-out set, on loop.</p>
+
+      <div class="gta-ab" id="gta-ab">
+
+        <div class="gta-ab-feed">
+          <div class="gta-ab-feedlabel">Held-out eval item <span id="gta-ab-count">1 / 3</span></div>
+          <div class="gta-ab-item" id="gta-ab-item">
+            <div class="gta-ab-sent" id="gta-ab-sent">Sie wartet auf ihren Freund.</div>
+            <div class="gta-ab-truth">Ground truth: <b id="gta-ab-truth">already correct — the model should say nothing</b></div>
+          </div>
+          <div class="gta-ab-split" aria-hidden="true">
+            <svg viewBox="0 0 320 34" preserveAspectRatio="none">
+              <path class="gta-fn-flow" d="M160 0 V12 H24 V34" fill="none" stroke="#383835" stroke-width="1.4"/>
+              <path class="gta-fn-flow" d="M160 0 V12 H296 V34" fill="none" stroke="#383835" stroke-width="1.4"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="gta-ab-lanes">
+
+          <div class="gta-ab-lane gta-ab-ctrl">
+            <div class="gta-ab-tag">Control</div>
+            <div class="gta-ab-model">
+              <img src="assets/img/article/logo-gemma.png" alt="">
+              <div>
+                <b>Gemma 4 E4B — stock</b>
+                <small>4-bit MLX · 4.9 GB · community build</small>
+              </div>
+            </div>
+            <div class="gta-ab-out">
+              <div class="gta-ab-think" id="gta-ab-cthink"><i></i><i></i><i></i></div>
+              <div class="gta-ab-verdict" id="gta-ab-cverdict">
+                <span class="gta-ab-vhead" id="gta-ab-chead">FIX</span>
+                <span class="gta-ab-vbody" id="gta-ab-cbody"></span>
+                <span class="gta-ab-vwhy" id="gta-ab-cwhy"></span>
+              </div>
+              <div class="gta-ab-mark" id="gta-ab-cmark"></div>
+            </div>
+            <dl class="gta-ab-score">
+              <div><dt>Core four</dt><dd>43/60 · 72%</dd></div>
+              <div><dt>False corrections</dt><dd class="gta-bad">34%</dd></div>
+              <div><dt>Missed errors</dt><dd class="gta-bad">17%</dd></div>
+            </dl>
+          </div>
+
+          <div class="gta-ab-lane gta-ab-exp">
+            <div class="gta-ab-tag">Experiment</div>
+            <div class="gta-ab-model">
+              <img src="assets/img/article/logo-gemma.png" alt="">
+              <div>
+                <b>Gemma 4 E4B + adapter</b>
+                <small>same checkpoint · rank-8 QLoRA · re-quantized to 4-bit</small>
+              </div>
+            </div>
+            <div class="gta-ab-out">
+              <div class="gta-ab-think" id="gta-ab-ethink"><i></i><i></i><i></i></div>
+              <div class="gta-ab-verdict" id="gta-ab-everdict">
+                <span class="gta-ab-vhead" id="gta-ab-ehead">OK</span>
+                <span class="gta-ab-vbody" id="gta-ab-ebody"></span>
+                <span class="gta-ab-vwhy" id="gta-ab-ewhy"></span>
+              </div>
+              <div class="gta-ab-mark" id="gta-ab-emark"></div>
+            </div>
+            <dl class="gta-ab-score">
+              <div><dt>Core four</dt><dd class="gta-good">51/60 · 85%</dd></div>
+              <div><dt>False corrections</dt><dd class="gta-good">22%</dd></div>
+              <div><dt>Missed errors</dt><dd class="gta-good">9%</dd></div>
+            </dl>
+          </div>
+
+        </div>
+
+        <div class="gta-ab-held">
+          <div class="gta-ab-heldrow">
+            <span class="gta-ab-heldlabel gta-ab-same">Held constant</span>
+            <span class="gta-ab-hchip">eval items</span>
+            <span class="gta-ab-hchip">production prompts</span>
+            <span class="gta-ab-hchip">greedy decoding</span>
+            <span class="gta-ab-hchip">automated scorer</span>
+            <span class="gta-ab-hchip">4-bit quantization</span>
+            <span class="gta-ab-hchip">M1 Max, 32 GB</span>
+          </div>
+          <div class="gta-ab-heldrow">
+            <span class="gta-ab-heldlabel gta-ab-diff">Changed</span>
+            <span class="gta-ab-hchip gta-ab-hchip-hot">one rank-8 QLoRA adapter · 1,447 examples · 2 epochs · 19 minutes</span>
+          </div>
+        </div>
+
+      </div>
+
+      <figcaption>
+        The scoreboards are the full-suite results, not a tally of the three items shown. Note which
+        numbers moved most: the two <em>behavioral</em> rates — corrections invented out of nothing,
+        and real errors waved through — roughly halved, while the headline accuracy moved 13 points.
+        The stock model isn't bad at German so much as bad at knowing when to keep quiet.
+      </figcaption>
+    </figure>

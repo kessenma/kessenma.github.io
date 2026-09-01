@@ -1,0 +1,235 @@
+    <div class="gta-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th><th>Size (4-bit)</th><th>Core</th><th>Extension</th><th>False corr.</th><th>Missed errors</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="gta-row-win">
+            <td><span class="gta-model"><img src="assets/img/article/logo-gemma.png" alt=""><a href="{{ site.data.german_tutor.links.model }}">Gemma 4 E4B (tuned)</a></span></td>
+            <td>4.9 GB</td><td><span class="gta-good">85%</span></td><td><span class="gta-good">90%</span></td><td><span class="gta-good">22%</span></td><td><span class="gta-good">9%</span></td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><img src="assets/img/article/logo-gemma.png" alt=""><a href="https://huggingface.co/mlx-community/gemma-4-e4b-it-4bit">Gemma 4 E4B (stock)</a></span></td>
+            <td>4.9 GB</td><td>72%</td><td>87%</td><td>34%</td><td>17%</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><img src="assets/img/article/logo-gemma.png" alt=""><a href="https://huggingface.co/mlx-community/gemma-4-e2b-it-4bit">Gemma 4 E2B</a> <span class="gta-arrow">→</span> tuned&nbsp;‡</span></td>
+            <td>3.3 GB</td><td>65% <span class="gta-arrow">→</span> 68%</td><td>75% <span class="gta-arrow">→</span> 70%</td><td>34% <span class="gta-arrow">→</span> 59%&nbsp;‡</td><td>28% <span class="gta-arrow">→</span> <span class="gta-good">19%</span></td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><img src="assets/img/article/logo-qwen.png" alt=""><a href="https://huggingface.co/mlx-community/Qwen3-4B-4bit">Qwen3-4B</a> <span class="gta-arrow">→</span> tuned</span></td>
+            <td>2.3 GB</td><td>48% <span class="gta-arrow">→</span> 62%</td><td>57% <span class="gta-arrow">→</span> 64%</td><td>19% → —</td><td>61% → —</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><img src="assets/img/article/logo-qwen.png" alt=""><a href="https://huggingface.co/mlx-community/Qwen3-8B-4bit">Qwen3-8B</a></span></td>
+            <td>4.9 GB</td><td>58%</td><td>77%</td><td>6%</td><td>48%</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><span class="gta-nologo">C</span><a href="https://huggingface.co/mlx-community/aya-expanse-8b-4bit">Aya Expanse 8B</a>*</span></td>
+            <td>4.2 GB</td><td>57%</td><td>64%</td><td><span class="gta-bad">100%</span></td><td>12%</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><img src="assets/img/article/logo-mistral.png" alt=""><a href="https://huggingface.co/mlx-community/Ministral-8B-Instruct-2410-4bit">Ministral 8B</a>*</span></td>
+            <td>4.2 GB</td><td>52%</td><td>69%</td><td><span class="gta-bad">84%</span></td><td>23%</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><span class="gta-nologo">{% include german_tutor/icon.html name="apple" box="16" %}</span>Apple Intelligence (on-device)†</span></td>
+            <td>~3B built-in</td><td>42%</td><td>52%</td><td><span class="gta-bad">100%</span></td><td>35%</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><img src="assets/img/article/logo-gemma.png" alt=""><a href="https://huggingface.co/mlx-community/gemma-3-1b-it-qat-4bit">Gemma 3 1B</a> <span class="gta-arrow">→</span> tuned</span></td>
+            <td>0.8 GB</td><td>58% <span class="gta-arrow">→</span> <span class="gta-bad">32%</span> {% include german_tutor/icon.html name="triangle-alert" box="0.9em" label="regression" %}</td><td>59% <span class="gta-arrow">→</span> <span class="gta-bad">36%</span></td><td>0% <span class="gta-arrow">→</span> <span class="gta-bad">56%</span></td><td>55% <span class="gta-arrow">→</span> <span class="gta-bad">72%</span></td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><img src="assets/img/article/logo-mistral.png" alt=""><a href="https://huggingface.co/mlx-community/Mistral-7B-Instruct-v0.3-4bit">Mistral 7B v0.3</a></span></td>
+            <td>4.1 GB</td><td>43%</td><td>49%</td><td>—</td><td>—</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><img src="assets/img/article/logo-microsoft.png" alt=""><a href="https://huggingface.co/mlx-community/Phi-4-mini-instruct-4bit">Phi-4 Mini 3.8B</a></span></td>
+            <td>2.3 GB</td><td>43%</td><td>48%</td><td>12%</td><td><span class="gta-bad">77%</span></td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><img src="assets/img/article/logo-meta.png" alt=""><a href="https://huggingface.co/mlx-community/Llama-3.2-1B-Instruct-4bit">Llama 3.2 1B</a></span></td>
+            <td>0.7 GB</td><td>28%</td><td>33%</td><td>0% (trivially)</td><td><span class="gta-bad">100%</span></td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><span class="gta-nologo">EU</span><a href="https://huggingface.co/utter-project/EuroLLM-1.7B-Instruct">EuroLLM-1.7B</a></span></td>
+            <td>1.0 GB</td><td><span class="gta-bad">13%</span></td><td><span class="gta-bad">7%</span></td><td>100%</td><td>97%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="gta-legend-note">
+      <span><strong style="color:#c3c2b7">→</strong>&nbsp; reads "before <strong style="color:#c3c2b7">→</strong> after the fine-tune" — same dataset, same QLoRA recipe, same $0.22–0.23/hr pod. Rows without an arrow measured stock only.</span>
+      <span>Model names link to the exact 4-bit MLX build evaluated — except Apple Intelligence, reached via FoundationModels Swift API, greedy-decoded, same prompts and scorer.</span>
+      <span>* Non-commercial license — research data points, not app candidates.</span>
+      <span>† Apple ~3B on-device model — 0 format errors, worst verdict discipline measured (100% false corrections, ties Aya Expanse 8B), da-/wo 0/15 — see below.</span>
+      <span>‡ The tuned E2B's alarming numbers turned out to be a scoring artifact, not a capacity failure — 18 of its 19 "false corrections" are echoes the app silently discards. The full story is in <a href="#the-eval-was-lying">"The eval was lying"</a>.</span>
+    </div>
+
+    <p>
+      An aside on the ceiling: it's not the phone's RAM spec that limits model size — it's iOS's
+      <em>per-app</em> memory cap, which sits around 8 GB even on devices shipping 11–12 GB. I
+      tried 12B-class models; they don't load. A ~5 GB 4-bit E4B with room for
+      <a class="gterm" href="#gl-kvcache">KV cache</a> and the app itself is realistically the top
+      of the on-device range today, which makes fine-tuning the only way up.
+    </p>
+
+    <div class="gta-lesson">
+      <p>
+        <span class="gta-lesson-head">There is a capacity cliff, and fine-tuning below it actively harms.</span>
+        Gemma 3 1B was the shock: a respectable 58% baseline, and the <em>identical</em> fine-tune
+        that lifted both 4B models dropped it to 32% — with false corrections exploding from 0% to
+        56%. My read: the dataset teaches a <em>behavior</em> (confidently produce FIX verdicts in
+        a strict format), and a 1B model has room for the behavior but not the knowledge to aim
+        it. It learned to sound like a tutor without knowing German well enough to be one. Below
+        some capacity floor, fine-tuning doesn't add skill — it adds confidence, which is about
+        the worst trade a teacher can make.
+      </p>
+    </div>
+
+    <div class="gta-lesson">
+      <p>
+        <span class="gta-lesson-head">The base model's multilingual substrate sets the ceiling.</span>
+        The same data, recipe, and GPU gave E4B +13 points and Qwen3-4B +14 — a strikingly
+        consistent lift. But tuned Qwen3-4B (62%) still landed <em>below stock</em> E4B (72%). You
+        can't fine-tune your way past a weaker pretraining substrate with a dataset this size; you
+        can only cash in the knowledge that's already latent. Pick the base by measured
+        target-language quality, not by leaderboard rank.
+      </p>
+    </div>
+
+    <p>
+      <strong>Parameter count tells you almost nothing about German.</strong> Mistral 7B (43%)
+      lost to Gemma 3 1B (58%), a model a tenth its size, and 8B Qwen matched 1B Gemma on the core
+      suite. "Supports 100+ languages" on a model card is marketing; thirty minutes with a
+      held-out eval is data. EuroLLM-1.7B made the same point from the other direction: pretrained
+      on all 24 official EU languages, it scored 13% — not because it lacks German, but because it
+      can't follow the correction-task <em>format</em>, answering in rambling English prose
+      instead.
+    </p>
+    <p>
+      A reader later handed me the cleanest possible confirmation: <strong>BübleLM-2B</strong>, a
+      Gemma 2-2B <em>re-adapted for German</em> with a custom German tokenizer and 3.5B tokens of
+      German pretraining — a model built for exactly this. On its own German benchmarks it looks
+      strong. On the app's task it scored <strong>7%</strong>, below even EuroLLM: it never once
+      said "OK", opened three-quarters of its answers with a bare reframed sentence and no verdict
+      marker — and, tellingly, its actual German fixes were often <em>correct</em>. All the
+      substrate, none of the discipline to deliver it in a parseable verdict. It's the whole
+      thesis in one reader suggestion: the model card measures German; the eval measures the job.
+    </p>
+
+    <h3 id="later-sweeps">The two sweeps that came later</h3>
+    <p>
+      BübleLM turned out to be the first of a cohort, not a one-off. Two more passes followed the
+      original bake-off, months apart. One went hunting for anything that would fit a 4 GB phone.
+      The other worked through the <strong>German-first specialists</strong> — models pretrained on
+      German and little else, out of German and Swiss labs, each carrying benchmark numbers that
+      look like they should win this outright. Same suites, same prompts, same scorer, with one
+      difference that matters: by then the scorer had been repaired
+      (<a href="#the-eval-was-lying">"The eval was lying"</a>), so every number below is scored the
+      way the app actually renders a reply rather than the way the raw checkpoint answers. Read the
+      two tables against each other with that in mind.
+    </p>
+
+    <div class="gta-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th><th>Size (4-bit)</th><th>Core</th><th>Extension</th><th>False corr.</th><th>Missed errors</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="gta-row-win">
+            <td><span class="gta-model"><img src="assets/img/article/logo-ibm.png" alt=""><a href="https://huggingface.co/mlx-community/granite-4.1-3b-4bit">Granite 4.1 3B</a> <span class="gta-arrow">→</span> <a href="https://huggingface.co/kessenma/granite41-3b-german-tutor-v4-4bit">tuned</a></span></td>
+            <td>1.9 GB</td><td>52%&nbsp;* <span class="gta-arrow">→</span> <span class="gta-good">78%</span></td><td>64% <span class="gta-arrow">→</span> <span class="gta-good">75%</span></td><td>— <span class="gta-arrow">→</span> 9%</td><td>43% <span class="gta-arrow">→</span> <span class="gta-good">25%</span></td>
+          </tr>
+          <tr class="gta-row-win">
+            <td><span class="gta-model"><img src="assets/img/article/logo-ibm.png" alt=""><a href="https://huggingface.co/mlx-community/granite-3.3-2b-instruct-4bit">Granite 3.3 2B</a> <span class="gta-arrow">→</span> <a href="https://huggingface.co/kessenma/granite33-2b-german-tutor-v4-4bit">tuned</a></span></td>
+            <td>1.5 GB</td><td>57% <span class="gta-arrow">→</span> <span class="gta-good">77%</span></td><td>62% <span class="gta-arrow">→</span> 64%</td><td>19% <span class="gta-arrow">→</span> <span class="gta-good">0%</span></td><td>43% <span class="gta-arrow">→</span> 43%</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><span class="gta-nologo">DE</span><a href="https://huggingface.co/LSX-UniWue/LLaMmlein_7B_chat">LLäMmlein 7B chat</a>&nbsp;*</span></td>
+            <td>3.5 GB</td><td>73%&nbsp;§ <span class="gta-cell-note">(58% 0-shot)</span></td><td>—</td><td><span class="gta-good">6%</span></td><td>31%</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><span class="gta-nologo">CH</span><a href="https://huggingface.co/swiss-ai/Apertus-8B-Instruct-2509">Apertus 8B</a></span></td>
+            <td>4.6 GB</td><td>72%&nbsp;§ <span class="gta-cell-note">(12% 0-shot)</span></td><td>—</td><td><span class="gta-good">0%</span></td><td>34%</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><span class="gta-nologo">DE</span><a href="https://huggingface.co/fraunhofer-iis/elmod-2.7b-it">ELMOD 2.7B-it</a>&nbsp;*</span></td>
+            <td>1.6 GB</td><td>72%&nbsp;§ <span class="gta-cell-note">(12% 0-shot)</span></td><td>—</td><td>19%</td><td>28%</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><span class="gta-nologo">CH</span><a href="https://huggingface.co/swiss-ai/Apertus-v1.1-4B-Instruct">Apertus v1.1-4B</a></span></td>
+            <td>2.0 GB</td><td>70%&nbsp;§ <span class="gta-cell-note">(55% 0-shot)</span></td><td>—</td><td>19%</td><td>28%</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><span class="gta-nologo">DE</span><a href="https://huggingface.co/VAGOsolutions/SauerkrautLM-gemma-2-2b-it">SauerkrautLM 2B</a></span></td>
+            <td>1.4 GB</td><td>53%</td><td>64%</td><td>25%</td><td>46%</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><span class="gta-nologo">DE</span><a href="https://huggingface.co/LSX-UniWue/LLaMmlein_1B_chat_all">LLäMmlein 1B chat</a>&nbsp;*</span></td>
+            <td>0.67 GB</td><td>47%&nbsp;§ <span class="gta-cell-note">(8% 0-shot)</span></td><td>—</td><td>19%</td><td><span class="gta-bad">69%</span></td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><span class="gta-nologo">CH</span><a href="https://huggingface.co/swiss-ai/Apertus-v1.1-1.5B-Instruct">Apertus v1.1-1.5B</a></span></td>
+            <td>0.83 GB</td><td>37%&nbsp;§ <span class="gta-cell-note">(3% 0-shot)</span></td><td>—</td><td>50%</td><td><span class="gta-bad">63%</span></td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><img src="assets/img/article/logo-meta.png" alt=""><a href="https://huggingface.co/mlx-community/Llama-3.2-3B-Instruct-4bit">Llama 3.2 3B</a></span></td>
+            <td>2.0 GB</td><td>35%</td><td>70%</td><td><span class="gta-bad">53%</span></td><td>43%</td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><span class="gta-nologo">EU</span><a href="https://huggingface.co/BSC-LT/salamandra-2b-instruct">Salamandra 2B</a></span></td>
+            <td>1.2 GB</td><td><span class="gta-bad">7%</span></td><td><span class="gta-bad">13%</span></td><td><span class="gta-bad">100%</span></td><td><span class="gta-bad">100%</span></td>
+          </tr>
+          <tr>
+            <td><span class="gta-model"><span class="gta-nologo">DE</span><a href="https://huggingface.co/johannhartmann/bueble-lm-2b-sft">BübleLM-2B-SFT</a></span></td>
+            <td>1.1 GB</td><td><span class="gta-bad">7%</span> <span class="gta-cell-note">(25% lenient)</span></td><td><span class="gta-bad">5%</span></td><td><span class="gta-bad">100%</span></td><td><span class="gta-bad">100%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="gta-legend-note">
+      <span>All numbers here are <strong style="color:#c3c2b7">app-equivalent</strong> — scored the way the app renders a reply. The table above scores the raw checkpoint, so the two are on slightly different rulers.</span>
+      <span><strong style="color:#c3c2b7">→</strong>&nbsp; reads "stock <strong style="color:#c3c2b7">→</strong> fine-tuned on the German corpus". Rows without an arrow were measured stock only.</span>
+      <span>§ Best score needs three worked examples in the prompt; the zero-shot figure in parentheses is what the app would actually get. Apertus v1.1-4B is the exception that proves the rule — it is the only one that follows the format zero-shot, 0 format errors in 60 items. Extension suite not run in the few-shot condition, and false-correction / miss rates for these rows are core-suite only (16 correct sentences, 32 errors) rather than across both suites.</span>
+      <span>* Research-only or non-commercial license — a fine-tune inherits the term, so these are data points, not app candidates.</span>
+      <span>Granite 4.1 3B baselines <em>below</em> the 55% floor and got trained anyway — see the funnel above.</span>
+    </div>
+
+    <div class="gta-lesson">
+      <p>
+        <span class="gta-lesson-head">German pretraining buys fluency; it does not buy the job.</span>
+        Four German-first families, four independent pretraining corpora, 0.8 B to 7 B parameters —
+        and the thing they all fail is not German. It's rendering a parseable verdict about someone
+        else's sentence. Apertus-8B answers <em>"The student's sentence is grammatically correct,
+        but it can be improved…"</em> with the correct fix buried inside the prose, and scores zero.
+        Hand any of them three worked examples and format adherence jumps to 100% — which is a
+        useful thing to know about a <em>base</em> and no help at all to an app that sends zero-shot
+        prompts. The sharpest version of it is one number: on da-/wo-compounds, the phenomenon
+        German learners struggle with most, every German-first model measured caps at
+        <strong>33%</strong> in its best condition, while stock Gemma 4 E2B — not German-first,
+        merely well-trained multilingually — gets <strong>60%</strong> zero-shot. Whatever produces
+        da-/wo- competence, "more German pretraining data" is demonstrably not it.
+      </p>
+    </div>
+
+    <div class="gta-lesson">
+      <p>
+        <span class="gta-lesson-head">The base that learns best is not the base that starts best.</span>
+        IBM's Granite models are the ones I did not see coming. They read German inefficiently — a
+        49k English-and-code vocabulary splits German words into fragments — and they start
+        <em>below every Gemma in this article</em>. They are also the only bases in the survey that
+        took the full corpus and got better for it: the 3.3 2B gained 22 items on the held-out
+        suites, the first result in this whole project that clears an exact
+        <a class="gterm" href="#gl-mcnemar">McNemar test</a> (p&nbsp;=&nbsp;0.002), and the newer
+        4.1 3B beat its own stock score by 53 and cut missed errors from 43% to 25%. Both now ship,
+        to the 4 GB phones no Gemma tutor fits. Baseline German told me who was <em>worth</em>
+        training; it did not tell me who would <em>train</em> well, and those turned out to be
+        different questions.
+      </p>
+    </div>

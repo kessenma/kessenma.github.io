@@ -1,0 +1,69 @@
+    <h2 id="round-three"><span id="the-floor"></span>Round three: the hunt for a 4 GB tutor</h2>
+    <p>
+      The 6 GB tier was solved. One rung remained: 4 GB devices — the iPhone XR / 11 / SE class,
+      exactly the "older phone in a drawer" a budget learner is most likely to own. The incumbent
+      there was stock Gemma 3 1B, on the books as a respectable 58% core with a reassuring 0%
+      false corrections: "safe but limited." Re-checking that anchor with the repaired scorer
+      turned up a second, crueler version of the same bug. My guard implemented the app's echo
+      rule but not the <em>rest</em> of its parse contract, and Gemma 3 1B answers nearly every
+      prompt with <code>OK</code> <em>followed by</em> a <code>FIX:</code> line — a shape the app
+      renders as <strong>nothing at all</strong>. Scored the way the app behaves, the incumbent is
+      <strong>34% core with a 100% miss rate</strong>. Its celebrated 0% false-correction rate was
+      never caution; it was silence. Flushing it out meant re-scoring every saved result from its
+      raw generations — scores are a cache, generations are the artifact.
+    </p>
+    <p>
+      Two escape hatches closed quickly. <strong>Shrinking the models I already had doesn't
+      work:</strong> Gemma 4's <a class="gterm" href="#gl-ple">per-layer embeddings</a> — the trick
+      that makes it memory-efficient at 4-bit — must stay high-precision or the model breaks, so a
+      mixed 3-bit build of the tuned E2B lands at 3.2 GB, barely under the 4-bit's 3.4 GB, while
+      cratering core accuracy from 83% to 63%. There is no real 3-bit tier beneath Gemma 4's
+      "4-bit." And <strong>the off-the-shelf field had no answer either:</strong> every plausible
+      sub-3B candidate went through the same guarded eval and failed one of two ways — the
+      German-first models won't render a verdict, and the format-disciplined ones don't know
+      enough German. Only IBM's <strong>Granite 3.3 2B</strong> cleared the true floor, at 55%:
+      the best-behaved non-Gemma measured, Apache-licensed, 1.4 GB.
+    </p>
+    <p>
+      So round three became a controlled experiment at the floor: take the new v2 corpus —
+      <strong>~40,000 validated examples against round one's ~1,400</strong> — and give it to two
+      very different students. Gemma 3 1B, the best German substrate available under a gigabyte.
+      And Granite 3.3 2B, the worst German of anything I'd still consider, but a very different
+      shape of model.
+    </p>
+
+    <div class="gta-table-wrap">
+      <table>
+        <thead>
+          <tr><th>Model</th><th>Stock</th><th>Tuned on the 40k corpus</th><th>False corr.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Gemma 3 1B</td><td>34%</td><td><span class="gta-bad">26%</span> — worse, again</td><td>0% → <span class="gta-bad">29%</span></td></tr>
+          <tr class="gta-row-win"><td><strong>Granite 3.3 2B</strong> (r=32)</td><td>55%</td><td><span class="gta-good">72%</span></td><td>17% → <span class="gta-good">0%</span></td></tr>
+          <tr class="gta-sub"><td>Gemma 4 E2B v2 — the 6 GB tier</td><td colspan="2">84%</td><td>4%</td></tr>
+          <tr class="gta-sub"><td>Gemma 4 E4B v2 — the 8 GB tier</td><td colspan="2">91%</td><td>0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      The 1B result settles the capacity cliff for good: <strong>28× the data made it worse
+      again</strong> (34% → 26%, and it started inventing corrections). The cliff was never about
+      data volume. Granite absorbed the same corpus cleanly — <strong>more than doubling what the
+      app ships to a 4 GB phone</strong> — and then stopped well short of the 6 GB tier, and a
+      rank test says that ceiling isn't a tuning problem: quadrupling the adapter drove validation
+      loss down hard (0.89 → 0.71) and moved the benchmark by four items out of 82, an exact
+      <a class="gterm" href="#gl-mcnemar">McNemar</a> p&nbsp;=&nbsp;0.42. What the extra capacity
+      bought instead was verdict discipline — false corrections to <strong>zero</strong>, the
+      metric this project treats as the trust-killer. Judgment, not knowledge.
+    </p>
+
+    <h3>Two ways to spend a small parameter budget</h3>
+    <p>
+      The split between those two students is the whole story, and it's architectural. A language
+      model's parameters go into two pots: the <strong>vocabulary table</strong> that maps text to
+      <a class="gterm" href="#gl-tokenizer">tokens</a>, and the <strong>body</strong> that does the
+      thinking. In a big model the table is a rounding error. In a small one it is the dominant
+      cost — and it is also the pot that fine-tuning can't use. The two families made opposite
+      bets, and the bet decides how much of the model is still available to learn with:
+    </p>

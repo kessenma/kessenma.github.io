@@ -1,0 +1,41 @@
+# Single source of truth for the German tutor article's "chrome" — the bits that
+# appear in more than one place. Edit here, not in the templates.
+#
+# Consumed by:
+#   _layouts/german_tutor_article.html      <title> + <meta description>
+#   _includes/german_tutor/text/header.html  article masthead, KPIs, links
+#   _includes/writing.html                   homepage teaser card
+#   _includes/german_tutor/text/footer.html  profile link
+#   ...plus inline prose links in text/methodology.html, where-it-stands.html,
+#      bake-off.html (URLs only — the link text stays in the prose)
+#
+# Values are emitted raw into HTML, so use HTML entities (&amp;) not bare "&".
+
+title: "Building a German AI Tutor App"
+
+badge: "Working draft"
+byline: "Kyle Essenmacher"
+date: "July 2026"
+
+url: "/fine-tuning-german-grammar-llm"
+icon: "assets/img/article/kartei-icon.png"
+icon_alt: "Die Kartei app icon"
+
+# Shown under the headline on both the article and the homepage card.
+standfirst: >-
+  A summer in Vienna, two months of German classes, a year of building
+  on-device LLM apps, Google and IBM open-sourcing their most powerful on-device LLM's, 
+  and training my first German tutor model.
+
+# Kept separate from standfirst on purpose: search engines truncate around 160
+# characters, so this is the short version. Reword both together.
+meta_description: >-
+  A summer in Vienna, two months of German classes, a year of building
+  on-device LLM apps, Google and IBM open-sourcing their most powerful on-device LLM's,
+  and training my first German tutor model.
+
+links:
+  model: "https://huggingface.co/kessenma/gemma4-e4b-german-tutor-4bit"
+  model_e2b: "https://huggingface.co/kessenma/gemma4-e2b-german-tutor-4bit"
+  profile: "https://huggingface.co/kessenma"
+

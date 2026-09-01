@@ -1,0 +1,122 @@
+    <p>
+      Gemma buys a huge multilingual vocabulary, which is exactly why it starts ahead on German and
+      why the family dominates this entire article. But that table is not free, and on the shipped
+      4-bit weights you can measure the bill: <strong>30% of Gemma 3 1B's file is vocabulary
+      table</strong>, leaving a 0.39 GB body — and Gemma 4 E2B, which pays for its 262k vocabulary
+      a second time through <a class="gterm" href="#gl-ple">per-layer embeddings</a>, spends
+      <strong>1.55 of its 3.55 GB on embeddings alone</strong>. Granite's bet is the mirror image:
+      4% of Granite 3.3 2B is vocabulary, 96% is body. Granite 4.1 3B carries a
+      <strong>bigger body in a 1.9 GB download than Gemma 4 E2B carries in 3.55 GB</strong>.
+    </p>
+    <p>
+      That asymmetry is the mechanism behind "room to grow," and it isn't a metaphor. A vocabulary
+      table is knowledge that arrives fully formed and barely moves: it fixes what the model can
+      read, and the <a class="gterm" href="#gl-lora">LoRA</a> adapters in this project never touch it —
+      they attach to the attention and feed-forward projections, which all live in the body. The
+      body is the only place new behavior can go. So Gemma 3 1B walks in knowing more German than anything else its
+      size and with almost nowhere to put a correction habit — train it and the judgment gets
+      crowded out. That's the collapse, and it's why 28× the data made it <em>worse</em>. Granite
+      walks in knowing much less German and with a body six times larger standing empty. It
+      <em>learns</em>: +17 points from the same corpus that broke the 1B.
+    </p>
+    <p>
+      What Granite 3.3 couldn't do was read German efficiently. A 49k vocabulary trained mostly on
+      English and code stores German in pieces — <em>gelesen</em> arrives as
+      <code>ge</code>+<code>les</code>+<code>en</code>. Across all 203 eval sentences that costs
+      <strong>1.43× the tokens Gemma needs</strong> for the same text, which is ~40% slower
+      generation on the weakest hardware in the lineup and ~30% less effective context. (A third
+      consequence — body capacity spent reassembling word fragments instead of doing grammar,
+      capping the ceiling — fits the data, but I can't measure it, so it stays a hypothesis.) A
+      model that knows German but can't learn, or a model that can learn but reads German in
+      pieces: under 4 GB those were the only two options on offer, and the ceiling sat at 72%
+      either way. I paused the tier there.
+    </p>
+    <p>
+      The obvious fix — a small model with Gemma's vocabulary and Granite's body ratio — didn't
+      exist, and the reason is economic rather than technical. German is ~2% of the world's
+      speakers; frontier labs optimize benchmark averages across many languages, and multilingual
+      capacity at small sizes is bought with vocabulary and data mix, both of which cost English
+      performance. A German-first 1B is a rounding error in every market a lab measures. TII's
+      Falcon models are the clean illustration: a well-funded lab producing genuinely capable open
+      models, aimed squarely at Arabic and English — because that's who funded them. Nobody is
+      wrong here, and nothing in the incentives points at German. What exists instead is community
+      and academic work (BübleLM, SauerkrautLM, Salamandra, EuroLLM), and the eval already told
+      that story: they lift general German <em>fluency</em> and lose the instruction discipline
+      that makes a verdict format work at all.
+    </p>
+
+    <h3>What lifted the pause was the teacher, not the tier</h3>
+    <p>
+      The thread left dangling two sections ago — relative pronouns regressing identically on two
+      unrelated architectures — was the visible end of a bigger problem, and chasing it is what
+      eventually cracked this tier. The v2 corpus had two defects. Its verdict mix was never
+      checked per phenomenon, so four of five separable-verb examples said <em>nothing was
+      wrong</em> and every model trained on it drifted toward silence. And the teacher that
+      generated the hard phenomena was a 26B <a class="gterm" href="#gl-moe">mixture-of-experts</a>
+      with only ~4B parameters active per token — which is to say I had been running the students'
+      own capacity limit one level up, and grading the results with gates that only asked whether
+      data was <em>present</em>. Rebuilding with a dense 31B teacher moved the reflexive
+      case-change rate from 12% to 98% and cut mislabeled separable-verb "errors" from 26% to 2%.
+      Balancing verdicts per phenomenon at pack time did the rest.
+    </p>
+    <p>
+      That corpus — call it v4 — went through four bases in one two-day sweep, recipe held
+      constant, so every row below differs only in what the base brought. Total GPU spend for all
+      four: about $10.
+    </p>
+
+    <div class="gta-table-wrap">
+      <table>
+        <thead>
+          <tr><th>Base</th><th>Vocab share</th><th>Before</th><th>On corpus v4</th><th>Miss</th><th>False corr.</th></tr>
+        </thead>
+        <tbody>
+          <tr class="gta-sub"><td>Gemma 4 E4B — 8 GB tier</td><td>—</td><td>181/203 (v1)</td><td>182/203 <em>— p = 1.00, a personality change</em></td><td>16%</td><td>3%</td></tr>
+          <tr><td>Gemma 4 E2B — 6 GB tier</td><td>44%</td><td>171/203 (v1)</td><td><span class="gta-bad">163/203</span> — <span class="gta-bad">−8</span>, rejected</td><td><span class="gta-bad">33%</span></td><td><span class="gta-good">0%</span></td></tr>
+          <tr class="gta-row-win"><td><strong>Granite 3.3 2B</strong> · 1.4 GB</td><td>4%</td><td>131/203 (old corpus)</td><td><span class="gta-good">153/203</span> — <span class="gta-good">+22</span>, p&nbsp;=&nbsp;0.002</td><td>43%</td><td><span class="gta-good">0%</span></td></tr>
+          <tr class="gta-row-win"><td><strong>Granite 4.1 3B</strong> · 1.9 GB</td><td>8%</td><td>111/203 (stock)</td><td><span class="gta-good">164/203</span> — <span class="gta-good">+53</span></td><td><span class="gta-good">25%</span></td><td>9%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="gta-legend-note">
+      <span>A wider bench than the tables above: all 203 items — the 60-item core suite, the 61-item extension suite and the frozen 82-item holdout — scored together, app-equivalent. Percentages elsewhere in this article are the 82-item holdout alone, so read this table against itself, not against them.</span>
+    </div>
+
+    <p>
+      Read the last two columns against the vocabulary share and the whole argument of this section
+      is sitting in one table. The <em>identical</em> corpus <strong>cost</strong> Gemma 4 E2B eight
+      items — and the losses landed on the extension suite, phenomena it had never been trained on
+      either way, so the added breadth interfered with competence it already had rather than
+      extending it. The same corpus moved Granite 3.3 by +22 items, an exact
+      <a class="gterm" href="#gl-mcnemar">McNemar</a> p&nbsp;=&nbsp;0.002 and the first
+      statistically significant paired win this project produced in four training campaigns. And it
+      moved Granite 4.1 by +53 items over its own stock score. Nothing about the data changed
+      between those rows. What changed was how much unspoken-for body each student had to put it
+      in.
+    </p>
+    <p>
+      Granite 4.1 3B is the model that finally threads the needle, and it does it on exactly the
+      axis this section is about: <strong>100,352 tokens of vocabulary</strong> against 3.3's 49k —
+      still only 8% of its weights, but enough to read German at <strong>1.15× Gemma's token cost
+      instead of 1.43×</strong>, which is most of the tokenizer tax gone. So the phone that used to
+      get a model showing the learner nothing on every single real error now gets
+      <strong>164/203 at a 25% miss rate, in a 1.9 GB file</strong>. Both Granites are listed in the
+      app; which one stays is decided by peak resident memory on real 4 GB hardware, where 1.9 GB of
+      weights clears the floor but sits close enough to the app's headroom fraction that the KV
+      cache would get capped. That measurement is the last open item on this tier.
+    </p>
+    <p>
+      Two honest caveats travel with the result. Granite 4.1 buys its error-catching with judgment —
+      9% false corrections against Granite 3.3's 0% — which is the knowledge-versus-judgment trade
+      of this whole article showing up one tier further down. And 164 is still seven items short of
+      what a 6 GB phone already gets. But the shape of the claim has changed. "Below ~4B effective
+      parameters, judgment gets crowded out" was the right shape and the wrong number: it was
+      measured on models that spend a third to a half of their weights on a vocabulary table.
+      Restated in body terms it holds and it is more useful — below ~2B of body a corpus can only
+      re-style a model, at ~2.5B it gets absorbed but verdict courage lags, and at ~3B of dense body
+      the knowledge / judgment / format trade finally resolves. That is a statement about how to
+      spend a parameter budget, not about how new the phone has to be. Every result here is still a
+      statement about one generation of small models — but this time the next generation didn't have
+      to arrive. Something already on the shelf, that I had written off for reading German badly,
+      turned out to be the one with room left to teach.
+    </p>

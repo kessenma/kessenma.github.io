@@ -1,0 +1,54 @@
+    <h2 id="takeaways">Takeaways so far</h2>
+    <ol>
+      <li>
+        <strong>Evaluate before you train.</strong> Half of my planned training areas turned out not
+        to need training. The eval also revealed that my most valuable slice of data would be
+        <em>correct sentences</em> — which no intuition about "grammar weaknesses" would have produced.
+      </li>
+      <li>
+        <strong>Behavioral failures beat knowledge failures.</strong> The model mostly <em>knows</em>
+        N-Deklination; it fails at <em>verdict discipline</em> — knowing when to say "this is fine."
+        That's a fine-tuning problem, not a knowledge problem, and it's cheap to fix with data.
+      </li>
+      <li>
+        <strong>Bench the app, not the checkpoint.</strong> Twice, my scorer measured a model no
+        user would ever meet: once flattering a "failed" fine-tune into the bin (the E2B echo
+        artifact), once flattering a broken incumbent onto the scoreboard (the "58%" that was
+        actually silence). Implement production's full parse contract in the eval, and treat
+        scores as a cache over raw generations — a scorer fix must be replayed over saved results.
+      </li>
+      <li>
+        <strong>Synthetic data works if the teacher is strong and the gate is real</strong> — and
+        the gate has to check <em>shape</em>, not just validity. The cheap-teacher A/B failed
+        invisibly (42% wrong labels), and at 40k scale a one-line regex deleted every actual
+        correction while the pass rate went <em>up</em>. Validity gates catch bad rows; only a
+        composition gate catches missing ones.
+      </li>
+      <li>
+        <strong>Below a capacity floor, fine-tuning subtracts — at any data scale.</strong> The
+        same recipes that lifted the 4B model cut Gemma 3 1B nearly in half at 1,400 examples and
+        <em>again</em> at 40,000. Small models learn the confident behavior without the knowledge
+        to aim it; more data buys capability at 4B, caution at ~2B, and nothing at 1B. The
+        structural reason lives in the vocabulary-vs-body budget split above.
+      </li>
+      <li>
+        <strong>Measurement beats vivid examples.</strong> One glance at
+        <em>"Funktionieren Sie als Softwareingenieur"</em> convinced me the translated mix-in had
+        to go; the A/B said removing it costs 7 points of core accuracy. When a bad-looking sample
+        suggests a data decision, run the comparison before believing your eyes.
+      </li>
+      <li>
+        <strong>On-device is not a compromise for language learning — it's an advantage.</strong>
+        Faster turns, total privacy for your fumbling attempts at a new language, works offline,
+        and zero per-user marginal cost, which changes what kind of app you can afford to build.
+      </li>
+      <li>
+        <strong>Measure the substrate, then measure how much of it is spendable.</strong> A stock
+        score tells you what a base knows; it doesn't tell you how much room is left to teach it
+        anything. The models that spend a third to a half of their weights on a vocabulary table
+        started ahead on German and had nowhere to put a new habit, while the IBM Granites started
+        last and were the only bases in the survey that swallowed the whole corpus and got better
+        for it. Thirty minutes of evals beats any model card — and knowing where the parameters
+        went beats both.
+      </li>
+    </ol>

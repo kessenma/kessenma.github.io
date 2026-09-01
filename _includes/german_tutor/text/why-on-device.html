@@ -1,0 +1,28 @@
+    <h2 id="why-on-device">Why on-device</h2>
+    <p>
+      When I researched similar tutor apps, all of them I found rely on a server-side model — which
+      comes with additional costs, can be slower, and usually means a subscription fee just to keep
+      your stored progress. Meanwhile, efficiency advances from the frontier labs, smartphone and
+      chip makers building around on-device acceleration, and governments plus the open-source
+      community producing large German datasets have made it increasingly viable to run the model
+      on the phone itself. The surprising part is that on-device is <em>faster</em> in practice:
+      no network round trip, no queueing behind other users — first tokens start streaming from
+      local silicon almost immediately, which matters enormously in a turn-based spoken
+      conversation where a two-second pause feels like talking to a wall. And it's private by
+      construction: your fumbling attempts at a new language never leave the device.
+    </p>
+
+    <div class="gta-todo">
+      <p><span class="gta-todo-tag">To do</span>Latency comparison numbers vs. the server-based apps tested — time-to-first-token and full-reply times.</p>
+    </div>
+
+    <p>
+      I've built other on-device AI apps, and my honest read of the current state is that
+      <strong>language tasks are the sweet spot</strong>. Conversation, translation, grammar
+      correction, structured generation — a 4B-class model handles these well enough to ship.
+      Heavier patterns like RAG over large document sets aren't really feasible on-device yet; the
+      retrieval infrastructure, context lengths, and memory pressure fight you at every step. But a
+      tutor is almost a pure language task, which makes it one of the best fits for on-device AI
+      today. And these models are advancing fast — Gemma's E-series roughly doubled in usable
+      quality within a year while staying phone-sized.
+    </p>

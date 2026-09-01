@@ -1,0 +1,54 @@
+{%- assign gt = site.data.german_tutor -%}
+    <div class="gta-hero">
+    {% include german_tutor/figures/hero-glitch.html %}
+    <div class="gta-header">
+      <span class="gta-badge">{{ gt.badge }}</span>
+      <div class="gta-titlerow">
+        <img class="gta-appicon" src="{{ gt.icon }}" alt="{{ gt.icon_alt }}">
+        <h1>{{ gt.title }}</h1>
+      </div>
+      <p class="gta-standfirst">
+        {{ gt.standfirst }}
+      </p>
+      <div class="gta-byline">{{ gt.byline }} &middot; {{ gt.date }}</div>
+      <div class="gta-links">
+        <a href="{{ gt.links.profile }}">🤗 Fine-tuned Model &amp; dataset on HuggingFace →</a>
+      </div>
+    </div>
+    </div>
+
+    {%- if gt.kpis %}
+    <div class="gta-kpis">
+      {%- for kpi in gt.kpis %}
+      <div class="gta-kpi">
+        <span class="gta-kpi-value">{{ kpi.value }}</span>
+        <span class="gta-kpi-label">{{ kpi.label }}</span>
+      </div>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+
+    <div class="gta-toc">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#the-app">The app, briefly</a></li>
+        <li><a href="#what-it-does">The feature tour</a></li>
+        <li><a href="#why-on-device">Why on-device</a></li>
+        <li><a href="#the-problem">The problem: four grammar areas where the model quietly fails</a></li>
+        <li><a href="#measure-first">Measure first: building the eval</a></li>
+        <li><a href="#the-dataset">Building the dataset</a></li>
+        <li><a href="#training">Training</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#bake-off">The bake-off: every phone-sized model, same eval</a></li>
+        <li><a href="#round-two">Round two: taking the recipe down-market</a></li>
+        <li><a href="#the-eval-was-lying">The eval was lying to me</a></li>
+        <li><a href="#what-a-learner-found">What a real learner found</a></li>
+        <li><a href="#v2">v2: 28× the data, and teaching the tutor to sound human</a></li>
+        <li><a href="#round-three">Round three: the hunt for a 4 GB tutor</a></li>
+        <li><a href="#whose-german">Whose German?</a></li>
+        <li><a href="#pixels">The same question, in pixels</a></li>
+        <li><a href="#takeaways">Takeaways so far</a></li>
+        <li><a href="#where-it-stands">Where it stands</a></li>
+        <li><a href="#glossary">Glossary — the jargon, unpacked</a></li>
+      </ol>
+    </div>

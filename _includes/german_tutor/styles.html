@@ -1,0 +1,2119 @@
+<style>
+  .gta-article {
+    background: #000;
+    min-height: 100vh;
+    padding: 4rem 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    color: #fff;
+    position: relative;
+
+    /* app accent — iOS system blue #007AFF, plus its dark-mode variant and tints
+       (matches the tint/accent used across the app, e.g. StorySetupView) */
+    --accent: #007AFF;
+    --accent-dm: #0A84FF;
+    --accent-hi: #4DA3FF;
+    --accent-soft: #8FC2FF;
+    --accent-deep: #0A5CCC;
+
+    /* chart tokens — tuned for surface #101011 (dark mode); scatter marks also carry
+       direct text labels so no category rides on hue alone */
+    --surface: #101011;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --ink-muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --shipped: #0A84FF;   /* fine-tuned, shipped */
+    --over: #d95926;      /* over-corrector  */
+    --under: #BF5AF2;     /* rubber-stamper  */
+    --broken: #d03b3b;    /* fails both ways */
+    --seg-1: #3987e5;
+    --seg-2: #c98500;
+    --seg-3: #5BD6E2;
+    --seg-4: #9085e9;
+  }
+  /* ---------- icons ----------
+     Inline Lucide glyphs emitted by _includes/german_tutor/icon.html. They sit on
+     currentColor and default to 1em, so an icon takes the colour and scale of the
+     text it sits in rather than needing a rule per call site. The negative
+     vertical-align lands the 24x24 box on the text's optical centre instead of its
+     baseline; SVG-mode icons are positioned by transform and skip this entirely. */
+  .gta-article .gt-ico {
+    vertical-align: -0.145em;
+    flex-shrink: 0;
+  }
+  /* Icons that replaced a leading emoji in a heading or button need the same
+     optical gap the emoji's own side bearing used to provide. */
+  .gta-article .gt-ico-lead { margin-right: 0.4em; }
+
+  /* ---------- background: app-style brand wash ----------
+     Recreates the app's ModelBrandWash (a slow-drifting MeshGradient in the model's
+     blue palette) with a few large blurred blobs instead of a particle field. */
+  .gta-wash {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .gta-wash i {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(110px);
+    will-change: transform;
+  }
+  .gta-wash i:nth-child(1) {
+    width: 58vw; height: 58vw;
+    background: #007AFF; opacity: 0.20;
+    top: -20%; left: -14%;
+    animation: gta-drift-1 38s ease-in-out infinite alternate;
+  }
+  .gta-wash i:nth-child(2) {
+    width: 44vw; height: 44vw;
+    background: #4DA3FF; opacity: 0.13;
+    top: 20%; right: -18%;
+    animation: gta-drift-2 46s ease-in-out infinite alternate;
+  }
+  .gta-wash i:nth-child(3) {
+    width: 52vw; height: 52vw;
+    background: #0A5CCC; opacity: 0.18;
+    bottom: -24%; left: 16%;
+    animation: gta-drift-3 52s ease-in-out infinite alternate;
+  }
+  .gta-wash i:nth-child(4) {
+    width: 30vw; height: 30vw;
+    background: #7FB8FF; opacity: 0.10;
+    bottom: 6%; right: 4%;
+    animation: gta-drift-2 60s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes gta-drift-1 { from { transform: translate(0, 0) scale(1); } to { transform: translate(9vw, 7vh) scale(1.15); } }
+  @keyframes gta-drift-2 { from { transform: translate(0, 0) scale(1.05); } to { transform: translate(-8vw, 9vh) scale(0.95); } }
+  @keyframes gta-drift-3 { from { transform: translate(0, 0) scale(1); } to { transform: translate(7vw, -8vh) scale(1.12); } }
+  .gta-article * {
+    display: revert;
+    text-align: revert;
+  }
+  .gta-article .gta-container {
+    max-width: 860px;
+    margin: 0 auto;
+    background: rgba(24, 24, 26, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(10, 132, 255, 0.28);
+    border-radius: 22px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), 0 0 80px rgba(0, 122, 255, 0.07);
+  }
+
+  /* ---------- hero: German word-glitch field ----------
+     The header sits on a canvas of German words that turn over in place (see the
+     WordGlitch block in scripts.html). The band bleeds out through the
+     container's padding so the field reaches its inner edge, and rounds its top
+     corners to sit inside the container's 22px radius.
+
+     Two overlay layers do the legibility work: a scrim weighted to the left,
+     where the title and standfirst sit, and an outer vignette that fades the
+     field's edges out so it reads as texture rather than a pasted-in rectangle.
+     The canvas itself is masked downward, dissolving into the article body. */
+  .gta-article .gta-hero {
+    position: relative;
+    isolation: isolate;          /* keeps the field's z-index: -1 above the band's own background */
+    margin: -3rem -2.5rem 2.5rem;
+    padding: 3rem 2.5rem 2rem;
+    border-radius: 21px 21px 0 0;
+    overflow: hidden;
+    border-bottom: 1px solid #38383A;
+    background: linear-gradient(180deg, rgba(4, 8, 16, 0.72) 0%, rgba(10, 12, 18, 0.30) 100%);
+  }
+  .gta-article .gta-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .gta-article .gta-hero-bg canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, 0.35) 88%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, 0.35) 88%, transparent 100%);
+  }
+  .gta-article .gta-hero-bg i {
+    position: absolute;
+    inset: 0;
+  }
+  .gta-article .gta-hero-scrim {
+    background: radial-gradient(115% 135% at 20% 44%,
+      rgba(6, 9, 14, 0.90) 0%, rgba(6, 9, 14, 0.72) 38%,
+      rgba(6, 9, 14, 0.34) 70%, rgba(6, 9, 14, 0) 100%);
+  }
+  .gta-article .gta-hero-vig {
+    background: radial-gradient(circle at 50% 42%,
+      rgba(8, 10, 16, 0) 38%, rgba(8, 10, 16, 0.55) 78%, rgba(8, 10, 16, 0.92) 100%);
+  }
+
+  /* ---------- header ---------- */
+  .gta-article .gta-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #38383A;
+  }
+  /* inside the hero the band owns the spacing and the rule underneath it */
+  .gta-article .gta-hero .gta-header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .gta-article .gta-hero .gta-header h1 { text-shadow: 0 2px 20px rgba(0, 0, 0, 0.9); }
+  .gta-article .gta-hero .gta-standfirst,
+  .gta-article .gta-hero .gta-byline { text-shadow: 0 1px 12px rgba(0, 0, 0, 0.85); }
+  .gta-article .gta-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #FF9F0A;
+    border: 1px solid rgba(255, 159, 10, 0.4);
+    background: rgba(255, 159, 10, 0.08);
+    border-radius: 100px;
+    padding: 0.25rem 0.7rem;
+    margin-bottom: 1rem;
+  }
+  .gta-article .gta-titlerow {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+  }
+  .gta-article .gta-appicon {
+    width: 62px;
+    height: 62px;
+    border-radius: 14px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+  }
+  .gta-article .gta-header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #0A84FF;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .gta-article .gta-titlerow h1 { margin-bottom: 0; }
+  .gta-article .gta-standfirst {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #aaa;
+    margin: 1.25rem 0 1.5rem 0;
+  }
+  .gta-article .gta-byline {
+    font-size: 0.85rem;
+    color: #8E8E93;
+  }
+  .gta-article .gta-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .gta-article .gta-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: #4DA3FF;
+    border: 1px solid rgba(10, 132, 255, 0.3);
+    border-radius: 100px;
+    padding: 0.35rem 0.85rem;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+  .gta-article .gta-links a:hover { background: rgba(10, 132, 255, 0.12); }
+
+  /* ---------- KPI row ---------- */
+  .gta-article .gta-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin: 2rem 0 2.5rem 0;
+  }
+  .gta-article .gta-kpi {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid #2C2C2E;
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+  }
+  .gta-article .gta-kpi-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0A84FF;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .gta-article .gta-kpi-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #8E8E93;
+    margin-top: 0.35rem;
+    line-height: 1.35;
+  }
+
+  /* ---------- table of contents ---------- */
+  .gta-article .gta-toc {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid #2C2C2E;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .gta-article .gta-toc h2 {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #8E8E93;
+    margin: 0 0 0.75rem 0;
+  }
+  .gta-article .gta-toc ol { margin: 0; padding-left: 1.2rem; }
+  .gta-article .gta-toc li {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #ccc;
+    list-style: decimal;
+    margin-bottom: 0.2rem;
+  }
+
+  /* ---------- body copy ---------- */
+  .gta-article h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #0A84FF;
+    margin: 3rem 0 1rem 0;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    scroll-margin-top: 2rem;
+  }
+  .gta-article h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #4DA3FF;
+    margin: 2rem 0 0.5rem 0;
+  }
+  .gta-article p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #d4d4d6;
+    margin: 0 0 1.15rem 0;
+  }
+  .gta-article ul, .gta-article ol { padding-left: 1.35rem; margin: 0 0 1.25rem 0; }
+  .gta-article li {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #d4d4d6;
+    margin-bottom: 0.5rem;
+  }
+  .gta-article ul > li { list-style: disc; }
+  .gta-article ol > li { list-style: decimal; }
+  .gta-article li::marker { color: #0A84FF; }
+  .gta-article strong { color: #fff; font-weight: 650; }
+  .gta-article em { color: #e4e4e6; }
+  .gta-article u { color: #e4e4e6; text-decoration-color: rgba(10, 132, 255, 0.5); text-underline-offset: 2px; }
+  .gta-article a {
+    color: #0A84FF;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(10, 132, 255, 0.35);
+  }
+  .gta-article a:hover { border-bottom-color: #0A84FF; }
+  .gta-article code {
+    font-family: 'SF Mono', ui-monospace, Menlo, monospace;
+    font-size: 0.85em;
+    background: rgba(10, 132, 255, 0.1);
+    border: 1px solid rgba(10, 132, 255, 0.15);
+    border-radius: 5px;
+    padding: 0.1em 0.4em;
+    color: #8FC2FF;
+  }
+
+  /* glossary term links */
+  .gta-article a.gterm {
+    color: #d4d4d6;
+    border-bottom: 1px dotted rgba(10, 132, 255, 0.65);
+  }
+  .gta-article a.gterm:hover { color: #8FC2FF; border-bottom-style: solid; }
+
+  /* ---------- pull-out lesson ---------- */
+  .gta-article .gta-lesson {
+    border-left: 3px solid #0A84FF;
+    background: rgba(10, 132, 255, 0.06);
+    border-radius: 0 10px 10px 0;
+    padding: 1.1rem 1.4rem;
+    margin: 1.75rem 0;
+  }
+  .gta-article .gta-lesson p { margin: 0; }
+  .gta-article .gta-lesson p + p { margin-top: 0.85rem; }
+  .gta-article .gta-lesson .gta-lesson-head {
+    display: block;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ---------- TODO callout ---------- */
+  .gta-article .gta-todo {
+    border: 1px dashed rgba(255, 159, 10, 0.5);
+    background: rgba(255, 159, 10, 0.06);
+    border-radius: 10px;
+    padding: 0.9rem 1.2rem;
+    margin: 1.75rem 0;
+  }
+  .gta-article .gta-todo p { margin: 0; font-size: 0.9rem; color: #E0A85A; }
+  .gta-article .gta-todo .gta-todo-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #FF9F0A;
+    margin-right: 0.5rem;
+  }
+
+  /* ---------- tables ---------- */
+  .gta-article .gta-table-wrap {
+    overflow-x: auto;
+    margin: 1.75rem 0;
+    border: 1px solid #2C2C2E;
+    border-radius: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .gta-article table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.88rem; }
+  .gta-article thead th {
+    background: rgba(10, 132, 255, 0.09);
+    color: #8FC2FF;
+    font-weight: 650;
+    text-align: left;
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid #38383A;
+    white-space: nowrap;
+  }
+  .gta-article tbody td {
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid #232325;
+    color: #d4d4d6;
+    line-height: 1.5;
+    vertical-align: middle;
+  }
+  .gta-article tbody tr:last-child td { border-bottom: none; }
+  .gta-article tbody tr:hover td { background: rgba(255, 255, 255, 0.02); }
+  .gta-article tbody td:not(:first-child) { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .gta-article .gta-row-win td { background: rgba(10, 132, 255, 0.07); }
+  .gta-article .gta-row-win:hover td { background: rgba(10, 132, 255, 0.1); }
+  .gta-article .gta-good { color: #0A84FF; font-weight: 650; }
+  .gta-article .gta-bad { color: #FF453A; font-weight: 650; }
+  .gta-article .gta-sub td:first-child { padding-left: 1.9rem; color: #9a9a9e; }
+  .gta-article .gta-caption {
+    font-size: 0.82rem;
+    color: #8E8E93;
+    margin: -1rem 0 1.75rem 0;
+    line-height: 1.6;
+  }
+  /* model cell: logo + name */
+  .gta-article .gta-model {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    white-space: nowrap;
+  }
+  .gta-article .gta-model img {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+  .gta-article .gta-model .gta-nologo {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    background: #2C2C2E;
+    color: #8E8E93;
+    font-size: 0.65rem;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: center;
+  }
+  .gta-article .gta-model a { border-bottom: none; color: #d4d4d6; }
+  .gta-article .gta-model a:hover { color: #0A84FF; }
+  .gta-article .gta-arrow { color: #6f6f74; padding: 0 0.15rem; }
+  /* a condition or caveat riding along inside a numeric cell — the score is the figure,
+     this is what it was measured under */
+  .gta-article .gta-cell-note { color: #6f6f74; font-weight: 400; }
+  .gta-article .gta-legend-note {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.25rem;
+    font-size: 0.82rem;
+    color: #8E8E93;
+    margin: -1rem 0 1.75rem 0;
+    line-height: 1.6;
+  }
+
+  /* ---------- figures / charts ---------- */
+  .gta-article figure {
+    margin: 2rem 0;
+    background: var(--surface);
+    border: 1px solid #2C2C2E;
+    border-radius: 12px;
+    padding: 1.5rem 1.5rem 1.25rem 1.5rem;
+  }
+  /* for figures whose own shape is the frame — no card behind them */
+  .gta-article figure.gta-fig-bare {
+    background: none;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+  }
+  .gta-article figure h4 {
+    font-size: 0.95rem;
+    font-weight: 650;
+    color: #fff;
+    margin: 0 0 0.25rem 0;
+  }
+  .gta-article figure .gta-fig-sub {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.5;
+  }
+  .gta-article figcaption {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid #232325;
+  }
+  .gta-article .gta-svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+  /* chart legend */
+  .gta-article .gta-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin-top: 1rem;
+  }
+  .gta-article .gta-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    color: var(--ink-2);
+  }
+  .gta-article .gta-legend i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .gta-article .gta-legend i.sq { border-radius: 2px; }
+
+  /* scatter marks */
+  .gta-article .gta-dot { transition: r 0.12s ease; cursor: default; }
+  .gta-article .gta-dot:hover { r: 11; }
+  .gta-article .gta-dot-label {
+    font-size: 11px;
+    fill: var(--ink-2);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .gta-article .gta-axis-label {
+    font-size: 11.5px;
+    fill: var(--ink-muted);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .gta-article .gta-tick {
+    font-size: 10px;
+    fill: var(--ink-muted);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+  .gta-article .gta-zone {
+    font-size: 11px;
+    fill: var(--ink-muted);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-style: italic;
+  }
+
+  /* stacked composition bar */
+  .gta-article .gta-stack {
+    display: flex;
+    width: 100%;
+    height: 44px;
+    gap: 2px;
+    margin-bottom: 0.6rem;
+  }
+  .gta-article .gta-stack div {
+    border-radius: 3px;
+    position: relative;
+    transition: filter 0.15s ease;
+  }
+  .gta-article .gta-stack div:hover { filter: brightness(1.25); }
+  .gta-article .gta-stack-labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    margin-bottom: 1.75rem;
+  }
+  .gta-article .gta-stack-labels span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.82rem;
+    color: var(--ink-2);
+  }
+  .gta-article .gta-stack-labels i { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+  .gta-article .gta-stack-labels b { color: #fff; font-variant-numeric: tabular-nums; font-weight: 650; }
+  .gta-article .gta-bar-title {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    margin: 0 0 0.6rem 0;
+  }
+
+  /* ---------- pipeline diagram ---------- */
+  .gta-article .gta-pipe {
+    display: flex;
+    align-items: stretch;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+  }
+  .gta-article .gta-pipe-step {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #2C2C2E;
+    border-radius: 10px;
+    padding: 0.9rem 0.9rem;
+    min-width: 0;
+  }
+  .gta-article .gta-pipe-step.gta-pipe-gate { border-color: rgba(10, 132, 255, 0.45); background: rgba(10, 132, 255, 0.07); }
+  .gta-article .gta-pipe-step h5 {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #4DA3FF;
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+  }
+  .gta-article .gta-pipe-step ul { margin: 0; padding-left: 0.95rem; }
+  .gta-article .gta-pipe-step li {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin-bottom: 0.2rem;
+    list-style: disc;
+  }
+  .gta-article .gta-pipe-arrow {
+    align-self: center;
+    color: #4a4a4e;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* ---------- GPU animation ---------- */
+  .gta-article .gta-gpu-row {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+  }
+  .gta-article .gta-gpu-stats { flex: 1; min-width: 200px; }
+  .gta-article .gta-gpu-stats dl { margin: 0; }
+  .gta-article .gta-gpu-stats div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid #232325;
+  }
+  .gta-article .gta-gpu-stats div:last-child { border-bottom: none; }
+  .gta-article .gta-gpu-stats dt { font-size: 0.82rem; color: var(--ink-muted); margin: 0; }
+  .gta-article .gta-gpu-stats dd {
+    font-size: 0.82rem;
+    color: #fff;
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+    font-weight: 650;
+  }
+  .gta-article .gta-runpod {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #C4B5FD;
+    background: rgba(124, 58, 237, 0.14);
+    border: 1px solid rgba(124, 58, 237, 0.45);
+    border-radius: 100px;
+    padding: 0.3rem 0.8rem;
+    margin-bottom: 0.9rem;
+    text-decoration: none;
+  }
+  .gta-article .gta-runpod:hover { background: rgba(124, 58, 237, 0.24); border-bottom-color: rgba(124, 58, 237, 0.45); }
+  .gta-article .gta-fan { transform-origin: center; transform-box: fill-box; animation: gta-spin 1.6s linear infinite; }
+  .gta-article .gta-fan-2 { animation-duration: 1.15s; }
+  @keyframes gta-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .gta-article .gta-led { animation: gta-blink 1.8s ease-in-out infinite; }
+  @keyframes gta-blink { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+  .gta-article .gta-flow { stroke-dasharray: 4 6; animation: gta-dash 1.2s linear infinite; }
+  @keyframes gta-dash { to { stroke-dashoffset: -20; } }
+  @media (prefers-reduced-motion: reduce) {
+    .gta-article .gta-fan, .gta-article .gta-led, .gta-article .gta-flow,
+    .gta-article .gta-bob, .gta-article .gta-pulse, .gta-article .gta-flip,
+    .gta-article .gta-typing circle, .gta-article .gta-typing2 i,
+    .gta-article .gta-avatar.gta-glow::before, .gta-article .gta-mic.gta-rec::before { animation: none !important; }
+    .gta-wash i { animation: none !important; }
+    .gta-article .gta-writing, .gta-article .gta-wtitle, .gta-article .gta-wline { transition: none !important; }
+    .gta-article .gta-wtitle, .gta-article .gta-wline { transform: scaleX(1); }
+    .gta-article .gta-anim, .gta-article .gta-recctl, .gta-article .gta-convwash, .gta-article .gta-mic { transition: none !important; }
+  }
+
+  /* ---------- five-hats hub ---------- */
+  .gta-article .gta-hub { display: grid; place-items: center; padding: 0.5rem 0; }
+  .gta-article .gta-hub svg { max-width: 520px; width: 100%; height: auto; overflow: visible; }
+  .gta-article .gta-hub-chip { filter: drop-shadow(0 0 22px rgba(0,122,255,0.45)); }
+  .gta-article .gta-bob { animation: gta-bob 3.2s ease-in-out infinite; }
+  .gta-article .gta-bob-2 { animation-delay: 0.4s; }
+  .gta-article .gta-bob-3 { animation-delay: 0.8s; }
+  .gta-article .gta-bob-4 { animation-delay: 1.2s; }
+  .gta-article .gta-bob-5 { animation-delay: 1.6s; }
+  .gta-article .gta-bob-6 { animation-delay: 2.0s; }
+  @keyframes gta-bob { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-6px) } }
+  .gta-article .gta-pulse { animation: gta-pulse 2.4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+  @keyframes gta-pulse { 0%,100%{ transform: scale(1); opacity: 0.95 } 50%{ transform: scale(1.04); opacity: 1 } }
+
+  /* ---------- conversation two-pass ---------- */
+  .gta-article .gta-conv { display: flex; gap: 1rem; align-items: stretch; flex-wrap: wrap; justify-content: center; }
+  .gta-article .gta-conv svg { flex: 1 1 320px; max-width: 380px; }
+  /* typing dots as SVG-native circles — HTML <i> inside <svg> would break the
+     parser out of SVG context and drop everything after it */
+  .gta-article .gta-typing circle { transform-box: fill-box; transform-origin: center; animation: gta-typing 1.2s ease-in-out infinite; }
+  .gta-article .gta-typing circle:nth-child(2){ animation-delay: 0.15s; }
+  .gta-article .gta-typing circle:nth-child(3){ animation-delay: 0.3s; }
+  @keyframes gta-typing { 0%,60%,100%{ transform: translateY(0); opacity: 0.5 } 30%{ transform: translateY(-6px); opacity: 1 } }
+
+  /* ---------- matching grid ---------- */
+  .gta-article .gta-match { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.55rem; max-width: 320px; margin: 0 auto; }
+  .gta-article .gta-match-card { aspect-ratio: 3/2; border-radius: 10px; border: 1px solid #2C2C2E; background: #1a1a1d; display: grid; place-items: center; font-size: 0.92rem; font-weight: 650; color: #d4d4d6; position: relative; overflow: hidden; cursor: default; transition: transform 0.28s ease, border-color 0.2s ease; transform-style: preserve-3d; }
+  .gta-article .gta-match-card.gta-matched { background: rgba(10,132,255,0.12); border-color: rgba(10,132,255,0.45); color: #8FC2FF; transform: scale(0.96); }
+  .gta-article .gta-match-card.gta-miss { animation: gta-shake 0.35s ease; border-color: #d03b3b; }
+  @keyframes gta-shake { 0%,100%{ transform: translateX(0)} 25%{ transform: translateX(-4px)} 75%{ transform: translateX(4px)} }
+  .gta-article .gta-match-card .gta-front { position: absolute; inset: 0; display: grid; place-items: center; background: #232326; transition: opacity 0.28s ease; }
+  .gta-article .gta-match-card.gta-flipped .gta-front { opacity: 0; pointer-events: none; }
+
+  /* ---------- grammar quiz ---------- */
+  .gta-article .gta-quiz { background: #141416; border: 1px solid #2C2C2E; border-radius: 14px; padding: 1rem 1.2rem; max-width: 420px; margin: 0 auto; }
+  .gta-article .gta-quiz-q { font-size: 1.05rem; font-weight: 600; color: #fff; margin: 0 0 0.8rem 0; line-height: 1.4; }
+  .gta-article .gta-quiz-q b { color: #4DA3FF; }
+  .gta-article .gta-quiz-opt { display: block; width: 100%; text-align: left; font-size: 0.92rem; padding: 0.6rem 0.9rem; margin: 0 0 0.5rem 0; border-radius: 10px; border: 1px solid #2C2C2E; background: #1e1e21; color: #d4d4d6; cursor: pointer; transition: all 0.18s ease; }
+  .gta-article .gta-quiz-opt:hover { border-color: #4DA3FF; }
+  .gta-article .gta-quiz-opt.gta-correct { background: rgba(10,132,255,0.14); border-color: #0A84FF; color: #8FC2FF; }
+  .gta-article .gta-quiz-opt.gta-wrong { background: rgba(208,59,59,0.12); border-color: #d03b3b; color: #e08a8a; }
+
+  /* ---------- memory loop ---------- */
+  .gta-article .gta-loop { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center; justify-content: center; }
+  .gta-article .gta-loop svg { flex: 0 0 320px; max-width: 100%; }
+  .gta-article .gta-loop-steps { flex: 1; min-width: 220px; }
+  .gta-article .gta-loop-steps dl { margin: 0; }
+  .gta-article .gta-loop-steps div { display: flex; gap: 0.6rem; padding: 0.5rem 0; border-bottom: 1px solid #232325; }
+  .gta-article .gta-loop-steps div:last-child { border-bottom: none; }
+  .gta-article .gta-loop-steps dt { font-size: 1.05rem; }
+  .gta-article .gta-loop-steps dd { font-size: 0.85rem; color: var(--ink-2); margin: 0; line-height: 1.45; }
+  .gta-article .gta-loop-flow { stroke-dasharray: 6 8; animation: gta-dash 1.6s linear infinite; }
+
+  /* ---------- today plan ---------- */
+  .gta-article .gta-today { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.7rem; margin: 1rem 0; }
+  .gta-article .gta-today-card { background: #151518; border: 1px solid #2C2C2E; border-radius: 12px; padding: 0.9rem 1rem; position: relative; overflow: hidden; }
+  .gta-article .gta-today-card:before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--c1), var(--c2)); }
+  .gta-article .gta-today-card h5 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: #8E8E93; margin: 0 0 0.35rem 0; }
+  .gta-article .gta-today-card p { font-size: 0.9rem; color: #fff; margin: 0; line-height: 1.35; }
+
+  /* ---------- story setup: iPhone mock + generating overlay ---------- */
+  .gta-article .gta-phone {
+    flex: 0 0 300px;
+    width: 300px;
+    max-width: 100%;
+    border-radius: 46px;
+    padding: 10px;
+    background: #0c0c0e;
+    border: 1px solid #38383A;
+    box-shadow: 0 0 0 2px #1c1c1f, 0 18px 44px rgba(0, 0, 0, 0.5), 0 0 54px rgba(0, 122, 255, 0.12);
+  }
+  .gta-article .gta-phone-screen {
+    border-radius: 38px;
+    background: #000;
+    padding: 0.55rem 0.8rem 1.05rem;
+    overflow: hidden;
+  }
+  .gta-article .gta-island {
+    width: 82px; height: 22px;
+    border-radius: 12px;
+    background: #0c0c0e;
+    border: 1px solid #1c1c1f;
+    margin: 0.15rem auto 0.55rem;
+  }
+  .gta-article .gta-navtitle { text-align: center; font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+  .gta-article .gta-fsec {
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #8E8E93;
+    margin: 0.9rem 0 0.3rem 0.4rem;
+  }
+  .gta-article .gta-fcard { background: #1C1C1E; border-radius: 12px; overflow: hidden; }
+  .gta-article .gta-frow {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.78rem;
+    line-height: 1.3;
+    color: #fff;
+    border-bottom: 1px solid #2C2C2E;
+  }
+  .gta-article .gta-frow:last-child { border-bottom: none; }
+  .gta-article .gta-fplaceholder { color: #636366; }
+  .gta-article .gta-faction { color: #4DA3FF; }
+  .gta-article .gta-fico { width: 24px; text-align: center; flex-shrink: 0; }
+  .gta-article .gta-fstack { flex: 1; display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+  .gta-article .gta-fstack small { font-size: 0.66rem; color: #8E8E93; line-height: 1.3; }
+  .gta-article .gta-fchev { color: #636366; font-weight: 700; }
+  .gta-article .gta-fcol { flex-direction: column; align-items: stretch; gap: 0.4rem; }
+  .gta-article .gta-fnote { font-size: 0.66rem; color: #8E8E93; margin: 0.3rem 0 0 0.4rem; line-height: 1.4; }
+  /* segmented picker — tinted selection like the app's accent */
+  .gta-article .gta-seg { display: flex; background: #2C2C2E; border-radius: 8px; padding: 2px; gap: 2px; }
+  .gta-article .gta-seg i {
+    flex: 1;
+    text-align: center;
+    font-style: normal;
+    font-size: 0.72rem;
+    padding: 0.22rem 0;
+    border-radius: 6px;
+    color: #d4d4d6;
+  }
+  .gta-article .gta-seg i.on { background: #0A84FF; color: #fff; font-weight: 650; }
+  /* iOS toggle */
+  .gta-article .gta-toggle {
+    width: 38px; height: 23px;
+    border-radius: 12px;
+    background: #39393D;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .gta-article .gta-toggle b {
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 19px; height: 19px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+  .gta-article .gta-toggle.on { background: #0A84FF; }
+  .gta-article .gta-toggle.on b { left: 17px; }
+  /* the big gradient generate button (theme.linear, white foreground) */
+  .gta-article .gta-write-btn {
+    margin-top: 1rem;
+    border-radius: 12px;
+    text-align: center;
+    padding: 0.6rem 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #4DA3FF 0%, #007AFF 55%, #0A5CCC 100%);
+    box-shadow: 0 6px 18px rgba(0, 122, 255, 0.35);
+  }
+  /* GeneratingStoryView — the little book that writes itself (now the flow's generating screen) */
+  .gta-article .gta-book { position: relative; width: 220px; height: 244px; margin: 0 auto 0.4rem; }
+  .gta-article .gta-book-glow {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 250px; height: 180px;
+    transform: translate(-50%, -50%);
+    background: #007AFF;
+    opacity: 0.18;
+    filter: blur(45px);
+    border-radius: 50%;
+  }
+  .gta-article .gta-page {
+    position: absolute;
+    left: 50%; top: 14px;
+    width: 160px; height: 190px;
+    margin-left: -80px;
+    border-radius: 12px;
+    background: #26262b;
+    border: 1px solid rgba(10, 132, 255, 0.4);
+  }
+  .gta-article .gta-back1 { transform: translate(8px, 7px) rotate(3deg); box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3); }
+  .gta-article .gta-back2 { transform: translate(-5px, 4px) rotate(-2deg); box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3); }
+  .gta-article .gta-writing {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    padding: 18px;
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+  .gta-article .gta-writing.gta-away { transform: scale(1.06); opacity: 0; }
+  .gta-article .gta-wtitle {
+    display: block;
+    height: 9px; width: 74px;
+    border-radius: 99px;
+    background: rgba(10, 132, 255, 0.85);
+    transform: scaleX(0.15);
+    transform-origin: left;
+    transition: transform 0.5s ease-out 0.05s;
+  }
+  .gta-article .gta-wline {
+    display: block;
+    height: 5px;
+    border-radius: 99px;
+    background: rgba(107, 117, 140, 0.55);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s ease-out;
+  }
+  .gta-article .gta-writing.gta-live .gta-wtitle { transform: scaleX(1); }
+  .gta-article .gta-writing.gta-live .gta-wline { transform: scaleX(1); }
+  .gta-article .gta-writing.gta-live .gta-wline:nth-of-type(1) { transition-delay: 0.25s; }
+  .gta-article .gta-writing.gta-live .gta-wline:nth-of-type(2) { transition-delay: 0.50s; }
+  .gta-article .gta-writing.gta-live .gta-wline:nth-of-type(3) { transition-delay: 0.75s; }
+  .gta-article .gta-writing.gta-live .gta-wline:nth-of-type(4) { transition-delay: 1.00s; }
+  .gta-article .gta-writing.gta-live .gta-wline:nth-of-type(5) { transition-delay: 1.25s; }
+  .gta-article .gta-writing.gta-live .gta-wline:nth-of-type(6) { transition-delay: 1.50s; }
+  .gta-article .gta-phase { font-size: 0.9rem; font-weight: 650; color: #fff; min-height: 1.25em; margin-top: 0.4rem; }
+  .gta-article .gta-prog { width: 200px; max-width: 100%; height: 5px; border-radius: 3px; background: #2C2C2E; margin: 0.6rem auto 0.35rem; overflow: hidden; }
+  .gta-article .gta-prog i { display: block; height: 100%; width: 0; border-radius: 3px; background: linear-gradient(90deg, #4DA3FF, #007AFF); }
+  .gta-article .gta-tokens { font-size: 0.72rem; color: #8E8E93; font-variant-numeric: tabular-nums; }
+  .gta-article .gta-stop {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #FF453A;
+    border: 1px solid rgba(255, 69, 58, 0.4);
+    border-radius: 99px;
+    padding: 0.28rem 0.85rem;
+  }
+
+  /* ---------- Stories: one phone, one flow (setup → generating → story → quiz) ---------- */
+  .gta-article .gta-fl { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+  .gta-article .gta-fl-screens { position: relative; height: 420px; }
+  .gta-article .gta-fl-screen {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .gta-article .gta-fl-screen.gta-on { opacity: 1; visibility: visible; pointer-events: auto; }
+  /* generating sits centered; the rest read top-down like a real screen */
+  .gta-article .gta-fl-screen[data-screen="1"] { justify-content: center; align-items: center; text-align: center; }
+  /* the setup screen is the tallest; tighten its rhythm so it clears the frame */
+  .gta-article .gta-fl-screen[data-screen="0"] .gta-fsec { margin-top: 0.6rem; }
+  .gta-article .gta-fl-screen[data-screen="0"] .gta-frow { padding-top: 0.42rem; padding-bottom: 0.42rem; }
+  .gta-article .gta-fl-screen[data-screen="0"] .gta-write-btn { margin-top: 0.8rem; }
+
+  /* finished-story screen */
+  .gta-article .gta-fl-chips { display: flex; align-items: center; gap: 0.4rem; margin: 0.1rem 0 0.55rem; }
+  .gta-article .gta-fl-chip {
+    font-size: 0.66rem; font-weight: 650; color: #d4d4d6;
+    background: #2C2C2E; border-radius: 99px; padding: 0.16rem 0.6rem;
+  }
+  .gta-article .gta-fl-chip-lvl { background: rgba(10, 132, 255, 0.18); color: #4DA3FF; }
+  .gta-article .gta-fl-wc { font-size: 0.66rem; color: #8E8E93; margin-left: auto; }
+  .gta-article .gta-fl-illus {
+    height: 116px; border-radius: 12px; margin-bottom: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(120% 80% at 78% 18%, rgba(255, 241, 209, 0.9) 0%, rgba(255, 241, 209, 0) 42%),
+      linear-gradient(168deg, #16324e 0%, #2f6ea0 46%, #cfe0ee 100%);
+  }
+  /* a soft snow ridge, so it reads as an illustration rather than an empty box */
+  .gta-article .gta-fl-illus::before {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 46%;
+    background: linear-gradient(#eef4fb, #c3d4e6);
+    clip-path: polygon(0 55%, 22% 34%, 44% 52%, 66% 24%, 100% 46%, 100% 100%, 0 100%);
+  }
+  .gta-article .gta-fl-illus::after {
+    /* Icons in CSS content: can't come from the Liquid include, so the same Lucide
+       geometry is inlined as a mask — background-color still drives the colour. */
+    content: ""; position: absolute; right: 0.45rem; bottom: 0.4rem;
+    width: 0.8rem; height: 0.8rem;
+    background-color: rgba(22, 50, 78, 0.55);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M13.997%204a2%202%200%200%201%201.76%201.05l.486.9A2%202%200%200%200%2018.003%207H20a2%202%200%200%201%202%202v9a2%202%200%200%201-2%202H4a2%202%200%200%201-2-2V9a2%202%200%200%201%202-2h1.997a2%202%200%200%200%201.759-1.048l.489-.904A2%202%200%200%201%2010.004%204z%22%2F%3E%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2213%22%20r%3D%223%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M13.997%204a2%202%200%200%201%201.76%201.05l.486.9A2%202%200%200%200%2018.003%207H20a2%202%200%200%201%202%202v9a2%202%200%200%201-2%202H4a2%202%200%200%201-2-2V9a2%202%200%200%201%202-2h1.997a2%202%200%200%200%201.759-1.048l.489-.904A2%202%200%200%201%2010.004%204z%22%2F%3E%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2213%22%20r%3D%223%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
+  }
+  .gta-article .gta-fl-title { font-size: 1.02rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+  .gta-article .gta-fl-body { display: flex; flex-direction: column; gap: 8px; }
+  .gta-article .gta-fl-line { height: 5px; border-radius: 99px; background: rgba(107, 117, 140, 0.5); }
+  .gta-article .gta-fl-pill {
+    align-self: flex-start; margin-top: 0.8rem;
+    font-size: 0.72rem; color: #4DA3FF;
+    border: 1px solid rgba(77, 163, 255, 0.4); border-radius: 99px; padding: 0.22rem 0.7rem;
+  }
+  .gta-article .gta-fl-cta,
+  .gta-article .gta-fl-weiter {
+    margin-top: auto; border-radius: 12px; text-align: center; padding: 0.55rem;
+    font-size: 0.82rem; font-weight: 700; color: #fff;
+    background: linear-gradient(135deg, #4DA3FF 0%, #007AFF 55%, #0A5CCC 100%);
+    box-shadow: 0 6px 18px rgba(0, 122, 255, 0.35);
+  }
+
+  /* quiz screen */
+  .gta-article .gta-fl-qhead { display: flex; justify-content: space-between; align-items: baseline; color: #fff; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .gta-article .gta-fl-qprog { color: #8E8E93; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .gta-article .gta-fl-qkind { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.06em; color: #8E8E93; margin: 0.85rem 0 0.35rem; }
+  .gta-article .gta-fl-q { font-size: 0.92rem; font-weight: 600; color: #fff; line-height: 1.35; margin-bottom: 0.75rem; }
+  .gta-article .gta-fl-opts { display: flex; flex-direction: column; gap: 0.5rem; }
+  .gta-article .gta-fl-opt {
+    font-size: 0.8rem; color: #fff; background: #1C1C1E;
+    border: 1px solid #2C2C2E; border-radius: 10px; padding: 0.6rem 0.7rem;
+  }
+  .gta-article .gta-fl-opt.on { background: rgba(48, 209, 88, 0.15); border-color: rgba(48, 209, 88, 0.55); }
+
+  /* clickable step rail under the phone */
+  .gta-article .gta-fl-steps { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+  .gta-article .gta-fl-step {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font: inherit; font-size: 0.72rem; color: #8E8E93;
+    background: none; border: 1px solid #2C2C2E; border-radius: 99px;
+    padding: 0.28rem 0.75rem; cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .gta-article .gta-fl-step b { width: 7px; height: 7px; border-radius: 50%; background: #48484A; transition: background 0.2s ease; }
+  .gta-article .gta-fl-step.gta-on { color: #fff; border-color: rgba(10, 132, 255, 0.5); }
+  .gta-article .gta-fl-step.gta-on b { background: #0A84FF; }
+
+  /* ---------- Cards: one phone, one flow (options → generating → German → English → results) ---------- */
+  /* the skeuomorphic cream index card, the way the app draws it */
+  .gta-article .gta-cd-card {
+    background: #f6f2e8; color: #1c1c22; border-radius: 14px;
+    padding: 0.9rem 1rem 1.1rem; text-align: center; position: relative;
+    font-family: 'Iowan Old Style', Palatino, Georgia, 'Times New Roman', serif;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  }
+  .gta-article .gta-cd-lang {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em;
+    color: #a08e78; padding-bottom: 0.4rem; margin-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(200, 70, 60, 0.5);
+  }
+  .gta-article .gta-cd-word { font-size: 1.6rem; font-weight: 700; line-height: 1.15; }
+  .gta-article .gta-cd-gender {
+    display: inline-block; margin-top: 0.55rem;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.68rem; font-weight: 650; color: #fff;
+    border-radius: 99px; padding: 0.12rem 0.6rem;
+  }
+  .gta-article .gta-cd-der { background: #0A84FF; }
+  .gta-article .gta-cd-die { background: #FF375F; }
+  .gta-article .gta-cd-das { background: #BF5AF2; }
+
+  /* study screens — one card centered in the frame, German then English */
+  .gta-article .gta-cf-study { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+  .gta-article .gta-cf-verified {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.56rem; font-weight: 700; color: #1f7a3d;
+    background: rgba(48, 209, 88, 0.2); border-radius: 99px;
+    padding: 0.05rem 0.4rem; margin-left: 0.4rem; letter-spacing: 0;
+  }
+  .gta-article .gta-cf-hint {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.6rem; color: #a08e78; margin-top: 0.85rem;
+  }
+  .gta-article .gta-cf-ex { font-style: italic; font-size: 0.82rem; color: #4a4a52; margin-top: 0.6rem; }
+  .gta-article .gta-cf-ex u { text-decoration-color: rgba(200, 70, 60, 0.6); }
+
+  /* generating screen — a stack of index cards, the top one writing itself */
+  .gta-article .gta-cf-gen { text-align: center; }
+  .gta-article .gta-cf-stack { position: relative; width: 132px; height: 164px; margin: 0 auto 1.1rem; }
+  .gta-article .gta-cf-card {
+    position: absolute; left: 50%; top: 0; width: 122px; height: 158px; margin-left: -61px;
+    border-radius: 12px; background: #f6f2e8; box-shadow: 0 7px 18px rgba(0, 0, 0, 0.45);
+  }
+  .gta-article .gta-cf-c3 { transform: translate(7px, 6px) rotate(5deg); opacity: 0.8; }
+  .gta-article .gta-cf-c2 { transform: translate(-6px, 3px) rotate(-4deg); opacity: 0.9; }
+  .gta-article .gta-cf-c1 { overflow: hidden; padding: 16px 14px; }
+  .gta-article .gta-cf-c1 i {
+    display: block; height: 5px; margin-bottom: 12px; border-radius: 99px;
+    background: rgba(120, 110, 95, 0.4);
+  }
+  .gta-article .gta-cf-c1 i:first-child { background: rgba(10, 132, 255, 0.75); width: 60%; }
+  .gta-article .gta-cf-c1 i:nth-child(2) { width: 92%; }
+  .gta-article .gta-cf-c1 i:nth-child(3) { width: 74%; }
+  .gta-article .gta-cf-c1::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(115deg, transparent 34%, rgba(10, 132, 255, 0.32) 50%, transparent 66%);
+    transform: translateX(-110%); animation: gta-cf-sweep 1.9s linear infinite;
+  }
+  @keyframes gta-cf-sweep { to { transform: translateX(110%); } }
+  .gta-article .gta-cf-bar { width: 0; animation: gta-cf-fill 2.3s ease-in-out infinite; }
+  @keyframes gta-cf-fill { 0% { width: 0; } 80%, 100% { width: 100%; } }
+
+  /* results screen */
+  .gta-article .gta-cf-result { display: flex; flex-direction: column; height: 100%; text-align: center; }
+  .gta-article .gta-cf-star { font-size: 2.4rem; margin-top: 0.6rem; }
+  .gta-article .gta-cf-score { font-size: 0.95rem; font-weight: 700; color: #fff; margin-top: 0.2rem; }
+  .gta-article .gta-cf-big { font-size: 1.9rem; font-weight: 800; color: #fff; font-variant-numeric: tabular-nums; margin-top: 0.3rem; }
+  .gta-article .gta-cf-pct { font-size: 0.85rem; color: #8E8E93; margin-bottom: 0.9rem; }
+  .gta-article .gta-cf-missed { background: #1C1C1E; border-radius: 12px; overflow: hidden; text-align: left; }
+  .gta-article .gta-cf-missed-h {
+    font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: #8E8E93; padding: 0.5rem 0.7rem 0.35rem;
+  }
+  .gta-article .gta-cf-missed-row {
+    display: flex; justify-content: space-between; gap: 0.5rem;
+    padding: 0.45rem 0.7rem; font-size: 0.78rem; color: #fff; border-top: 1px solid #2C2C2E;
+  }
+  .gta-article .gta-cf-result .gta-fl-weiter { margin-top: auto; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gta-article .gta-cf-c1::after { animation: none; }
+    .gta-article .gta-cf-bar { animation: none; width: 100%; }
+  }
+
+  /* ---------- conversation: setup sheet + live chat, reused by the chat flow ---------- */
+  .gta-article .gta-grabber { width: 36px; height: 5px; border-radius: 3px; background: #3A3A3C; margin: 0.1rem auto 0.45rem; }
+  .gta-article .gta-sheetnav { display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem; margin-bottom: 0.2rem; }
+  .gta-article .gta-sheetnav .gta-nav-action { color: #4DA3FF; }
+  .gta-article .gta-sheetnav .gta-nav-action.gta-bold { font-weight: 700; }
+  .gta-article .gta-sheetnav .gta-nav-title2 { font-weight: 700; color: #fff; font-size: 0.82rem; }
+  .gta-article .gta-badge-rec {
+    font-size: 0.56rem; font-weight: 700; white-space: nowrap;
+    color: #0A84FF; background: rgba(10,132,255,0.16);
+    border-radius: 99px; padding: 0.08rem 0.35rem; vertical-align: 1px;
+  }
+  .gta-article .gta-hero-row { background: rgba(10,132,255,0.10); }
+  .gta-article .gta-logo { width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0; object-fit: contain; background: #101011; }
+
+  /* chat screen chrome (ConversationView) */
+  .gta-article .gta-chat-screen { display: flex; flex-direction: column; height: 575px; position: relative; }
+  .gta-article .gta-topbar { display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; padding: 0.1rem 0 0.45rem; }
+  .gta-article .gta-topbar .gta-back { color: #4DA3FF; font-weight: 550; }
+  .gta-article .gta-topbar .gta-tt { text-align: center; }
+  .gta-article .gta-topbar .gta-tt b { display: block; font-size: 0.78rem; color: #fff; }
+  .gta-article .gta-topbar .gta-tt span { font-size: 0.6rem; color: #8E8E93; font-variant-numeric: tabular-nums; }
+  .gta-article .gta-topbar .gta-icons { color: #4DA3FF; letter-spacing: 0.12em; }
+  .gta-article .gta-brandline { height: 1.5px; border-radius: 1px; opacity: 0.55; background: linear-gradient(90deg, #AECBFA, #669DF6, #4285F4, #1A73E8); }
+  .gta-article .gta-convwash {
+    position: absolute; top: 0; left: 0; right: 0; height: 160px; pointer-events: none;
+    background: linear-gradient(180deg, rgba(10,132,255,0.20), transparent);
+    opacity: 0.28; transition: opacity 0.6s ease;
+  }
+  .gta-article .gta-convwash.gta-hot { opacity: 0.5; }
+  .gta-article .gta-msglist { flex: 1; display: flex; flex-direction: column; gap: 0.55rem; padding: 0.7rem 0.05rem; overflow: hidden; position: relative; }
+  .gta-article .gta-mrow { display: flex; gap: 0.45rem; align-items: flex-start; }
+  .gta-article .gta-avatar { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; position: relative; margin-top: 2px; }
+  .gta-article .gta-avatar img { width: 26px; height: 26px; border-radius: 50%; box-shadow: 0 0 0 1.5px rgba(10,132,255,0.55); object-fit: contain; background: #101011; }
+  .gta-article .gta-avatar.gta-glow::before {
+    content: ''; position: absolute; inset: -6px; border-radius: 50%;
+    background: #0A84FF; opacity: 0.25; filter: blur(9px);
+    animation: gta-avatarpulse 0.9s ease-in-out infinite alternate;
+  }
+  @keyframes gta-avatarpulse { from { opacity: 0.12; transform: scale(1.1); } to { opacity: 0.35; transform: scale(1.55); } }
+  .gta-article .gta-bub { border-radius: 18px; padding: 0.45rem 0.65rem; font-size: 0.8rem; line-height: 1.4; color: #fff; }
+  .gta-article .gta-bub-model { background: rgba(10,132,255,0.10); border: 1px solid rgba(10,132,255,0.20); max-width: 82%; }
+  .gta-article .gta-bub-user { background: #2C2C2E; max-width: 82%; margin-left: auto; }
+  .gta-article .gta-actions { display: flex; gap: 0.35rem; margin-top: 0.3rem; }
+  .gta-article .gta-actions span {
+    min-width: 26px; height: 22px; padding: 0 0.3rem; border-radius: 7px;
+    background: rgba(10,132,255,0.12); color: #4DA3FF;
+    display: grid; place-items: center; font-size: 0.62rem;
+  }
+  /* the orange CorrectionCard — the second pass, slides in above your bubble */
+  .gta-article .gta-corr { margin-left: auto; max-width: 88%; background: rgba(255,159,10,0.10); border: 1px solid rgba(255,159,10,0.35); border-radius: 14px; padding: 0.5rem 0.6rem; }
+  .gta-article .gta-corr-head { color: #FF9F0A; font-size: 0.62rem; font-weight: 700; }
+  .gta-article .gta-corr-de { font-size: 0.78rem; font-weight: 600; color: #fff; margin: 0.18rem 0; line-height: 1.35; }
+  .gta-article .gta-corr-de u { text-decoration-color: rgba(255,159,10,0.7); text-underline-offset: 2px; }
+  .gta-article .gta-corr-en { font-size: 0.64rem; color: #a9a9ad; border-left: 2px solid rgba(255,159,10,0.5); padding-left: 0.4rem; line-height: 1.35; }
+  .gta-article .gta-corr-note { font-size: 0.64rem; color: #8E8E93; margin-top: 0.25rem; line-height: 1.35; }
+  .gta-article .gta-corr-hear { color: #4DA3FF; font-size: 0.62rem; font-weight: 600; margin-top: 0.3rem; }
+  .gta-article .gta-usedchip { font-size: 0.6rem; color: #4DA3FF; text-align: right; }
+  /* TypingIndicator — HTML cousin of the SVG dots */
+  .gta-article .gta-typing2 { display: inline-flex; gap: 5px; align-items: center; padding: 0.15rem 0.1rem; }
+  .gta-article .gta-typing2 i { width: 7px; height: 7px; border-radius: 50%; background: #0A84FF; animation: gta-typing 1.2s ease-in-out infinite; }
+  .gta-article .gta-typing2 i:nth-child(2) { animation-delay: 0.15s; }
+  .gta-article .gta-typing2 i:nth-child(3) { animation-delay: 0.3s; }
+  /* input area: assist pills, status, recording controls, mic */
+  .gta-article .gta-inputbar { border-top: 1px solid #2C2C2E; background: rgba(28,28,30,0.92); margin: 0 -0.8rem -1.05rem; padding: 0.55rem 0.7rem 0.65rem; border-radius: 0 0 38px 38px; }
+  .gta-article .gta-pills { display: flex; gap: 0.45rem; justify-content: center; }
+  .gta-article .gta-pill { display: inline-flex; align-items: center; gap: 0.3rem; border-radius: 99px; background: #2C2C2E; font-size: 0.66rem; font-weight: 600; color: #fff; padding: 0.32rem 0.7rem; }
+  .gta-article .gta-status { text-align: center; font-size: 0.7rem; color: #8E8E93; min-height: 1.15em; margin: 0.45rem 0 0.3rem; line-height: 1.3; }
+  .gta-article .gta-status.gta-live { color: #fff; }
+  .gta-article .gta-recctl { display: flex; gap: 0.45rem; justify-content: center; height: 32px; margin-bottom: 0.35rem; visibility: hidden; opacity: 0; transform: scale(0.9); transition: all 0.25s ease; }
+  .gta-article .gta-recctl.gta-on { visibility: visible; opacity: 1; transform: none; }
+  .gta-article .gta-recctl span { min-width: 32px; height: 32px; border-radius: 50%; background: #2C2C2E; color: #fff; display: grid; place-items: center; font-size: 0.8rem; font-weight: 700; }
+  .gta-article .gta-recctl .gta-restart { border-radius: 99px; padding: 0 0.8rem; font-size: 0.68rem; font-weight: 650; color: #a9a9ad; }
+  .gta-article .gta-microw { display: flex; align-items: center; justify-content: center; height: 66px; }
+  .gta-article .gta-mic { width: 56px; height: 56px; border-radius: 50%; background: #0A84FF; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.4); transition: background 0.2s ease; position: relative; }
+  .gta-article .gta-mic.gta-rec { background: #FF453A; }
+  .gta-article .gta-mic.gta-rec::before { content: ''; position: absolute; inset: -6px; border-radius: 50%; background: rgba(255,69,58,0.25); z-index: -1; animation: gta-micring 0.8s ease-in-out infinite alternate; }
+  @keyframes gta-micring { from { transform: scale(1); } to { transform: scale(1.35); } }
+  /* show/hide choreography for the animated turn */
+  .gta-article .gta-anim { opacity: 0; transform: translateY(10px); max-height: 0; overflow: hidden; transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.35s ease; }
+  .gta-article .gta-anim.gta-on { opacity: 1; transform: none; max-height: 260px; }
+  /* --- chat flow: the chat chrome above, reused inside the shared one-phone flow --- */
+  .gta-article .gta-fl-chat .gta-fl-screens { height: 560px; }        /* chat needs more room than 420 */
+  /* chat screens fill top-to-bottom; override the generating-screen centering the shared rule puts on screen 1 */
+  .gta-article .gta-fl-chat .gta-fl-screen { justify-content: flex-start; align-items: stretch; text-align: left; }
+  .gta-article .gta-cv-chat { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  /* inline translation under a model bubble — what the book icon expands */
+  .gta-article .gta-cv-tr {
+    font-size: 0.7rem; color: #a9a9ad; line-height: 1.4;
+    border-left: 3px solid rgba(10, 132, 255, 0.6); padding-left: 0.5rem; margin-top: 0.35rem;
+  }
+  /* tap-to-inspect word (highlighted while its sheet is open) */
+  .gta-article .gta-cv-w { position: relative; border-bottom: 1px dotted rgba(255, 255, 255, 0.4); }
+  /* HintCard docked above the mic */
+  .gta-article .gta-cv-hint {
+    background: rgba(255, 214, 10, 0.10); border: 1px solid rgba(255, 214, 10, 0.35);
+    border-radius: 14px; padding: 0.5rem 0.65rem; margin: 0 0.1rem 0.5rem;
+  }
+  .gta-article .gta-cv-hint-head { color: #FFD60A; font-size: 0.62rem; font-weight: 700; }
+  .gta-article .gta-cv-hint-de { font-size: 0.78rem; font-weight: 600; color: #fff; margin: 0.2rem 0 0.12rem; line-height: 1.35; }
+  .gta-article .gta-cv-hint-spk { color: #FFD60A; font-size: 0.7rem; }
+  .gta-article .gta-cv-hint-en { font-size: 0.64rem; color: #8E8E93; line-height: 1.35; }
+  /* WordInspectorSheet — a finger taps the word, then the sheet rises over a dimming chat */
+  .gta-article .gta-cv-under { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  .gta-article .gta-cv-scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.45); opacity: 0; }
+  .gta-article .gta-cv-sheet {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: #1C1C1E; border-radius: 20px 20px 0 0;
+    padding: 0.5rem 1rem 1.1rem; text-align: center;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.5);
+    transform: translateY(110%);   /* parked below the frame until the tap */
+  }
+  /* the tapping finger, anchored to the word */
+  .gta-article .gta-cv-finger {
+    position: absolute; left: 58%; top: 68%;
+    font-size: 1.05rem; pointer-events: none; opacity: 0;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+  }
+  /* choreography — plays each time the Word screen becomes active */
+  .gta-article .gta-fl-screen[data-screen="4"].gta-on .gta-cv-finger { animation: gta-cv-tap 1.6s ease 0.4s both; }
+  .gta-article .gta-fl-screen[data-screen="4"].gta-on .gta-cv-w { animation: gta-cv-wordhl 0.3s ease 0.85s both; }
+  .gta-article .gta-fl-screen[data-screen="4"].gta-on .gta-cv-scrim { animation: gta-cv-scrim 0.45s ease 1.5s both; }
+  .gta-article .gta-fl-screen[data-screen="4"].gta-on .gta-cv-sheet { animation: gta-cv-sheetup 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 1.5s both; }
+  @keyframes gta-cv-tap {
+    0%   { opacity: 0; transform: translateY(10px) scale(1); }
+    18%  { opacity: 1; transform: translateY(0) scale(1); }
+    30%  { transform: translateY(0) scale(0.8); }
+    42%  { transform: translateY(0) scale(1); }
+    54%  { transform: translateY(0) scale(0.8); }
+    66%  { transform: translateY(0) scale(1); }
+    82%  { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(0) scale(1); }
+  }
+  @keyframes gta-cv-wordhl { from { background: rgba(10, 132, 255, 0); } to { background: rgba(10, 132, 255, 0.3); border-radius: 3px; } }
+  @keyframes gta-cv-scrim { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes gta-cv-sheetup { from { transform: translateY(110%); } to { transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .gta-article .gta-cv-finger { display: none; }
+    .gta-article .gta-fl-screen[data-screen="4"].gta-on .gta-cv-w { background: rgba(10, 132, 255, 0.3); border-radius: 3px; }
+    .gta-article .gta-fl-screen[data-screen="4"].gta-on .gta-cv-scrim { opacity: 1; animation: none; }
+    .gta-article .gta-fl-screen[data-screen="4"].gta-on .gta-cv-sheet { transform: none; animation: none; }
+  }
+  .gta-article .gta-cv-sheet-grab { width: 36px; height: 5px; border-radius: 3px; background: #48484A; margin: 0.1rem auto 0.4rem; }
+  .gta-article .gta-cv-sheet-nav { display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; }
+  .gta-article .gta-cv-sheet-t { font-weight: 700; color: #fff; }
+  .gta-article .gta-cv-sheet-word { font-size: 1.5rem; font-weight: 700; color: #fff; margin: 0.5rem 0 0.1rem; }
+  .gta-article .gta-cv-sheet-tr { font-size: 0.9rem; color: #8E8E93; margin-bottom: 0.85rem; }
+  .gta-article .gta-cv-sheet-actions { display: flex; flex-direction: column; gap: 0.5rem; }
+  .gta-article .gta-cv-sheet-btn {
+    font-size: 0.76rem; font-weight: 600; color: #4DA3FF;
+    border: 1px solid rgba(77, 163, 255, 0.4); border-radius: 10px; padding: 0.45rem;
+  }
+  .gta-article .gta-cv-sheet-save { color: #fff; border: none; background: linear-gradient(135deg, #4DA3FF, #007AFF); }
+  .gta-article .gta-cv-sheet-foot { font-size: 0.62rem; color: #8E8E93; line-height: 1.4; margin-top: 0.7rem; }
+  /* end-of-chat report (ConversationSummaryView) — stats grid + coaching, no score */
+  .gta-article .gta-cv-report { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  .gta-article .gta-cv-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 0.7rem 0; }
+  .gta-article .gta-cv-stat { background: #1C1C1E; border-radius: 10px; padding: 0.5rem 0.3rem; text-align: center; }
+  .gta-article .gta-cv-stat b { display: block; font-size: 1.05rem; font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; }
+  .gta-article .gta-cv-stat small { font-size: 0.58rem; color: #8E8E93; }
+  .gta-article .gta-cv-coach { border-radius: 10px; padding: 0.5rem 0.65rem; margin-bottom: 0.5rem; }
+  .gta-article .gta-cv-coach-h { font-size: 0.64rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .gta-article .gta-cv-coach-b { font-size: 0.72rem; color: #d4d4d6; line-height: 1.4; }
+  .gta-article .gta-cv-good { background: rgba(48, 209, 88, 0.10); }
+  .gta-article .gta-cv-good .gta-cv-coach-h { color: #30D158; }
+  .gta-article .gta-cv-improve { background: rgba(255, 159, 10, 0.10); }
+  .gta-article .gta-cv-improve .gta-cv-coach-h { color: #FF9F0A; }
+  .gta-article .gta-cv-saved { background: #1C1C1E; }
+  .gta-article .gta-cv-saved .gta-cv-coach-h { color: #4DA3FF; }
+  .gta-article .gta-cv-saved-row { display: flex; justify-content: space-between; font-size: 0.74rem; color: #fff; margin-top: 0.25rem; }
+  .gta-article .gta-cv-report .gta-write-btn { margin-top: auto; }
+
+  /* ---------- glossary ---------- */
+  .gta-article .gta-glossary { margin-top: 1rem; }
+  .gta-article .gta-gl-item {
+    border-bottom: 1px solid #232325;
+    padding: 0.9rem 0;
+    scroll-margin-top: 2rem;
+  }
+  .gta-article .gta-gl-item:last-child { border-bottom: none; }
+  .gta-article .gta-gl-item dt {
+    font-size: 0.95rem;
+    font-weight: 650;
+    color: #8FC2FF;
+    margin: 0 0 0.3rem 0;
+  }
+  .gta-article .gta-gl-item dd {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: #b8b8bc;
+    margin: 0;
+  }
+  .gta-article .gta-gl-item:target { background: rgba(10, 132, 255, 0.07); border-radius: 8px; padding-left: 0.75rem; padding-right: 0.75rem; }
+
+  .gta-article .gta-footer {
+    margin-top: 3.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid #38383A;
+    font-size: 0.85rem;
+    color: #8E8E93;
+  }
+
+  @media (max-width: 720px) {
+    .gta-article .gta-kpis { grid-template-columns: repeat(2, 1fr); }
+    .gta-article .gta-pipe { flex-wrap: wrap; }
+    .gta-article .gta-pipe-step { flex: 1 1 100%; }
+    .gta-article .gta-pipe-arrow { align-self: center; width: 100%; text-align: center; transform: rotate(90deg); }
+  }
+  @media (max-width: 640px) {
+    .gta-article { padding: 2rem 1rem; }
+    .gta-article .gta-container { padding: 2rem 1.25rem; }
+    /* keep the hero's bleed equal to the container's smaller padding */
+    .gta-article .gta-hero { margin: -2rem -1.25rem 2.5rem; padding: 2rem 1.25rem 1.75rem; }
+    .gta-article .gta-header h1 { font-size: 1.6rem; }
+    .gta-article .gta-appicon { width: 48px; height: 48px; }
+    .gta-article h2 { font-size: 1.25rem; }
+    .gta-article figure { padding: 1.1rem 1rem; }
+  }
+
+  /* ---------- bento feature overview ---------- */
+  .gta-article .gta-bento {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.75rem;
+    margin: 1.5rem 0 1.25rem;
+  }
+  .gta-article .gta-bento-cell {
+    background: var(--surface);
+    border: 1px solid #2C2C2E;
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    min-width: 0;
+  }
+  .gta-article .gta-bento-cell h4 { font-size: 0.92rem; font-weight: 650; color: #fff; margin: 0 0 0.3rem 0; }
+  .gta-article .gta-bento-cell p { font-size: 0.8rem; line-height: 1.5; color: var(--ink-muted); margin: 0; }
+  .gta-article .gta-b-2 { grid-column: span 2; }
+  .gta-article .gta-b-3 { grid-column: span 3; }
+  .gta-article .gta-b-4 { grid-column: span 4; }
+  .gta-article .gta-bento-hero {
+    display: flex; gap: 1.1rem; align-items: center;
+    background: linear-gradient(135deg, rgba(0,122,255,0.14), rgba(10,92,204,0.05));
+    border-color: rgba(10, 132, 255, 0.35);
+  }
+  .gta-article .gta-bento-chip {
+    flex: 0 0 auto;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    width: 110px; height: 78px; border-radius: 18px;
+    background: linear-gradient(135deg, #4DA3FF 0%, #007AFF 55%, #0A5CCC 100%);
+    box-shadow: 0 8px 22px rgba(0,122,255,0.35), inset 0 0 0 1px rgba(255,255,255,0.25);
+  }
+  .gta-article .gta-bento-chip b { font-size: 0.72rem; font-weight: 700; color: #fff; }
+  .gta-article .gta-bento-chip small { font-size: 0.58rem; color: rgba(255,255,255,0.85); }
+  .gta-article .gta-bento-leds { display: flex; gap: 4px; margin-top: 3px; }
+  .gta-article .gta-bento-leds i { width: 5px; height: 5px; border-radius: 50%; background: #fff; animation: gta-blink 1.8s ease-in-out infinite; }
+  .gta-article .gta-bento-leds i:nth-child(2) { animation-delay: 0.4s; }
+  .gta-article .gta-bento-leds i:nth-child(3) { animation-delay: 0.8s; }
+  .gta-article .gta-bento-corr { border-color: rgba(255,159,10,0.4); }
+  .gta-article .gta-bento-corr h4 { color: #FF9F0A; }
+  .gta-article .gta-bento-story { border-color: rgba(10,132,255,0.45); }
+  .gta-article .gta-bento-story h4 { color: #4DA3FF; }
+  @media (max-width: 720px) {
+    .gta-article .gta-b-2, .gta-article .gta-b-3, .gta-article .gta-b-4 { grid-column: span 3; }
+    .gta-article .gta-bento-hero { grid-column: span 6; }
+  }
+  @media (max-width: 480px) {
+    .gta-article .gta-b-2, .gta-article .gta-b-3, .gta-article .gta-b-4,
+    .gta-article .gta-bento-hero { grid-column: span 6; }
+  }
+
+  /* ---------- app feature gallery (swipeable) ---------- */
+  .gta-article .gta-gal { margin: 0 0 2.25rem; }
+  .gta-article .gta-gal-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 0.6rem 1rem; flex-wrap: wrap;
+    margin-bottom: 0.7rem;
+  }
+  .gta-article .gta-gal-tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .gta-article .gta-gal-tab {
+    font-family: inherit;
+    font-size: 0.78rem; font-weight: 600;
+    color: #d4d4d6;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid #2C2C2E;
+    border-radius: 99px;
+    padding: 0.32rem 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .gta-article .gta-gal-tab:hover { border-color: #4DA3FF; color: #fff; }
+  .gta-article .gta-gal-tab.gta-on { background: rgba(10,132,255,0.16); border-color: #0A84FF; color: #8FC2FF; }
+  .gta-article .gta-gal-arrows { display: flex; gap: 0.4rem; }
+  .gta-article .gta-gal-btn {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 1px solid #2C2C2E;
+    background: rgba(255,255,255,0.04);
+    color: #8FC2FF;
+    font-size: 1.05rem; line-height: 1;
+    cursor: pointer;
+    display: grid; place-items: center;
+    font-family: inherit;
+    transition: all 0.15s ease;
+  }
+  .gta-article .gta-gal-btn:hover { border-color: #0A84FF; background: rgba(10,132,255,0.12); }
+  .gta-article .gta-gal-track {
+    display: flex;
+    align-items: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    border: 1px solid #2C2C2E;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.3);
+    transition: height 0.3s ease;
+  }
+  .gta-article .gta-gal-track::-webkit-scrollbar { display: none; }
+  .gta-article .gta-gal-track:focus-visible { outline: 2px solid #0A84FF; outline-offset: 2px; }
+  .gta-article .gta-gal-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    padding: 0.3rem 1.3rem 1.1rem;
+    box-sizing: border-box;
+  }
+  .gta-article .gta-gal-slide > h3:first-child { margin-top: 1.1rem; }
+  .gta-article .gta-gal-hint { font-size: 0.78rem; color: #8E8E93; margin: 0.5rem 0 0; text-align: center; }
+  @media (max-width: 640px) { .gta-article .gta-gal-slide { padding: 0.2rem 0.9rem 0.9rem; } }
+
+  /* "skip the app tour" pill */
+  .gta-article .gta-skip {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.8rem; font-weight: 600;
+    color: #8FC2FF;
+    border: 1px dashed rgba(10, 132, 255, 0.5);
+    border-radius: 99px;
+    padding: 0.35rem 0.9rem;
+  }
+  .gta-article .gta-skip:hover { background: rgba(10, 132, 255, 0.1); border-style: solid; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gta-article .gta-bento-leds i { animation: none !important; }
+    .gta-article .gta-gal-track { transition: none !important; }
+  }
+
+  /* ---------- methodology: collapsible fifteen steps ----------
+     Collapsed, the summary is the section's table of contents: four phase headers
+     with their step ranges. One click opens the whole list. */
+  .gta-article .gta-steps {
+    background: var(--surface);
+    border: 1px solid #2C2C2E;
+    border-radius: 12px;
+    margin: 1.5rem 0 2rem;
+    scroll-margin-top: 2rem;
+  }
+  .gta-article .gta-steps > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1rem 1.25rem 1.1rem;
+    border-radius: 12px;
+  }
+  .gta-article .gta-steps > summary::-webkit-details-marker { display: none; }
+  .gta-article .gta-steps > summary:hover { background: rgba(10, 132, 255, 0.05); }
+  .gta-article .gta-steps > summary:focus-visible {
+    outline: 2px solid var(--accent-dm);
+    outline-offset: 2px;
+  }
+
+  .gta-article .gta-steps-bar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .gta-article .gta-steps-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+  }
+  .gta-article .gta-steps-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent-dm);
+    white-space: nowrap;
+  }
+  /* the word swaps with state, so the control always names what the click does */
+  .gta-article .gta-steps-word::after { content: 'Show all 15 steps'; }
+  .gta-article .gta-steps[open] .gta-steps-word::after { content: 'Hide the steps'; }
+  .gta-article .gta-steps-chev {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.2s ease;
+  }
+  .gta-article .gta-steps[open] .gta-steps-chev { transform: rotate(180deg); }
+
+  .gta-article .gta-steps-phases {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+    counter-reset: gta-step-phase;
+  }
+  .gta-article .gta-steps-phase {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #2C2C2E;
+    border-radius: 10px;
+    padding: 0.55rem 0.7rem 0.6rem 2.1rem;
+    position: relative;
+    counter-increment: gta-step-phase;
+  }
+  .gta-article .gta-steps-phase::before {
+    content: counter(gta-step-phase);
+    position: absolute;
+    left: 0.7rem;
+    top: 0.62rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--accent-dm);
+  }
+  .gta-article .gta-steps-phase b {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--accent-hi);
+    line-height: 1.35;
+  }
+  .gta-article .gta-steps-phase i {
+    font-style: normal;
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+  }
+  /* open, the preview headers give way to the real ones inside */
+  .gta-article .gta-steps[open] .gta-steps-phases { display: none; }
+
+  .gta-article .gta-steps-body {
+    padding: 0 1.25rem 0.75rem;
+    border-top: 1px solid #232325;
+  }
+  .gta-article .gta-steps-body h3 { margin-top: 1.5rem; scroll-margin-top: 2rem; }
+  .gta-article .gta-steps-body ol { margin-bottom: 1rem; }
+
+  @media (max-width: 640px) {
+    .gta-article .gta-steps-phases { grid-template-columns: 1fr; }
+    .gta-article .gta-steps-bar { flex-wrap: wrap; gap: 0.35rem; }
+    .gta-article .gta-steps > summary { padding: 0.9rem 1rem 1rem; }
+    .gta-article .gta-steps-body { padding: 0 1rem 0.75rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gta-article .gta-steps-chev { transition: none; }
+  }
+
+  /* ---------- methodology: the model funnel ----------
+     One continuous funnel wall down each side. Every segment is a trapezoid whose
+     bottom edge is exactly as wide as the next segment's top edge, so the sides
+     read as a single straight line from 100% at the mouth to ~52% at the spout:
+
+       --fn-w    the segment's own (top) width, in % of the funnel
+       --fn-cut  how far each bottom corner pulls in, in % of the segment's width
+       --fn-pad  the same inset, in % of the funnel — keeps text clear of the angle
+
+     The two are the same distance expressed against different boxes: clip-path
+     resolves % against the element, padding against the flex container. Widths are
+     tuned to segment heights, so retitling a gate enough to change its height means
+     re-tuning the pair below. */
+  .gta-article .gta-funnel { display: flex; flex-direction: column; align-items: center; }
+
+  .gta-article .gta-fn-band,
+  .gta-article .gta-fn-gate {
+    position: relative;
+    width: var(--fn-w);
+    box-sizing: border-box;
+    border: 0;
+    background: none;
+  }
+  /* the shape lives on a backdrop layer: clip-path would otherwise cut the border
+     off the angled sides, and the text with it */
+  .gta-article .gta-fn-band::before,
+  .gta-article .gta-fn-gate::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    clip-path: polygon(0 0, 100% 0, calc(100% - var(--fn-cut)) 100%, var(--fn-cut) 100%);
+  }
+  .gta-article .gta-fn-band > *,
+  .gta-article .gta-fn-gate > * { position: relative; z-index: 1; }
+
+  .gta-article .gta-fn-band { padding: 0.7rem calc(var(--fn-pad) + 0.85rem) 0.8rem; }
+  .gta-article .gta-fn-band::before { background: rgba(255, 255, 255, 0.05); }
+
+  /* the wall — top width, bottom inset against self, same inset against the funnel */
+  .gta-article .gta-fn-w0 { --fn-w: 100%;   --fn-cut: 4.54%; --fn-pad: 4.54%; }
+  .gta-article .gta-fn-g1 { --fn-w: 90.92%; --fn-cut: 3.35%; --fn-pad: 3.04%; }
+  .gta-article .gta-fn-w1 { --fn-w: 84.83%; --fn-cut: 3.00%; --fn-pad: 2.54%; }
+  .gta-article .gta-fn-g2 { --fn-w: 79.75%; --fn-cut: 6.36%; --fn-pad: 5.07%; }
+  .gta-article .gta-fn-w2 { --fn-w: 69.61%; --fn-cut: 2.98%; --fn-pad: 2.07%; }
+  .gta-article .gta-fn-g3 { --fn-w: 65.46%; --fn-cut: 6.33%; --fn-pad: 4.15%; }
+  .gta-article .gta-fn-w3 { --fn-w: 57.17%; --fn-cut: 4.54%; --fn-pad: 2.59%; }
+
+  .gta-article .gta-fn-head {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    margin-bottom: 0.55rem;
+  }
+  .gta-article .gta-fn-head b { color: #fff; font-size: 0.95rem; font-weight: 700; letter-spacing: 0; }
+  /* sub-heading inside the mouth of the funnel: the three intakes arrived months apart,
+     and which cohort a candidate belongs to is what explains its scoring basis below */
+  .gta-article .gta-fn-group {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #7c7b74;
+    margin: 0 0 0.4rem;
+  }
+  .gta-article .gta-fn-chips + .gta-fn-group { margin-top: 0.75rem; }
+  .gta-article .gta-fn-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .gta-article .gta-fn-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: #d4d4d6;
+    background: #1C1C1E;
+    border: 1px solid #2C2C2E;
+    border-radius: 99px;
+    padding: 0.24rem 0.6rem 0.24rem 0.3rem;
+    white-space: nowrap;
+  }
+  .gta-article .gta-fn-chip img { width: 16px; height: 16px; border-radius: 4px; object-fit: contain; flex-shrink: 0; }
+  .gta-article .gta-fn-chip i {
+    width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0;
+    background: #2C2C2E; color: #8E8E93;
+    font-size: 0.55rem; font-weight: 700; font-style: normal;
+    line-height: 16px; text-align: center;
+  }
+  .gta-article .gta-fn-chip em { color: var(--ink-muted); font-style: normal; font-variant-numeric: tabular-nums; }
+  .gta-article .gta-fn-chip-win {
+    background: linear-gradient(135deg, rgba(77, 163, 255, 0.22), rgba(10, 92, 204, 0.14));
+    border-color: rgba(10, 132, 255, 0.6);
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 0.35rem 0.75rem 0.35rem 0.35rem;
+    box-shadow: 0 0 22px rgba(0, 122, 255, 0.3);
+  }
+  .gta-article .gta-fn-chip-win em { color: #8FC2FF; font-weight: 700; }
+  .gta-article .gta-fn-win .gta-fn-head b { color: #4DA3FF; }
+
+  /* the neck between bands — a funnel wall plus a falling spark */
+  .gta-article .gta-fn-neck {
+    width: 100%;
+    height: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .gta-article .gta-fn-neck i {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    margin-left: -0.5px;
+    background: linear-gradient(180deg, #2C2C2E, rgba(10, 132, 255, 0.55));
+  }
+  .gta-article .gta-fn-neck i::after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #4DA3FF;
+    box-shadow: 0 0 8px rgba(77, 163, 255, 0.9);
+    animation: gta-fn-fall 1.6s ease-in infinite;
+  }
+  @keyframes gta-fn-fall {
+    0% { top: -6px; opacity: 0; }
+    25% { opacity: 1; }
+    100% { top: 22px; opacity: 0; }
+  }
+
+  .gta-article .gta-fn-gate { padding: 0.7rem calc(var(--fn-pad) + 0.9rem); }
+  .gta-article .gta-fn-gate::before { background: rgba(10, 132, 255, 0.11); }
+  /* amber reads far brighter than blue at the same alpha, so it carries less of it */
+  .gta-article .gta-fn-gate-hot::before { background: rgba(255, 159, 10, 0.075); }
+  .gta-article .gta-fn-gname { font-size: 0.86rem; font-weight: 650; color: #fff; line-height: 1.4; }
+  .gta-article .gta-fn-gnum {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #4DA3FF;
+    background: rgba(10, 132, 255, 0.14);
+    border-radius: 99px;
+    padding: 0.12rem 0.5rem;
+    margin-right: 0.45rem;
+    vertical-align: 1px;
+  }
+  .gta-article .gta-fn-gate-hot .gta-fn-gnum { color: #FF9F0A; background: rgba(255, 159, 10, 0.14); }
+  .gta-article .gta-fn-gtest { font-size: 0.76rem; color: var(--ink-muted); line-height: 1.5; margin-top: 0.15rem; }
+  .gta-article .gta-fn-rejects { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.6rem; }
+  .gta-article .gta-fn-rej {
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: #b0aea6;
+    padding-left: 1.15rem;
+    position: relative;
+  }
+  .gta-article .gta-fn-rej::before {
+    /* Same inlined-mask trick as .gta-fl-illus::after — see the note there. */
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.36em;
+    width: 0.62rem; height: 0.62rem;
+    background-color: currentColor;
+    color: #d03b3b;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M18%206%206%2018%22%2F%3E%20%3Cpath%20d%3D%22m6%206%2012%2012%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M18%206%206%2018%22%2F%3E%20%3Cpath%20d%3D%22m6%206%2012%2012%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
+  }
+  .gta-article .gta-fn-rej em { color: var(--ink-muted); font-style: normal; }
+  .gta-article .gta-fn-rej-ghost { color: var(--ink-muted); }
+  .gta-article .gta-fn-rej-ghost::before { color: #6f6f74; }
+
+  /* ---------- methodology: control vs experiment ---------- */
+  .gta-article .gta-ab-feed { text-align: center; }
+  .gta-article .gta-ab-feedlabel {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    margin-bottom: 0.45rem;
+  }
+  .gta-article .gta-ab-feedlabel span { color: #8FC2FF; font-variant-numeric: tabular-nums; }
+  .gta-article .gta-ab-item {
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: border-box;
+    background: #1C1C1E;
+    border: 1px solid #2C2C2E;
+    border-radius: 12px;
+    padding: 0.7rem 1rem;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .gta-article .gta-ab-item.gta-ab-swap { opacity: 0; transform: translateY(-6px); }
+  .gta-article .gta-ab-sent { font-size: 0.95rem; font-weight: 600; color: #fff; line-height: 1.4; }
+  .gta-article .gta-ab-truth { font-size: 0.72rem; color: var(--ink-muted); margin-top: 0.3rem; }
+  .gta-article .gta-ab-truth b { color: #b0aea6; font-weight: 600; }
+  .gta-article .gta-ab-split { width: 320px; max-width: 100%; height: 34px; margin: 0 auto; }
+  .gta-article .gta-ab-split svg { width: 100%; height: 100%; display: block; }
+  .gta-article .gta-fn-flow { stroke-dasharray: 4 5; animation: gta-dash 1.2s linear infinite; }
+
+  .gta-article .gta-ab-lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .gta-article .gta-ab-lane {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #2C2C2E;
+    border-radius: 12px;
+    padding: 0.85rem 0.9rem;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .gta-article .gta-ab-exp { border-color: rgba(10, 132, 255, 0.45); background: rgba(10, 132, 255, 0.06); }
+  .gta-article .gta-ab-tag {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.5rem;
+  }
+  .gta-article .gta-ab-exp .gta-ab-tag { color: #4DA3FF; }
+  .gta-article .gta-ab-model { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.7rem; }
+  .gta-article .gta-ab-model img { width: 26px; height: 26px; border-radius: 6px; object-fit: contain; flex-shrink: 0; }
+  .gta-article .gta-ab-model b { display: block; font-size: 0.8rem; font-weight: 650; color: #fff; line-height: 1.3; }
+  .gta-article .gta-ab-model small { display: block; font-size: 0.66rem; color: var(--ink-muted); line-height: 1.35; margin-top: 1px; }
+
+  .gta-article .gta-ab-out { min-height: 118px; position: relative; }
+  .gta-article .gta-ab-think { display: inline-flex; gap: 5px; align-items: center; padding: 0.3rem 0; opacity: 0; transition: opacity 0.2s ease; }
+  .gta-article .gta-ab-think.gta-on { opacity: 1; }
+  .gta-article .gta-ab-think i { width: 6px; height: 6px; border-radius: 50%; background: #6f6f74; animation: gta-typing 1.2s ease-in-out infinite; }
+  .gta-article .gta-ab-think i:nth-child(2) { animation-delay: 0.15s; }
+  .gta-article .gta-ab-think i:nth-child(3) { animation-delay: 0.3s; }
+  .gta-article .gta-ab-verdict {
+    background: #141416;
+    border: 1px solid #2C2C2E;
+    border-radius: 10px;
+    padding: 0.55rem 0.65rem;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .gta-article .gta-ab-verdict.gta-on { opacity: 1; transform: none; }
+  .gta-article .gta-ab-vhead {
+    display: inline-block;
+    font-family: 'SF Mono', ui-monospace, Menlo, monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    border-radius: 4px;
+    padding: 0.1rem 0.35rem;
+    margin-bottom: 0.3rem;
+    color: #FF9F0A;
+    background: rgba(255, 159, 10, 0.14);
+  }
+  .gta-article .gta-ab-vhead.gta-ab-ok { color: #0A84FF; background: rgba(10, 132, 255, 0.16); }
+  .gta-article .gta-ab-vbody { display: block; font-size: 0.78rem; color: #fff; line-height: 1.4; }
+  .gta-article .gta-ab-vwhy { display: block; font-size: 0.68rem; color: var(--ink-muted); line-height: 1.45; margin-top: 0.25rem; }
+  .gta-article .gta-ab-mark {
+    font-size: 0.7rem;
+    font-weight: 650;
+    line-height: 1.4;
+    margin-top: 0.45rem;
+    min-height: 1.4em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .gta-article .gta-ab-mark.gta-on { opacity: 1; }
+  .gta-article .gta-ab-mark.gta-ab-pass { color: #4DA3FF; }
+  .gta-article .gta-ab-mark.gta-ab-fail { color: #e07a6a; }
+
+  .gta-article .gta-ab-score { margin: 0.85rem 0 0; border-top: 1px solid #232325; padding-top: 0.55rem; }
+  .gta-article .gta-ab-score div { display: flex; justify-content: space-between; gap: 0.6rem; padding: 0.18rem 0; }
+  .gta-article .gta-ab-score dt { font-size: 0.7rem; color: var(--ink-muted); margin: 0; }
+  .gta-article .gta-ab-score dd { font-size: 0.7rem; color: #fff; margin: 0; font-weight: 650; font-variant-numeric: tabular-nums; }
+
+  .gta-article .gta-ab-held { margin-top: 0.9rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .gta-article .gta-ab-heldrow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; }
+  .gta-article .gta-ab-heldlabel {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    flex: 0 0 auto;
+    margin-right: 0.2rem;
+  }
+  .gta-article .gta-ab-same { color: var(--ink-muted); }
+  .gta-article .gta-ab-diff { color: #FF9F0A; }
+  .gta-article .gta-ab-hchip {
+    font-size: 0.7rem;
+    color: #b0aea6;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid #2C2C2E;
+    border-radius: 99px;
+    padding: 0.18rem 0.55rem;
+  }
+  .gta-article .gta-ab-hchip-hot {
+    color: #E0A85A;
+    background: rgba(255, 159, 10, 0.08);
+    border-color: rgba(255, 159, 10, 0.4);
+    font-weight: 600;
+  }
+
+  @media (max-width: 720px) {
+    /* narrow columns wrap the rejects onto many more lines, so the segments grow
+       tall and the same taper would flatten out — pull the mouth in instead and
+       let the walls stay steep */
+    .gta-article .gta-fn-w0 { --fn-w: 100%;   --fn-cut: 2.47%; --fn-pad: 2.47%; }
+    .gta-article .gta-fn-g1 { --fn-w: 95.06%; --fn-cut: 1.69%; --fn-pad: 1.61%; }
+    .gta-article .gta-fn-w1 { --fn-w: 91.84%; --fn-cut: 1.64%; --fn-pad: 1.51%; }
+    .gta-article .gta-fn-g2 { --fn-w: 88.83%; --fn-cut: 3.31%; --fn-pad: 2.94%; }
+    .gta-article .gta-fn-w2 { --fn-w: 82.95%; --fn-cut: 1.34%; --fn-pad: 1.11%; }
+    .gta-article .gta-fn-g3 { --fn-w: 80.73%; --fn-cut: 2.65%; --fn-pad: 2.14%; }
+    .gta-article .gta-fn-w3 { --fn-w: 76.44%; --fn-cut: 0.96%; --fn-pad: 0.73%; }
+    .gta-article .gta-ab-lanes { grid-template-columns: 1fr; }
+    .gta-article .gta-ab-out { min-height: 0; }
+    /* the branching connector only means something when the lanes sit side by side */
+    .gta-article .gta-ab-split { display: none; }
+    .gta-article .gta-ab-feed { margin-bottom: 0.75rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gta-article .gta-fn-neck i::after,
+    .gta-article .gta-ab-think i,
+    .gta-article .gta-fn-flow { animation: none !important; }
+    .gta-article .gta-ab-item, .gta-article .gta-ab-verdict, .gta-article .gta-ab-mark,
+    .gta-article .gta-ab-think { transition: none !important; }
+  }
+
+  /* ---------- shared two-phone row ---------- */
+  .gta-article .gta-duo { display: flex; gap: 1.6rem; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+
+  /* ---------- matching: in-app game + round summary ---------- */
+  .gta-article .gta-mtop { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.15rem 0 0.5rem; }
+  .gta-article .gta-mclose { width: 26px; height: 26px; border-radius: 50%; background: #2C2C2E; color: #8E8E93; display: grid; place-items: center; font-size: 0.66rem; font-weight: 700; flex-shrink: 0; }
+  .gta-article .gta-mtitle { font-size: 0.8rem; font-weight: 700; color: #fff; text-align: center; }
+  .gta-article .gta-mtimer { font-size: 0.66rem; color: #8E8E93; flex-shrink: 0; }
+  .gta-article .gta-mtimer b { font-weight: 650; color: #8E8E93; font-variant-numeric: tabular-nums; }
+  .gta-article .gta-mprog { height: 6px; border-radius: 3px; background: #2C2C2E; overflow: hidden; }
+  .gta-article .gta-mprog i { display: block; height: 100%; border-radius: 3px; background: #0A84FF; transition: width 0.4s ease; }
+  .gta-article .gta-mcap { text-align: center; font-size: 0.64rem; color: #8E8E93; margin: 0.35rem 0 0.6rem; }
+  .gta-article .gta-mboard { display: flex; gap: 10px; padding-bottom: 0.5rem; }
+  .gta-article .gta-mcol { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .gta-article .gta-mtile {
+    min-height: 46px;
+    border-radius: 14px;
+    background: #1C1C1E;
+    border: 1px solid #3A3A3C;
+    color: #fff;
+    font-size: 0.74rem; font-weight: 550;
+    display: grid; place-items: center;
+    text-align: center;
+    padding: 4px 6px;
+    transition: all 0.3s ease;
+  }
+  .gta-article .gta-mtile.gta-msel { background: rgba(10,132,255,0.18); border: 2px solid #0A84FF; color: #4DA3FF; }
+  .gta-article .gta-mtile.gta-mbad { background: rgba(255,69,58,0.18); border: 2px solid #FF453A; color: #FF453A; }
+  .gta-article .gta-mtile.gta-mgone { opacity: 0; transform: scale(0.8); }
+  .gta-article .gta-mdim { background: #0a0a0c; padding-bottom: 1.4rem; }
+  .gta-article .gta-msum {
+    background: #232326;
+    border-radius: 20px;
+    padding: 1rem 0.9rem;
+    margin: 1.6rem 0.1rem 0.4rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  }
+  .gta-article .gta-msum-title { text-align: center; font-size: 1rem; font-weight: 700; color: #fff; }
+  .gta-article .gta-msum-best { text-align: center; font-size: 0.64rem; font-weight: 650; color: #FF9F0A; margin-top: 0.35rem; }
+  .gta-article .gta-msrows { margin: 0.8rem 0; border-top: 1px solid #2C2C2E; }
+  .gta-article .gta-msrow { display: flex; justify-content: space-between; gap: 0.6rem; font-size: 0.72rem; color: #8E8E93; padding: 0.38rem 0; border-bottom: 1px solid #2C2C2E; }
+  .gta-article .gta-msrow b { color: #fff; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .gta-article .gta-mlook { background: #1C1C1E; border-radius: 12px; padding: 0.55rem 0.65rem; margin-bottom: 0.8rem; }
+  .gta-article .gta-mlook-head { font-size: 0.54rem; letter-spacing: 0.06em; color: #8E8E93; font-weight: 700; margin-bottom: 0.3rem; }
+  .gta-article .gta-mlook-row { font-size: 0.7rem; font-weight: 550; color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; }
+  .gta-article .gta-mbadge { font-size: 0.54rem; font-weight: 650; color: #FF453A; background: rgba(255,69,58,0.12); border-radius: 99px; padding: 0.12rem 0.42rem; white-space: nowrap; }
+  .gta-article .gta-mlook-sub { font-size: 0.6rem; color: #8E8E93; margin-top: 0.22rem; }
+  .gta-article .gta-mbtn { border-radius: 12px; text-align: center; font-size: 0.78rem; font-weight: 650; padding: 0.5rem; }
+  .gta-article .gta-mbtn-blue { background: #0A84FF; color: #fff; margin-bottom: 0.45rem; }
+  .gta-article .gta-mbtn-plain { background: #2C2C2E; color: #fff; }
+
+  /* ---------- grammar hub rows ---------- */
+  .gta-article .gta-ftile { width: 26px; height: 26px; border-radius: 7px; display: grid; place-items: center; font-size: 0.78rem; flex-shrink: 0; }
+  .gta-article .gta-ftile-orange { background: rgba(255,159,10,0.14); }
+  .gta-article .gta-ftile-blue { background: rgba(10,132,255,0.14); }
+  .gta-article .gta-finfo { color: #8E8E93; font-size: 0.74rem; flex-shrink: 0; }
+  .gta-article .gta-fcount { color: #636366; font-size: 0.58rem; white-space: nowrap; flex-shrink: 0; }
+  .gta-article .gta-fsec-flag { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-right: 0.4rem; }
+  .gta-article .gta-flag { color: #FF9F0A; font-size: 0.56rem; font-weight: 650; }
+
+  /* ---------- grammar drill ---------- */
+  .gta-article .gta-qhead { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; padding: 0.5rem 0 0.35rem; }
+  .gta-article .gta-qrule { font-size: 0.58rem; color: #8E8E93; line-height: 1.35; }
+  .gta-article .gta-qcount { font-size: 0.62rem; color: #8E8E93; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .gta-article .gta-qcard {
+    background: #1C1C1E;
+    border-radius: 16px;
+    min-height: 128px;
+    margin: 0.7rem 0 0.9rem;
+    display: grid; place-items: center;
+    padding: 0.9rem;
+    overflow: hidden;
+  }
+  .gta-article .gta-qstate { grid-area: 1 / 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; transition: opacity 0.3s ease; }
+  .gta-article .gta-qstate.gta-off { opacity: 0; pointer-events: none; }
+  .gta-article .gta-qq { font-size: 0.95rem; font-weight: 550; color: #fff; text-align: center; line-height: 1.5; }
+  .gta-article .gta-qverb { color: #30D158; font-weight: 650; }
+  .gta-article .gta-qnoun { color: #FF9F0A; font-weight: 650; }
+  .gta-article .gta-qblank { color: #fff; font-weight: 750; letter-spacing: 0.04em; }
+  .gta-article .gta-qbadge { background: #FF9F0A; color: #fff; font-size: 0.56rem; font-weight: 650; border-radius: 99px; padding: 0.14rem 0.5rem; }
+  .gta-article .gta-qres-ico { width: 30px; height: 30px; border-radius: 50%; background: rgba(48,209,88,0.16); color: #30D158; font-size: 1rem; font-weight: 800; display: grid; place-items: center; }
+  .gta-article .gta-qsub { font-size: 0.62rem; color: #8E8E93; }
+  .gta-article .gta-qopts { display: flex; flex-direction: column; gap: 8px; }
+  .gta-article .gta-qopt {
+    border-radius: 12px;
+    border: 1.5px solid #3A3A3C;
+    background: #1C1C1E;
+    color: #fff;
+    text-align: center;
+    font-size: 0.85rem; font-weight: 650;
+    padding: 0.55rem;
+    transition: all 0.25s ease;
+  }
+  .gta-article .gta-qopt.gta-qok { background: rgba(48,209,88,0.15); border-color: rgba(48,209,88,0.6); color: #30D158; }
+  .gta-article .gta-qopt.gta-qno { background: rgba(255,69,58,0.15); border-color: rgba(255,69,58,0.6); color: #FF453A; }
+  .gta-article .gta-qopt.gta-qdim { opacity: 0.45; }
+  .gta-article .gta-qnext {
+    margin: 0.75rem 0 0.3rem;
+    border-radius: 12px;
+    background: #0A84FF;
+    color: #fff;
+    text-align: center;
+    font-size: 0.82rem; font-weight: 700;
+    padding: 0.55rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .gta-article .gta-qnext.gta-on { opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gta-article .gta-mtile, .gta-article .gta-mprog i,
+    .gta-article .gta-qstate, .gta-article .gta-qopt, .gta-article .gta-qnext { transition: none !important; }
+  }
+
+  /* ---------- UX interview panel ---------- */
+  .gta-article .gta-interview {
+    border: 1px solid #2C2C2E;
+    border-radius: 12px;
+    background: var(--surface);
+    padding: 0.4rem 1.4rem;
+    margin: 1.75rem 0;
+  }
+  .gta-article .gta-int-qa {
+    padding: 1.05rem 0;
+    border-bottom: 1px solid #232325;
+  }
+  .gta-article .gta-int-qa:last-child { border-bottom: none; }
+  .gta-article .gta-int-q {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.86rem;
+    font-weight: 650;
+    color: #8FC2FF;
+  }
+  .gta-article .gta-int-q::before {
+    content: 'Q';
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 800;
+    color: #0A84FF;
+    border: 1px solid rgba(10, 132, 255, 0.5);
+    border-radius: 6px;
+    padding: 0.05rem 0.38rem;
+    margin-right: 0.55rem;
+    vertical-align: 0.08em;
+  }
+  .gta-article .gta-int-a {
+    margin: 0;
+    padding-left: 0.95rem;
+    border-left: 2px solid rgba(255, 159, 10, 0.45);
+    font-size: 0.94rem;
+    color: #d4d4d6;
+    line-height: 1.65;
+  }
+  .gta-article .gta-int-a + .gta-int-a { margin-top: 0.55rem; }
+  .gta-article .gta-int-a em { color: #E0A85A; font-style: normal; }
+
+  /* ---------- budget anatomy: vocab-vs-body bars + tokenizer chips ---------- */
+  .gta-article .gta-ba { display: flex; flex-direction: column; gap: 1.15rem; }
+  .gta-article .gta-ba-name {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.88rem; font-weight: 650; color: #fff;
+    margin-bottom: 0.4rem;
+  }
+  .gta-article .gta-ba-name img { width: 18px; height: 18px; border-radius: 4px; object-fit: contain; }
+  .gta-article .gta-ba-name .gta-nologo { width: 18px; height: 18px; line-height: 18px; font-size: 0.6rem; }
+  .gta-article .gta-ba-name em { font-style: normal; font-weight: 500; color: #8E8E93; font-size: 0.78rem; }
+  .gta-article .gta-ba-bar {
+    display: flex; height: 30px;
+    border-radius: 8px; overflow: hidden;
+    border: 1px solid #2C2C2E;
+  }
+  .gta-article .gta-ba-bar i {
+    display: grid; place-items: center;
+    font-style: normal; font-size: 0.68rem; font-weight: 750;
+    white-space: nowrap; overflow: hidden;
+  }
+  .gta-article .gta-ba-vocab { background: #FF9F0A; color: #101011; }
+  .gta-article .gta-ba-body  { background: #0A84FF; color: #fff; }
+  .gta-article .gta-ba-sub { font-size: 0.78rem; color: #8E8E93; margin-top: 0.35rem; }
+  .gta-article .gta-ba-sent {
+    font: 600 0.92rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: #fff;
+    margin: 1.5rem 0 0.85rem;
+  }
+  .gta-article .gta-ba-tokrow { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.7rem; }
+  .gta-article .gta-ba-toklabel { flex-basis: 100%; font-size: 0.75rem; color: #8E8E93; }
+  .gta-article .gta-ba-chip {
+    font: 600 0.8rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    background: rgba(10, 132, 255, 0.12);
+    border: 1px solid rgba(10, 132, 255, 0.4);
+    color: #8FC2FF;
+    border-radius: 6px;
+    padding: 0.14rem 0.45rem;
+  }
+  .gta-article .gta-ba-chip-frag {
+    background: rgba(255, 159, 10, 0.1);
+    border-color: rgba(255, 159, 10, 0.4);
+    color: #E0A85A;
+  }
+
+  /* ---------- single-line-art figure (learner + phone) ---------- */
+  .gta-article .gta-lineart { display: flex; justify-content: center; }
+  .gta-article .gta-lineart svg { width: min(360px, 100%); height: auto; overflow: visible; }
+  .gta-article .gta-la-line {
+    fill: none;
+    stroke: #8FC2FF;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .gta-article .gta-la-bubble { fill: none; stroke: #FF9F0A; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .gta-article .gta-la-text {
+    font: 600 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    fill: #E0A85A;
+  }
+  .gta-article .gta-la-wave { fill: none; stroke: #0A84FF; stroke-width: 1.6; stroke-linecap: round; }
+  @media (prefers-reduced-motion: no-preference) {
+    /* the figure draws itself in one continuous stroke, rests, then starts over */
+    .gta-article .gta-la-line {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: gta-la-draw 10s ease-in-out infinite;
+    }
+    .gta-article .gta-la-fade {
+      opacity: 0;
+      animation: gta-la-fadein 10s ease-in-out infinite;
+    }
+  }
+  @keyframes gta-la-draw {
+    0%      { stroke-dashoffset: 1000; opacity: 1; }
+    52%     { stroke-dashoffset: 0; }
+    88%     { stroke-dashoffset: 0; opacity: 1; }
+    96%     { stroke-dashoffset: 0; opacity: 0; }
+    100%    { stroke-dashoffset: 1000; opacity: 0; }
+  }
+  @keyframes gta-la-fadein {
+    0%, 48% { opacity: 0; }
+    62%, 88% { opacity: 1; }
+    96%, 100% { opacity: 0; }
+  }
+</style>

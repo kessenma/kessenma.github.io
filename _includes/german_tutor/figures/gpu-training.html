@@ -1,0 +1,73 @@
+    <figure>
+      <a class="gta-runpod" href="https://www.runpod.io">◆ RunPod &middot; RTX 3090 community pod → RTX 4000 Ada for the E2B follow-up</a>
+      <div class="gta-gpu-row">
+        <svg class="gta-svg" style="max-width: 300px; flex: 0 0 300px;" viewBox="0 0 300 150" role="img" aria-label="Illustration of a GPU with two spinning fans, streaming data into a training run">
+          <!-- data flowing in -->
+          <line class="gta-flow" x1="0" y1="75" x2="34" y2="75" stroke="#4DA3FF" stroke-width="2"/>
+          <text class="gta-tick" x="0" y="66">data</text>
+
+          <!-- card body -->
+          <rect x="34" y="26" width="222" height="98" rx="8" fill="#1c1c1f" stroke="#3a3a3f" stroke-width="1.5"/>
+          <rect x="42" y="34" width="206" height="82" rx="5" fill="#141417" stroke="#2c2c30"/>
+          <!-- heatsink fins -->
+          <g stroke="#2a2a2e" stroke-width="1">
+            <line x1="50" y1="40" x2="50" y2="110"/><line x1="58" y1="40" x2="58" y2="110"/>
+            <line x1="66" y1="40" x2="66" y2="110"/><line x1="234" y1="40" x2="234" y2="110"/>
+            <line x1="242" y1="40" x2="242" y2="110"/>
+          </g>
+
+          <!-- fan 1 -->
+          <g transform="translate(108, 75)">
+            <circle r="30" fill="#0e0e10" stroke="#333338" stroke-width="1.5"/>
+            <g class="gta-fan">
+              <path d="M0,0 L0,-26 A26,26 0 0,1 22,-13 Z" fill="#0A84FF" opacity="0.55"/>
+              <path d="M0,0 L22,-13 A26,26 0 0,1 22,13 Z" fill="#0A84FF" opacity="0.35"/>
+              <path d="M0,0 L22,13 A26,26 0 0,1 0,26 Z" fill="#0A84FF" opacity="0.55"/>
+              <path d="M0,0 L0,26 A26,26 0 0,1 -22,13 Z" fill="#0A84FF" opacity="0.35"/>
+              <path d="M0,0 L-22,13 A26,26 0 0,1 -22,-13 Z" fill="#0A84FF" opacity="0.55"/>
+              <path d="M0,0 L-22,-13 A26,26 0 0,1 0,-26 Z" fill="#0A84FF" opacity="0.35"/>
+            </g>
+            <circle r="7" fill="#1c1c1f" stroke="#3a3a3f"/>
+          </g>
+
+          <!-- fan 2 -->
+          <g transform="translate(182, 75)">
+            <circle r="30" fill="#0e0e10" stroke="#333338" stroke-width="1.5"/>
+            <g class="gta-fan gta-fan-2">
+              <path d="M0,0 L0,-26 A26,26 0 0,1 22,-13 Z" fill="#0A84FF" opacity="0.55"/>
+              <path d="M0,0 L22,-13 A26,26 0 0,1 22,13 Z" fill="#0A84FF" opacity="0.35"/>
+              <path d="M0,0 L22,13 A26,26 0 0,1 0,26 Z" fill="#0A84FF" opacity="0.55"/>
+              <path d="M0,0 L0,26 A26,26 0 0,1 -22,13 Z" fill="#0A84FF" opacity="0.35"/>
+              <path d="M0,0 L-22,13 A26,26 0 0,1 -22,-13 Z" fill="#0A84FF" opacity="0.55"/>
+              <path d="M0,0 L-22,-13 A26,26 0 0,1 0,-26 Z" fill="#0A84FF" opacity="0.35"/>
+            </g>
+            <circle r="7" fill="#1c1c1f" stroke="#3a3a3f"/>
+          </g>
+
+          <!-- LED + PCIe connector -->
+          <circle class="gta-led" cx="246" cy="34" r="3" fill="#0A84FF"/>
+          <rect x="70" y="124" width="70" height="8" rx="2" fill="#2a2a2e"/>
+          <rect x="150" y="124" width="40" height="8" rx="2" fill="#2a2a2e"/>
+
+          <!-- adapter out -->
+          <line class="gta-flow" x1="256" y1="75" x2="300" y2="75" stroke="#4DA3FF" stroke-width="2"/>
+          <text class="gta-tick" x="262" y="66">adapter</text>
+        </svg>
+
+        <div class="gta-gpu-stats">
+          <dl>
+            <div><dt>Method</dt><dd><a class="gterm" href="#gl-qlora">QLoRA</a>, r=8, lr 2e-4, 2 epochs</dd></div>
+            <div><dt>Framework</dt><dd><a class="gterm" href="#gl-unsloth">Unsloth</a></dd></div>
+            <div><dt>Hardware</dt><dd>RTX 3090 · $0.22/hr (E4B, 19 min) → RTX 4000 Ada · $0.23/hr (E2B, ~26 min)</dd></div>
+            <div><dt>Wall time</dt><dd>E4B 19 min — 362 steps; E2B ~26 min — same 1,447 examples</dd></div>
+            <div><dt>Training loss</dt><dd>E4B 0.39 → 0.22; E2B 0.57 → low 0.2s</dd></div>
+            <div><dt>Eval loss</dt><dd>E4B 0.67 flat; E2B ~0.75 flat — no overfitting</dd></div>
+          </dl>
+        </div>
+      </div>
+      <figcaption>
+        My own GPU — an 8 GB RTX 2070 Super — ironically can't fit the job that a phone will
+        <em>run the result of</em>. The first pod covered three fine-tunes, model downloads, fp16 merges and Hugging Face pushes for about a dollar.
+        The E2B follow-up landed on a different card because nothing in the cheap 24 GB tier was free — and surfaced a cgroup OOM trap (see Round two).
+      </figcaption>
+    </figure>

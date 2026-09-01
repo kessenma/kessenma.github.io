@@ -1,0 +1,43 @@
+{% comment %}
+  Swipeable feature tour — the four app features as scroll-snap slides, so the
+  app tour takes one screen instead of four sections. Tabs/arrows are wired up
+  in scripts.html; without JS it degrades to a plain horizontal scroller.
+
+  Each slide is ONE include: text/<feature>.html holds every word for that slide
+  (headings, prose, figure caption) and pulls in its own figures/*.html for the
+  mockup markup. To reword a slide, that one text file is the only file to open.
+{% endcomment %}
+    <span id="what-it-does"></span>
+    <div class="gta-gal" id="gta-gal" role="region" aria-roledescription="carousel" aria-label="App feature tour">
+      <div class="gta-gal-head">
+        <div class="gta-gal-tabs">
+          <button type="button" class="gta-gal-tab gta-on">{% include german_tutor/icon.html name="book-open" class="gt-ico-lead" %}Stories</button>
+          <button type="button" class="gta-gal-tab">{% include german_tutor/icon.html name="speech" class="gt-ico-lead" %}Chatting</button>
+          <button type="button" class="gta-gal-tab">{% include german_tutor/icon.html name="puzzle" class="gt-ico-lead" %}Matching</button>
+          <button type="button" class="gta-gal-tab">{% include german_tutor/icon.html name="square-pen" class="gt-ico-lead" %}Grammar</button>
+          <button type="button" class="gta-gal-tab">{% include german_tutor/icon.html name="layers" class="gt-ico-lead" %}Cards</button>
+        </div>
+        <div class="gta-gal-arrows">
+          <button type="button" class="gta-gal-btn" data-dir="-1" aria-label="Previous feature">‹</button>
+          <button type="button" class="gta-gal-btn" data-dir="1" aria-label="Next feature">›</button>
+        </div>
+      </div>
+      <div class="gta-gal-track" tabindex="0">
+        <div class="gta-gal-slide" role="group" aria-roledescription="slide" aria-label="Stories — 1 of 5">
+          {% include german_tutor/gallery/stories.html %}
+        </div>
+        <div class="gta-gal-slide" role="group" aria-roledescription="slide" aria-label="Chatting — 2 of 5">
+          {% include german_tutor/gallery/chatting.html %}
+        </div>
+        <div class="gta-gal-slide" role="group" aria-roledescription="slide" aria-label="Card Matching — 3 of 5">
+          {% include german_tutor/gallery/matching.html %}
+        </div>
+        <div class="gta-gal-slide" role="group" aria-roledescription="slide" aria-label="Grammar — 4 of 5">
+          {% include german_tutor/gallery/grammar.html %}
+        </div>
+        <div class="gta-gal-slide" role="group" aria-roledescription="slide" aria-label="Cards — 5 of 5">
+          {% include german_tutor/gallery/cards.html %}
+        </div>
+      </div>
+      <p class="gta-gal-hint">Swipe, use the tabs, or the arrows — each slide is one feature.</p>
+    </div>

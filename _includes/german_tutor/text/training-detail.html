@@ -1,0 +1,38 @@
+    <p>
+      The recipe: <a class="gterm" href="#gl-qlora">QLoRA</a> (rank 8, lr 2e-4, 2 epochs) via
+      Unsloth, on a rented RTX 3090 community pod at $0.22/hour — my own 8 GB RTX 2070 Super
+      ironically can't fit the job that a phone will run the result of. The training run took 19
+      minutes, and the whole GPU session — three fine-tunes, model downloads, fp16 merges, and
+      pushes to Hugging Face — cost about a dollar. The single most expensive resource in this
+      project was my attention during data review.
+    </p>
+    <p>
+      The run itself was undramatic: training loss eased from 0.39 to 0.22 over two epochs,
+      held-out eval loss settled at 0.67 and stayed flat — no overfitting on 1,447 examples at
+      rank 8.
+    </p>
+
+    <h3>What actually broke, for anyone repeating this</h3>
+    <ul>
+      <li>
+        <strong>Gemma 4's <a class="gterm" href="#gl-chattemplate">chat template</a> enforces
+        strict user/model alternation</strong>, and my tutor dialogues start with the
+        <em>model</em> (it greets you first). Training crashed on every dialogue example until I
+        prepended the same synthetic "begin the conversation" user turn the app itself uses —
+        which is also the honest way to render it: training data should match the exact token
+        stream the model sees in production.
+      </li>
+      <li>
+        <strong><code>mlx_lm.convert</code> cannot convert Gemma 4 at all.</strong> The
+        architecture shares KV projections across the last 18 layers, and mlx-lm goes looking for
+        per-layer weights that don't exist. The path that works is <code>mlx_vlm convert</code>
+        (the same one the community 4-bit builds used). Always sanity-generate after converting —
+        a conversion that "succeeds" can still produce garbage.
+      </li>
+      <li>
+        <strong>MLX Swift merges <em>every</em> <a class="gterm" href="#gl-safetensors"><code>*.safetensors</code></a>
+        file it finds in a model repo, recursively.</strong> My LoRA adapter folder rode along into
+        the inference repo and broke app loading with an opaque <code>Unhandled keys ["base_model"]</code>
+        error. An inference repo must contain exactly one <code>model.safetensors</code>.
+      </li>
+    </ul>

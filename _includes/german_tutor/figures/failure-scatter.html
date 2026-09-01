@@ -1,0 +1,230 @@
+    <figure>
+      <h4>Two ways to be a bad tutor</h4>
+      <p class="gta-fig-sub">
+        Every model measured, plotted by its two behavioral failure rates. The bottom-left corner is
+        the only good place to be. Dashed arrows = same data, same QLoRA recipe — the fine-tune moving (or failing to move) the point.
+      </p>
+      <svg class="gta-svg" id="gta-scatter" viewBox="0 0 640 760" role="img"
+           aria-label="Scatter plot of twenty-seven models by false-correction rate (x) and missed-error rate (y). The bottom-left corner is ideal. The four shipped tutors sit closest to it: fine-tuned Gemma 4 E4B at 22% false corrections and 9% missed errors, tuned Granite 4.1 3B at 9% and 25%, tuned Granite 3.3 2B at 0% and 43%, and Gemma 4 E2B whose plotted 59% is a scoring artifact resolved in the section 'The eval was lying'. The German-first specialists — LLäMmlein 7B, ELMOD 2.7B, Apertus 8B and Apertus 4B — also land near the corner but only with three worked examples in the prompt, and most carry non-commercial licences. Ministral, Aya Expanse and Apple Intelligence sit far right as over-correctors. Qwen, Phi-4 Mini, Llama 3.2 and stock Gemma 3 1B sit high as rubber-stampers. EuroLLM, Salamandra, BübleLM, Apertus 1.5B and the tuned Gemma 3 1B sit top-right, failing both ways. Full numbers are in the two tables above.">
+        <!-- good corner tint -->
+        <defs>
+          <radialGradient id="gta-good-corner" cx="0" cy="1" r="1">
+            <stop offset="0%" stop-color="#0A84FF" stop-opacity="0.20"/>
+            <stop offset="100%" stop-color="#0A84FF" stop-opacity="0"/>
+          </radialGradient>
+          <marker id="gta-arrowhead" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <polygon points="0 0, 7 3.5, 0 7" fill="#0A84FF"/>
+          </marker>
+          <marker id="gta-arrowhead-amber" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <polygon points="0 0, 7 3.5, 0 7" fill="#E0A85A"/>
+          </marker>
+        </defs>
+        <rect x="70" y="60" width="510" height="600" fill="url(#gta-good-corner)"/>
+
+        <!-- gridlines -->
+        <g stroke="#2c2c2a" stroke-width="1">
+          <line x1="197.5" y1="60" x2="197.5" y2="660"/>
+          <line x1="325"   y1="60" x2="325"   y2="660"/>
+          <line x1="452.5" y1="60" x2="452.5" y2="660"/>
+          <line x1="70" y1="510" x2="580" y2="510"/>
+          <line x1="70" y1="360" x2="580" y2="360"/>
+          <line x1="70" y1="210" x2="580" y2="210"/>
+        </g>
+        <!-- axes -->
+        <line x1="70" y1="660" x2="580" y2="660" stroke="#383835" stroke-width="1.5"/>
+        <line x1="70" y1="60"  x2="70"  y2="660" stroke="#383835" stroke-width="1.5"/>
+
+        <!-- ticks -->
+        <g class="gta-tick" text-anchor="middle">
+          <text x="70"  y="678">0%</text>
+          <text x="197.5" y="678">25%</text>
+          <text x="325" y="678">50%</text>
+          <text x="452.5" y="678">75%</text>
+          <text x="580" y="678">100%</text>
+        </g>
+        <g class="gta-tick" text-anchor="end">
+          <text x="62" y="664">0%</text>
+          <text x="62" y="514">25%</text>
+          <text x="62" y="364">50%</text>
+          <text x="62" y="214">75%</text>
+          <text x="62" y="64">100%</text>
+        </g>
+
+        <!-- axis titles -->
+        <text class="gta-axis-label" x="325" y="703" text-anchor="middle">
+          False corrections — % of already-correct sentences it "fixed" →
+        </text>
+        <text class="gta-axis-label" x="-360" y="20" transform="rotate(-90)" text-anchor="middle">
+          Missed errors — % of real errors waved through →
+        </text>
+
+        <!-- zone annotations -->
+        <text class="gta-zone" x="80" y="652" fill="#0A84FF">★ ideal: catches errors, leaves good German alone</text>
+        <text class="gta-zone" x="574" y="652" text-anchor="end" fill="#d95926">never says “this is fine” →</text>
+        <text class="gta-zone" x="80" y="76" fill="#BF5AF2">↑ never says “this is wrong”</text>
+        <text class="gta-zone" x="574" y="118" text-anchor="end" fill="#d03b3b">fails both ways ↗</text>
+
+        <!-- arrows: the fine-tunes (drawn under the dots) -->
+        <g id="gta-sc-arrows">
+          <path d="M 238 562 Q 210 585 190 601" stroke="#0A84FF" stroke-width="1.5" fill="none"
+                stroke-dasharray="3 3" marker-end="url(#gta-arrowhead)"/>
+          <path d="M 250 495 Q 310 515 365 541" stroke="#E0A85A" stroke-width="1.2" fill="none"
+                stroke-dasharray="3 3" marker-end="url(#gta-arrowhead-amber)"/>
+          <path d="M 159 402 L 84 402" stroke="#0A84FF" stroke-width="1.5" fill="none"
+                stroke-dasharray="3 3" marker-end="url(#gta-arrowhead)"/>
+        </g>
+
+        <!-- ===== points ===== -->
+        <g id="gta-sc-dots">
+          <circle class="gta-dot" cx="182.2" cy="606" r="9" fill="#0A84FF" stroke="#101011" stroke-width="2">
+            <title>Gemma 4 E4B (fine-tuned) — 22% false corrections, 9% missed errors — SHIPPED</title>
+          </circle>
+          <text class="gta-dot-label" x="197.2" y="610" fill="#fff" font-weight="650">Gemma 4 E4B (tuned) ★</text>
+
+          <circle class="gta-dot" cx="115.9" cy="510" r="8" fill="#0A84FF" stroke="#101011" stroke-width="2">
+            <title>Granite 4.1 3B fine-tuned on the German corpus — 9% false corrections, 25% missed errors, app-equivalent — SHIPPED to the 4 GB tier</title>
+          </circle>
+          <text class="gta-dot-label" x="129.9" y="514" fill="#fff" font-weight="650">Granite 4.1 3B (tuned) ★</text>
+
+          <circle class="gta-dot" cx="70" cy="402" r="8" fill="#0A84FF" stroke="#101011" stroke-width="2">
+            <title>Granite 3.3 2B fine-tuned on the German corpus — 0% false corrections, 43% missed errors, app-equivalent — SHIPPED as the smallest tutor</title>
+          </circle>
+          <text class="gta-dot-label" x="84" y="431" fill="#fff" font-weight="650">Granite 3.3 2B (tuned) ★</text>
+
+          <circle class="gta-dot" cx="370.9" cy="546" r="7" fill="#E0A85A" stroke="#101011" stroke-width="2">
+            <title>Gemma 4 E2B (tuned) — 59% false corrections raw, 19% missed errors. But 18 of the 19 false corrections are echoes the app silently discards — scored app-equivalent it's 3% FC / 83% core, and it shipped. See &quot;The eval was lying&quot;.</title>
+          </circle>
+          <text class="gta-dot-label" x="383.9" y="550" fill="#E0A85A">Gemma 4 E2B (tuned) ‡</text>
+
+          <circle class="gta-dot" cx="243.4" cy="558" r="7" fill="#d95926" stroke="#101011" stroke-width="2">
+            <title>Gemma 4 E4B (stock) — 34% false corrections, 17% missed errors</title>
+          </circle>
+          <text class="gta-dot-label" x="230.4" y="562" text-anchor="end">Gemma 4 E4B (stock)</text>
+
+          <circle class="gta-dot" cx="243.4" cy="492" r="7" fill="#d95926" stroke="#101011" stroke-width="2">
+            <title>Gemma 4 E2B (stock) — 34% false corrections, 28% missed errors</title>
+          </circle>
+          <text class="gta-dot-label" x="256.4" y="496">Gemma 4 E2B (stock)</text>
+
+          <circle class="gta-dot" cx="340.3" cy="402" r="7" fill="#d95926" stroke="#101011" stroke-width="2">
+            <title>Llama 3.2 3B — 53% false corrections, 43% missed errors, app-equivalent. Perfect format discipline, not enough German.</title>
+          </circle>
+          <text class="gta-dot-label" x="353.3" y="406">Llama 3.2 3B</text>
+
+          <circle class="gta-dot" cx="498.4" cy="522" r="7" fill="#d95926" stroke="#101011" stroke-width="2">
+            <title>Ministral 8B — &quot;fixed&quot; 84% of correct sentences</title>
+          </circle>
+          <text class="gta-dot-label" x="511.4" y="526">Ministral 8B</text>
+
+          <circle class="gta-dot" cx="580" cy="588" r="7" fill="#d95926" stroke="#101011" stroke-width="2">
+            <title>Aya Expanse 8B — corrected ALL 32 correct sentences (100%)</title>
+          </circle>
+          <text class="gta-dot-label" x="567" y="592" text-anchor="end">Aya Expanse 8B</text>
+
+          <circle class="gta-dot" cx="580" cy="450" r="7" fill="#d95926" stroke="#101011" stroke-width="2">
+            <title>Apple Intelligence (on-device) — 100% false corrections, 35% missed errors. Fixes all correct sentences by echoing them verbatim with confabulated reasons. da-/wo 0/15</title>
+          </circle>
+          <text class="gta-dot-label" x="567" y="454" text-anchor="end">Apple Intelligence</text>
+
+          <circle class="gta-dot" cx="100.6" cy="474" r="7" fill="#30D158" stroke="#101011" stroke-width="2">
+            <title>LLäMmlein 7B chat (Uni Würzburg), 3-shot — 6% false corrections, 31% missed errors, and the best non-Gemma stock German score in the survey (73%) — but only with three worked examples in the prompt. Research-only RAIL-M licence: unusable either way.</title>
+          </circle>
+          <text class="gta-dot-label" x="100.6" y="494" text-anchor="middle" fill="#6FD68F">LLäMmlein 7B §</text>
+
+          <circle class="gta-dot" cx="166.9" cy="492" r="7" fill="#30D158" stroke="#101011" stroke-width="2">
+            <title>ELMOD 2.7B-it (Fraunhofer IIS) and Apertus v1.1-4B (EPFL/ETH/CSCS), both 3-shot — 19% false corrections, 28% missed errors, identical to the item. ELMOD is CC BY-NC; Apertus is Apache 2.0 but only reaches this with worked examples the app never sends.</title>
+          </circle>
+          <text class="gta-dot-label" x="179.9" y="471" fill="#6FD68F">ELMOD 2.7B · Apertus 4B §</text>
+
+          <circle class="gta-dot" cx="70" cy="456" r="7" fill="#30D158" stroke="#101011" stroke-width="2">
+            <title>Apertus-8B-Instruct-2509, 3-shot — 0 of 16 false corrections, the best verdict discipline measured here and a genuine one (34% miss, not the degenerate always-OK case). Zero-shot it scores 12%.</title>
+          </circle>
+          <text class="gta-dot-label" x="83" y="460" fill="#6FD68F">Apertus 8B §</text>
+
+          <circle class="gta-dot" cx="100.6" cy="372" r="7" fill="#BF5AF2" stroke="#101011" stroke-width="2">
+            <title>Qwen3-8B — 6% false corrections, but waves through 48% of real errors</title>
+          </circle>
+          <text class="gta-dot-label" x="113.6" y="376">Qwen3-8B</text>
+
+          <circle class="gta-dot" cx="166.9" cy="402" r="7" fill="#BF5AF2" stroke="#101011" stroke-width="2">
+            <title>Granite 3.3 2B stock — 19% false corrections, 43% missed errors, app-equivalent. The fine-tune takes the false corrections to zero without moving the miss rate.</title>
+          </circle>
+          <text class="gta-dot-label" x="179.9" y="406">Granite 3.3 2B (stock)</text>
+
+          <circle class="gta-dot" cx="197.5" cy="384" r="7" fill="#BF5AF2" stroke="#101011" stroke-width="2">
+            <title>SauerkrautLM-gemma-2-2b-it (VAGO) — 25% false corrections, 46% missed errors, app-equivalent. The strongest ready-made German chat tune, still below the floor at 53% core.</title>
+          </circle>
+          <text class="gta-dot-label" x="210.5" y="388">SauerkrautLM 2B</text>
+
+          <circle class="gta-dot" cx="166.9" cy="294" r="7" fill="#BF5AF2" stroke="#101011" stroke-width="2">
+            <title>Qwen3-4B — 19% false corrections, 61% missed errors</title>
+          </circle>
+          <text class="gta-dot-label" x="179.9" y="298">Qwen3-4B</text>
+
+          <circle class="gta-dot" cx="166.9" cy="246" r="7" fill="#BF5AF2" stroke="#101011" stroke-width="2">
+            <title>LLäMmlein 1B chat, 3-shot — 19% false corrections, 69% missed errors. Under the app's real zero-shot prompt it false-corrects 16 of 16.</title>
+          </circle>
+          <text class="gta-dot-label" x="179.9" y="250">LLäMmlein 1B §</text>
+
+          <circle class="gta-dot" cx="131.2" cy="198" r="7" fill="#BF5AF2" stroke="#101011" stroke-width="2">
+            <title>Phi-4 Mini — waves through 77% of real errors</title>
+          </circle>
+          <text class="gta-dot-label" x="144.2" y="202">Phi-4 Mini</text>
+
+          <circle class="gta-dot" cx="70" cy="330" r="7" fill="#BF5AF2" stroke="#101011" stroke-width="2">
+            <title>Gemma 3 1B (stock) — 0% false corrections, 55% missed errors as raw-scored. Later re-scoring showed its 0% is silence, not caution: it answers &quot;OK&quot; plus a FIX on nearly every input, and the app shows none of it — see &quot;Round three&quot;.</title>
+          </circle>
+          <text class="gta-dot-label" x="83" y="334">Gemma 3 1B (stock)</text>
+
+          <circle class="gta-dot" cx="70" cy="60" r="7" fill="#BF5AF2" stroke="#101011" stroke-width="2">
+            <title>Llama 3.2 1B — answered OK to all 69 errors (100% missed)</title>
+          </circle>
+          <text class="gta-dot-label" x="83" y="51">Llama 3.2 1B — OK'd all 69 errors</text>
+
+          <circle class="gta-dot" cx="325" cy="282" r="7" fill="#d03b3b" stroke="#101011" stroke-width="2">
+            <title>Apertus v1.1-1.5B, 3-shot — falsely &quot;corrects&quot; half of all already-correct sentences and still misses 63% of real errors</title>
+          </circle>
+          <text class="gta-dot-label" x="338" y="286" fill="#e08a8a">Apertus 1.5B §</text>
+
+          <circle class="gta-dot" cx="355.6" cy="228" r="7" fill="#d03b3b" stroke="#101011" stroke-width="2">
+            <title>Gemma 3 1B after the SAME fine-tune — 56% false corrections, 72% missed errors. The capacity cliff.</title>
+          </circle>
+          <text class="gta-dot-label" x="368.6" y="232" fill="#e08a8a">Gemma 3 1B (tuned) ⚠</text>
+
+          <circle class="gta-dot" cx="580" cy="78" r="7" fill="#d03b3b" stroke="#101011" stroke-width="2">
+            <title>EuroLLM-1.7B — 100% false corrections, 97% missed errors; can't follow the format at all</title>
+          </circle>
+          <text class="gta-dot-label" x="567" y="82" text-anchor="end" fill="#e08a8a">EuroLLM-1.7B</text>
+
+          <circle class="gta-dot" cx="580" cy="60" r="7" fill="#d03b3b" stroke="#101011" stroke-width="2">
+            <title>BübleLM-2B-SFT and Salamandra 2B — both corrected every correct sentence and missed every real error. Neither ever renders a verdict the app can parse.</title>
+          </circle>
+          <text class="gta-dot-label" x="567" y="64" text-anchor="end" fill="#e08a8a">BübleLM 2B · Salamandra 2B</text>
+        </g>
+      </svg>
+
+      <div class="gta-legend">
+        <span><i style="background: #0A84FF"></i>Fine-tuned &amp; shipped</span>
+        <span><i style="background: #30D158"></i>§ Good behavior, unshippable — licence or few-shot only</span>
+        <span><i style="background: #d95926"></i>Over-corrector — judgment deficit</span>
+        <span><i style="background: #BF5AF2"></i>Rubber-stamper — knowledge deficit</span>
+        <span><i style="background: #d03b3b"></i>Fails both ways / capacity cliff</span>
+        <span><i style="background: #E0A85A"></i>‡ Position is a scoring artifact — see <a href="#the-eval-was-lying">"The eval was lying"</a></span>
+      </div>
+
+      <figcaption>
+        Round one's dots plot the <em>raw checkpoint's</em> behavior; everything from the two later
+        sweeps — the Granites and the German-first specialists — is app-equivalent, scored the way the
+        app renders a reply. Mistral 7B is absent: its output was too malformed to score these two
+        rates. <strong>§</strong> marks a score that needs three worked examples in the prompt, which
+        the app never sends — those four green points are a statement about the <em>base</em>, not
+        about anything shippable, and two of the four carry non-commercial licences besides.
+        Blue dashed arrows = a fine-tune moving toward the ideal corner: the E4B tune, and the
+        Granite 3.3 tune driving false corrections to zero without touching its miss rate. Amber
+        dashed arrow = the E2B fine-tune <em>appearing</em> to slide into over-correction — 18 of its
+        19 false corrections turned out to be echoes the app's correction filter has always
+        discarded, a discovery that gets its own section
+        (<a href="#the-eval-was-lying">"The eval was lying"</a>) and ended with this model shipping.
+        Hover any point for its numbers; all in the tables above.
+      </figcaption>
+    </figure>

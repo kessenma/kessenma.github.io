@@ -1,0 +1,44 @@
+    <h3>Ground truth first</h3>
+    <p>
+      I compiled a 268-entry table of verb+preposition pairs (with governed case, reflexivity,
+      separability, CEFR level), pulled <strong>6,526 separable verbs</strong> and 1,604 reflexive
+      verbs from the German Wiktionary's categories, and mined <strong>83,000 seed sentences</strong>
+      from Tatoeba's 774k-sentence German corpus with a <a class="gterm" href="#gl-spacy">spaCy</a>
+      pipeline.
+    </p>
+    <p>
+      DeepL was the cross-check on the ground truth itself. I wrote the verb table's English
+      glosses by hand, so I built a probe: for each of the 268 entries, generate a dictionary-style
+      German phrase (<em>"sich auf etwas freuen"</em>), translate it DE→EN with DeepL, and flag any
+      entry whose translation shares no content word with my gloss. It flagged <strong>54
+      entries</strong> for review, and several really were sloppy glosses. The cheapest possible
+      second opinion on a hand-built lexicon — it used about 0.5% of DeepL's free tier.
+    </p>
+
+    <h3>Teacher-model generation</h3>
+    <p>
+      Batches of ~60 examples in the app's <em>exact</em> prompt formats — correction pairs,
+      multi-turn tutor dialogues, flashcard JSON. An early A/B taught me a hard lesson about
+      teacher choice: the budget model produced training examples where <strong>42% of "this
+      sentence is correct" labels were wrong</strong> — broken German labeled as correct, which is
+      exactly the poison that would reinforce the false-corrections problem. The mid-tier model's
+      error rate was ~3%, all caught in review.
+    </p>
+
+    <h3>A validation gate on everything</h3>
+    <p>
+      Self-hosted <a class="gterm" href="#gl-languagetool">LanguageTool</a> + spaCy structural
+      checks + dedup + a guard that rejects anything resembling a held-out eval item. Sobering
+      discovery: LanguageTool's open-source German rules caught <strong>none</strong> of my four
+      target error types — wrong fixed prepositions, wrong reflexive case, wrong auxiliary, and
+      broken word order all passed silently. Automated checking is necessary but nowhere near
+      sufficient for grammar data, so every batch also got a read-through.
+    </p>
+    <p>
+      The read-throughs earned their keep. The recurring trap was "corrections" of German that is
+      actually fine (<em>"Ich freue mich, dich zu besuchen"</em> needs no <em>darauf</em>) —
+      training on those would <em>teach</em> over-correction, the exact behavior I'm trying to
+      remove.
+    </p>
+
+    <h3>What came out the other end</h3>

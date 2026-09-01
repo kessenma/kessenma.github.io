@@ -1,0 +1,35 @@
+    <figure>
+      <h4>What's in the 1,476 examples</h4>
+      <p class="gta-fig-sub">The whole training set, and the slice inside it that carries the thesis.</p>
+
+      <p class="gta-bar-title">The training set</p>
+      <div class="gta-stack" role="img" aria-label="Composition: 816 corrections, 94 tutor dialogues, 50 flashcard JSON examples, 516 general German mix-in, totalling 1,476.">
+        <div style="width: 55.3%; background: var(--seg-1);" title="Correction pairs — 816"></div>
+        <div style="width: 6.4%;  background: var(--seg-2);" title="Tutor dialogues — 94"></div>
+        <div style="width: 3.4%;  background: var(--seg-3);" title="Flashcard JSON — 50"></div>
+        <div style="width: 35.0%; background: var(--seg-4);" title="General German mix-in — 516"></div>
+      </div>
+      <div class="gta-stack-labels">
+        <span><i style="background: var(--seg-1)"></i>Correction pairs <b>816</b></span>
+        <span><i style="background: var(--seg-2)"></i>Tutor dialogues <b>94</b></span>
+        <span><i style="background: var(--seg-3)"></i>Flashcard JSON <b>50</b></span>
+        <span><i style="background: var(--seg-4)"></i>General mix-in (anti-forgetting) <b>516</b></span>
+      </div>
+
+      <p class="gta-bar-title">Inside the 816 correction pairs</p>
+      <div class="gta-stack" role="img" aria-label="Of 816 correction pairs, 571 have a FIX as the gold answer and 245 have OK — the sentence was already correct.">
+        <div style="width: 70.0%; background: var(--seg-1);" title="Gold answer is a FIX — 571"></div>
+        <div style="width: 30.0%; background: var(--seg-3);" title="Gold answer is OK — the sentence was already correct — 245"></div>
+      </div>
+      <div class="gta-stack-labels">
+        <span><i style="background: var(--seg-1)"></i>Gold answer = <code>FIX</code> <b>571</b></span>
+        <span><i style="background: var(--seg-3)"></i>Gold answer = <code>OK</code> — nothing to fix <b>245</b></span>
+      </div>
+
+      <figcaption>
+        That second bar is the whole design. <strong>Nearly a third of the correction examples are
+        sentences with nothing wrong with them</strong>, whose only correct answer is "OK." Most
+        grammar datasets teach a model to fix sentences; the measured failure was that this model
+        couldn't stop fixing them.
+      </figcaption>
+    </figure>

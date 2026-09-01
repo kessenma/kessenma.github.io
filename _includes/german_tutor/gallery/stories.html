@@ -1,0 +1,9 @@
+    <h3>Stories — the model writes an illustrated short story, then quizzes on it</h3>
+
+    <figure>
+      <p class="gta-fig-sub">I experimented with Apple's GPU-background processing entitlement so the model can write a story while the app is running-in-background, then ping you when it's ready with mixed success (stalls out or crashes). </p>
+      {% include german_tutor/gallery/figures/story-setup.html %}
+
+      <figcaption>The story saves first, then the 4B tutor unloads to free ~5 GB in memory (RAM) before Stable Diffusion 2.1 loads for optional image-generation, because the two models won't fit together on a 6 GB phone
+      </figcaption>
+    </figure>

@@ -1,0 +1,54 @@
+    <h2 id="round-two">Round two: taking the recipe down-market</h2>
+    <p>
+      With the E4B tutor shipped, the project picked up an explicit second goal: make older and
+      cheaper phones a first-class target instead of a downgrade. A ~5 GB model wants roughly
+      8 GB of RAM; everything below that was still stuck with a stock model. What I wanted was a
+      capable tutor in the <strong>1–3B-parameter class</strong> — and the bake-off had flagged
+      <strong>Gemma 4 E2B</strong> (5.1B raw parameters, ~2B "effective" via the E-series'
+      per-layer-embedding trick) as the one candidate worth training: 65% base on the core four,
+      and the exact same over-correction personality as its big sibling (34% false corrections) —
+      precisely the failure the dataset was built to fix. Same data, same QLoRA recipe, one line
+      changed to swap the base model. On paper a fifteen-minute job. It was not.
+    </p>
+
+    <p>
+      This time nothing in RunPod's cheap 24 GB tier was available, so the run landed on an RTX
+      4000 Ada (20 GB) at $0.23/hr — plenty of VRAM, but a barer image whose externally-managed
+      system Python refused <code>pip install unsloth</code> outright (PEP 668) until
+      <code>--break-system-packages</code>.
+    </p>
+
+    <p>
+      The real friction was an out-of-memory kill that had nothing to do with the GPU. The run
+      died at 91% of the tokenizing pass with a single word — <code>Killed</code> — and no
+      traceback, while the GPU sat idle at 8 of its 20 GB. This was the <em>kernel's</em> OOM
+      killer. The pod advertised 48 vCPUs and <code>free</code> reported 251 GB of RAM — but that
+      251 GB is the <em>host's</em>. The container's actual cgroup limit was 28.9 GB with zero
+      swap. Unsloth's tokenizer, like most of the Hugging Face data stack, scales its worker
+      count to the visible CPUs, so it forked 52 parallel workers and sailed straight past 29 GB
+      into an instant SIGKILL. The fix is one line — pin <code>dataset_num_proc=2</code> — and
+      RAM dropped to a steady 12 GB. The general lesson for rented GPUs: many vCPUs paired with a
+      small RAM cap is the dangerous combination, so read the container's cgroup limit and never
+      trust <code>free</code>. The most time-consuming problem of the entire E2B run was
+      infrastructure — not the model, not the data, not one line of German.
+    </p>
+
+    <p>
+      Past that wall the run was uneventful: the same 1,447 examples, ~26 minutes on the slower
+      Ada card against the 3090's 19 for E4B, held-out eval loss flat around 0.75 (E4B: 0.67) — a
+      hair higher, as you'd expect from a smaller model, and just as stable. Then the scorecard
+      came back looking like a disaster. Core accuracy nudged <em>up</em> (65% → 68%), and the
+      model got measurably better at catching real errors (miss rate 28% → 19%) — but
+      <strong>false corrections nearly doubled, 34% → 59%</strong>, complete with confidently
+      invented grammar rules: <code>Sie wartet auf ihren Freund</code> (perfect) came back
+      "corrected" to the identical sentence with the note <em>"'warten auf' is inseparable; no
+      'zu' is needed."</em> It looked exactly like the 1B's capacity cliff one tier up —
+      knowledge absorbed, judgment crowded out. I benched the checkpoint, wrote "round two" off
+      as a negative result, and started planning a rescue: gentler recipes, a data remix, maybe
+      DPO.
+    </p>
+
+    <p>
+      Then I looked closer at what those "false corrections" actually <em>were</em> — and the
+      story fell apart in the best possible way.
+    </p>

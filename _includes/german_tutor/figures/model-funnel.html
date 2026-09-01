@@ -1,0 +1,154 @@
+    <figure class="gta-fig-bare">
+      <h4>Twenty-seven models, three gates, four survivors</h4>
+      <p class="gta-fig-sub">Every phone-sized model I could load, dropped through the same held-out eval — the original bake-off, then the hunt for something that fits a 4&nbsp;GB phone, then the German-first specialists, models pretrained for German and little else. Each gate rejects for a different reason, and only the last one needs a GPU.</p>
+
+      <div class="gta-funnel" id="gta-funnel">
+
+        <div class="gta-fn-band gta-fn-w0">
+          <div class="gta-fn-head"><b>27</b> candidates</div>
+
+          <div class="gta-fn-group">Round one — the general field</div>
+          <div class="gta-fn-chips">
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 4 12B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 4 E4B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 4 E2B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 3 1B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-qwen.png" alt="">Qwen3-12B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-qwen.png" alt="">Qwen3-8B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-qwen.png" alt="">Qwen3-4B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-mistral.png" alt="">Mistral 13B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-mistral.png" alt="">Mistral 7B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-mistral.png" alt="">Ministral 8B</span>
+            <span class="gta-fn-chip"><i>C</i>Aya Expanse 8B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-microsoft.png" alt="">Phi-4 Mini</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-meta.png" alt="">Llama 3.2 1B</span>
+            <span class="gta-fn-chip"><i>EU</i>EuroLLM-1.7B</span>
+            <span class="gta-fn-chip"><i>{% include german_tutor/icon.html name="apple" box="16" %}</i>Apple Intelligence</span>
+          </div>
+
+          <div class="gta-fn-group">The 4&nbsp;GB sweep</div>
+          <div class="gta-fn-chips">
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-ibm.png" alt="">Granite 3.3 2B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-ibm.png" alt="">Granite 4.1 3B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-meta.png" alt="">Llama 3.2 3B</span>
+            <span class="gta-fn-chip"><i>DE</i>SauerkrautLM 2B</span>
+            <span class="gta-fn-chip"><i>EU</i>Salamandra 2B</span>
+          </div>
+
+          <div class="gta-fn-group">German-first specialists</div>
+          <div class="gta-fn-chips">
+            <span class="gta-fn-chip"><i>DE</i>ELMOD 2.7B</span>
+            <span class="gta-fn-chip"><i>DE</i>LLäMmlein 7B</span>
+            <span class="gta-fn-chip"><i>DE</i>LLäMmlein 1B</span>
+            <span class="gta-fn-chip"><i>DE</i>BübleLM 2B</span>
+            <span class="gta-fn-chip"><i>CH</i>Apertus 8B</span>
+            <span class="gta-fn-chip"><i>CH</i>Apertus 4B</span>
+            <span class="gta-fn-chip"><i>CH</i>Apertus 1.5B</span>
+          </div>
+        </div>
+
+        <div class="gta-fn-neck" aria-hidden="true"><i></i></div>
+
+        <div class="gta-fn-gate gta-fn-g1">
+          <div class="gta-fn-gname"><span class="gta-fn-gnum">Gate 1</span> License + Parameter Check</div>
+          <div class="gta-fn-gtest">I tested with 12B parameter models, but they crashed on-device — iOS caps per-app memory near 8&nbsp;GB. ~8&nbsp;B models are the cap I set. And a non-commercial license is sticky through training: a fine-tune is adapted material and inherits the term, so the cost isn't swapping the base later, it's throwing the checkpoint away.</div>
+          <div class="gta-fn-rejects">
+            <span class="gta-fn-rej">Aya Expanse 8B · Ministral 8B + 13B <em>— non-commercial license</em></span>
+            <span class="gta-fn-rej">LLäMmlein 7B + 1B (Uni Würzburg) · ELMOD 2.7B (Fraunhofer) <em>— research-only RAIL-M / CC BY-NC. Measured them anyway: hand them three worked examples and they score 73% and 72%, the two best non-Gemma stock numbers in the whole survey, and both unusable</em></span>
+            <span class="gta-fn-rej gta-fn-rej-ghost">12B Parameter <em>— Gemma + Qwen 12B</em></span>
+          </div>
+        </div>
+
+        <div class="gta-fn-band gta-fn-w1">
+          <div class="gta-fn-head"><b>19</b> left</div>
+          <div class="gta-fn-chips">
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 4 E4B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 4 E2B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 3 1B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-qwen.png" alt="">Qwen3-8B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-qwen.png" alt="">Qwen3-4B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-mistral.png" alt="">Mistral 7B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-microsoft.png" alt="">Phi-4 Mini</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-meta.png" alt="">Llama 3.2 3B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-meta.png" alt="">Llama 3.2 1B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-ibm.png" alt="">Granite 3.3 2B</span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-ibm.png" alt="">Granite 4.1 3B</span>
+            <span class="gta-fn-chip"><i>CH</i>Apertus 8B</span>
+            <span class="gta-fn-chip"><i>CH</i>Apertus 4B</span>
+            <span class="gta-fn-chip"><i>CH</i>Apertus 1.5B</span>
+            <span class="gta-fn-chip"><i>DE</i>SauerkrautLM 2B</span>
+            <span class="gta-fn-chip"><i>DE</i>BübleLM 2B</span>
+            <span class="gta-fn-chip"><i>EU</i>Salamandra 2B</span>
+            <span class="gta-fn-chip"><i>EU</i>EuroLLM-1.7B</span>
+            <span class="gta-fn-chip"><i>{% include german_tutor/icon.html name="apple" box="16" %}</i>Apple Intelligence</span>
+          </div>
+        </div>
+
+        <div class="gta-fn-neck" aria-hidden="true"><i></i></div>
+
+        <div class="gta-fn-gate gta-fn-g2">
+          <div class="gta-fn-gname"><span class="gta-fn-gnum">Gate 2</span> German baseline knowledge test against the test suite</div>
+          <div class="gta-fn-gtest">Must pass with a score of ≥ 55% on the 60-item core suite, zero-shot, in the app's exact FIX/WHY format — because zero-shot in that format is what the app actually sends. One deliberate exception, marked&nbsp;* below: Granite 4.1 3B baselines at 52%, but it matches <em>tuned</em> Granite 3.3 on the extension suite, and by then I knew a Granite tune clears the floor even when the stock model doesn't.</div>
+          <div class="gta-fn-rejects">
+            <span class="gta-fn-rej">(iOS + MacOS 27.0) Apple Intelligence <em>42%</em> (can't actually train Apple's model but wanted to test its capabilities still)</span>
+            <span class="gta-fn-rej">Qwen3-4B <em>48%</em> · Mistral 7B <em>43%</em> · Phi-4 Mini <em>43%</em></span>
+            <span class="gta-fn-rej">Llama 3.2 3B <em>35%</em> · Llama 3.2 1B <em>28%</em></span>
+            <span class="gta-fn-rej">SauerkrautLM 2B <em>53% — the strongest ready-made German chat tune there is, and a German chat tune is not a German grammar-correction model</em></span>
+            <span class="gta-fn-rej">Apertus 8B <em>12%</em> · Apertus 1.5B <em>3%</em> <em>— they reach 72% and 37% once you hand them three worked examples, but the app hands them none</em></span>
+            <span class="gta-fn-rej">EuroLLM-1.7B <em>13%</em> · Salamandra 2B <em>7%</em> · BübleLM 2B <em>7%</em> <em>— all three know German; none of them will render a verdict. Between 26 and 99 answers per suite aren't in the correction format at all</em></span>
+          </div>
+        </div>
+
+        <div class="gta-fn-band gta-fn-w2">
+          <div class="gta-fn-head"><b>7</b> left</div>
+          <div class="gta-fn-chips">
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 4 E4B <em>72%</em></span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 4 E2B <em>65%</em></span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 3 1B <em>58%</em></span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-qwen.png" alt="">Qwen3-8B <em>58%</em></span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-ibm.png" alt="">Granite 3.3 2B <em>57%</em></span>
+            <span class="gta-fn-chip"><i>CH</i>Apertus 4B <em>55%</em></span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-ibm.png" alt="">Granite 4.1 3B <em>52%*</em></span>
+          </div>
+        </div>
+
+        <div class="gta-fn-neck" aria-hidden="true"><i></i></div>
+
+        <div class="gta-fn-gate gta-fn-g3 gta-fn-gate-hot">
+          <div class="gta-fn-gname"><span class="gta-fn-gnum">Gate 3</span> Fine-tune / Train the Models and Test</div>
+          <div class="gta-fn-gtest">Rent a powerful GPU, train the models using UnSloth.ai, and test against the test suite. The final sweep — one corpus, four bases, two days — came to about $10 of GPU time.</div>
+          <div class="gta-fn-rejects">
+            <span class="gta-fn-rej">Qwen3-8B <em>— never fires: misses 48% of real errors, so there's no judgment to improve</em></span>
+            <span class="gta-fn-rej">Gemma 3 1B <em>— collapses: core 58% → 32%, false corrections 0% → 56%. Retried later on 28× the data and it got worse again</em></span>
+            <span class="gta-fn-rej">Apertus 4B <em>— never trained: the corpus is worth about +13 points, and +13 from a 70% few-shot base only draws level with the E2B tune already shipping</em></span>
+            <span class="gta-fn-rej">Gemma 4 E2B <em>— looked like it teetered on raw scores (false corrections 34% → 59%) — later rescued by a scoring fix and shipped as the 6&nbsp;GB tier (see "The eval was lying")</em></span>
+          </div>
+        </div>
+
+        <div class="gta-fn-band gta-fn-w3 gta-fn-win">
+          <div class="gta-fn-head"><b>4</b> ship</div>
+          <div class="gta-fn-chips">
+            <span class="gta-fn-chip gta-fn-chip-win"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 4 E4B <em>90% · 8 GB tier</em></span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 4 E2B <em>84% · 6 GB tier</em></span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-ibm.png" alt="">Granite 4.1 3B <em>81% · 4 GB tier</em></span>
+            <span class="gta-fn-chip"><img src="assets/img/article/logo-ibm.png" alt="">Granite 3.3 2B <em>75% · smallest</em></span>
+          </div>
+        </div>
+
+      </div>
+
+      <figcaption>
+        Gate&nbsp;2 is each model's own baseline on the 60-item core suite; the ship row is the full
+        203-item suite (core + extension + the frozen holdout). Round one's numbers are the raw
+        checkpoint as first recorded — the 4&nbsp;GB sweep and the German-first models were measured
+        after the scorer fix in <a href="#the-eval-was-lying">"The eval was lying"</a> and are scored
+        the way the app actually renders a reply, so the two groups sit on slightly different rulers.
+        The <strong>two Granites are the part I didn't predict</strong>: IBM spends its parameter
+        budget on the body rather than the vocabulary, so they read German inefficiently and start
+        below every Gemma — and they are the only bases in the survey that swallowed the full
+        15-phenomenon corpus and got better for it. The 3.3&nbsp;2B is the first statistically
+        significant paired win the project produced (+22 items, exact McNemar p&nbsp;=&nbsp;0.002);
+        the 4.1&nbsp;3B beat its own stock score by 53 items and cut missed errors from 43% to 25%.
+        Both now ship to the 4&nbsp;GB phones no Gemma tutor fits.
+      </figcaption>
+    </figure>

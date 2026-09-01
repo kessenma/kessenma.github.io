@@ -1,0 +1,45 @@
+    <h2 id="where-it-stands">Where it stands</h2>
+    <p>
+      Two fine-tuned models are live in the app — <strong>"Gemma 4 E4B German Tutor"</strong> on
+      recent phones and <strong>"Gemma 4 E2B German Tutor"</strong> on the 6 GB tier — with both
+      sets of 4-bit weights public on Hugging Face
+      (<a href="{{ site.data.german_tutor.links.model }}"><code>kessenma/gemma4-e4b-german-tutor-4bit</code></a>,
+      <a href="{{ site.data.german_tutor.links.model_e2b }}"><code>kessenma/gemma4-e2b-german-tutor-4bit</code></a>)
+      along with the training data, both eval suites, the source lexicons and every eval result.
+      Total cost of the project: roughly <strong>$30 of GPU time end-to-end</strong> — about $6 of
+      it generating the v2 corpus, a dollar for the original fine-tunes, ~$3 regenerating that
+      corpus behind a dense teacher after the first one turned out to share the students' capacity
+      problem, ~$10 for the four-base sweep that finally cracked the 4 GB tier, and an
+      embarrassing ~$3 of a pod idling overnight because my shutdown failsafe wedged on a hung SSH
+      poll. Zero API spend, and a lot of reading synthetic German.
+    </p>
+
+    <p>
+      What ships (and doesn't) by device tier. All scores app-equivalent; the Gemma tiers are
+      quoted on the frozen 82-item v2 holdout, the entry tier on the full 203-item suite it was
+      measured against.
+    </p>
+    <div class="gta-table-wrap">
+      <table>
+        <thead><tr><th>Device RAM</th><th>Tier</th><th>Current pick</th></tr></thead>
+        <tbody>
+          <tr><td>4–6 GB</td><td>entry</td><td>{% include german_tutor/icon.html name="circle-check" label="Shipped" %} <strong>Granite 4.1 3B German Tutor</strong> (164/203, 25% miss, 1.9 GB) with <strong>Granite 3.3 2B</strong> (153/203, 1.4 GB) alongside it — both listed while peak resident memory is measured on real 4 GB hardware; that decides which one stays. Stock Gemma 3 1B (34% core, 100% miss) is retired from the tier</td></tr>
+          <tr><td>6–8 GB</td><td>low/mid</td><td>{% include german_tutor/icon.html name="circle-check" label="Shipped" %} <strong>Gemma 4 E2B German Tutor</strong> (84%, 12% FC) — the fine-tune once benched as a "runaway over-corrector," shipped after the echo re-score</td></tr>
+          <tr><td>8–12 GB</td><td>high</td><td>{% include german_tutor/icon.html name="circle-check" label="Shipped" %} <strong>Gemma 4 E4B German Tutor</strong> (85%, 8% FC) — with <strong>v2 (91%, 0% FC)</strong> benched and queued to replace it</td></tr>
+          <tr><td>≥11 GB (iPhone 17 Pro class)</td><td>max</td><td>E4B is still the ceiling — iOS's per-app ~8 GB cap rules out 12B-class models</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Next up:</p>
+    <ul>
+      <li><strong>Pick a Granite</strong> — peak resident memory on a real 4 GB device is the one measurement left on the entry tier, and only one of the two should stay listed.</li>
+      <li><strong>Decide E4B v4 vs v1</strong> — the corpus rebuild bought false corrections and a far more natural voice at the cost of a higher miss rate, and the grammar difference is a statistical tie (p&nbsp;=&nbsp;1.00). That's a temperament call, not a scoreboard call.</li>
+      <li><strong>Confirm the 6 GB tier on hardware</strong> — E2B's memory numbers are Mac-side MLX readings; a real 6 GB device needs to verify them.</li>
+      <li><strong>The learner's list</strong> — fix the A1-level crash and the interview mode's too-hard-for-A1 German, auto-select the model by device instead of asking users to read spec sheets, add calendar ranges, make the photo-conversation feature findable, and actually <em>say in the UI</em> that voice never leaves the phone.</li>
+      <li>On-device latency numbers for this article.</li>
+    </ul>
+
+    <div class="gta-todo">
+      <p><span class="gta-todo-tag">To do</span>App Store link.</p>
+    </div>

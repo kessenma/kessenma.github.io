@@ -1,0 +1,22 @@
+    <figure>
+      <h4>Today — the coach has a plan</h4>
+      <p class="gta-fig-sub">One tap, "here's the one next thing" — the anti-scattershot lever. Built from profile + due cards + streak, with weak-spot rotation for interleaving.</p>
+      <div class="gta-today">
+        <div class="gta-today-card" style="--c1:#0A84FF; --c2:#4DA3FF;">
+          <h5>{% include german_tutor/icon.html name="library" class="gt-ico-lead" %}Review due</h5>
+          <p>8 cards due — most overdue first</p>
+          <p style="font-size:0.78rem; color:#8E8E93; margin-top:0.35rem;">Cross-deck Anki session via ActivityRouter · SRS advances per card, streak +1</p>
+        </div>
+        <div class="gta-today-card" style="--c1:#FF9F0A; --c2:#FFD60A;">
+          <h5>{% include german_tutor/icon.html name="flame" class="gt-ico-lead" %}Weak spot</h5>
+          <p>3-min drill on Dativ (Needs work)</p>
+          <p style="font-size:0.78rem; color:#8E8E93; margin-top:0.35rem;">bundled MC where exists, else 30-sec mini-lesson + "watch for it next chat" — rotates daily</p>
+        </div>
+        <div class="gta-today-card" style="--c1:#9085e9; --c2:#4DA3FF;">
+          <h5>{% include german_tutor/icon.html name="message-circle" class="gt-ico-lead" %}Keep streak</h5>
+          <p>5-min chat to keep your streak alive</p>
+          <p style="font-size:0.78rem; color:#8E8E93; margin-top:0.35rem;">free-style + role-play + paper discuss · spaced re-encounter steers recent vocab into chat</p>
+        </div>
+      </div>
+      <figcaption>The first named follow-on from <code>FUTURE_FEATURES.md</code> — shipped. It closes the loop: matching tricky → vocab → briefing → conversation → correction → drill result → weaker struggle → lighter briefing tomorrow. Cold-start fallbacks: generate a deck, build a drill deck. File: <code>Features/Home/TodayView.swift</code> (TodaySection + TodayPlanner) + StudyDay streak log.</figcaption>
+    </figure>

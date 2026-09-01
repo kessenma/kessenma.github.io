@@ -1,0 +1,112 @@
+{% comment %}
+  Visual only — the prose for this slide lives in gallery/cards.html, which
+  wraps this include in its <figure>.
+
+  Same one-phone flow as Stories: a single device cross-fading through the five
+  stages of a flashcard deck — options -> generating -> German side -> English
+  side -> results. Driven by the shared "flow" IIFE in scripts.html (it walks
+  every .gta-fl on the page); the generating screen animates in CSS only.
+{% endcomment %}
+      <div class="gta-fl" id="gta-fl-cards">
+        <div class="gta-phone">
+          <div class="gta-phone-screen">
+            <div class="gta-island"></div>
+            <div class="gta-fl-screens">
+
+              <!-- 1 · OPTIONS -->
+              <div class="gta-fl-screen gta-on" data-screen="0" role="img" aria-label="Generate Flashcards setup: a topic field, a word-type picker set to All, a card-count picker set to 10, toggles for example sentences and AI pictures, and a Generate 10 Flashcards button.">
+                <div class="gta-navtitle">Generate Flashcards</div>
+                <div class="gta-fsec">Topic</div>
+                <div class="gta-fcard">
+                  <div class="gta-frow gta-fplaceholder">e.g. kitchen items, travel phrases…</div>
+                  <div class="gta-frow gta-faction">{% include german_tutor/icon.html name="dices" class="gt-ico-lead" %}Surprise me</div>
+                </div>
+                <div class="gta-fsec">Deck</div>
+                <div class="gta-fcard">
+                  <div class="gta-frow gta-fcol">
+                    <span>Word type</span>
+                    <span class="gta-seg"><i class="on">All</i><i>Nouns</i><i>Verbs</i><i>Adj.</i></span>
+                  </div>
+                  <div class="gta-frow gta-fcol">
+                    <span>Cards</span>
+                    <span class="gta-seg"><i>5</i><i class="on">10</i><i>15</i><i>20</i></span>
+                  </div>
+                </div>
+                <div class="gta-fcard">
+                  <div class="gta-frow">
+                    <span class="gta-fstack">Example sentences</span>
+                    <span class="gta-toggle on"><b></b></span>
+                  </div>
+                  <div class="gta-frow">
+                    <span class="gta-fstack">AI pictures<small>Drawn on-device after the deck is made.</small></span>
+                    <span class="gta-toggle on"><b></b></span>
+                  </div>
+                </div>
+                <div class="gta-write-btn">{% include german_tutor/icon.html name="sparkles" class="gt-ico-lead" %}Generate 10 Flashcards</div>
+              </div>
+
+              <!-- 2 · GENERATING (CSS-only card stack) -->
+              <div class="gta-fl-screen" data-screen="1" data-dwell="6500" role="img" aria-label="Generating Flashcards: a stack of index cards with a shimmer sweeping across the top one, a progress bar, and a note that each card is checked against the dictionary as it is written.">
+                <div class="gta-cf-gen">
+                  <div class="gta-cf-stack">
+                    <span class="gta-cf-card gta-cf-c3"></span>
+                    <span class="gta-cf-card gta-cf-c2"></span>
+                    <span class="gta-cf-card gta-cf-c1"><i></i><i></i><i></i></span>
+                  </div>
+                  <div class="gta-phase">Generating Flashcards</div>
+                  <div class="gta-prog"><i class="gta-cf-bar"></i></div>
+                  <div class="gta-tokens">writing, then checking each against the dictionary</div>
+                </div>
+              </div>
+
+              <!-- 3 · GERMAN SIDE (card front) -->
+              <div class="gta-fl-screen" data-screen="2" role="img" aria-label="The flashcard, German side: das Messer, a das neuter gender badge, a Verified dictionary badge, and a Tap to see answer hint.">
+                <div class="gta-cf-study">
+                  <div class="gta-cd-card">
+                    <div class="gta-cd-lang">German <span class="gta-cf-verified">{% include german_tutor/icon.html name="check" class="gt-ico-lead" %}Verified</span></div>
+                    <div class="gta-cd-word">das Messer</div>
+                    <div class="gta-cd-gender gta-cd-das">das · neuter</div>
+                    <div class="gta-cf-hint">Tap to see answer&nbsp; {% include german_tutor/icon.html name="refresh-cw" box="0.85em" %}</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4 · ENGLISH SIDE (card back) -->
+              <div class="gta-fl-screen" data-screen="3" role="img" aria-label="The flashcard flipped to the English side: the knife, a German example sentence, and a Tap to see question hint.">
+                <div class="gta-cf-study">
+                  <div class="gta-cd-card">
+                    <div class="gta-cd-lang">English</div>
+                    <div class="gta-cd-word">the knife</div>
+                    <div class="gta-cf-ex">„Das <u>Messer</u> ist sehr scharf."</div>
+                    <div class="gta-cf-hint">Tap to see question&nbsp; {% include german_tutor/icon.html name="refresh-cw" box="0.85em" %}</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5 · RESULTS (quiz complete) -->
+              <div class="gta-fl-screen" data-screen="4" role="img" aria-label="Quiz results: a gold star, a score of 9 out of 10, ninety percent, and a Missed Words list with one entry.">
+                <div class="gta-cf-result">
+                  <div class="gta-cf-star">{% include german_tutor/icon.html name="star" fill="currentColor" %}</div>
+                  <div class="gta-cf-score">Quiz Complete!</div>
+                  <div class="gta-cf-big">9 / 10</div>
+                  <div class="gta-cf-pct">90%</div>
+                  <div class="gta-cf-missed">
+                    <div class="gta-cf-missed-h">Missed Words</div>
+                    <div class="gta-cf-missed-row"><span>der Löffel</span><span>the spoon</span></div>
+                  </div>
+                  <div class="gta-fl-weiter">Done</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="gta-fl-steps" role="tablist" aria-label="Flashcard flow — jump to a stage">
+          <button type="button" class="gta-fl-step gta-on" data-step="0" role="tab" aria-selected="true"><b></b>Options</button>
+          <button type="button" class="gta-fl-step" data-step="1" role="tab" aria-selected="false"><b></b>Generating</button>
+          <button type="button" class="gta-fl-step" data-step="2" role="tab" aria-selected="false"><b></b>German</button>
+          <button type="button" class="gta-fl-step" data-step="3" role="tab" aria-selected="false"><b></b>English</button>
+          <button type="button" class="gta-fl-step" data-step="4" role="tab" aria-selected="false"><b></b>Results</button>
+        </div>
+      </div>

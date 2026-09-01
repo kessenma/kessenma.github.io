@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(command -v bundle jekyll ruby)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4111/fine-tuning-german-grammar-llm.html)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --no-first-run --user-data-dir=/private/tmp/claude-501/-Users-ke-ws-kessenma-github-io/fcb7cfb1-3b67-4be9-b747-77ab82daf662/scratchpad/chrome-tmp3 --window-size=900,3600 --hide-scrollbars --force-prefers-reduced-motion --virtual-time-budget=5000 --screenshot=/private/tmp/claude-501/-Users-ke-ws-kessenma-github-io/fcb7cfb1-3b67-4be9-b747-77ab82daf662/scratchpad/fig-test.png file:///private/tmp/claude-501/-Users-ke-ws-kessenma-github-io/fcb7cfb1-3b67-4be9-b747-77ab82daf662/scratchpad/_site/gta-test.html)",
+      "Bash(kill 18205)",
+      "Bash(rm -f /private/tmp/claude-501/-Users-ke-ws-kessenma-github-io/fcb7cfb1-3b67-4be9-b747-77ab82daf662/scratchpad/_site/gta-test.html /private/tmp/claude-501/-Users-ke-ws-kessenma-github-io/fcb7cfb1-3b67-4be9-b747-77ab82daf662/scratchpad/_site/gta-la.html /private/tmp/claude-501/-Users-ke-ws-kessenma-github-io/fcb7cfb1-3b67-4be9-b747-77ab82daf662/scratchpad/fig-*.png)",
+      "Bash(rm -rf /private/tmp/claude-501/-Users-ke-ws-kessenma-github-io/fcb7cfb1-3b67-4be9-b747-77ab82daf662/scratchpad/chrome-tmp*)",
+      "mcp__chrome-devtools__close_page"
+    ]
+  }
+}

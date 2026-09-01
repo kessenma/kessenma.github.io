@@ -1,0 +1,68 @@
+    <h2 id="what-a-learner-found">What a real learner found</h2>
+    <p>
+      Everything so far was measured on an eval bench. Benches don't get frustrated, don't crash,
+      and never wonder where a setting lives — so before pushing the models further, I recruited a
+      fellow German learner in Vienna (A1, studying at a language school here) to spend real time
+      with the app and answer a structured set of questions. Their answers are below verbatim,
+      lightly cleaned up for typos, because the unfiltered phrasing turned out to be the most
+      useful data in this article.
+    </p>
+
+    {% include german_tutor/figures/learner-phone.html %}
+
+    <div class="gta-interview">
+      <div class="gta-int-qa">
+        <p class="gta-int-q">Flashcards — with and without the image-generation settings?</p>
+        <p class="gta-int-a">"All these worked fine. The German quality is nice, so no doubt on it. The UX is also good for me."</p>
+      </div>
+      <div class="gta-int-qa">
+        <p class="gta-int-q">The reading + audio stories?</p>
+        <p class="gta-int-a">"So I got the topic <em>Einkaufen im Supermarkt</em> — it was pretty nice. The content and the questions were OK, but while reading it looked more like an AI voice. I mean, it's not a bug or something, but it <em>looked too much AI generated</em> — if it can have some better voice it will be nice. Also generating paragraphs took a while. There were no crashes anywhere."</p>
+        <p class="gta-int-a">"By AI generated I also mean: if there could have been a better expression, the conversation could have been more interesting. And not every time would I be interested in sharing my voice data. Also scanning a photo took a while."</p>
+      </div>
+      <div class="gta-int-qa">
+        <p class="gta-int-q">The speaking, turn-based conversations?</p>
+        <p class="gta-int-a">"I started with A2 and it worked completely fine, but when I changed the language level to A1 it crashed once — after the app started again it worked fine. I even tried talking on some other topic but it still remained the same, so it was fine. The available settings were good, and made it easier to try different approaches."</p>
+      </div>
+      <div class="gta-int-qa">
+        <p class="gta-int-q">The learner tools inside a conversation — double-tapping unknown words, saving phrases, response hints?</p>
+        <p class="gta-int-a">"I tried 8–10 words and there was no response-hint delay; double-tapping unknown words and adding saved phrases also worked pretty well."</p>
+        <p class="gta-int-a">"Initially I didn't know how to add different voices, but later found it in the settings."</p>
+      </div>
+      <div class="gta-int-qa">
+        <p class="gta-int-q">Having a conversation based on a photo or URL?</p>
+        <p class="gta-int-a">"I did not get this option."</p>
+      </div>
+      <div class="gta-int-qa">
+        <p class="gta-int-q">The job-interview conversation mode?</p>
+        <p class="gta-int-a">"The first time it crashed; the second time it worked. Also — I studied A1 at a school in Vienna, and I do believe that for the A1 level, the grammar the job interview uses is <em>a little hard</em>."</p>
+      </div>
+      <div class="gta-int-qa">
+        <p class="gta-int-q">Navigation — home, activities, library, settings?</p>
+        <p class="gta-int-a">"The home section is nice, but under 'Your Streak' it would be good to select the calendar by month, week or year — and the 'This week' section below could also let me pick the range, from and until when I want to see."</p>
+        <p class="gta-int-a">"All-activities looks good, but if you don't want the user to scroll a long page you could make a dropdown per section, or maybe six main cards (vocab, grammar, reading, speaking, …) that navigate to a sub-page — but this can be a little complicated for developers, as it changes the interface."</p>
+        <p class="gta-int-a">"Library: works perfectly fine. Settings: the tab system is working, still good, no change needed."</p>
+      </div>
+      <div class="gta-int-qa">
+        <p class="gta-int-q">The model-selection screen?</p>
+        <p class="gta-int-a">"The explanation is good enough for anyone to understand — but if a user just selects what they need and a model is then chosen automatically, I think it would be more user-friendly. As a user I'm not really interested in checking all the descriptions of the models."</p>
+      </div>
+    </div>
+
+    <p>
+      Sorting that feedback taught me it comes in three distinct kinds. Some of it is
+      <strong>not the tutor model at all</strong>: the "AI voice" is Apple's on-device
+      text-to-speech reading the story aloud — no amount of fine-tuning touches that. Some of it
+      is <strong>app work</strong>, now queued: the A1 crash, the interview mode both crashing
+      once <em>and</em> speaking above an A1 learner's level (a CEFR-adherence gap, which
+      <em>is</em> a model behavior), the photo-conversation feature they never found, calendar
+      ranges, and picking a model <em>for</em> the user instead of asking them to read spec
+      sheets — that last one is exactly what the device-tier table at the end of this article
+      does. (Their instinct about "sharing my voice data" is also the anxiety the on-device
+      design already answers — speech never leaves the phone — which means the app is failing to
+      say so.) But the middle of their story feedback — <em>"if there could have been a better
+      expression, the conversation could have been more interesting"</em> — is squarely about the
+      language model. The tutor was grammatically solid and conversationally <em>flat</em>. My
+      eval measured correctness and had no opinion at all about that. The next round of training
+      needed to fix both.
+    </p>

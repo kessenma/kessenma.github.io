@@ -1,0 +1,61 @@
+    <figure>
+      <h4>Two ways to spend a small parameter budget</h4>
+      <p class="gta-fig-sub">
+        Where each model's weights actually sit — the vocabulary table that <em>reads</em> text
+        versus the body that <em>thinks</em> — and what that bet does to the same German sentence.
+        Measured on the shipped 4-bit files; bar length is proportional to download size.
+      </p>
+
+      <div class="gta-ba" role="img"
+           aria-label="Gemma 3 1B spends about 30% of its 0.56 GB of 4-bit weights on a 262,144-entry vocabulary table, leaving a 0.39 GB body. Granite 3.3 2B spends about 4% of 1.43 GB on its 49,159-entry vocabulary and 1.37 GB on body. Granite 4.1 3B spends about 8% of 1.91 GB on a 100,352-entry vocabulary and 1.77 GB on body. Below, the sentence 'Ich habe gestern das Buch gelesen.' tokenizes to 7 whole-word tokens under Gemma, 13 fragments under Granite 3.3, and 9 under Granite 4.1.">
+        <div class="gta-ba-row">
+          <div class="gta-ba-name"><img src="assets/img/article/logo-gemma.png" alt="">Gemma 3 1B <em>— the bet: know German</em></div>
+          <div class="gta-ba-bar" style="width: 29%;">
+            <i class="gta-ba-vocab" style="flex: 30;">vocab 30%</i>
+            <i class="gta-ba-body" style="flex: 70;">body</i>
+          </div>
+          <div class="gta-ba-sub">262,144-entry vocabulary · 0.17 GB table, 0.39 GB body</div>
+        </div>
+        <div class="gta-ba-row">
+          <div class="gta-ba-name"><img src="assets/img/article/logo-ibm.png" alt="">Granite 3.3 2B <em>— the bet: be able to learn</em></div>
+          <div class="gta-ba-bar" style="width: 75%;">
+            <i class="gta-ba-vocab" style="flex: 4;"></i>
+            <i class="gta-ba-body" style="flex: 96;">body ~96%</i>
+          </div>
+          <div class="gta-ba-sub">49,159-entry vocabulary (~4%) · 0.06 GB table, 1.37 GB body</div>
+        </div>
+        <div class="gta-ba-row">
+          <div class="gta-ba-name"><img src="assets/img/article/logo-ibm.png" alt="">Granite 4.1 3B <em>— the bet that threads it</em></div>
+          <div class="gta-ba-bar" style="width: 100%;">
+            <i class="gta-ba-vocab" style="flex: 8;"></i>
+            <i class="gta-ba-body" style="flex: 92;">body ~92%</i>
+          </div>
+          <div class="gta-ba-sub">100,352-entry vocabulary (~8%) · 0.14 GB table, 1.77 GB body</div>
+        </div>
+      </div>
+
+      <div class="gta-ba-sent">"Ich habe gestern das Buch gelesen."</div>
+      <div class="gta-ba-tokrow">
+        <span class="gta-ba-toklabel">Gemma — 7 tokens, one per word:</span>
+        <span class="gta-ba-chip">Ich</span><span class="gta-ba-chip">habe</span><span class="gta-ba-chip">gestern</span><span class="gta-ba-chip">das</span><span class="gta-ba-chip">Buch</span><span class="gta-ba-chip">gelesen</span><span class="gta-ba-chip">.</span>
+      </div>
+      <div class="gta-ba-tokrow">
+        <span class="gta-ba-toklabel">Granite 3.3 — 13 tokens, German in fragments:</span>
+        <span class="gta-ba-chip gta-ba-chip-frag">I</span><span class="gta-ba-chip gta-ba-chip-frag">ch</span><span class="gta-ba-chip gta-ba-chip-frag">h</span><span class="gta-ba-chip gta-ba-chip-frag">abe</span><span class="gta-ba-chip gta-ba-chip-frag">gest</span><span class="gta-ba-chip gta-ba-chip-frag">ern</span><span class="gta-ba-chip gta-ba-chip-frag">das</span><span class="gta-ba-chip gta-ba-chip-frag">B</span><span class="gta-ba-chip gta-ba-chip-frag">uch</span><span class="gta-ba-chip gta-ba-chip-frag">ge</span><span class="gta-ba-chip gta-ba-chip-frag">les</span><span class="gta-ba-chip gta-ba-chip-frag">en</span><span class="gta-ba-chip gta-ba-chip-frag">.</span>
+      </div>
+      <div class="gta-ba-tokrow">
+        <span class="gta-ba-toklabel">Granite 4.1 — 9 tokens, most of the gap closed:</span>
+        <span class="gta-ba-chip">Ich</span><span class="gta-ba-chip">habe</span><span class="gta-ba-chip gta-ba-chip-frag">gest</span><span class="gta-ba-chip gta-ba-chip-frag">ern</span><span class="gta-ba-chip">das</span><span class="gta-ba-chip">Buch</span><span class="gta-ba-chip gta-ba-chip-frag">ge</span><span class="gta-ba-chip gta-ba-chip-frag">lesen</span><span class="gta-ba-chip">.</span>
+      </div>
+
+      <figcaption>
+        Gemma's giant multilingual vocabulary is why it reads German whole — and why, at 1B, there
+        is almost no body left to learn with. Granite spends its budget the other way, which is why
+        both Granites swallowed the full corpus and got better for it while every Gemma under 4B
+        got worse. The price is reading speed: across all 203 eval sentences, Granite 3.3 needs
+        <strong>1.43×</strong> the tokens Gemma does for the same German (2.19 vs 1.53 per word) —
+        the sentence above is a bad case at 1.9×. Granite 4.1's 100k vocabulary is the compromise
+        that made the tier work: still only 8% of its weights, but the tax drops to
+        <strong>1.15×</strong>.
+      </figcaption>
+    </figure>

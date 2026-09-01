@@ -1,0 +1,76 @@
+    <h2 id="results">Results</h2>
+    <p>
+      Same eval, same automated scoring, both models as the 4-bit MLX quantizations that actually
+      ship on a phone. The table below is really three experiments stacked on one bench, and it pays
+      to read it as three arms of a controlled trial:
+    </p>
+    <ul>
+      <li>
+        <strong>The core-four suite is the treatment arm.</strong> The four areas the dataset
+        actually targets — where a gain is expected, and therefore proves the least.
+      </li>
+      <li>
+        <strong>The ten-area extension suite is the side-effect arm.</strong> Grammar the dataset
+        never touches, so the only interesting outcome is a <em>drop</em> — that would be
+        <a class="gterm" href="#gl-forgetting">catastrophic forgetting</a> showing up.
+      </li>
+      <li>
+        <strong>The 32 already-correct sentences are the placebo arm.</strong> The right answer is to
+        do nothing. A tutor that "fixes" a sentence you got right is worse than one that stays quiet,
+        and this is the only slice that catches it — an accuracy number alone would have called the
+        stock model a 72% success while it was quietly rewriting a third of the things its student
+        got right.
+      </li>
+    </ul>
+
+    <div class="gta-table-wrap">
+      <table>
+        <thead>
+          <tr><th>Metric</th><th>Stock E4B</th><th>Fine-tuned</th></tr>
+        </thead>
+        <tbody>
+          <tr class="gta-row-win">
+            <td><strong>Core four areas</strong></td><td>43/60 (72%)</td><td><span class="gta-good">51/60 (85%)</span></td>
+          </tr>
+          <tr class="gta-sub"><td>verbs + prepositions</td><td>13/15</td><td><span class="gta-good">15/15</span></td></tr>
+          <tr class="gta-sub"><td>separable verbs</td><td>12/15</td><td><span class="gta-good">14/15</span></td></tr>
+          <tr class="gta-sub"><td>da-/wo-compounds</td><td>9/15</td><td><span class="gta-good">12/15</span></td></tr>
+          <tr class="gta-sub"><td>reflexive verbs</td><td>9/15</td><td>10/15</td></tr>
+          <tr class="gta-row-win">
+            <td><strong>Extension suite</strong> (10 untargeted areas)</td><td>53/61 (87%)</td><td><span class="gta-good">55/61 (90%)</span></td>
+          </tr>
+          <tr class="gta-row-win">
+            <td><strong>False corrections</strong> (n=32 correct sentences)</td><td>34%</td><td><span class="gta-good">22%</span></td>
+          </tr>
+          <tr class="gta-row-win">
+            <td><strong>Missed / wrongly-fixed errors</strong> (n=69)</td><td>17%</td><td><span class="gta-good">9%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="gta-legend-note">
+      <span>Both columns score the <em>raw checkpoint</em> — the strictest possible view. A later section (<a href="#the-eval-was-lying">"The eval was lying"</a>) re-scores everything the way the app actually renders corrections; the shape of this comparison survives, and the shipped numbers improve.</span>
+    </div>
+
+    <p>Four things I read off this table:</p>
+    <ol>
+      <li>
+        <strong>The behavioral metrics moved most, and they're the ones that matter.</strong> Missed
+        errors halved (17% → 9%), false corrections dropped by a third (34% → 22%). That was the
+        thesis of the whole dataset design — verdict discipline over grammar trivia — and it paid off.
+      </li>
+      <li>
+        <strong>The knowledge areas the model half-knew went to (near-)perfect.</strong> Verbs with
+        prepositions 15/15, separable verbs 14/15. Where the base model already had the substrate,
+        19 minutes of QLoRA finished the job.
+      </li>
+      <li>
+        <strong>Reflexives barely moved</strong> (60% → 67%). The accusative/dative reflexive
+        distinction (<em>ich wasche mich</em> vs. <em>ich wasche mir die Hände</em>) appears to be
+        genuinely hard, not just under-trained. That slice gets a dedicated second data wave.
+      </li>
+      <li>
+        <strong>The untargeted extension suite went up, not down</strong> (87% → 90%). The ~35%
+        general instruction mix-in did its anti-forgetting job; nothing was traded away.
+      </li>
+    </ol>

@@ -1,0 +1,98 @@
+{% comment %}
+  Visual only — the prose for this slide lives in gallery/grammar.html,
+  which wraps this include in its <figure>.
+{% endcomment %}
+      <div class="gta-duo">
+        <!-- GrammarHubView -->
+        <div class="gta-phone" role="img" aria-label="The app's Grammar Exercises hub: a Coach's Picks section with flame-badged rows for Dativ and Wechselpräpositionen marked Needs work, a Make Your Own section with a Create with AI row, bundled Akkusativ rows for definite articles and possessive pronouns, a flagged Dativ section, and an A1 Perfekt Verbs row.">
+          <div class="gta-phone-screen">
+            <div class="gta-island"></div>
+            <div class="gta-navtitle">Grammar Exercises</div>
+            <div class="gta-fsec">Coach's Picks</div>
+            <div class="gta-fcard">
+              <div class="gta-frow">
+                <span class="gta-ftile gta-ftile-orange">{% include german_tutor/icon.html name="flame" box="14" %}</span>
+                <span class="gta-fstack"><span style="font-weight:600;">Dativ</span><small>Needs work · tap for a quick drill</small></span>
+                <span class="gta-finfo">{% include german_tutor/icon.html name="info" %}</span>
+                <span class="gta-fchev">›</span>
+              </div>
+              <div class="gta-frow">
+                <span class="gta-ftile gta-ftile-orange">{% include german_tutor/icon.html name="flame" box="14" %}</span>
+                <span class="gta-fstack"><span style="font-weight:600;">Wechselpräpositionen</span><small>Needs work · create AI exercises</small></span>
+                <span class="gta-finfo">{% include german_tutor/icon.html name="info" %}</span>
+              </div>
+            </div>
+            <div class="gta-fnote">Spots your conversations keep tripping on. Drilling them here updates what the coach remembers.</div>
+            <div class="gta-fsec">Make Your Own</div>
+            <div class="gta-fcard">
+              <div class="gta-frow">
+                <span class="gta-ftile gta-ftile-blue">{% include german_tutor/icon.html name="sparkles" box="14" %}</span>
+                <span class="gta-fstack"><span style="font-weight:600;">Create with AI</span><small>Fresh exercises on your topic — or roll the dice</small></span>
+                <span class="gta-fchev">›</span>
+              </div>
+            </div>
+            <div class="gta-fsec">Akkusativ</div>
+            <div class="gta-fcard">
+              <div class="gta-frow">
+                <span class="gta-fstack"><span style="font-weight:600;">Akkusativ: Definite Articles</span><small>den / die / das</small></span>
+                <span class="gta-fcount">10 exercises</span>
+                <span class="gta-fchev">›</span>
+              </div>
+              <div class="gta-frow">
+                <span class="gta-fstack"><span style="font-weight:600;">Akkusativ: Possessive Pronouns</span><small>meinen / meine / mein</small></span>
+                <span class="gta-fcount">9 exercises</span>
+                <span class="gta-fchev">›</span>
+              </div>
+            </div>
+            <div class="gta-fsec gta-fsec-flag">Dativ <span class="gta-flag">{% include german_tutor/icon.html name="flame" class="gt-ico-lead" %}Needs work</span></div>
+            <div class="gta-fcard">
+              <div class="gta-frow">
+                <span class="gta-fstack"><span style="font-weight:600;">Dativ: Personal Pronouns</span><small>mir / dir / ihm / ihr / uns / euch</small></span>
+                <span class="gta-fcount">9 exercises</span>
+                <span class="gta-fchev">›</span>
+              </div>
+            </div>
+            <div class="gta-fsec">Perfekt · Past Tense</div>
+            <div class="gta-fcard">
+              <div class="gta-frow">
+                <span class="gta-fstack"><span style="font-weight:600;">A1 Perfekt Verbs</span><small>Elementary verbs · sein/haben, participles</small></span>
+                <span class="gta-fchev">›</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GrammarMultipleChoiceView, one question on loop -->
+        <div class="gta-phone" role="img" aria-label="The multiple-choice drill mid-question: an Akkusativ Definite Articles drill at question 3 of 10 with a blue progress bar, a sentence card reading Ich habe blank Buch with the verb in green and the noun in orange and an orange neutrum gender badge, three option buttons den, die, das — the correct one turns green — and the card flips to a green check with the filled sentence before a blue Next button appears.">
+          <div class="gta-phone-screen">
+            <div class="gta-island"></div>
+            <div class="gta-sheetnav">
+              <span class="gta-nav-action">Close</span>
+              <span class="gta-nav-title2">Akkusativ: Definite Articles</span>
+              <span style="width:30px;"></span>
+            </div>
+            <div class="gta-qhead">
+              <span class="gta-qrule">Akkusativ: den (m), die (f), das (n), die (Pl.)</span>
+              <span class="gta-qcount" id="gta-gd-count">3 / 10</span>
+            </div>
+            <div class="gta-mprog"><i id="gta-gd-bar" style="width:30%"></i></div>
+            <div class="gta-qcard" id="gta-gd-card">
+              <div class="gta-qstate" id="gta-gd-ask">
+                <div class="gta-qq"><span id="gta-gd-pre">Ich</span> <b class="gta-qverb" id="gta-gd-verb">habe</b> <b class="gta-qblank">______</b> <b class="gta-qnoun" id="gta-gd-noun">Buch</b>.</div>
+                <div class="gta-qbadge" id="gta-gd-badge">neutrum</div>
+              </div>
+              <div class="gta-qstate gta-off" id="gta-gd-res">
+                <div class="gta-qres-ico">{% include german_tutor/icon.html name="check" %}</div>
+                <div class="gta-qq" id="gta-gd-fill">Ich habe das Buch.</div>
+                <div class="gta-qsub" id="gta-gd-sub">Buch · neutrum</div>
+              </div>
+            </div>
+            <div class="gta-qopts">
+              <div class="gta-qopt" id="gta-gd-o0">den</div>
+              <div class="gta-qopt" id="gta-gd-o1">die</div>
+              <div class="gta-qopt" id="gta-gd-o2">das</div>
+            </div>
+            <div class="gta-qnext" id="gta-gd-next">Next</div>
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,22 @@
+    <h2 id="the-problem"><span id="methodology"></span>The problem: four grammar areas where the model quietly fails</h2>
+    <p>
+      Using the app daily, I noticed the tutor was unreliable in exactly the areas German learners
+      struggle with most:
+    </p>
+    <ol>
+      <li><strong>Verbs with fixed prepositions</strong> — <em>warten auf</em>, <em>sich freuen über/auf</em>, <em>denken an</em></li>
+      <li><strong>Separable verbs</strong> — <em>aufstehen → ich stehe … auf</em>, participle <em>aufgestanden</em>, <em>aufzustehen</em></li>
+      <li><strong>Reflexive verbs</strong> — including the accusative/dative distinction (<em>ich wasche mir die Hände</em>)</li>
+      <li><strong>Da-/wo-compounds</strong> — <em>darauf/worauf</em> for things vs. <em>auf ihn</em> for people</li>
+    </ol>
+    <p>
+      A tutor that makes the same mistakes as its students is worse than useless — it
+      <em>confirms</em> the student's errors.
+    </p>
+    <p>
+      That observation set the shape of everything that follows: measure the weaknesses with a
+      proper eval <em>before</em> touching any training, build a ground-truth dataset aimed at
+      what the eval actually found, fine-tune a base model that's teachable, and verify the result
+      on the same bench before shipping it to the phone. The next four sections are that arc, in
+      order.
+    </p>
