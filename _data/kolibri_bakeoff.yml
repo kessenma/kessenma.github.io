@@ -1,0 +1,64 @@
+# Single source of truth for the Kolibri-1 bake-off post's "chrome" — the bits that
+# appear in more than one place. Edit here, not in the templates.
+#
+# Consumed by:
+#   _layouts/kolibri_bakeoff.html    <title>, <meta description>, Open Graph tags
+#   _includes/kolibri_bakeoff.html   article header and footer links
+#   _includes/writing.html           homepage teaser card
+#
+# Values are emitted raw into HTML, so use HTML entities (&amp;) not bare "&".
+
+title: "Can Kolibri-1 teach my German tutor?"
+
+tag: "Short read"
+byline: "Kyle Essenmacher"
+date: "October 2026"
+
+url: "/kolibri-bakeoff"
+icon: "assets/img/article/kartei-icon.png"
+icon_alt: "Die Kartei app icon"
+
+# Shown under the headline on both the article and the homepage card.
+standfirst: >-
+  Aleph Alpha released Kolibri-1, an open model trained on an unusually large share of German.
+  I tested whether it could write better training examples for my app's on-device German tutor
+  than Google's Gemma 4 31B. Sadly... It couldn't.
+
+# Kept separate from standfirst on purpose: search engines truncate around 160
+# characters, so this is the short version. Reword both together.
+meta_description: >-
+  Kolibri-1 vs Gemma 4 31B as the teacher model for an on-device German tutor:
+  stories, correction examples, and why Gemma wrote better German.
+
+links:
+  app_store: "https://apps.apple.com/us/app/die-kartei/id6770390331"
+  profile: "https://huggingface.co/kessenma"
+  tutor_model: "https://huggingface.co/kessenma/gemma4-e4b-german-tutor-v4-4bit"
+  kolibri: "https://huggingface.co/Aleph-Alpha/Kolibri-1"
+  kolibri_page: "https://aleph-alpha.com/en/kolibri/"
+  gemma: "https://huggingface.co/google/gemma-4-31B-it"
+  github: "https://github.com/kessenma/die-kartei"
+  kolibri_next: "https://www.linkedin.com/posts/ilhanscheer_focus-discipline-delivery-thats-what-activity-7512765810289958913-DuIP"
+  openrouter: "https://openrouter.ai"
+  soofi: "https://lamarr-institute.org/blog/soofi-s-a-sovereign-open-source-foundation-model-for-german-and-english/"
+  llammlein_7b: "https://huggingface.co/LSX-UniWue/LLaMmlein_7B"
+  llammlein_1b: "https://huggingface.co/LSX-UniWue/LLaMmlein_1B"
+  elmod: "https://huggingface.co/fraunhofer-iis/elmod-2.7b-it"
+
+logos:
+  gemma: "assets/img/article/logo-gemma.png"
+  aleph_alpha: "assets/img/article/logo-aleph-alpha.png"
+
+# Paths inside the Die Kartei repo, joined to links.github as /blob/main/<path> or
+# /tree/main/<path>. The bakeoff_writeup and kasus_cli entries only resolve once the
+# bake-off work is pushed to the repo.
+code:
+  checker: "german-ai-flashcards/Services/KasusStoryCheck.swift"
+  validator: "german-ai-flashcards/Services/KasusValidator.swift"
+  planner: "german-ai-flashcards/Services/KasusStoryPlanner.swift"
+  kasus_doc: "docs/KASUS.md"
+  training: "training"
+  data_validator: "training/scripts/validate_data.py"
+  teacher_writeup: "training/TEACHER_GENERATION_FIX.md"
+  bakeoff_writeup: "training/KOLIBRI_BAKEOFF.md"
+  kasus_cli: "training/kasus_cli"

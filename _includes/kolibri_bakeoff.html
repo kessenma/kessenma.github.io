@@ -1,0 +1,1122 @@
+{%- assign kb = site.data.kolibri_bakeoff -%}
+{%- capture blob -%}{{ kb.links.github }}/blob/main/{%- endcapture -%}
+{%- capture tree -%}{{ kb.links.github }}/tree/main/{%- endcapture -%}
+{% comment %}
+  Kolibri-1 bake-off post. Title, standfirst, byline and links live in
+  _data/kolibri_bakeoff.yml; edit them there.
+
+  It shares the German tutor article's stylesheet (_includes/german_tutor/styles.html)
+  for the page chrome and body type, so the two Die Kartei posts read as a series.
+  Everything specific to this post is in the kb- rules below and the scripts at the end.
+
+  Visual vocabulary, used the same way everywhere on the page:
+    - German text is set in a serif italic (.kb-de); English stays in the sans.
+    - A square marks a test the app's checker runs (machine; monospace name).
+      A circle marks a test a person runs by reading (italic name).
+    - Blue is Gemma 4 31B, orange Kolibri-1 with thinking off, green Kolibri-1 with
+      reasoning on. The three were validated as a set for colour-blind separation on the
+      dark surface. Text never takes a series colour; a swatch beside it does.
+  The charts are plain SVG drawn from the numbers in the chart script, with a table view
+  under each one. The dense / mixture-of-experts figure is drawn by the second script.
+{% endcomment %}
+
+{% include german_tutor/styles.html %}
+<style>
+  .gta-article.kb {
+    --s-gemma: #3987e5;
+    --s-kol: #d95926;
+    --s-kolr: #199e70;
+    --err: #ff7b72;
+    --ok: #5fd068;
+    --hl: rgba(10, 132, 255, 0.22);
+    --rule: #2C2C2E;
+    --muted: #8E8E93;
+    --card: rgba(0, 0, 0, 0.35);
+    --checker: #e5e5ea;   /* the square: a machine test */
+    --reader: #FFD60A;    /* the circle: a person reading */
+    --serif: "New York", "Iowan Old Style", Charter, "Source Serif Pro", Georgia, serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  .gta-article .kb-de { font-family: var(--serif); font-style: italic; }
+  .gta-article .kb-facts { display: flex; flex-wrap: wrap; gap: 0.35rem 1.4rem; font-size: 0.8rem; color: var(--muted); margin: 0 0 2rem; }
+  .gta-article .kb-facts b { color: #fff; font-weight: 600; }
+
+  .gta-article .kb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 0.9rem; margin: 0 0 1.5rem; }
+  .gta-article .kb-card { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 1.1rem 1.2rem; min-width: 0; }
+  .gta-article .kb-card p { font-size: 0.95rem; line-height: 1.65; margin: 0 0 0.85rem; }
+  .gta-article .kb-card h3 { margin: 0 0 0.6rem; color: #fff; display: flex; align-items: center; gap: 0.5rem; }
+  .gta-article .kb-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.6rem; }
+  .gta-article .kb-sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; flex: none; }
+  .gta-article .kb-note { display: block; font-size: 0.78rem; line-height: 1.45; color: var(--muted); }
+
+  /* the four cases: a two-column grid that wraps, never a fixed-width table */
+  .gta-article .kb-cases { display: grid; grid-template-columns: 6.8em minmax(0, 1fr); margin: 0.1rem 0 1rem; }
+  .gta-article .kb-cases > div { padding: 0.45rem 0.5rem 0.45rem 0; border-bottom: 1px solid var(--rule); min-width: 0; }
+  .gta-article .kb-case { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); padding-top: 0.6rem !important; }
+  .gta-article .kb-case-ex { font-size: 1rem; color: #e4e4e6; }
+  .gta-article .kb-case-ex b { color: #fff; font-style: normal; font-family: inherit; }
+  .gta-article .kb-case-ex small { display: block; font-family: inherit; font-style: normal; font-size: 0.74rem; color: var(--muted); margin-top: 0.1rem; }
+  .gta-article .kb-case-ex .kb-de { display: block; }
+
+  .gta-article .kb-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 0.8rem; }
+  .gta-article .kb-chip { font-family: var(--serif); font-style: italic; font-size: 0.86rem; padding: 0.15rem 0.5rem; border-radius: 6px; background: var(--hl); color: #fff; }
+  .gta-article .kb-story { font-family: var(--serif); font-style: italic; font-size: 1rem; color: #e4e4e6; border-left: 2px solid #38383A; padding-left: 0.8rem; }
+  .gta-article .kb-story mark { background: var(--hl); color: inherit; padding: 0 0.15em; border-radius: 3px; }
+  .gta-article .kb-rowex { display: grid; gap: 0.2rem; padding: 0.75rem 0; border-top: 1px solid var(--rule); font-size: 1rem; color: #d4d4d6; }
+  .gta-article del { color: var(--err); text-decoration-thickness: 1.5px; }
+  .gta-article ins { color: var(--ok); text-decoration: none; font-weight: 600; }
+
+  .gta-article .kb-dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.3rem 0.9rem; margin: 0.2rem 0 0.9rem; font-size: 0.85rem; }
+  .gta-article .kb-dl dt { color: var(--muted); }
+  .gta-article .kb-dl dd { margin: 0; color: #fff; }
+  .gta-article .kb-card .gta-links { margin-top: 0.4rem; }
+
+  .gta-article .kb-findings { border-top: 1px solid #38383A; margin: 0 0 1.5rem; }
+  .gta-article .kb-finding { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+  .gta-article .kb-k { font-size: 1.5rem; font-weight: 700; color: #0A84FF; letter-spacing: -0.02em; line-height: 1.15; }
+  .gta-article .kb-k small { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
+  .gta-article .kb-finding p { margin: 0; }
+  @media (max-width: 560px) { .gta-article .kb-finding { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; } }
+
+  /* the four tests: square = the app's checker, circle = a person reading */
+  .gta-article .kb-tests { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; margin: 1.25rem 0 0; }
+  @media (max-width: 640px) { .gta-article .kb-tests { grid-template-columns: minmax(0, 1fr); } }
+  .gta-article .kb-test { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 0.95rem 1rem 1rem; display: grid; gap: 0.5rem; align-content: start; min-width: 0; }
+  .gta-article .kb-test-h { display: flex; align-items: center; gap: 0.55rem; }
+  .gta-article .kb-sq { width: 10px; height: 10px; background: var(--checker); flex: none; }
+  .gta-article .kb-ci { width: 11px; height: 11px; border-radius: 50%; background: var(--reader); flex: none; }
+  .gta-article .kb-name-checker { font-family: var(--mono); font-size: 0.8rem; font-weight: 600; color: #fff; }
+  .gta-article .kb-name-reader { font-style: italic; font-size: 0.95rem; font-weight: 600; color: #fff; }
+  .gta-article .kb-kind { margin-left: auto; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border: 1px solid #38383A; border-radius: 100px; padding: 0.1rem 0.45rem; white-space: nowrap; }
+  .gta-article .kb-test p { font-size: 0.86rem; line-height: 1.5; margin: 0; color: #c7c7cc; }
+  .gta-article .kb-test .kb-sample { display: grid; gap: 0.25rem; padding-top: 0.5rem; border-top: 1px solid var(--rule); }
+  .gta-article .kb-test .kb-sample q { font-family: var(--serif); font-style: italic; font-size: 1rem; line-height: 1.45; color: #e4e4e6; quotes: "„" "“"; }
+  .gta-article .kb-test .kb-asked { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: var(--muted); }
+
+  .gta-article .kb-figure { margin: 1.25rem 0 1.75rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 1.1rem 1.1rem 0.9rem; display: grid; gap: 0.8rem; min-width: 0; }
+  .gta-article .kb-fig-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem 1.2rem; }
+  .gta-article .kb-fig-title { font-size: 0.9rem; font-weight: 600; color: #fff; }
+  .gta-article .kb-legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: 0.78rem; color: var(--ink-2); }
+  .gta-article .kb-legend div { display: inline-flex; align-items: center; gap: 0.45rem; }
+  .gta-article .kb-legend i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+  .gta-article .kb-figure figcaption { font-size: 0.8rem; line-height: 1.5; color: var(--muted); }
+  .gta-article .kb-chart { position: relative; width: 100%; min-width: 0; }
+  .gta-article .kb-chart svg { display: block; width: 100%; height: auto; overflow: visible; font-family: inherit; }
+  .gta-article .kb-tip { position: absolute; pointer-events: none; background: #1c1c1e; border: 1px solid #38383A; border-radius: 8px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); padding: 0.5rem 0.7rem; font-size: 0.8rem; line-height: 1.35; color: var(--ink-2); max-width: 240px; z-index: 2; }
+  .gta-article .kb-tip[hidden] { display: none; }
+  .gta-article .kb-tip b { display: block; font-size: 1.05rem; font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; }
+  .gta-article .kb-tip .key { display: inline-block; width: 12px; height: 2px; vertical-align: middle; margin-right: 6px; }
+  .gta-article .kb-figure details { font-size: 0.8rem; color: var(--ink-2); }
+  .gta-article .kb-figure summary { cursor: pointer; color: var(--muted); width: max-content; }
+  .gta-article .kb-tbl { overflow-x: auto; margin-top: 0.6rem; }
+  .gta-article .kb-tbl table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: 0.8rem; }
+  .gta-article .kb-tbl th, .gta-article .kb-tbl td { text-align: left; padding: 0.35rem 0.7rem 0.35rem 0; border-bottom: 1px solid var(--rule); white-space: nowrap; color: #d4d4d6; }
+  .gta-article .kb-tbl th { font-weight: 500; color: var(--muted); }
+  .gta-article .kb-tbl .num { text-align: right; }
+
+  .gta-article .kb-pair .kb-row { display: flex; align-items: baseline; gap: 0.6rem; margin-top: 0.35rem; }
+  .gta-article .kb-pair .kb-row i { width: 10px; height: 10px; border-radius: 2px; flex: none; align-self: center; }
+  .gta-article .kb-pair .kb-v { font-size: 1.4rem; font-weight: 700; color: #fff; min-width: 4.2ch; }
+  .gta-article .kb-pair .kb-l { font-size: 0.8rem; color: var(--muted); }
+
+  /* dense vs mixture of experts, Bauhaus primitives: circle = word, triangle = router, squares = parameters */
+  .gta-article .kb-moe { margin: 1.25rem 0 1.5rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 1.1rem; display: grid; gap: 0.9rem; }
+  .gta-article .kb-moe-panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem 1.5rem; }
+  .gta-article .kb-moe-panel { display: grid; gap: 0.45rem; min-width: 0; }
+  .gta-article .kb-moe-panel h4 { margin: 0; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; display: flex; align-items: center; gap: 0.5rem; }
+  .gta-article .kb-moe-panel svg { width: 100%; height: auto; display: block; }
+  .gta-article .kb-moe-panel .kb-note { font-size: 0.8rem; }
+  .gta-article .kb-moe svg rect { transition: fill 0.35s ease, stroke 0.35s ease; }
+  .gta-article .kb-moe svg line { transition: opacity 0.35s ease; }
+  .gta-article .kb-moe figcaption { font-size: 0.8rem; line-height: 1.5; color: var(--muted); }
+
+  .gta-article .kb-ex { display: grid; gap: 0.2rem; padding: 0.7rem 0; border-top: 1px solid var(--rule); }
+  .gta-article .kb-ex q { font-family: var(--serif); font-style: italic; font-size: 1rem; color: #e4e4e6; quotes: "„" "“"; }
+
+  .gta-article .kb-fair { margin: 1.25rem 0 0; }
+  .gta-article mark.kb-hl { background: linear-gradient(transparent 56%, rgba(255, 214, 10, 0.34) 56%); color: #fff; padding: 0 0.05em; }
+  .gta-article .kb-logo { width: 40px; height: 40px; border-radius: 10px; flex: none; background: #1c1c1e; border: 1px solid #38383A; padding: 5px; box-sizing: border-box; object-fit: contain; }
+  /* Aleph Alpha's mark is black on transparent: invert it to white. The light tile inverts to the same dark tile. */
+  .gta-article .kb-logo-invert { filter: invert(1); background: #e3e3e1; border-color: #c7c7c5; }
+
+  /* Why section: alternating rows. The aside (a number and its caption) swaps sides each row. */
+  .gta-article .kb-why { display: grid; margin: 1.5rem 0 0; border-top: 1px solid #38383A; }
+  .gta-article .kb-why-row { display: grid; grid-template-columns: minmax(0, 12.5rem) minmax(0, 1fr); gap: 0.75rem 2rem; padding: 1.75rem 0; border-bottom: 1px solid var(--rule); align-items: start; }
+  .gta-article .kb-why-row:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 12.5rem); }
+  .gta-article .kb-why-aside { border-left: 2px solid #0A84FF; padding: 0.15rem 0 0.15rem 1rem; }
+  .gta-article .kb-why-row:nth-child(even) .kb-why-aside { order: 2; text-align: right; border-left: 0; border-right: 2px solid #0A84FF; padding: 0.15rem 1rem 0.15rem 0; }
+  .gta-article .kb-why-stat { font-size: 2rem; font-weight: 700; color: #0A84FF; letter-spacing: -0.02em; line-height: 1.1; }
+  .gta-article .kb-why-stat span { font-size: 0.95rem; font-weight: 600; color: var(--muted); }
+  .gta-article .kb-why-cap { font-size: 0.8rem; line-height: 1.45; color: var(--muted); margin-top: 0.45rem; }
+  .gta-article .kb-why-body h3 { margin: 0 0 0.6rem; }
+  .gta-article .kb-why-body p:last-child { margin-bottom: 0; }
+  .gta-article .kb-why-wide { grid-column: 1 / -1; margin: 0.5rem 0 0; order: 3; }  /* stays under the row, after the swapped aside */
+  @media (max-width: 640px) {
+    .gta-article .kb-why-row, .gta-article .kb-why-row:nth-child(even) { grid-template-columns: minmax(0, 1fr); }
+    .gta-article .kb-why-row:nth-child(even) .kb-why-aside { order: 0; text-align: left; border-right: 0; border-left: 2px solid #0A84FF; padding: 0.15rem 0 0.15rem 1rem; }
+  }
+  .gta-article .kb-foot { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid #38383A; display: grid; gap: 0.35rem; }
+  .gta-article .kb-foot p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+  .gta-article [tabindex]:focus-visible, .gta-article summary:focus-visible, .gta-article a:focus-visible { outline: 2px solid #0A84FF; outline-offset: 2px; border-radius: 3px; }
+  @media (max-width: 640px) {
+    .gta-article .gta-container { padding: 2rem 1.25rem; }
+  }
+
+  /* Distillation: teacher → student, with the student's ledger beside it */
+  .gta-article .kb-distill { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 1rem 1.5rem; align-items: center; }
+  @media (max-width: 680px) { .gta-article .kb-distill { grid-template-columns: minmax(0, 1fr); } }
+  .gta-article .kb-distill svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .gta-article .kb-ledger { min-width: 0; }
+  .gta-article .kb-ledger ul { list-style: none; margin: 0; padding: 0; min-height: 11.5rem; }
+  .gta-article .kb-ledger li { list-style: none; display: flex; gap: 0.55rem; align-items: baseline; padding: 0.4rem 0; margin: 0; border-bottom: 1px solid var(--rule); font-size: 0.95rem; line-height: 1.4; color: #e4e4e6; }
+  .gta-article .kb-ledger li.kb-new { animation: kb-in 0.45s ease; }
+  .gta-article .kb-check { color: var(--ok); font-weight: 700; flex: none; }
+  .gta-article .kb-wrongword { text-decoration: underline wavy var(--err); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  @keyframes kb-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+  .gta-article #kb-student { transition: transform 0.25s ease; transform-box: fill-box; transform-origin: center; }
+  .gta-article #kb-student.kb-pulse { transform: scale(1.12); }
+
+  /* Two gates: stories per teacher through the checker, then the reader */
+  .gta-article .kb-gates { position: relative; width: 100%; min-width: 0; }
+  .gta-article .kb-gates svg { display: block; width: 100%; height: auto; overflow: visible; font-family: inherit; }
+  @media (prefers-reduced-motion: reduce) {
+    .gta-article .kb-ledger li.kb-new { animation: none; }
+    .gta-article #kb-student { transition: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gta-article .kb-moe svg rect, .gta-article .kb-moe svg line { transition: none; }
+  }
+</style>
+
+<div class="gta-article kb">
+  <div class="gta-wash" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="gta-container">
+
+    <div class="gta-header">
+      <div class="gta-titlerow">
+        <img class="gta-appicon" src="{{ kb.icon }}" alt="{{ kb.icon_alt }}">
+        <h1>{{ kb.title }}</h1>
+      </div>
+      <p class="gta-standfirst">{{ kb.standfirst }}</p>
+      <div class="gta-byline">{{ kb.byline }} &middot; {{ kb.date }}</div>
+      <div class="gta-links">
+        <a href="{{ kb.links.app_store }}">Die Kartei on the App Store →</a>
+        <a href="{{ kb.links.github }}">The app's code on GitHub →</a>
+        <a href="{{ kb.links.profile }}">🤗 Models &amp; datasets on Hugging Face →</a>
+      </div>
+    </div>
+
+    <div class="kb-facts">
+      <div><b>2</b> teacher models</div>
+      <div><b>306</b> story tasks</div>
+      <div><b>48</b> batches of correction examples</div>
+      <div><b>1</b> rented GPU, <b>54 min</b>, <b>≈ $4</b></div>
+    </div>
+
+    <p>On 3 October 2026 Aleph Alpha released <a href="{{ kb.links.kolibri_page }}">Kolibri-1</a>, an open model trained with an unusually large share of German. I built <a href="{{ kb.links.app_store }}">Die Kartei</a>, an iPhone app that teaches German with a small AI tutor running on the phone. <a href="{{ kb.links.github }}">Its code is public on GitHub</a>, including everything this post describes. Kolibri is far too big for a phone, so my question was narrower: could it write better <em>training examples</em> for my tutor than the model I use now, Google's Gemma 4 31B? I gave both the same tasks. <strong>Sadly... it couldn't</strong></p>
+
+    <h2 id="background">The app, the tutor and its teachers</h2>
+    <p>Die Kartei's tutor is a Google Gemma or IBM Granite model, depending on the iPhone: the amount of RAM on the phone limits which model can run. There are three sizes, small, medium and large, all fine-tuned for German. They correct what learners write, chat with them, and write short practice stories.</p>
+    <h3>LLM distillation</h3>
+    <p>Small models learn best from examples, and hand-writing thousands of good German example sentences to train on isn't realistic. So a much larger model writes “synthetic training data”, and the small model trains on the result. LLM researchers call the large model the <em>teacher</em> and the small model the <em>student</em>. <mark class="kb-hl">Whatever the teacher gets wrong, the student learns as correct, so picking the teacher matters more than almost anything else.</mark> The tutor's training code and data recipes are in the repo's <a href="{{ tree }}{{ kb.code.training }}">training folder</a>.</p>
+    <figure class="kb-figure" aria-label="Animation: a teacher model writes examples and a student model learns all of them">
+      <div class="kb-fig-head"><div class="kb-fig-title">The student learns everything the teacher writes</div></div>
+      <div class="kb-distill">
+        <svg id="kb-distill-svg" viewBox="0 0 520 200" role="img" aria-label="Example cards travel from a large teacher circle to a small student circle"></svg>
+        <div class="kb-ledger">
+          <div class="kb-label">What the student learns</div>
+          <ul id="kb-distill-ledger" aria-live="off"></ul>
+        </div>
+      </div>
+      <figcaption>Real sentences from this run. Every example arrives with the same check, because the student has no way to tell a wrong one apart. You can see the mistake underlined in red; the student can't, and it keeps a red mark of everything wrong it took in.</figcaption>
+    </figure>
+
+    <p>I asked both candidate teachers to write two kinds of examples. On this page, <span class="kb-de">German appears in this face</span> and English in the regular one.</p>
+
+    <div class="kb-grid">
+      <div class="kb-card">
+        <div class="kb-label">Task 1 · Kasus stories</div>
+        <p>German marks a noun's role in the sentence with its article, in four cases. Learners struggle with this more than almost anything else.</p>
+        <div class="kb-cases" role="table" aria-label="The four German cases">
+          <div class="kb-case" role="rowheader">Nominative</div>
+          <div class="kb-case-ex" role="cell"><span class="kb-de"><b>Der</b> Hund schläft.</span><small>the subject</small></div>
+          <div class="kb-case" role="rowheader">Accusative</div>
+          <div class="kb-case-ex" role="cell"><span class="kb-de">Ich sehe <b>den</b> Hund.</span><small>the direct object</small></div>
+          <div class="kb-case" role="rowheader">Dative</div>
+          <div class="kb-case-ex" role="cell"><span class="kb-de">Ich gebe <b>dem</b> Hund einen Knochen.</span><small>the receiver</small></div>
+          <div class="kb-case" role="rowheader">Genitive</div>
+          <div class="kb-case-ex" role="cell"><span class="kb-de">Der Napf <b>des</b> Hundes ist leer.</span><small>whose</small></div>
+        </div>
+        <p>The app's <a href="{{ blob }}{{ kb.code.planner }}">planner</a> picks five to eight phrases and asks the tutor to write a short story that uses each one <strong>exactly as given</strong>. A <a href="{{ blob }}{{ kb.code.checker }}">grammar checker</a> built into the app, with no AI in it, then proves every case before the story becomes an exercise.</p>
+        <div class="kb-chips" aria-label="Planned phrases">
+          <span class="kb-chip">durch eine Straße</span><span class="kb-chip">einen Kaffee</span><span class="kb-chip">den Brief</span><span class="kb-chip">für die Oma</span><span class="kb-chip">unter den Tisch</span><span class="kb-chip">der Bruder</span>
+        </div>
+        <p class="kb-story">Max geht <mark>durch eine Straße</mark>. Er kauft <mark>einen Kaffee</mark>. Er geht in ein Café. Er liest <mark>den Brief</mark>. Der Brief ist <mark>für die Oma</mark>. Max stellt den Brief <mark>unter den Tisch</mark>. … <mark>Der Bruder</mark> wartet vor der Tür.</p>
+        <span class="kb-note">Gemma 31B's story for this plan, lightly trimmed.</span>
+      </div>
+      <div class="kb-card">
+        <div class="kb-label">Task 2 · Correction examples</div>
+        <p>The tutor's main job is correcting learners. Each training example is a sentence with one specific mistake, the fix, and a short explanation. The teacher has to write <u>the mistake it was asked for</u>, not just any mistake.</p>
+        <div class="kb-rowex">
+          <span class="kb-label" style="margin: 0;">Asked for: wrong auxiliary verb</span>
+          <span class="kb-de"><del>Ich bin heute leider viel zu lange geschlafen.</del></span>
+          <span class="kb-de"><ins>Ich habe heute leider viel zu lange geschlafen.</ins></span>
+          <span class="kb-note">“I slept far too long today.” <span class="kb-de">Schlafen</span> is a state, not a movement, so it takes <span class="kb-de">haben</span>. (Gemma 31B)</span>
+        </div>
+        <div class="kb-rowex">
+          <span class="kb-label" style="margin: 0;">Asked for: wrong auxiliary verb</span>
+          <span class="kb-de"><del>Ich haben letztes Wochenende ein Buch gelesen.</del></span>
+          <span class="kb-de"><ins>Ich habe letztes Wochenende ein Buch gelesen.</ins></span>
+          <span class="kb-note">“I read a book last weekend.” Correct German, but the mistake is subject–verb agreement, not the choice of auxiliary. A student trained on this learns the wrong lesson. (Kolibri-1)</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="candidates">The two candidates</h2>
+    <div class="kb-grid">
+      <div class="kb-card">
+        <h3><img class="kb-logo" src="{{ kb.logos.gemma }}" alt=""><span>Gemma 4 31B</span><i class="kb-sw" style="background: var(--s-gemma)" aria-hidden="true"></i></h3>
+        <p>Google's open model, and the teacher behind the training data of the tutor that ships today.</p>
+        <dl class="kb-dl">
+          <dt>Size</dt><dd>31 billion parameters</dd>
+          <dt>Design</dt><dd>Dense: every parameter works on every word</dd>
+          <dt>Ran with</dt><dd>Hugging Face transformers, batched</dd>
+        </dl>
+        <div class="gta-links"><a href="{{ kb.links.gemma }}">Model card on Hugging Face →</a></div>
+      </div>
+      <div class="kb-card">
+        <h3><img class="kb-logo kb-logo-invert" src="{{ kb.logos.aleph_alpha }}" alt=""><span>Kolibri-1</span><i class="kb-sw" style="background: var(--s-kol)" aria-hidden="true"></i></h3>
+        <p>Aleph Alpha's new open model, trained on about a quarter German, Apache 2.0 licensed. Tested a day after release, with thinking off and with its reasoning mode on.</p>
+        <dl class="kb-dl">
+          <dt>Size</dt><dd>78 billion parameters</dd>
+          <dt>Design</dt><dd>Mixture of experts: 3.5 billion active per word</dd>
+          <dt>Ran with</dt><dd>vLLM with Aleph Alpha's plugin</dd>
+        </dl>
+        <div class="gta-links"><a href="{{ kb.links.kolibri }}">Model card on Hugging Face →</a><a href="{{ kb.links.kolibri_page }}">Aleph Alpha's Kolibri page →</a></div>
+      </div>
+    </div>
+
+    <h2 id="findings">Key findings</h2>
+    <div class="kb-findings">
+      <div class="kb-finding">
+        <div class="kb-k">93% <small>vs 71%</small></div>
+        <p><strong>Gemma 31B writes better stories by every measure.</strong> 93% of its stories pass the app's grammar checker, and 99% of the requested phrases appear exactly as given. Kolibri manages 71% and 76%.</p>
+      </div>
+      <div class="kb-finding">
+        <div class="kb-k">5 / 20 <small>vs 9 / 20</small></div>
+        <p><strong>The checker misses things a reader catches.</strong> I read 20 passing stories from each model. 5 of Gemma's still had a grammar error, and 9 of Kolibri's did.</p>
+      </div>
+      <div class="kb-finding">
+        <div class="kb-k">33% <small>vs 91%</small></div>
+        <p><strong>Kolibri often writes the wrong mistake.</strong> Asked for sentences with one specific learner error, only a third of its imperative examples and under half of its subjunctive examples had that error.</p>
+      </div>
+      <div class="kb-finding">
+        <div class="kb-k">55× <small>the tokens</small></div>
+        <p><strong>Reasoning doesn't rescue Kolibri.</strong> Letting it think first lifts its checker score to 89%, at about 55 times the tokens, but I still found errors in 7 of 20 stories.</p>
+      </div>
+    </div>
+
+    <h2 id="stories">Four tests for a story</h2>
+    <p>Every story went through four tests. The first two are run by <strong><a href="{{ blob }}{{ kb.code.checker }}">the app's checker</a></strong>, a program that knows <a href="{{ blob }}{{ kb.code.validator }}">German case rules</a> and nothing else. The last two are run by <strong>a person reading</strong>: I took 20 random stories per model that had passed the checker and read every sentence. Each card shows a real sentence that fails its test.</p>
+
+    <div class="kb-tests">
+      <div class="kb-test">
+        <div class="kb-test-h"><i class="kb-sq" aria-hidden="true"></i><span class="kb-name-checker">Passes the checker</span><span class="kb-kind">Checker</span></div>
+        <p>Every case the checker can prove is right. One wrong case rejects the whole story.</p>
+        <div class="kb-sample"><q>Die Freunde sitzen auf <del>ein</del> <ins>einem</ins> Sofa.</q><span class="kb-note">Kolibri-1. Caught: <span class="kb-de">sitzen</span> says where something is, so <span class="kb-de">auf</span> needs the dative.</span></div>
+      </div>
+      <div class="kb-test">
+        <div class="kb-test-h"><i class="kb-sq" aria-hidden="true"></i><span class="kb-name-checker">Keeps the requested phrases</span><span class="kb-kind">Checker</span></div>
+        <p>Each phrase the app asked for appears letter for letter, so the exercise can test exactly that case.</p>
+        <div class="kb-sample"><div class="kb-asked"><span class="kb-chip">dem Bruder</span>was asked for. The story wrote:</div><q><del>Den</del> Bruder erklären sie.</q><span class="kb-note">Kolibri-1. The dative the exercise needed became an accusative.</span></div>
+      </div>
+      <div class="kb-test">
+        <div class="kb-test-h"><i class="kb-ci" aria-hidden="true"></i><span class="kb-name-reader">No grammar error</span><span class="kb-kind">Reader</span></div>
+        <p>A German reader finds no mistake anywhere in the story, including the parts the checker doesn't grade.</p>
+        <div class="kb-sample"><q>Wir <del>haben</del> <ins>sind</ins> durch den Zoo gegangen.</q><span class="kb-note">Kolibri-1, passed the checker. Verbs of movement form the past with <span class="kb-de">sein</span>.</span></div>
+      </div>
+      <div class="kb-test">
+        <div class="kb-test-h"><i class="kb-ci" aria-hidden="true"></i><span class="kb-name-reader">No error, and makes sense</span><span class="kb-kind">Reader</span></div>
+        <p>No mistakes, and every sentence means something a person would actually say.</p>
+        <div class="kb-sample"><q>Sie kauft eine Karte für die Karte.</q><span class="kb-note">Kolibri-1, passed the checker. “She buys a card for the card.” Grammatical, and empty.</span></div>
+      </div>
+    </div>
+
+    <figure class="kb-figure">
+      <div class="kb-fig-head">
+        <div class="kb-fig-title">How many stories pass each test</div>
+        <div class="kb-legend" aria-hidden="true">
+          <div><i style="background: var(--s-gemma)"></i>Gemma 4 31B</div>
+          <div><i style="background: var(--s-kol)"></i>Kolibri-1, thinking off</div>
+          <div><i style="background: var(--s-kolr)"></i>Kolibri-1, reasoning on</div>
+        </div>
+      </div>
+      <div class="kb-chart" id="kb-chart-stories"></div>
+      <figcaption>Checker tests cover all 306 story tasks (Kolibri with reasoning: a 66-task subset). Reader tests are out of 20 stories each, so read them as a direction, not a precise rate. The drop from the top pair to the bottom pair is what the checker can't see.</figcaption>
+      <details><summary>Show the numbers</summary><div class="kb-tbl" id="kb-table-stories"></div></details>
+    </figure>
+
+    <p>Put both kinds of test together and the gap gets plain. Out of every 20 stories a teacher writes, this is roughly how many I could train on.</p>
+    <figure class="kb-figure" aria-label="Animation: 20 stories per teacher pass through the checker and then a reader">
+      <div class="kb-fig-head">
+        <div class="kb-fig-title">Of every 20 stories, how many survive both tests</div>
+      </div>
+      <div class="kb-gates" id="kb-gates" role="img" aria-label="Of every 20 stories: about 7 survive both tests for Gemma 4 31B, about 2 for Kolibri-1 with thinking off, and about 4 for Kolibri-1 with reasoning on."></div>
+      <figcaption>Estimated from the chart above: each teacher's checker pass rate times its hand-read rate (no error, and makes sense). Stories that fail drop into a pile under the gate that stopped them.</figcaption>
+    </figure>
+
+    <h2 id="corrections">Correction examples</h2>
+    <p>Both models got the same 48 requests, 12 each for four kinds of mistake, eight examples per request. An example counts as the right kind when <u>its mistake is the one asked for</u>, like the <span class="kb-de">bin geschlafen</span> example above. My <a href="{{ blob }}{{ kb.code.data_validator }}">data validator</a> then throws out malformed and duplicate examples, and ones a grammar checker flags.</p>
+    <div class="kb-grid">
+      <div class="kb-card kb-pair">
+        <div class="kb-label">Examples that pass my data validator</div>
+        <div class="kb-row"><i style="background: var(--s-gemma)"></i><span class="kb-v">87%</span><span class="kb-l">Gemma 31B · 338 of 387</span></div>
+        <div class="kb-row"><i style="background: var(--s-kol)"></i><span class="kb-v">49%</span><span class="kb-l">Kolibri-1 · 190 of 386</span></div>
+      </div>
+      <div class="kb-card kb-pair">
+        <div class="kb-label">“Corrections” identical to the mistake</div>
+        <div class="kb-row"><i style="background: var(--s-gemma)"></i><span class="kb-v">3.8%</span><span class="kb-l">Gemma 31B · 9 of 239</span></div>
+        <div class="kb-row"><i style="background: var(--s-kol)"></i><span class="kb-v">15%</span><span class="kb-l">Kolibri-1 · 37 of 239</span></div>
+      </div>
+    </div>
+    <figure class="kb-figure">
+      <div class="kb-fig-head">
+        <div class="kb-fig-title">Examples with the requested mistake, by kind</div>
+        <div class="kb-legend" aria-hidden="true">
+          <div><i style="background: var(--s-gemma)"></i>Gemma 4 31B</div>
+          <div><i style="background: var(--s-kol)"></i>Kolibri-1, thinking off</div>
+        </div>
+      </div>
+      <div class="kb-chart" id="kb-chart-tail"></div>
+      <figcaption>Measured with a simple word-level test per mistake type, so treat the exact figures loosely. Kolibri only wins on negation, almost all of it the easy <span class="kb-de">nicht ein</span> → <span class="kb-de">kein</span> swap. Most of Gemma's misses there are word-order fixes around <span class="kb-de">nicht</span> that the test can't see.</figcaption>
+      <details><summary>Show the numbers</summary><div class="kb-tbl" id="kb-table-tail"></div></details>
+    </figure>
+
+    <h2 id="cost">Thinking costs tokens</h2>
+    <p>Kolibri can reason before it writes. With room to think, it passed the checker 89% of the time, close to Gemma. But it thought for a median <strong>8,802 tokens</strong> per story, and a reader still finds about as many errors. Its <em>medium</em> setting thought for 13,493 tokens and did no better.</p>
+    <figure class="kb-figure">
+      <div class="kb-fig-head"><div class="kb-fig-title">Median tokens per story</div></div>
+      <div class="kb-chart" id="kb-chart-cost"></div>
+      <figcaption>Everything the model generated for one story, reasoning included. The tutor on the phone gets 400 to 800 tokens for the same job.</figcaption>
+      <details><summary>Show the numbers</summary><div class="kb-tbl" id="kb-table-cost"></div></details>
+    </figure>
+
+    <h2 id="why">Why Gemma writes better German here</h2>
+    <p>Kolibri saw far more German in training than most open models, so I expected it to win. Its German is <em>fluent</em>. Where it falls down is <strong>precision</strong>: <u>fitting a given phrase into a sentence without breaking the grammar around it</u>, or <u>writing exactly the mistake it was asked for</u>. As far as I can tell, four things explain the result.</p>
+
+    <div class="kb-why">
+      <div class="kb-why-row">
+        <div class="kb-why-aside"><div class="kb-why-stat">99%</div><div class="kb-why-cap">of requested phrases kept word for word, against 76% for Kolibri</div></div>
+        <div class="kb-why-body">
+          <h3>Gemma follows the plan</h3>
+          <p>Gemma kept <strong>99%</strong> of the planned phrases exactly as given; Kolibri changed or dropped about a quarter. When Kolibri did use a phrase, it often bent the sentence to fit it, and <u>that's where its case errors sit</u>. A phrase planned for movement, <span class="kb-de">unter das Bett</span> (“under the bed”, as in putting something there), ends up beside a verb of position like <span class="kb-de">liegt</span> (“lies”), which needs <span class="kb-de">dem Bett</span>.</p>
+        </div>
+      </div>
+
+      <div class="kb-why-row">
+        <div class="kb-why-aside"><div class="kb-why-stat">31B <span>vs</span> 3.5B</div><div class="kb-why-cap">parameters working on each word</div></div>
+        <div class="kb-why-body">
+          <h3>Every word gets the whole model</h3>
+          <p>Gemma 31B is <strong>dense</strong>: all 31 billion parameters work on every word it writes. Kolibri is a <strong>mixture of experts</strong>. For each word, a router picks 6 of 384 small expert networks per layer, so only <em>about 3.5 of its 78 billion parameters</em> do the work. That makes it fast and cheap to run.</p>
+          <p><u>My working explanation</u> is that this also costs precision on tasks like these. I <a href="{{ blob }}{{ kb.code.teacher_writeup }}">saw the same pattern earlier</a> with Google's own mixture-of-experts model, Gemma 4 26B-A4B, which has about 4 billion active. With the same prompt, it wrote correctly built reflexive-pronoun mistakes <strong>12%</strong> of the time, where the dense 31B managed <strong>100%</strong>. Two tests aren't proof, but they point the same way.</p>
+        </div>
+        <figure class="kb-moe kb-why-wide" aria-label="Diagram: dense model versus mixture of experts">
+          <div class="kb-moe-panels">
+            <div class="kb-moe-panel">
+              <h4><i class="kb-sw" style="background: var(--s-gemma)"></i>Dense · Gemma 4 31B</h4>
+              <svg id="kb-moe-dense" viewBox="0 0 300 170" role="img" aria-label="A word goes through every parameter of the model"></svg>
+              <span class="kb-note">31 billion parameters, all of them on every word.</span>
+            </div>
+            <div class="kb-moe-panel">
+              <h4><i class="kb-sw" style="background: var(--s-kol)"></i>Mixture of experts · Kolibri-1</h4>
+              <svg id="kb-moe-experts" viewBox="0 0 300 170" role="img" aria-label="A router sends each word to a few experts; the rest stay idle"></svg>
+              <span class="kb-note">78 billion parameters, about 3.5 billion on each word.</span>
+            </div>
+          </div>
+          <figcaption>The circle is a word, the triangle the router, each square a block of parameters. Each new word lights a different handful of experts. Drawn as 48 squares; the real model has 384 experts in each of its 50 layers.</figcaption>
+        </figure>
+      </div>
+
+      <div class="kb-why-row">
+        <div class="kb-why-aside"><div class="kb-why-stat">9 <span>of</span> 20</div><div class="kb-why-cap">of Kolibri's passing stories had a grammar error, against 5 of 20 for Gemma</div></div>
+        <div class="kb-why-body">
+          <h3>Fluent isn't the same as correct</h3>
+          <p>Kolibri's mistakes aren't <em>clumsy word choices</em>. They're <strong>structural</strong>: the wrong case after a preposition, <span class="kb-de">haben</span> where German needs <span class="kb-de">sein</span>. Those are exactly what a learner opens the app to get right, which makes them <u>the worst kind of mistake for a teacher to have</u>.</p>
+        </div>
+      </div>
+
+      <div class="kb-why-row">
+        <div class="kb-why-aside"><div class="kb-why-stat">55×</div><div class="kb-why-cap">the tokens per story with reasoning on, for 89% on the checker</div></div>
+        <div class="kb-why-body">
+          <h3>Thinking longer didn't fix it</h3>
+          <p>Reasoning raised Kolibri's checker score from 71% to 89%, so it helped it satisfy the rules the checker knows. It didn't make the German cleaner, and each story took about <strong>55 times</strong> as many tokens.</p>
+        </div>
+      </div>
+
+      <div class="kb-why-row">
+        <div class="kb-why-aside"><div class="kb-why-stat">5.4 <span>min</span></div><div class="kb-why-cap">for 306 stories on one H200, with standard tools</div></div>
+        <div class="kb-why-body">
+          <h3>Gemma is also simpler to run</h3>
+          <p>Gemma 31B runs with standard tools on any 80 GB GPU and wrote 306 stories in 5.4 minutes. Kolibri needs one specific vLLM version with Aleph Alpha's plugin and a machine with a recent CUDA driver, and it crashed on its first start until I switched off one of vLLM's sampling kernels.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="kb-card kb-fair">
+      <h3>Where Kolibri did well</h3>
+      <p style="margin: 0;">It's <strong>fast</strong>: 306 stories in 30 seconds once loaded, against Gemma's 5.4 minutes. Its negation examples had the right mistake 97% of the time. And it brings strengths this test doesn't use: German-first training, a 262K-token context and an Apache 2.0 license. None of that outweighs its error rate <em>for this job</em>.</p>
+    </div>
+
+    <h2 id="errors">Errors the checker let through</h2>
+    <p>Every sentence below sits in a story that <strong>passed</strong> the checker. The wrong form is struck through, the way the app marks a wrong ending.</p>
+    <div class="kb-grid">
+      <div class="kb-card">
+        <h3><i class="kb-sw" style="background: var(--s-kol)"></i>Kolibri-1</h3>
+        <div class="kb-ex"><q>Am Abend liegt das Spielzeug unter <del>das</del> <ins>dem</ins> Bett.</q><span class="kb-note">“In the evening the toy lies under the bed.” A position, not a movement, so dative.</span></div>
+        <div class="kb-ex"><q>Wir <del>haben</del> <ins>sind</ins> durch den Zoo gegangen.</q><span class="kb-note">“We walked through the zoo.” Verbs of movement form the past with <span class="kb-de">sein</span>.</span></div>
+        <div class="kb-ex"><q><del>Trotzdem</del> <ins>Trotz</ins> eines Termins geht sie pünktlich.</q><span class="kb-note">With reasoning on. <span class="kb-de">Trotzdem</span> means “nevertheless”; the preposition “despite” is <span class="kb-de">trotz</span>.</span></div>
+        <div class="kb-ex"><q>Ich stehe auf dem Tisch. (Unrealistisch, aber Satz lang.)</q><span class="kb-note">“I stand on the table. (Unrealistic, but sentence long.)” A note to itself, left in the story.</span></div>
+      </div>
+      <div class="kb-card">
+        <h3><i class="kb-sw" style="background: var(--s-gemma)"></i>Gemma 4 31B</h3>
+        <div class="kb-ex"><q>Dann hat er <del>den</del> <ins>dem</ins> Bruder die Milch gebracht.</q><span class="kb-note">“Then he brought his brother the milk.” The person receiving takes the dative.</span></div>
+        <div class="kb-ex"><q>Lukas ruft <del>in die</del> <ins>in der</ins> Praxis an.</q><span class="kb-note">“Lukas calls the doctor's office.” Here <span class="kb-de">in</span> marks a place, so dative.</span></div>
+        <div class="kb-ex"><q>Plötzlich passierte etwas Seltsames: Der Verkäufer <del>weint</del> <ins>weinte</ins> …</q><span class="kb-note">“Suddenly something strange happened: the salesman cries…” Present tense in a past-tense story, copied from the app's own prompt.</span></div>
+        <div class="kb-ex"><q>In dieser Geschichte ist ein Chef kocht meistens perfekt.</q><span class="kb-note">A requested phrase, <span class="kb-de">ein Chef</span>, forced into a sentence that doesn't parse.</span></div>
+      </div>
+    </div>
+
+    <h2 id="caveats">Caveats</h2>
+    <ul>
+      <li>One evening, one run per model. The hand reads are 20 stories each.</li>
+      <li>The prompts, the checker and the measurements are mine, and I built them over months alongside Gemma models. <strong>That may favor Gemma.</strong></li>
+      <li>Each model ran with its maker's recommended sampling settings. Kolibri was a day old, on a brand-new serving stack.</li>
+      <li>These are narrow tasks: writing stories around fixed phrases, and writing specific learner mistakes. They say nothing about Kolibri as a chat model, on long documents, or in English.</li>
+    </ul>
+
+    <h2 id="next">What's next</h2>
+    <p>Even Gemma's stories aren't ready to train on: 5 of 20 had an error. Most of those trace back to <em>my</em> side. The app's <a href="{{ blob }}{{ kb.code.planner }}">planner</a> pairs prepositions and nouns at random (<span class="kb-de">für die Karte</span>, “for the map”), shows verbs in the present tense even when a story is in the past, and its checker <a href="{{ blob }}{{ kb.code.bakeoff_writeup }}#why-the-check-passed-them">misses a few patterns</a>. I'm fixing those and adding a second grammar check. Then Gemma 31B writes a few thousand stories for the next round of tutor training, about an hour on one GPU.</p>
+
+    <h3>German open models I'm watching</h3>
+    <p>I'm excited to see what Kolibri 1.1 looks like: Aleph Alpha's Co-CEO Ilhan Scheer <a href="{{ kb.links.kolibri_next }}">wrote that it's already in the works</a>. I also hope Aleph Alpha puts Kolibri on <a href="{{ kb.links.openrouter }}">OpenRouter</a>, which would make tests like this one possible without renting a GPU.</p>
+    <p>I'm looking forward to <a href="{{ kb.links.soofi }}">Soofi S</a> too, a German and English foundation model built by the Lamarr Institute, Fraunhofer IAIS, DFKI, TU Darmstadt, hessian.AI, ellamind, the L3S Research Center and the University of Würzburg, coordinated by the German AI Association (KI Bundesverband) and funded by the Federal Ministry for Economic Affairs and Energy. It's in closed beta for now. Like Kolibri it's a mixture of experts, with about 3.2 billion of its 31.6 billion parameters active per word, so I'm curious how it does on these same tests.</p>
+    <p>And I'm excited by what Google and IBM keep releasing with Gemma and Granite. Their small open models are what make an offline German tutor on an iPhone possible at all.</p>
+
+    <div class="kb-card kb-fair">
+      <h3>Congratulations, Aleph Alpha</h3>
+      <p style="margin: 0;">Kolibri is released under <strong>Apache 2.0</strong>, so anyone can download it, inspect it and build on it, including in an app like mine. That isn't a given for German-first models: <a href="{{ kb.links.llammlein_7b }}">LLäMmlein 7B</a> and <a href="{{ kb.links.llammlein_1b }}">1B</a> from the University of Würzburg are licensed for research use only, and Fraunhofer's <a href="{{ kb.links.elmod }}">ELMOD 2.7B</a> is non-commercial (CC BY-NC 4.0). Kolibri didn't win this bake-off, but it's a model I can actually use, and I'll put 1.1 through the same tests.</p>
+    </div>
+
+    <div class="kb-foot">
+      <p><a href="{{ kb.links.app_store }}">Die Kartei on the App Store</a> · <a href="{{ kb.links.profile }}">My models and datasets on Hugging Face</a> · <a href="{{ kb.links.tutor_model }}">the tutor model</a></p>
+      <p><a href="{{ kb.links.github }}">Die Kartei's code on GitHub</a> · <a href="{{ blob }}{{ kb.code.bakeoff_writeup }}">the full bake-off write-up, with every number</a> · <a href="{{ tree }}{{ kb.code.kasus_cli }}">the story checker as a command-line tool</a> · <a href="{{ blob }}{{ kb.code.kasus_doc }}">how the case exercises work</a></p>
+      <p><a href="{{ kb.links.gemma }}">Gemma 4 31B on Hugging Face</a> · <a href="{{ kb.links.kolibri }}">Kolibri-1 on Hugging Face</a> · <a href="{{ kb.links.kolibri_page }}">Aleph Alpha's Kolibri page</a></p>
+      <p>Run on 4 October 2026: one rented H200 GPU for 54 minutes, about $4.</p>
+      <p>{{ kb.byline }} &middot; {{ kb.date }}</p>
+    </div>
+
+  </div>
+</div>
+
+{% raw %}
+<script>
+(function () {
+  const SERIES = {
+    gemma: { label: "Gemma 4 31B", color: "var(--s-gemma)" },
+    kol: { label: "Kolibri-1, thinking off", color: "var(--s-kol)" },
+    kolr: { label: "Kolibri-1, reasoning on", color: "var(--s-kolr)" }
+  };
+  const KINDS = {
+    checker: { title: "Run by the app's checker", glyph: "square", font: "var(--mono)", style: "normal", size: 12.5 },
+    reader: { title: "Run by a person reading 20 stories", glyph: "circle", font: "inherit", style: "italic", size: 13.5 }
+  };
+
+  const charts = [
+    {
+      id: "stories", max: 100, ticks: [0, 25, 50, 75, 100], unit: "%",
+      rows: [
+        { kind: "checker", label: "Passes the checker", bars: [
+          { s: "gemma", v: 93, d: "285 of 306 stories" },
+          { s: "kol", v: 71, d: "217 of 306 stories" },
+          { s: "kolr", v: 89, d: "59 of 66 stories" } ] },
+        { kind: "checker", label: "Keeps the requested phrases", bars: [
+          { s: "gemma", v: 99, d: "2,076 of 2,091 phrases" },
+          { s: "kol", v: 76, d: "1,599 of 2,091 phrases" },
+          { s: "kolr", v: 93, d: "66-task subset" } ] },
+        { kind: "reader", label: "No grammar error", bars: [
+          { s: "gemma", v: 75, d: "15 of 20 passing stories" },
+          { s: "kol", v: 55, d: "11 of 20 passing stories" },
+          { s: "kolr", v: 65, d: "13 of 20 passing stories" } ] },
+        { kind: "reader", label: "No error, and makes sense", bars: [
+          { s: "gemma", v: 35, d: "7 of 20 passing stories" },
+          { s: "kol", v: 15, d: "3 of 20 passing stories" },
+          { s: "kolr", v: 20, d: "4 of 20 passing stories" } ] }
+      ]
+    },
+    {
+      id: "tail", max: 100, ticks: [0, 25, 50, 75, 100], unit: "%",
+      rows: [
+        { label: "Auxiliary (haben / sein)", bars: [
+          { s: "gemma", v: 96, d: "55 of 57 examples" }, { s: "kol", v: 74, d: "39 of 53 examples" } ] },
+        { label: "Imperative", bars: [
+          { s: "gemma", v: 91, d: "52 of 57 examples" }, { s: "kol", v: 33, d: "15 of 46 examples" } ] },
+        { label: "Subjunctive (Konjunktiv II)", bars: [
+          { s: "gemma", v: 98, d: "57 of 58 examples" }, { s: "kol", v: 45, d: "19 of 42 examples" } ] },
+        { label: "Negation", bars: [
+          { s: "gemma", v: 79, d: "46 of 58 examples" }, { s: "kol", v: 97, d: "59 of 61 examples" } ] }
+      ]
+    },
+    {
+      id: "cost", max: 9000, ticks: [0, 3000, 6000, 9000], unit: "",
+      rows: [
+        { label: "Gemma 4 31B", bars: [{ s: "gemma", v: 174, d: "no reasoning" }] },
+        { label: "Kolibri-1, thinking off", bars: [{ s: "kol", v: 157, d: "no reasoning" }] },
+        { label: "Kolibri-1, reasoning on", bars: [{ s: "kolr", v: 8934, d: "8,802 of them reasoning" }] }
+      ]
+    }
+  ];
+
+  const fmt = (v, unit) => unit === "%" ? v + "%" : v.toLocaleString("en-US");
+  const tickFmt = (v, unit) => unit === "%" ? v + "%" : (v === 0 ? "0" : (v / 1000) + "k");
+  const NS = "http://www.w3.org/2000/svg";
+  const el = (name, attrs, parent) => {
+    const n = document.createElementNS(NS, name);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  };
+
+  // A bar that grows from the baseline: square at x0, 4px rounded data-end at x1.
+  function barPath(x0, y, w, h) {
+    const r = Math.min(4, w / 2, h / 2);
+    const x1 = x0 + Math.max(w, 1);
+    return "M" + x0 + "," + y + " H" + (x1 - r) + " Q" + x1 + "," + y + " " + x1 + "," + (y + r) +
+      " V" + (y + h - r) + " Q" + x1 + "," + (y + h) + " " + (x1 - r) + "," + (y + h) + " H" + x0 + " Z";
+  }
+
+  function glyph(kind, x, y, parent) {
+    if (KINDS[kind].glyph === "square") el("rect", { x: x, y: y - 9, width: 10, height: 10, style: "fill: var(--checker)" }, parent);
+    else el("circle", { cx: x + 5.5, cy: y - 4, r: 5.5, style: "fill: var(--reader)" }, parent);
+  }
+
+  function render(cfg) {
+    const host = document.getElementById("kb-chart-" + cfg.id);
+    const width = Math.max(260, host.clientWidth);
+    host.textContent = "";
+    const barH = 14, gap = 2, labelH = 22, groupGap = 18, axisH = 22, valueRoom = 56, sectionH = 30;
+    const plotW = width - valueRoom;
+    let y = axisH;
+    let lastKind = null;
+    const sections = [];
+    const layout = cfg.rows.map(row => {
+      if (row.kind && row.kind !== lastKind) {
+        if (lastKind) y += 10;
+        sections.push({ kind: row.kind, y: y + 16, top: y });
+        y += sectionH;
+        lastKind = row.kind;
+      }
+      const top = y + labelH;
+      const n = row.bars.length;
+      const out = { row, labelY: y + 14, top };
+      y = top + n * barH + (n - 1) * gap + groupGap;
+      return out;
+    });
+    const height = y - groupGap + 6;
+    const svg = el("svg", { viewBox: "0 0 " + width + " " + height, width: width, height: height }, host);
+    const scale = v => (v / cfg.max) * plotW;
+
+    cfg.ticks.forEach(t => {
+      const x = scale(t) + 0.5;
+      el("line", { x1: x, x2: x, y1: axisH - 4, y2: height - 4, stroke: t === 0 ? "var(--axis)" : "var(--grid)", "stroke-width": 1 }, svg);
+      const tx = el("text", { x: x, y: 12, "text-anchor": t === 0 ? "start" : (t === cfg.max ? "end" : "middle"),
+        "font-size": 11.5, fill: "var(--muted)", style: "font-variant-numeric: tabular-nums" }, svg);
+      tx.textContent = tickFmt(t, cfg.unit);
+    });
+
+    // Section headers: the same square / circle as the test cards above the chart.
+    sections.forEach(sec => {
+      el("rect", { x: 0, y: sec.top + 2, width: width, height: sectionH - 6, style: "fill: rgba(255,255,255,0.03)" }, svg);
+      glyph(sec.kind, 6, sec.y + 4, svg);
+      const t = el("text", { x: 24, y: sec.y + 4, "font-size": 11, "font-weight": 700, "letter-spacing": "0.08em",
+        fill: "var(--muted)" }, svg);
+      t.textContent = KINDS[sec.kind].title.toUpperCase();
+    });
+
+    const tip = document.createElement("div");
+    tip.className = "kb-tip";
+    tip.hidden = true;
+    host.appendChild(tip);
+
+    layout.forEach(({ row, labelY, top }) => {
+      const k = row.kind ? KINDS[row.kind] : null;
+      const gl = el("text", { x: 0, y: labelY, "font-size": k ? k.size : 13.5, "font-weight": 600, fill: "var(--ink)",
+        style: k ? "font-family: " + k.font + "; font-style: " + k.style : "" }, svg);
+      gl.textContent = row.label;
+      row.bars.forEach((b, i) => {
+        const by = top + i * (barH + gap);
+        const w = scale(b.v);
+        const g = el("g", { tabindex: 0, role: "img", "aria-label": row.label + ", " + SERIES[b.s].label + ": " + fmt(b.v, cfg.unit) + " (" + b.d + ")" }, svg);
+        g.style.outline = "none";
+        el("rect", { x: 0, y: by - 1, width: width, height: barH + 2, fill: "transparent" }, g);
+        const bar = el("path", { d: barPath(0, by, w, barH), style: "fill: " + SERIES[b.s].color }, g);
+        const vt = el("text", { x: w + 7, y: by + barH - 2.5, "font-size": 12.5, fill: "var(--ink-2)",
+          style: "font-variant-numeric: tabular-nums" }, g);
+        vt.textContent = fmt(b.v, cfg.unit);
+
+        const show = (evt) => {
+          bar.style.opacity = "0.82";
+          tip.textContent = "";
+          const strong = document.createElement("b");
+          strong.textContent = fmt(b.v, cfg.unit);
+          const who = document.createElement("div");
+          const key = document.createElement("span");
+          key.className = "key";
+          key.style.background = SERIES[b.s].color;
+          who.appendChild(key);
+          who.appendChild(document.createTextNode(SERIES[b.s].label));
+          const what = document.createElement("div");
+          what.textContent = cfg.id === "cost" ? b.d : row.label + " · " + b.d;
+          tip.append(strong, who, what);
+          tip.hidden = false;
+          const box = host.getBoundingClientRect();
+          let px, py;
+          if (evt && evt.clientX !== undefined) { px = evt.clientX - box.left; py = evt.clientY - box.top; }
+          else { px = w; py = by; }
+          const tw = tip.offsetWidth, th = tip.offsetHeight;
+          let left = px + 14; if (left + tw > box.width) left = Math.max(0, px - tw - 14);
+          let topPos = py - th - 10; if (topPos < 0) topPos = py + 18;
+          tip.style.left = left + "px";
+          tip.style.top = topPos + "px";
+        };
+        const hide = () => { bar.style.opacity = ""; tip.hidden = true; };
+        g.addEventListener("pointermove", show);
+        g.addEventListener("pointerleave", hide);
+        g.addEventListener("focus", () => show(null));
+        g.addEventListener("blur", hide);
+      });
+    });
+  }
+
+  function table(cfg) {
+    const host = document.getElementById("kb-table-" + cfg.id);
+    const keys = [...new Set(cfg.rows.flatMap(r => r.bars.map(b => b.s)))];
+    const t = document.createElement("table");
+    const head = t.createTHead().insertRow();
+    const h0 = document.createElement("th"); h0.textContent = cfg.id === "cost" ? "Teacher" : "Test"; head.appendChild(h0);
+    if (cfg.id === "cost") {
+      ["Median tokens", "Note"].forEach((s, i) => { const th = document.createElement("th"); th.textContent = s; if (i === 0) th.className = "num"; head.appendChild(th); });
+    } else {
+      keys.forEach(k => { const th = document.createElement("th"); th.textContent = SERIES[k].label; th.className = "num"; head.appendChild(th); });
+    }
+    const body = t.createTBody();
+    cfg.rows.forEach(r => {
+      const tr = body.insertRow();
+      tr.insertCell().textContent = r.kind ? r.label + " (" + r.kind + ")" : r.label;
+      if (cfg.id === "cost") {
+        const b = r.bars[0];
+        const a = tr.insertCell(); a.className = "num"; a.textContent = fmt(b.v, cfg.unit);
+        tr.insertCell().textContent = b.d;
+      } else {
+        keys.forEach(k => {
+          const b = r.bars.find(x => x.s === k);
+          const td = tr.insertCell(); td.className = "num";
+          td.textContent = b ? fmt(b.v, cfg.unit) + " (" + b.d + ")" : "—";
+        });
+      }
+    });
+    host.appendChild(t);
+  }
+
+  const lastWidth = {};
+  const renderIfResized = cfg => {
+    const w = document.getElementById("kb-chart-" + cfg.id).clientWidth;
+    if (lastWidth[cfg.id] === w) return;
+    lastWidth[cfg.id] = w;
+    render(cfg);
+  };
+  charts.forEach(cfg => { renderIfResized(cfg); table(cfg); });
+  let raf = 0;
+  const ro = new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => charts.forEach(renderIfResized)); });
+  charts.forEach(cfg => ro.observe(document.getElementById("kb-chart-" + cfg.id)));
+})();
+</script>
+
+<script>
+// Dense vs mixture of experts. Bauhaus primitives: the yellow circle is a word, the white
+// triangle the router, each square a block of parameters (48 drawn for 384 experts).
+// Complete at rest; each new word re-routes unless the reader prefers reduced motion.
+(function () {
+  const NS = "http://www.w3.org/2000/svg";
+  const el = (name, attrs, parent) => {
+    const n = document.createElementNS(NS, name);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  };
+  const COLS = 8, ROWS = 6, SIZE = 15, GAP = 4;
+  const GX = 300 - 12 - (COLS * SIZE + (COLS - 1) * GAP), GY = 85 - (ROWS * SIZE + (ROWS - 1) * GAP) / 2;
+  const WORDS = ["dem", "Bett", "liegt", "unter", "Hund", "der", "Oma", "schläft"];
+  const cells = (svg, fill, stroke) => {
+    const out = [];
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+      out.push(el("rect", { x: GX + c * (SIZE + GAP), y: GY + r * (SIZE + GAP), width: SIZE, height: SIZE,
+        style: "fill: " + fill + "; stroke: " + stroke + "; stroke-width: 1.2" }, svg));
+    }
+    return out;
+  };
+  const word = (svg, cx) => {
+    el("circle", { cx: cx, cy: 85, r: 24, style: "fill: #FFD60A" }, svg);
+    const t = el("text", { x: cx, y: 89.5, "text-anchor": "middle", "font-size": 12, "font-weight": 700,
+      style: "fill: #000; font-family: var(--serif); font-style: italic" }, svg);
+    return t;
+  };
+
+  const dense = document.getElementById("kb-moe-dense");
+  const experts = document.getElementById("kb-moe-experts");
+  if (!dense || !experts) return;
+
+  // Dense: one bar from the word into the block; every square lit.
+  const dWord = word(dense, 34);
+  el("rect", { x: 58, y: 82, width: GX - 66, height: 6, style: "fill: var(--s-gemma)" }, dense);
+  const dCells = cells(dense, "var(--s-gemma)", "var(--s-gemma)");
+
+  // Experts: word, a triangle router, thin lines to the six chosen squares.
+  const eWord = word(experts, 30);
+  el("rect", { x: 54, y: 83, width: 18, height: 4, style: "fill: #e5e5ea" }, experts);
+  el("polygon", { points: "72,69 72,101 98,85", style: "fill: #e5e5ea" }, experts);
+  const lines = el("g", {}, experts);
+  const eCells = cells(experts, "transparent", "#48484A");
+
+  let pick = [3, 12, 21, 30, 38, 45];
+  function route(i) {
+    const w = WORDS[i % WORDS.length];
+    dWord.textContent = w;
+    eWord.textContent = w;
+    eCells.forEach((c, k) => {
+      const on = pick.includes(k);
+      c.style.fill = on ? "var(--s-kol)" : "transparent";
+      c.style.stroke = on ? "var(--s-kol)" : "#48484A";
+    });
+    lines.textContent = "";
+    pick.forEach(k => {
+      const c = eCells[k];
+      const x = +c.getAttribute("x") + SIZE / 2, y = +c.getAttribute("y") + SIZE / 2;
+      el("line", { x1: 98, y1: 85, x2: x, y2: y, style: "stroke: var(--s-kol); stroke-width: 1; opacity: 0.55" }, lines);
+    });
+  }
+  route(0);
+
+  const still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (still) return;
+  let i = 0;
+  setInterval(() => {
+    if (document.hidden) return;
+    i += 1;
+    const next = new Set();
+    while (next.size < 6) next.add(Math.floor(Math.random() * COLS * ROWS));
+    pick = [...next];
+    route(i);
+  }, 2200);
+})();
+</script>
+<script>
+// Distillation: the teacher writes example cards; each one lands in the student's ledger with a
+// green check, the wrong ones too. Real sentences from this run. Complete at rest (a filled
+// ledger, two cards in flight); moves only while on screen and when motion is allowed.
+(function () {
+  const svg = document.getElementById("kb-distill-svg");
+  const ledger = document.getElementById("kb-distill-ledger");
+  if (!svg || !ledger) return;
+  const NS = "http://www.w3.org/2000/svg";
+  const el = (name, attrs, parent) => {
+    const n = document.createElementNS(NS, name);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  };
+  // [text, wrong word] — the wrong word is shown to the reader, never to the student.
+  const SENTENCES = [
+    ["Max geht durch eine Straße."],
+    ["Sarah bleibt wegen des Wetters zu Hause."],
+    ["Am Abend liegt das Spielzeug unter das Bett.", "das Bett"],
+    ["Er liest den Brief."],
+    ["Der Bruder wartet vor der Tür."],
+    ["Ein Hund schläft auf dem Teppich."],
+    ["Dann hat er den Bruder die Milch gebracht.", "den Bruder"],
+    ["Er kauft einen Kaffee."],
+    ["Die Pizza ist leider verbrannt."]
+  ];
+  const P0 = { x: 168, y: 92 }, P1 = { x: 292, y: 18 }, P2 = { x: 416, y: 92 };
+  const at = t => ({
+    x: (1 - t) * (1 - t) * P0.x + 2 * (1 - t) * t * P1.x + t * t * P2.x,
+    y: (1 - t) * (1 - t) * P0.y + 2 * (1 - t) * t * P1.y + t * t * P2.y
+  });
+
+  // Teacher: a large blue circle. Student: a small one, with its labels underneath.
+  el("path", { d: "M" + P0.x + "," + P0.y + " Q" + P1.x + "," + P1.y + " " + P2.x + "," + P2.y,
+    style: "fill: none; stroke: #38383A; stroke-width: 1.5; stroke-dasharray: 2 5" }, svg);
+  el("circle", { cx: 95, cy: 92, r: 72, style: "fill: #0A84FF" }, svg);
+  const tl = el("text", { x: 95, y: 90, "text-anchor": "middle", "font-size": 19, "font-weight": 700, style: "fill: #fff" }, svg);
+  tl.textContent = "Teacher";
+  const ts = el("text", { x: 95, y: 110, "text-anchor": "middle", "font-size": 12.5, style: "fill: #d6e8ff" }, svg);
+  ts.textContent = "large model";
+  const student = el("g", { id: "kb-student" }, svg);
+  el("circle", { cx: 452, cy: 92, r: 34, style: "fill: #1c1c1e; stroke: #4DA3FF; stroke-width: 3" }, student);
+  const dots = el("g", {}, student);
+  const sl = el("text", { x: 452, y: 150, "text-anchor": "middle", "font-size": 15, "font-weight": 700, style: "fill: #fff" }, svg);
+  sl.textContent = "Student";
+  const ss = el("text", { x: 452, y: 168, "text-anchor": "middle", "font-size": 12, style: "fill: #8E8E93" }, svg);
+  ss.textContent = "small model, on the phone";
+  const cardsLayer = el("g", {}, svg);
+
+  function card(wrong) {
+    const g = el("g", {}, cardsLayer);
+    el("rect", { x: -17, y: -11, width: 34, height: 22, rx: 4,
+      style: "fill: #1c1c1e; stroke: " + (wrong ? "var(--err)" : "#e5e5ea") + "; stroke-width: 1.6" }, g);
+    el("rect", { x: -11, y: -5, width: 22, height: 2.5, rx: 1, style: "fill: #8E8E93" }, g);
+    el("rect", { x: -11, y: 1, width: wrong ? 9 : 16, height: 2.5, rx: 1, style: "fill: #8E8E93" }, g);
+    if (wrong) el("rect", { x: 0, y: 1, width: 11, height: 2.5, rx: 1, style: "fill: var(--err)" }, g);
+    return g;
+  }
+  function place(g, t) {
+    const p = at(t);
+    g.setAttribute("transform", "translate(" + p.x.toFixed(1) + "," + p.y.toFixed(1) + ")");
+  }
+
+  function learn(i, fresh) {
+    const [text, wrong] = SENTENCES[i % SENTENCES.length];
+    const li = document.createElement("li");
+    if (fresh) li.className = "kb-new";
+    const check = document.createElement("span");
+    check.className = "kb-check";
+    check.textContent = "✓";
+    const de = document.createElement("span");
+    de.className = "kb-de";
+    if (wrong) {
+      const k = text.indexOf(wrong);
+      de.append(text.slice(0, k));
+      const w = document.createElement("span");
+      w.className = "kb-wrongword";
+      w.textContent = wrong;
+      de.append(w, text.slice(k + wrong.length));
+    } else {
+      de.textContent = text;
+    }
+    li.append(check, de);
+    ledger.prepend(li);
+    while (ledger.children.length > 5) ledger.lastChild.remove();
+    if (wrong) {
+      const a = Math.random() * Math.PI * 2, r = 6 + Math.random() * 17;
+      el("circle", { cx: 452 + Math.cos(a) * r, cy: 92 + Math.sin(a) * r, r: 3.6, style: "fill: var(--err)" }, dots);
+      while (dots.children.length > 4) dots.firstChild.remove();
+    }
+  }
+
+  // At rest: four learned sentences (one wrong) and two cards in flight.
+  [0, 1, 2, 3].forEach(i => learn(i, false));
+  const rest = [card(false), card(SENTENCES[6].length > 1)];
+  place(rest[0], 0.32); place(rest[1], 0.74);
+
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let running = false, next = 4, flying = [], lastSpawn = 0, last = 0;
+  const TRAVEL = 2400, GAP = 1700;
+  function frame(now) {
+    if (!running) return;
+    if (!last) last = now;
+    if (now - lastSpawn > GAP) {
+      const i = next++;
+      flying.push({ i: i, t0: now, g: card(SENTENCES[i % SENTENCES.length].length > 1) });
+      lastSpawn = now;
+    }
+    flying = flying.filter(f => {
+      const t = Math.min(1, (now - f.t0) / TRAVEL);
+      place(f.g, t);
+      if (t >= 1) {
+        f.g.remove();
+        learn(f.i, true);
+        student.classList.add("kb-pulse");
+        setTimeout(() => student.classList.remove("kb-pulse"), 260);
+        return false;
+      }
+      return true;
+    });
+    requestAnimationFrame(frame);
+  }
+  function start() {
+    if (running) return;
+    running = true;
+    rest.forEach(g => g.remove()); rest.length = 0;
+    lastSpawn = 0; last = 0;
+    requestAnimationFrame(frame);
+  }
+  function stop() { running = false; }
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(es => es.forEach(e => (e.isIntersecting && !document.hidden) ? start() : stop()),
+      { threshold: 0.25 }).observe(svg);
+  } else {
+    start();
+  }
+  document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); });
+})();
+</script>
+
+<script>
+// Two gates: per teacher, 20 stories run through the checker (square) and then a reader
+// (circle). Counts are estimates: checker pass rate × hand-read "no error and makes sense" rate,
+// rounded, out of 20. Drawn at the container's real width so text stays a readable size.
+(function () {
+  const host = document.getElementById("kb-gates");
+  if (!host) return;
+  const NS = "http://www.w3.org/2000/svg";
+  const el = (name, attrs, parent) => {
+    const n = document.createElementNS(NS, name);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  };
+  const N = 20;
+  const LANES = [
+    { label: "Gemma 4 31B", color: "var(--s-gemma)", pass1: 19, pass2: 7 },
+    { label: "Kolibri-1, thinking off", color: "var(--s-kol)", pass1: 14, pass2: 2 },
+    { label: "Kolibri-1, reasoning on", color: "var(--s-kolr)", pass1: 18, pass2: 4 }
+  ];
+  // Spread k marks evenly over n slots, so failures are interleaved rather than bunched.
+  const spread = (n, k) => { const out = new Set(); for (let j = 0; j < k; j++) out.add(Math.floor((j + 0.5) * n / k)); return out; };
+  LANES.forEach(l => {
+    const f1 = spread(N, N - l.pass1);
+    const rest = [...Array(N).keys()].filter(i => !f1.has(i));
+    const f2i = spread(rest.length, l.pass1 - l.pass2);
+    const f2 = new Set(rest.filter((_, j) => f2i.has(j)));
+    l.fate = [...Array(N).keys()].map(i => f1.has(i) ? 1 : f2.has(i) ? 2 : 0);
+  });
+
+  const S = 8, GAP = 2;
+  let geo, tokens, counters, raf = 0, running = false, phaseStart = 0, heldSince = 0;
+  const still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function layout(width) {
+    const countW = 64, bucketW = 4 * (S + GAP), end = width - countW - bucketW - 14;
+    return { width: width, end: end, g1: Math.round(end * 0.44), g2: Math.round(end * 0.76),
+      bucket: end + 8, top: 34, laneH: 66, track: 40 };
+  }
+  // Where a token rests: in the pile under the gate that stopped it, or in the survivors' bucket.
+  function restPos(lane, fate, slot) {
+    const y0 = geo.top + lane * geo.laneH + geo.track;
+    if (fate === 0) return { x: geo.bucket + (slot % 4) * (S + GAP), y: y0 - S / 2 + Math.floor(slot / 4) * (S + GAP) - (S + GAP) / 2 };
+    const gx = fate === 1 ? geo.g1 : geo.g2;
+    return { x: gx + 6 + (slot % 6) * (S + GAP), y: y0 + 8 + Math.floor(slot / 6) * (S + GAP) };
+  }
+
+  function build() {
+    const width = Math.max(300, host.clientWidth);
+    geo = layout(width);
+    host.textContent = "";
+    const height = geo.top + LANES.length * geo.laneH + 10;
+    const svg = el("svg", { viewBox: "0 0 " + width + " " + height, width: width, height: height }, host);
+
+    // Gates: a hairline through every lane, with the square or circle on top.
+    [[geo.g1, "square", "Checker"], [geo.g2, "circle", "Reader"]].forEach(([x, shape, name]) => {
+      el("line", { x1: x, x2: x, y1: geo.top - 6, y2: height - 6, style: "stroke: #48484A; stroke-width: 1.5" }, svg);
+      if (shape === "square") el("rect", { x: x - 6, y: 6, width: 12, height: 12, style: "fill: var(--checker)" }, svg);
+      else el("circle", { cx: x, cy: 12, r: 6.5, style: "fill: var(--reader)" }, svg);
+      const t = el("text", { x: x + 11, y: 16, "font-size": 11.5, "font-weight": 600, style: "fill: var(--ink-2)" }, svg);
+      t.textContent = name;
+    });
+    const tr = el("text", { x: geo.bucket, y: 16, "font-size": 11.5, "font-weight": 600, style: "fill: var(--ink-2)" }, svg);
+    tr.textContent = "Trainable";
+
+    tokens = []; counters = [];
+    LANES.forEach((l, li) => {
+      const y0 = geo.top + li * geo.laneH;
+      const lab = el("text", { x: 0, y: y0 + 16, "font-size": 12.5, "font-weight": 600, style: "fill: var(--ink)" }, svg);
+      lab.textContent = l.label;
+      el("line", { x1: 0, x2: geo.end, y1: y0 + geo.track, y2: y0 + geo.track, style: "stroke: #2C2C2E; stroke-width: 1" }, svg);
+      const c = el("text", { x: width, y: y0 + geo.track + 6, "text-anchor": "end", "font-size": 22, "font-weight": 700, style: "fill: #fff; font-variant-numeric: tabular-nums" }, svg);
+      const ofTxt = el("tspan", { "font-size": 11.5, "font-weight": 500, style: "fill: var(--muted)" }, null);
+      counters.push({ el: c, n: 0, final: l.pass2, of: ofTxt });
+      const piles = { 0: 0, 1: 0, 2: 0 };
+      l.fate.forEach((fate, i) => {
+        const r = el("rect", { width: S, height: S, rx: 1.5, style: "fill: " + l.color }, svg);
+        const slot = piles[fate]++;
+        tokens.push({ lane: li, i: i, fate: fate, slot: slot, el: r, y: y0 + geo.track - S / 2 });
+      });
+    });
+  }
+
+  function setCounter(c, n) {
+    c.n = n;
+    c.el.textContent = String(n);
+    c.of.textContent = " of " + N;
+    c.el.appendChild(c.of);
+  }
+  function paint(tok, x, y, opacity, failed) {
+    tok.el.setAttribute("x", x.toFixed(1));
+    tok.el.setAttribute("y", y.toFixed(1));
+    tok.el.style.opacity = opacity;
+    tok.el.style.fill = failed === 1 ? "#636366" : failed === 2 ? "rgba(255, 214, 10, 0.55)" : LANES[tok.lane].color;
+  }
+  function finalState() {
+    tokens.forEach(t => { const p = restPos(t.lane, t.fate, t.slot); paint(t, p.x, p.y, t.fate ? 0.55 : 1, t.fate); });
+    counters.forEach(c => setCounter(c, c.final));
+  }
+
+  // Timeline: token i of every lane leaves at i × SPAWN, travels to its gate or the bucket, then settles.
+  const SPAWN = 230, SPEED = 0.16, SETTLE = 380, HOLD = 3800;
+  function frame(now) {
+    if (!running) return;
+    const t = now - phaseStart;
+    let busy = false;
+    counters.forEach(c => c.live = 0);
+    tokens.forEach(tok => {
+      const start = tok.i * SPAWN + tok.lane * 70;
+      const stopX = tok.fate === 1 ? geo.g1 : tok.fate === 2 ? geo.g2 : geo.end;
+      const travel = stopX / SPEED;
+      const rest = restPos(tok.lane, tok.fate, tok.slot);
+      if (t < start) { paint(tok, -S - 4, tok.y, 0, 0); busy = true; return; }
+      const dt = t - start;
+      if (dt < travel) { paint(tok, Math.min(stopX, dt * SPEED) - S, tok.y, 1, 0); busy = true; return; }
+      const k = Math.min(1, (dt - travel) / SETTLE);
+      const e = 1 - Math.pow(1 - k, 3);
+      const x = (stopX - S) + (rest.x - (stopX - S)) * e, y = tok.y + (rest.y - tok.y) * e;
+      paint(tok, x, y, tok.fate ? 1 - 0.45 * e : 1, k > 0.15 ? tok.fate : 0);
+      if (k < 1) busy = true;
+      if (tok.fate === 0 && k > 0.2) counters[tok.lane].live++;
+    });
+    counters.forEach(c => setCounter(c, c.live));
+    // Everything settled: hold the finished picture, then play it again.
+    if (busy) heldSince = 0;
+    else if (!heldSince) heldSince = now;
+    else if (now - heldSince > HOLD) { phaseStart = now; heldSince = 0; }
+    raf = requestAnimationFrame(frame);
+  }
+  function start() {
+    if (running || still) return;
+    running = true;
+    heldSince = 0;
+    raf = requestAnimationFrame(ts => { phaseStart = ts; frame(ts); });
+  }
+  function stop() { running = false; cancelAnimationFrame(raf); }
+
+  let lastW = 0;
+  function rebuild() {
+    const w = host.clientWidth;
+    if (w === lastW) return;
+    lastW = w;
+    const was = running;
+    stop();
+    build();
+    finalState();
+    if (was) start();
+  }
+  rebuild();
+  new ResizeObserver(() => rebuild()).observe(host);
+  if (!still && "IntersectionObserver" in window) {
+    new IntersectionObserver(es => es.forEach(e => (e.isIntersecting && !document.hidden) ? start() : stop()),
+      { threshold: 0.35 }).observe(host);
+  }
+  document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); });
+})();
+</script>
+{% endraw %}

@@ -1,4 +1,5 @@
 {%- assign gt = site.data.german_tutor -%}
+{%- assign kb = site.data.kolibri_bakeoff -%}
 <style>
   /* Scoped to the Writing section so it can't leak into the rest of the page.
      NOTE: this site sets global rules on bare <span> (skewX + a nth-child width
@@ -100,6 +101,31 @@
   <div class="content">
     <div class="user-details">
       <h1> Writing </h1>
+    </div>
+
+    <div class="wr-block">
+      <article class="wr-card">
+
+        <img class="wr-icon" src="{{ kb.icon }}" alt="{{ kb.icon_alt }}">
+
+        <div class="wr-body">
+          <div class="wr-tag">{{ kb.tag }}</div>
+
+          <h3> {{ kb.title }} </h3>
+
+          <p>
+            {{ kb.standfirst }}
+          </p>
+
+          <div class="">
+            <button class="raise" onclick="window.location.href='{{ kb.url }}'">Read the article</button>
+            <button class="raise" onclick="window.location.href='{{ kb.links.app_store }}'">Die Kartei on the App Store</button>
+          </div>
+
+          <p class="wr-meta">{{ kb.byline }} &middot; {{ kb.date }}</p>
+        </div>
+
+      </article>
     </div>
 
     <div class="wr-block">
